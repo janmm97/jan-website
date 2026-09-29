@@ -181,7 +181,7 @@
  ]
 }
 </script>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0A0A'/%3E%3Cpath d='M8 10h6M8 16h10M8 22h4' stroke='%23FFFFFF' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=2026-09-30.1">
 <style>
 :root{
   --bg:#06080c; --panel:#0e131b; --panel2:#151c26;
@@ -598,6 +598,7 @@ footer{background:rgba(9,13,20,.35)}
 <link rel="preload" href="assets/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Bump ?v= on these six files whenever any of them changes, so browsers drop cached copies. -->
 <link rel="stylesheet" href="assets/css/studio.css?v=2026-09-30.1">
+<link rel="stylesheet" href="assets/css/service-logo.css?v=2026-09-30.1">
 <link rel="stylesheet" href="assets/css/entry.css?v=2026-09-30.loader1">
 </head>
 <body>
@@ -1182,9 +1183,14 @@ footer{background:rgba(9,13,20,.35)}
           <a class="text-link" href="#servicePackages" data-scroll-target="servicePackages">View packages ↗</a>
         </div>
       </div>
-      <div class="nano-scene nano-phoenix">
-        <canvas id="phoenixCanvas" role="img" aria-label="A luminous white particle phoenix flies with continuously beating wings and flowing tail feathers."></canvas>
-        <button class="motion-toggle" type="button" aria-controls="phoenixCanvas" aria-pressed="false">Pause motion</button>
+      <div class="svc-logo-slot">
+        <button class="motion-toggle" type="button" aria-controls="serviceLogo" aria-pressed="false">Pause motion</button>
+      </div>
+      <div class="svc-logo-playground">
+        <div class="svc-catch-logo" id="serviceLogo">
+          <span class="svc-logo-bubble">Try and Catch Me</span>
+          <img src="assets/images/websitelogo-blackbg1.svg" alt="Jan's logo" width="120" height="120" draggable="false">
+        </div>
       </div>
     </div>
 
@@ -1918,5 +1924,6 @@ render(false);
 </script>
 <script src="assets/js/studio.js?v=2026-09-30.1"></script>
 <script src="assets/js/nano-scenes.js?v=2026-09-30.1"></script>
+<script src="assets/js/service-logo.js?v=2026-09-30.2"></script>
 </body>
 </html>

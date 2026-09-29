@@ -198,5 +198,4 @@
     sync();
   }
   mount('moonwalkCanvas',moonwalker());
-  mount('phoenixCanvas',phoenix());
 })();
