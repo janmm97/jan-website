@@ -43,6 +43,10 @@ export async function handleVisitor(request,env,fetcher=fetch){
   const emails=Object.entries(properties).filter(([key,p])=>env.NOTION_EMAIL_PROPERTY?key===env.NOTION_EMAIL_PROPERTY:p.type==='email');
   if(title.length!==1||emails.length!==1||!['email','rich_text'].includes(emails[0][1].type))throw new Error('Unsupported database schema');
   const emailProperty=emails[0][1].type==='email'?{email}:{rich_text:[{text:{content:email}}]};
+  // One row per email (Notion's equals is case-insensitive). A returning visitor gets the same reply as a new one, so the endpoint never reveals who has visited.
+  const existing=await notion('data_sources/'+sourceId+'/query',{method:'POST',body:JSON.stringify({filter:{property:emails[0][0],[emails[0][1].type]:{equals:email}},page_size:1})});
+  if(!Array.isArray(existing.results))throw new Error('Lookup not confirmed');
+  if(existing.results.length)return respond(201,{saved:true});
   const page=await notion('pages',{method:'POST',body:JSON.stringify({parent:{type:'data_source_id',data_source_id:sourceId},properties:{[title[0][0]]:{title:[{text:{content:name}}]},[emails[0][0]]:emailProperty}})});
   if(page.object!=='page'||!page.id)throw new Error('Save not confirmed');
   return respond(201,{saved:true});

@@ -1,6 +1,6 @@
 # Visitor registration: GitHub Pages → Worker → Notion
 
-The portfolio stays static on GitHub Pages. Deploy this endpoint separately to Cloudflare Workers. It stores names and emails in the supplied Notion database. The live database schema and permissions have not been verified: no token or connected Notion API was available during implementation.
+The portfolio stays static on GitHub Pages. Deploy this endpoint separately to Cloudflare Workers. It stores names and emails in the supplied Notion database. On 2026-09-30 the live schema was read through a separate Notion connection: one data source with a `Name` title property and an `Email` property of type Email. The Worker integration's own permissions are confirmed only by step 7.
 
 ## Activate
 
@@ -17,10 +17,11 @@ The database ID is taken from the supplied link, not the `v=` view ID. If that l
 ## Behavior
 
 - Required full name and email; client and server validation, 4 KB request limit, honeypot and Cloudflare per-IP rate limiting.
-- Only a confirmed Notion page creation returns `saved: true` and unlocks the portfolio.
-- A successful introduction is remembered for the current browser tab using a boolean in session storage. No name or email is stored in browser storage.
+- Only a confirmed Notion page creation, or a confirmed existing row for that email, returns `saved: true` and unlocks the portfolio.
+- One row per email. Before creating a row the Worker queries the data source for the email (Notion's `equals` ignores case). A returning visitor on a new browser or device gets in without a second row. Both cases get the same `201` reply, so the endpoint does not reveal whether an email has visited before. Two simultaneous first submissions of the same email can still both be written.
+- A successful introduction is remembered in that browser using a boolean in local storage, so returning visitors skip the form in new tabs and after restarting the browser. Where local storage is blocked, it falls back to session storage for the current tab. A different browser or device, a private window, or cleared site data asks again. No name or email is stored in browser storage.
 - This is a visitor introduction gate, not content authentication. Static GitHub Pages assets remain public.
-- Notion has no create-page idempotency guarantee here. A timeout after a successful remote write can cause a duplicate if the visitor retries. No email-based lookup or visitor-record existence is exposed.
+- Notion has no create-page idempotency guarantee, but the email lookup covers the common case: if a save times out after Notion wrote the row, the visitor's retry finds that row instead of adding another.
 - No credentials, personal details or raw Notion errors are logged by the Worker.
 
 ## Local checks

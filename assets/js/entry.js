@@ -1,8 +1,12 @@
 (()=>{'use strict';
 const dialog=document.querySelector('#entryDialog'),form=document.querySelector('#entryForm'),submit=form.querySelector('button[type=submit]'),status=document.querySelector('#entryStatus');
-let unlocked=false;try{unlocked=sessionStorage.getItem('jan-visitor-entered')==='1'}catch{}
+// localStorage keeps the introduction across tabs and browser restarts; sessionStorage is the fallback where it is blocked.
+const KEY='jan-visitor-entered';
+function remembered(store){try{return window[store].getItem(KEY)==='1'}catch{return false}}
+function remember(){for(const store of ['localStorage','sessionStorage'])try{window[store].setItem(KEY,'1')}catch{}}
+const unlocked=remembered('localStorage')||remembered('sessionStorage');
 function unlock(){document.documentElement.classList.remove('entry-pending');dialog.close();document.body.style.overflow='';document.dispatchEvent(new Event('portfolio:entered'));document.querySelector('.page.active [data-heading]')?.focus({preventScroll:true})}
-if(unlocked){unlock();return}
+if(unlocked){remember();unlock();return}
 dialog.showModal();document.body.style.overflow='hidden';dialog.addEventListener('cancel',e=>e.preventDefault());
 window.addEventListener('hashchange',()=>{if(dialog.open){document.body.style.overflow='hidden';requestAnimationFrame(()=>form.elements.fullName.focus({preventScroll:true}))}});
 form.addEventListener('submit',async e=>{
@@ -16,8 +20,7 @@ form.addEventListener('submit',async e=>{
   const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fullName,email,website:form.elements.website.value}),signal:AbortSignal.timeout(15000)});
   const data=await response.json().catch(()=>({}));
   if(!response.ok||data.saved!==true)throw new Error(response.status===429?'Too many attempts. Please wait a minute and try again.':'Your details could not be saved right now. Please try again shortly.');
-  try{sessionStorage.setItem('jan-visitor-entered','1')}catch{}
-  form.reset();unlock();
+  remember();form.reset();unlock();
  }catch(error){status.textContent=error.name==='TimeoutError'?'The connection took too long. Please try again.':error instanceof TypeError?'Unable to connect. Check your connection and try again.':error.message}
  finally{submit.disabled=false;submit.textContent='Enter the portfolio';form.removeAttribute('aria-busy')}
 });
