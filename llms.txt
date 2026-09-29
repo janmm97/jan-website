@@ -1,0 +1,20 @@
+# Jan — AI Agent Builder & Automation Specialist
+
+> Portfolio of Jan, a Computer Science graduate and Executive Assistant focused on operations and AI agents. Jan builds custom AI agents and connected workflows: the multi-agent command centers J/OS HQ and J/OS Agents, built on the One CLI, Claude Code and the Codex CLI, and n8n automations for deal screening, social content, video ads and request intake. The site is a single page; the section links below are hash routes of the same HTML document.
+
+## Site
+- [Home](https://janmm97.github.io/jan-website/): Overview, services and booking link
+- [About](https://janmm97.github.io/jan-website/#/about): Background and professional timeline
+- [Projects](https://janmm97.github.io/jan-website/#/projects): Six projects with descriptions, tools and screenshots
+- [Services](https://janmm97.github.io/jan-website/#/services): Service packages and the idea-to-system process
+
+## Projects
+- [J/OS HQ](https://github.com/janmm97/janhq): Local command center that runs AI agents for two businesses behind one approval gate (Next.js, Claude Code, Codex CLI, One CLI)
+- [AI Video Ad AutoSync Pipeline](https://github.com/janmm97/n8n-proj/tree/main/sora-2-autosync-v2): n8n workflow that turns a form submission into a finished vertical video ad
+- [Multi-Agent Content Automation](https://github.com/janmm97/n8n-proj/tree/main/content-automation): n8n multi-agent system that plans and writes social content across channels
+- [Deal Flow Checker](https://github.com/janmm97/n8n-proj/tree/main/deal-flow-checker): n8n automation that screens deal-flow emails in Gmail against acquisition criteria
+- [Automation Idea Summary and Prompt Writer](https://github.com/janmm97/n8n-proj/tree/main/automation-idea-summary-and-prompt-writer): n8n intake workflow that turns automation requests into execution-ready prompts
+
+## Optional
+- [Site source](https://github.com/janmm97/jan-website)
+- [Book a 30-minute call](https://calendly.com/janmm-va/30min)
