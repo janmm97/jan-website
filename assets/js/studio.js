@@ -3,7 +3,7 @@
   'use strict';
   const canvas=document.querySelector('#signalCanvas');
   const ctx=canvas?.getContext('2d');
-  const button=document.querySelector('.motion-toggle');
+  const button=document.querySelector('.signal-art .motion-toggle');
   const label=document.querySelector('#formationName');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const COUNT=1500,TAU=Math.PI*2,INTRO=4.3,CYCLE=22;
@@ -47,23 +47,14 @@
     logo.push({x:(x-93.5)/86,y:(y-93.5)/86,z:0});
   }
 
-  // Four fingers plus one thumb, with open gaps and a tapered wrist.
-  m.fillStyle='#fff';
-  m.beginPath();m.moveTo(62,86);m.lineTo(147,86);m.lineTo(143,130);
-  m.quadraticCurveTo(140,147,128,155);m.lineTo(128,192);m.lineTo(79,192);
-  m.lineTo(77,155);m.quadraticCurveTo(60,143,60,123);m.closePath();m.fill();
-  m.strokeStyle='#fff';m.lineCap='round';
-  const fingers=[
-    [68,98,64,40,10], [92,94,91,17,10],
-    [116,94,117,25,10], [138,99,145,52,9],
-    [68,124,29,90,12]
-  ];
-  for(const [x1,y1,x2,y2,r] of fingers){
-    m.lineWidth=r*2;m.beginPath();m.moveTo(x1,y1);m.lineTo(x2,y2);m.stroke();
-  }
-  const pixels=m.getImageData(0,0,200,200).data;
-  for(let y=7;y<196;y+=2)for(let x=8;x<190;x+=2){
-    if(pixels[(y*200+x)*4+3]>128)hand.push({x:(x-99)/88,y:(y-103)/91,z:0});
+  // Rounded, diagonal waving-hand silhouette based on the supplied reference.
+  // The contour includes the finger channels; there are no decorative motion lines.
+  mask.width=mask.height=500;
+  m.strokeStyle='#fff';m.lineWidth=11;m.lineJoin='round';m.lineCap='round';
+  m.stroke(new Path2D('M385 275 L247 137 C229 118 211 116 201 129 C188 142 190 161 204 175 L297 252 M297 252 L187 133 C168 114 148 117 135 132 C122 147 128 163 142 177 L264 288 M264 288 L150 170 C134 155 116 157 105 171 C95 186 99 199 112 212 L230 318 M230 318 L149 231 C135 218 116 221 107 234 C95 249 101 267 114 280 L270 431 C318 477 389 484 438 447 C479 414 487 366 468 311 L427 179 C421 158 405 147 386 155 C368 161 359 179 365 199 L385 275'));
+  const pixels=m.getImageData(0,0,500,500).data;
+  for(let y=110;y<480;y+=2)for(let x=90;x<485;x+=2){
+    if(pixels[(y*500+x)*4+3]>128)hand.push({x:(x-286)/180,y:(y-294)/180,z:0});
   }
   for(let i=0;i<COUNT;i++){
     const y=1-2*(i+.5)/COUNT,a=i*Math.PI*(3-Math.sqrt(5)),r=Math.sqrt(1-y*y);

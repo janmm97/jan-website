@@ -639,6 +639,10 @@ footer{background:rgba(9,13,20,.35)}
         <p>Today, I work as an <b>Executive Assistant focused on Operations and AI Agents</b>, combining operations, automation, and AI to solve real problems and help things run more smoothly.</p>
         <p>This site is also a place for me to share what I learn along the way — from AI agents and automation to operations, tools, experiments, and lessons from the work I do.</p>
         <p>If any of that interests you, feel free to look around. You might learn something useful — and hopefully, so will I. :D</p>
+        <div class="nano-scene nano-moonwalk">
+          <canvas id="moonwalkCanvas" role="img" aria-label="A man in a fedora, jacket, cropped trousers and loafers, made of luminous white particles, moonwalks continuously."></canvas>
+          <button class="motion-toggle" type="button" aria-controls="moonwalkCanvas" aria-pressed="false">Pause motion</button>
+        </div>
         </div>
         <div class="about-journey">
         <h2 class="about-h3-section">Professional Journey</h2>
@@ -1142,28 +1146,10 @@ footer{background:rgba(9,13,20,.35)}
           <a class="text-link" href="#servicePackages" data-scroll-target="servicePackages">View packages ↗</a>
         </div>
       </div>
-      <svg class="svc-sky fade f3" viewBox="0 0 480 380" fill="none" aria-hidden="true">
-        <g class="sky-orbit" stroke="currentColor" stroke-opacity=".18">
-          <circle cx="240" cy="190" r="152" stroke-dasharray="2 10"/>
-          <ellipse cx="240" cy="190" rx="200" ry="94" transform="rotate(-30 240 190)" stroke="#FFFFFF" stroke-opacity=".6"/>
-          <circle cx="372" cy="115" r="4" fill="currentColor" stroke="none"/>
-        </g>
-        <g stroke="#FFFFFF" stroke-opacity=".9">
-          <path d="M240 180 207 135 166 95 90 62 122 136 180 186 240 210 300 186 358 136 390 62 314 95 273 135 240 180 240 210 209 262 240 315 271 262 240 210"/>
-          <path d="M90 62 180 186 166 95M390 62 300 186 314 95M207 135 240 210 273 135M209 262 271 262M240 180 226 153 240 135 254 153 240 180" stroke-opacity=".28"/>
-        </g>
-        <g fill="currentColor">
-          <circle cx="240" cy="180" r="3"/><circle cx="207" cy="135" r="2"/><circle cx="166" cy="95" r="2.5"/>
-          <circle cx="90" cy="62" r="3"/><circle cx="122" cy="136" r="2"/><circle cx="180" cy="186" r="2"/>
-          <circle cx="240" cy="210" r="3"/><circle cx="300" cy="186" r="2"/><circle cx="358" cy="136" r="2"/>
-          <circle cx="390" cy="62" r="3"/><circle cx="314" cy="95" r="2.5"/><circle cx="273" cy="135" r="2"/>
-          <circle cx="209" cy="262" r="2"/><circle cx="240" cy="315" r="3"/><circle cx="271" cy="262" r="2"/>
-          <path d="m240 125 2 8 8 2-8 2-2 8-2-8-8-2 8-2Z"/>
-        </g>
-        <g fill="currentColor" font-family="Consolas,monospace" font-size="9" letter-spacing="1.5" opacity=".6">
-          <text x="36" y="35">THE SHAPE OF POSSIBILITY</text><text x="277" y="356">08 STAGES · ONE SYSTEM</text>
-        </g>
-      </svg>
+      <div class="nano-scene nano-phoenix">
+        <canvas id="phoenixCanvas" role="img" aria-label="A luminous white particle phoenix flies with continuously beating wings and flowing tail feathers."></canvas>
+        <button class="motion-toggle" type="button" aria-controls="phoenixCanvas" aria-pressed="false">Pause motion</button>
+      </div>
     </div>
 
     <div class="process-wrap" id="processWrap">
@@ -1902,6 +1888,7 @@ render(false);
 <noscript><div class="entry-dialog" style="position:fixed;inset:0;margin:auto;height:fit-content;z-index:2000">Please enable JavaScript to complete the visitor introduction.</div></noscript>
 <script src="assets/js/visitor-config.js"></script>
 <script src="assets/js/studio.js"></script>
+<script src="assets/js/nano-scenes.js"></script>
 <script src="assets/js/entry.js"></script>
 </body>
 </html>
