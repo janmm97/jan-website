@@ -34,17 +34,15 @@ A static site on GitHub Pages, with no build step and no framework.
 ```
 index.html                      single-page site (#/home, #/about, #/projects, …)
 assets/css, fonts, images, js   styles, JetBrains Mono, screenshots, scripts
-integrations/visitor-worker/    Cloudflare Worker behind the visitor introduction form
+integrations/visitor-worker/    legacy visitor integration (not used by the site)
 ```
 
-Visitors are asked for their name and email before exploring. The form posts to a
-[Cloudflare Worker](integrations/visitor-worker/README.md), which validates the
-submission, rate-limits it and saves it to a Notion database. The Notion token lives
-only as a Cloudflare secret. No credentials are in this repository or in the files the
-browser downloads.
+Visitors enter through a short bouncing-logo intro. Its progress reaches 100% before
+the page opens, with a 2.8-second fallback deadline. Reduced-motion visitors see a
+shorter static-logo intro. There is no registration form or visitor submission request.
+The legacy worker source remains in the repository but is not connected to the page.
 
-To preview locally, run `npx serve .` from the repository root. Pages display, but the
-form only saves from the published domain.
+To preview locally, run `npx serve .` from the repository root.
 
 ## License
 

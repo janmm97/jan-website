@@ -1,8 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" class="entry-pending">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(()=>{
+  const root=document.documentElement;
+  root.classList.add('entry-pending');
+  root.dataset.introStarted=String(performance.now());
+  performance.mark('portfolio:intro-start');
+  const finish=()=>{
+    if(!root.classList.contains('entry-pending'))return;
+    root.classList.remove('entry-pending');
+    document.getElementById('entryLoader')?.remove();
+    document.querySelectorAll('[data-intro-inert]').forEach(el=>{el.inert=false;el.removeAttribute('data-intro-inert')});
+    delete root.dataset.introStarted;
+    performance.mark('portfolio:intro-end');
+    document.dispatchEvent(new Event('portfolio:entered'));
+  };
+  window.__finishPortfolioIntro=finish;
+  setTimeout(finish,2800);
+})();
+</script>
+<link rel="preload" href="assets/images/websitelogo-blackbg1.svg" as="image">
+<script src="assets/js/entry.js?v=2026-09-30.loader1" defer></script>
+<noscript><style>.page.page-home{display:flex}</style></noscript>
 <title>Jan — AI Agent Builder & Automation Specialist</title>
 <meta name="description" content="Jan, AI agent builder and automation specialist. Custom AI agents, n8n workflows and multi-agent systems like J/OS HQ that turn repetitive work into systems.">
 <meta name="theme-color" content="#0b0b0b">
@@ -576,9 +598,22 @@ footer{background:rgba(9,13,20,.35)}
 <link rel="preload" href="assets/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Bump ?v= on these six files whenever any of them changes, so browsers drop cached copies. -->
 <link rel="stylesheet" href="assets/css/studio.css?v=2026-09-30.1">
-<link rel="stylesheet" href="assets/css/entry.css?v=2026-09-30.1">
+<link rel="stylesheet" href="assets/css/entry.css?v=2026-09-30.loader1">
 </head>
 <body>
+<div class="entry-loader" id="entryLoader" aria-label="Opening Jan's portfolio">
+  <div class="loader-content">
+    <div class="loader-stage" aria-hidden="true">
+      <div class="loader-shadow"></div>
+      <img class="loader-logo" src="assets/images/websitelogo-blackbg1.svg" alt="" width="84" height="84" fetchpriority="high">
+      <div class="loader-floor"></div>
+    </div>
+    <div class="loader-progress" role="progressbar" aria-label="Opening portfolio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="loader-readout" aria-hidden="true"><span>Loading</span><span id="loaderPercent">0%</span></div>
+      <div class="loader-track" aria-hidden="true"><span id="loaderFill"></span></div>
+    </div>
+  </div>
+</div>
 <a class="skip-link" href="#mainContent">Skip to content</a>
 
 
@@ -1873,23 +1908,7 @@ var yr=$('#yr');if(yr){yr.textContent=String(new Date().getFullYear());}
 render(false);
 })();
 </script>
-<dialog class="entry-dialog" id="entryDialog" aria-labelledby="entryTitle" aria-describedby="entryIntro">
-  <img class="entry-mark" src="assets/images/websitelogo-blackbg1.svg" alt="Jan" width="32" height="32">
-  <h2 id="entryTitle">Before we begin.</h2>
-  <p class="entry-intro" id="entryIntro">A quick introduction. Leave your name and email to explore my work.</p>
-  <form class="entry-form" id="entryForm">
-    <div class="entry-field"><label for="visitorName">Full name</label><input id="visitorName" name="fullName" autocomplete="name" placeholder="Your full name" maxlength="120" required autofocus></div>
-    <div class="entry-field"><label for="visitorEmail">Email address</label><input id="visitorEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required></div>
-    <div class="entry-honey" aria-hidden="true"><label for="visitorWebsite">Website</label><input id="visitorWebsite" name="website" tabindex="-1" autocomplete="off"></div>
-    <p class="entry-notice">By continuing, you agree to share your name and email with Jan. Your details will be stored in his visitor database in Notion.</p>
-    <p class="entry-status" id="entryStatus" role="status" aria-live="polite"></p>
-    <button type="submit" class="btn btn-primary">Enter the portfolio</button>
-  </form>
-</dialog>
-<noscript><div class="entry-dialog" style="position:fixed;inset:0;margin:auto;height:fit-content;z-index:2000">Please enable JavaScript to complete the visitor introduction.</div></noscript>
-<script src="assets/js/visitor-config.js?v=2026-09-30.1"></script>
 <script src="assets/js/studio.js?v=2026-09-30.1"></script>
 <script src="assets/js/nano-scenes.js?v=2026-09-30.1"></script>
-<script src="assets/js/entry.js?v=2026-09-30.1"></script>
 </body>
 </html>

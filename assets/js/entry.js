@@ -1,27 +1,42 @@
-(()=>{'use strict';
-const dialog=document.querySelector('#entryDialog'),form=document.querySelector('#entryForm'),submit=form.querySelector('button[type=submit]'),status=document.querySelector('#entryStatus');
-// localStorage keeps the introduction across tabs and browser restarts; sessionStorage is the fallback where it is blocked.
-const KEY='jan-visitor-entered';
-function remembered(store){try{return window[store].getItem(KEY)==='1'}catch{return false}}
-function remember(){for(const store of ['localStorage','sessionStorage'])try{window[store].setItem(KEY,'1')}catch{}}
-const unlocked=remembered('localStorage')||remembered('sessionStorage');
-function unlock(){document.documentElement.classList.remove('entry-pending');dialog.close();document.body.style.overflow='';document.dispatchEvent(new Event('portfolio:entered'));document.querySelector('.page.active [data-heading]')?.focus({preventScroll:true})}
-if(unlocked){remember();unlock();return}
-dialog.showModal();document.body.style.overflow='hidden';dialog.addEventListener('cancel',e=>e.preventDefault());
-window.addEventListener('hashchange',()=>{if(dialog.open){document.body.style.overflow='hidden';requestAnimationFrame(()=>form.elements.fullName.focus({preventScroll:true}))}});
-form.addEventListener('submit',async e=>{
- e.preventDefault();if(submit.disabled||!form.reportValidity())return;
- submit.disabled=true;submit.textContent='Saving your details…';form.setAttribute('aria-busy','true');status.textContent='';
- const fullName=form.elements.fullName.value.trim(),email=form.elements.email.value.trim();
- try{
-  if(!fullName){form.elements.fullName.focus();throw new Error('Please enter your full name.')}
-  const endpoint=window.PORTFOLIO_VISITOR_ENDPOINT;
-  if(!endpoint)throw new Error('Visitor registration is not available yet. Please come back shortly.');
-  const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fullName,email,website:form.elements.website.value}),signal:AbortSignal.timeout(15000)});
-  const data=await response.json().catch(()=>({}));
-  if(!response.ok||data.saved!==true)throw new Error(response.status===429?'Too many attempts. Please wait a minute and try again.':'Your details could not be saved right now. Please try again shortly.');
-  remember();form.reset();unlock();
- }catch(error){status.textContent=error.name==='TimeoutError'?'The connection took too long. Please try again.':error instanceof TypeError?'Unable to connect. Check your connection and try again.':error.message}
- finally{submit.disabled=false;submit.textContent='Enter the portfolio';form.removeAttribute('aria-busy')}
-});
+/* A short brand intro. Elapsed time drives progress, never a network request. */
+(()=>{
+  'use strict';
+  const root=document.documentElement,loader=document.getElementById('entryLoader');
+  if(!loader||!root.classList.contains('entry-pending'))return;
+  const finish=window.__finishPortfolioIntro;
+  const started=Number(root.dataset.introStarted);
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const duration=reduced?450:2200,hold=reduced?70:140,fade=reduced?80:240;
+  const progress=loader.querySelector('[role="progressbar"]');
+  const percent=document.getElementById('loaderPercent'),fill=document.getElementById('loaderFill');
+  let frame=0,completed=false,lastValue=-1;
+  loader.querySelectorAll('.loader-logo,.loader-shadow').forEach(el=>{
+    el.getAnimations().forEach(animation=>{animation.currentTime=Math.max(0,performance.now()-started)});
+  });
+  document.querySelectorAll('body>header,body>main,body>footer,.skip-link').forEach(el=>{
+    if(!el.inert){el.inert=true;el.setAttribute('data-intro-inert','')}
+  });
+  function tick(){
+    if(!root.classList.contains('entry-pending'))return;
+    const elapsed=performance.now()-started;
+    const value=Math.min(100,Math.floor(elapsed/duration*100));
+    if(value!==lastValue){
+      lastValue=value;percent.textContent=value+'%';
+      progress.setAttribute('aria-valuenow',String(value));
+      fill.style.transform='scaleX('+value/100+')';
+    }
+    if(value===100&&!completed){
+      completed=true;loader.classList.add('is-complete');
+    }
+    if(elapsed>=duration+hold)loader.classList.add('is-leaving');
+    if(elapsed>=duration+hold+fade){finish();return}
+    frame=requestAnimationFrame(tick);
+  }
+  document.addEventListener('portfolio:entered',()=>cancelAnimationFrame(frame),{once:true});
+  document.addEventListener('visibilitychange',()=>{
+    if(!document.hidden&&root.classList.contains('entry-pending')){
+      cancelAnimationFrame(frame);tick();
+    }
+  });
+  tick();
 })();
