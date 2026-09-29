@@ -7,7 +7,9 @@ connected automation workflows with n8n, Claude Code, the Codex CLI and the One 
 Its projects take repetitive operational work (email triage, deal screening, content
 production, video ads, request intake) and turn it into systems that run on their own.
 
-**[▶ Watch the J/OS HQ showcase (59 s)](https://janmm97.github.io/jan-website/assets/images/HQ-Showcase-Video-2026-09-30.mp4)**
+[![J/OS HQ demo: an AI agent task is routed to the right workspace, planned read-only, approved once by the operator, then verified and logged](assets/images/HQ-Showcase-Video-2026-09-30.gif)](https://janmm97.github.io/jan-website/assets/images/HQ-Showcase-Video-2026-09-30.mp4)
+
+*[▶ Watch the full-quality video (59 s)](https://janmm97.github.io/jan-website/assets/images/HQ-Showcase-Video-2026-09-30.mp4)*
 
 ## Featured projects
 
