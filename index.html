@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="en" class="entry-pending">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jan — AI Agent Builder</title>
+<meta name="description" content="Jan — AI agent builder & automation specialist.">
+<meta name="theme-color" content="#0b0b0b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0A0A'/%3E%3Cpath d='M8 10h6M8 16h10M8 22h4' stroke='%23FFFFFF' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#06080c; --panel:#0e131b; --panel2:#151c26;
+  --ink:#edf1f5; --ink2:#b9c3cf; --ink3:#96a5b6;
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.18);
+  --accent:#FFFFFF; --accent-ink:#0A0A0A; --glow:rgba(255,255,255,.22);
+  --glass-lo:rgba(255,255,255,.04); --glass-edge-soft:rgba(255,255,255,.15); --glass-edge:rgba(255,255,255,.28);
+  --term:'Cascadia Code','Cascadia Mono',Consolas,'Lucida Console','Courier New',ui-monospace,monospace;
+  --s1:.5rem; --s2:1rem; --s3:clamp(1.25rem,2.4vw,1.75rem); --s4:clamp(1.75rem,4vw,3rem); --s5:clamp(2.5rem,6vw,5rem);
+  --glass-surface:linear-gradient(145deg,rgba(143,164,189,.065),rgba(10,16,25,.72) 55%,rgba(8,13,21,.82));
+  --glass-border:rgba(197,215,236,.13); --glass-shadow:0 20px 60px -28px rgba(0,4,12,.8),inset 0 1px 0 rgba(224,236,248,.08);
+  --nav-h:88px; --container:1160px; --gutter:clamp(1.25rem,4vw,3rem); --chart-ink:#d9cfb9;
+}
+*{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;min-height:100svh;min-height:100dvh;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);
+  font-family:var(--term);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--accent);color:var(--accent-ink)}
+img{display:block;max-width:100%}
+html{color-scheme:dark;scrollbar-color:#455467 var(--bg)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 12% 10%,rgba(86,121,159,.075),transparent 52%),radial-gradient(ellipse at 90% 68%,rgba(130,108,79,.045),transparent 48%)}
+a{text-underline-offset:.25em}
+button,a{-webkit-tap-highlight-color:transparent}
+button:disabled{opacity:.45;cursor:not-allowed}
+a{color:inherit}
+button,input,textarea{font-family:var(--term)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.container{width:min(var(--container),100% - var(--gutter)*2);margin-inline:auto}
+@media(max-width:640px){:root{--nav-h:80px;--gutter:1rem}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+[data-heading]:focus{outline:none}
+
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:var(--stars-op,1);transition:opacity .8s}
+.orbits{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:0}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.13)}
+.ring::after{content:'';position:absolute;top:-3px;left:50%;width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.8}
+.r1{width:min(560px,86vw);height:min(560px,86vw);animation:spin 70s linear infinite}
+.r2{width:min(860px,130vw);height:min(860px,130vw);border-color:rgba(255,255,255,.06);animation:spin 120s linear infinite reverse}
+.r2::after{background:var(--ink2);opacity:.45}
+@keyframes spin{to{transform:rotate(360deg)}}
+.glow{position:absolute;top:2%;left:50%;transform:translateX(-50%);width:min(760px,94vw);height:440px;
+  background:radial-gradient(closest-side,rgba(255,255,255,.04),transparent 70%);filter:blur(12px);pointer-events:none;z-index:0}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;padding-block:12px}
+.nav-in{background:transparent;border:1px solid transparent;border-radius:16px;transition:background .3s,border-color .3s,box-shadow .3s}
+.nav.scrolled .nav-in{background:rgba(9,14,22,.94);border-color:var(--glass-border);backdrop-filter:blur(24px) saturate(125%);-webkit-backdrop-filter:blur(24px) saturate(125%);box-shadow:var(--glass-shadow)}
+.nav-in{height:calc(var(--nav-h) - 24px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;padding-inline:14px}
+.nav-in>div:last-child{justify-self:end}
+.brand{display:flex;align-items:center;text-decoration:none;font-weight:700;font-size:1.02rem;letter-spacing:.02em}
+.brand:hover{color:var(--accent)}
+.brand-logo{height:34px;width:34px;object-fit:contain;flex:none;display:block}
+.nav-links{display:flex;align-items:center;gap:.25rem}
+.nav-links a{font-size:.86rem;color:var(--ink2);text-decoration:none;padding:.5rem .85rem;border-radius:999px;transition:color .25s,background .25s}
+.nav-links a:hover{color:var(--ink);background:var(--panel)}
+.nav-links a.active{color:var(--ink);background:rgba(221,232,246,.12);box-shadow:inset 0 0 0 1px rgba(221,232,246,.14)}
+.icon-btn{width:44px;height:44px;border-radius:50%;cursor:pointer;display:grid;place-items:center;color:var(--ink);
+  background:linear-gradient(135deg,rgba(255,255,255,.10),var(--glass-lo));
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border:1px solid var(--glass-edge-soft);
+  box-shadow:0 4px 16px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.16);
+  transition:.25s}
+.icon-btn:hover{background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.08));border-color:var(--glass-edge);transform:translateY(-2px)}
+.burger{display:none}
+@media(max-width:820px){.nav-links{display:none}.burger{display:grid}.nav-in{grid-template-columns:1fr auto}}
+.mmenu{position:fixed;inset:0;z-index:940;background:rgba(6,8,12,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;flex-direction:column;justify-content:center;padding:2rem;
+  transform:translateY(-100%);visibility:hidden;
+  transition:transform .6s cubic-bezier(.7,0,.2,1), visibility 0s linear .6s}
+.mmenu.open{transform:none;visibility:visible;transition:transform .6s cubic-bezier(.7,0,.2,1)}
+.mmenu-close{position:absolute;top:1.1rem;right:1.25rem}
+.mmenu a{font-weight:700;font-size:clamp(1.7rem,7vw,2.5rem);letter-spacing:-.01em;text-decoration:none;color:var(--ink);padding:.4rem 0;border-bottom:1px solid var(--line);opacity:0;transform:translateY(18px);transition:.5s}
+.mmenu.open a{opacity:1;transform:none}
+.mmenu .mfoot{margin-top:2rem;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink3)}
+
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:44px;gap:.65rem;padding:.85rem 1.6rem;border-radius:999px;
+  font-family:var(--term);font-size:.9rem;font-weight:700;letter-spacing:.01em;cursor:pointer;text-decoration:none;overflow:hidden;
+  -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,background .3s,border-color .3s,color .3s}
+.btn::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);opacity:.7;pointer-events:none}
+.btn::after{content:'';position:absolute;top:-60%;left:-30%;width:36%;height:220%;transform:rotate(20deg) translateX(-160%);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);transition:transform .7s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.btn:hover::after{transform:rotate(20deg) translateX(360%)}
+.btn-primary{background:linear-gradient(135deg,rgba(255,255,255,.22),rgba(255,255,255,.08));
+  border:1px solid rgba(255,255,255,.34);color:var(--ink);
+  box-shadow:0 10px 30px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.30), inset 0 -1px 0 rgba(255,255,255,.06);
+  text-shadow:0 0 14px rgba(255,255,255,.25)}
+.btn-primary:hover{transform:translateY(-3px);background:linear-gradient(135deg,rgba(255,255,255,.30),rgba(255,255,255,.12));
+  border-color:rgba(255,255,255,.55);box-shadow:0 18px 46px -12px var(--glow), inset 0 1px 0 rgba(255,255,255,.40)}
+.btn-primary:active{transform:translateY(-1px)}
+.btn-ghost{background:linear-gradient(135deg,rgba(255,255,255,.08),var(--glass-lo));
+  border:1px solid var(--glass-edge-soft);color:var(--ink2);
+  box-shadow:0 6px 20px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.14)}
+.btn-ghost:hover{transform:translateY(-3px);color:var(--ink);
+  background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.06));border-color:var(--glass-edge);
+  box-shadow:0 14px 36px -14px rgba(255,255,255,.18), inset 0 1px 0 rgba(255,255,255,.22)}
+.btn .ar{transition:transform .3s}
+.btn:hover .ar{transform:translateX(4px)}
+.text-link{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--line2);padding-bottom:3px;transition:.25s}
+.text-link:hover{color:var(--accent);border-color:var(--accent)}
+
+main{flex:1;min-width:0;display:flex;flex-direction:column;position:relative;z-index:1}
+.page{display:none;flex:1;padding:calc(var(--nav-h) + var(--s5)) 0 var(--s5);position:relative}
+.page.active{display:flex;flex-direction:column;animation:pageIn .6s cubic-bezier(.16,1,.3,1)}
+@keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.page-home{justify-content:center;padding:calc(var(--nav-h) + 1.5rem) 0 2rem;overflow:clip}
+.page[data-page="services"]{padding-top:var(--nav-h)}
+
+.stub h1 em:not(.grad-em){font-style:italic;color:transparent;-webkit-text-stroke:1.1px var(--ink)}
+@supports not (-webkit-text-stroke:1px #fff){.stub h1 em:not(.grad-em){color:var(--ink2)}}
+
+.grad-em{font-style:italic;background-image:linear-gradient(120deg,#FFFFFF,#8A8A8A);
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 18px var(--em-glow,rgba(255,255,255,.18)))}
+@supports not ((background-clip:text) or (-webkit-background-clip:text)){
+  .grad-em{background:none;color:var(--ink);-webkit-text-fill-color:currentColor;filter:none}}
+
+.hero{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:.75rem;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);margin:0;line-height:1.6}
+.eyebrow::before,.eyebrow::after{content:'';width:24px;height:1px;background:var(--line2);flex:none}
+.hero-title{font-weight:700;font-size:clamp(2.1rem,6vw,4.5rem);line-height:1.12;letter-spacing:-.035em;margin:var(--s3) 0 0;text-wrap:balance}
+.type-line{margin:var(--s3) 0 0;font-size:clamp(.9rem,1.6vw,1.08rem);color:var(--ink2);min-height:3.4em;width:100%;max-width:60ch;display:block;align-content:center;text-wrap:balance}
+.type-line .typed{color:var(--accent)}
+.caret{display:inline-block;width:8px;height:1.1em;background:var(--accent);vertical-align:-.15em;margin-left:2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-sub{margin:.25rem auto 0;font-size:clamp(.85rem,1.4vw,.95rem);color:var(--ink2);max-width:53ch;text-wrap:pretty}
+.hero-cta{margin-top:clamp(1.25rem,3.5vh,2rem)}
+.fade{opacity:0;transform:translateY(20px);animation:up .95s cubic-bezier(.16,1,.3,1) forwards}
+.f1{animation-delay:.1s}.f2{animation-delay:.22s}.f3{animation-delay:.45s}.f4{animation-delay:.6s}.f5{animation-delay:.75s}
+@keyframes up{to{opacity:1;transform:none}}
+
+.about-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 15% 25%,rgba(110,141,174,.06),transparent 60%)}
+@keyframes gridDrift{to{background-position:54px 54px,54px 54px}}
+.about-glow{position:absolute;top:4%;left:50%;transform:translateX(-50%);width:min(640px,92vw);height:360px;
+  background:radial-gradient(closest-side,rgba(255,255,255,.05),transparent 70%);filter:blur(10px);pointer-events:none;z-index:0}
+.about-inner{position:relative;z-index:1}
+.about-head{text-align:center;margin-bottom:var(--s5)}
+.about-h3{font-weight:400;font-style:italic;font-size:clamp(1.05rem,2.6vw,1.5rem);color:var(--ink2);margin:var(--s2) 0 0}
+.about-prose{display:grid;grid-template-columns:minmax(0,1fr);max-width:78ch;margin-inline:auto;gap:var(--s4);line-height:1.85}
+.about-story,.about-journey{min-width:0;padding:var(--s4)}
+.about-story p:last-child{margin-bottom:0}
+.about-journey .timeline{gap:1.5rem}
+
+.about-h3-section{margin:0 0 var(--s3);font-size:1.12rem;font-weight:700;letter-spacing:-.01em;color:var(--ink);
+  display:flex;align-items:center;gap:.8rem}
+.about-h3-section::before{content:'';width:26px;height:1px;background:var(--accent);flex:none}
+.about-prose p{color:var(--ink2);margin:0 0 var(--s3)}
+.about-prose p b{color:var(--ink);font-weight:700}
+.about-cta{margin-top:var(--s5);display:flex;justify-content:center;gap:var(--s3);flex-wrap:wrap}
+
+.timeline{margin-top:var(--s3);display:grid;gap:var(--s3)}
+.timeline-item{position:relative;padding-left:var(--s3);border-left:1px solid var(--line);transition:border-color .3s}
+.timeline-item:hover{border-left-color:var(--line2)}
+.timeline-item::before{content:'';position:absolute;left:-4px;top:6px;width:7px;height:7px;border-radius:50%;background:var(--accent);opacity:.6}
+.timeline-head{display:flex;justify-content:space-between;align-items:baseline;gap:.35rem 1rem;flex-wrap:wrap;margin-bottom:.5rem}
+.timeline-company{font-weight:700;font-size:1.02rem;color:var(--ink);letter-spacing:-.01em;flex:1 1 auto;min-width:0}
+.timeline-date{font-style:normal;color:var(--ink);font-size:.88rem;flex:0 0 auto;white-space:nowrap;opacity:.9}
+.timeline-role{font-size:.84rem;color:var(--ink2);line-height:1.6;word-break:break-word;overflow-wrap:break-word}
+@media(max-width:640px){.timeline-company{font-size:.95rem}.timeline-date{font-size:.82rem}.timeline-role{font-size:.82rem}}
+
+/* ============ PROJECTS PAGE ============ */
+.projects-head{text-align:left;margin-bottom:0;display:grid;grid-template-columns:1.1fr 1fr;gap:var(--s4);align-items:end}
+.projects-head .projects-title{margin:0;text-wrap:balance}
+.projects-head .projects-lead{margin:0;font-size:.95rem}
+@media(max-width:740px){.projects-head{grid-template-columns:1fr;gap:1.5rem}}
+.projects-title{font-weight:700;font-size:clamp(2.2rem,6vw,4rem);line-height:1.08;letter-spacing:-.02em;margin:var(--s3) 0 var(--s3)}
+.projects-lead{color:var(--ink2);max-width:62ch;margin:0 auto;font-size:clamp(.95rem,1.6vw,1.1rem)}
+.projects-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3);margin-top:var(--s5)}
+.pcard{min-width:0;display:flex;flex-direction:column;text-align:left;
+  overflow:hidden;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),border-color .3s}
+.pcard:hover{transform:translateY(-6px);border-color:var(--glass-edge)}
+.pcard-media{display:block;aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--line);background:rgba(5,9,15,.60);position:relative;padding:clamp(.75rem,2vw,1.5rem);text-decoration:none}
+.pcard-media::after{content:"View full image";position:absolute;right:12px;bottom:12px;padding:.4rem .7rem;border:1px solid var(--glass-border);border-radius:6px;background:rgba(9,13,20,.92);color:var(--ink);font-size:10px;opacity:0;transform:translateY(4px);transition:opacity .2s,transform .2s}
+.pcard-media:hover::after,.pcard-media:focus-visible::after{opacity:1;transform:none}
+@media(hover:none){.pcard-media::after{opacity:1;transform:none}}
+.pcard-media img{width:100%;height:100%;object-fit:contain;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.pcard-media .pcard-fallback{display:none;width:100%;height:100%;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.pcard-media.no-img img{display:none}
+.pcard-media.no-img .pcard-fallback{display:block}
+.pcard:hover .pcard-media img,.pcard:hover .pcard-media .pcard-fallback{transform:scale(1.015)}
+.pcard-body{padding:var(--s3);display:flex;flex-direction:column;gap:.7rem;flex:1}
+.pcard-title{font-weight:700;font-size:clamp(1.1rem,1.7vw,1.35rem);line-height:1.4;letter-spacing:-.025em;margin:0;text-wrap:pretty}
+.pcard-meta{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin:0}
+.pcard-desc{color:var(--ink2);font-size:.9rem;line-height:1.8;margin:0}
+@media(max-width:740px){.projects-grid{grid-template-columns:1fr}.timeline-date{white-space:normal}}
+.pcard-body>.btn{margin-top:auto}
+.pcard-tags{min-height:78px;align-content:flex-end;display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.5rem;padding-top:.6rem}
+.pcard-tags span{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--glass-edge-soft);
+  border-radius:999px;padding:.35rem .7rem;color:var(--ink2);background:rgba(255,255,255,.05)}
+.projects-cta{margin-top:var(--s5);text-align:center}
+
+.stub{margin:auto;text-align:left;max-width:760px;padding:var(--s4)}
+.stub-tag{display:inline-flex;align-items:center;gap:.55rem;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink2);
+  background:linear-gradient(135deg,rgba(255,255,255,.08),var(--glass-lo));
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border:1px solid var(--glass-edge-soft);border-radius:999px;padding:.45rem 1rem;
+  box-shadow:0 4px 16px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.14)}
+.stub-tag i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 1.6s infinite}
+.stub h1{font-weight:700;font-size:clamp(2rem,5.6vw,3.4rem);letter-spacing:-.02em;margin:var(--s3) 0 var(--s2)}
+.stub p{color:var(--ink2);max-width:52ch;margin:0}
+.stub-list{list-style:none;margin:var(--s4) 0 0;padding:0;display:grid;gap:.7rem}
+.stub-list li{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.stub-list li b{color:var(--accent);font-weight:400;margin-right:.6rem}
+.stub-actions{margin-top:var(--s4);display:flex;justify-content:flex-start;gap:var(--s3);flex-wrap:wrap;align-items:center}
+
+.contact-wrap{margin:auto;width:min(760px,100% - var(--gutter)*2);text-align:center;padding:var(--s4)}
+.contact-note{color:var(--ink2);max-width:50ch;margin:0 auto var(--s3);font-size:1.02rem}
+
+/* ============ SERVICES PAGE ============ */
+.svc-hero{position:relative;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:var(--s4);padding-block:clamp(3rem,8svh,6rem)}
+.svc-hero-title{font-weight:700;font-size:clamp(2.3rem,4.8vw,4.3rem);line-height:1.12;letter-spacing:-.035em;margin:var(--s3) 0}
+.svc-hero-title em:not(.grad-em){font-style:normal;color:var(--chart-ink)}
+.svc-hero-title em.grad-em{font-style:normal}
+.svc-lead{max-width:47ch;color:var(--ink2);font-size:clamp(.9rem,1.3vw,1rem);line-height:1.8;margin:0}
+.svc-scroll-wrap{margin-top:var(--s4);display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.svc-scroll{gap:.75rem}
+.svc-sky{width:100%;max-height:360px;color:var(--chart-ink);overflow:visible}
+.svc-sky .sky-orbit{transform-origin:240px 190px;animation:spin 100s linear infinite}
+.svc-cards{padding-top:var(--s5);scroll-margin-top:calc(var(--nav-h) + 1.5rem)}
+.svc-packages-head{display:flex;align-items:end;justify-content:space-between;gap:var(--s4)}
+.section-title{font-size:clamp(1.7rem,3.4vw,2.8rem);line-height:1.2;letter-spacing:-.035em;margin:1rem 0 0;text-wrap:balance}
+.svc-packages-head>p{max-width:35ch;color:var(--ink2);font-size:.9rem;margin:0}
+.svc-cards-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3);margin-top:var(--s4)}
+.svc-card{min-width:0;display:flex;flex-direction:column;text-align:left}
+.svc-card-top{padding:var(--s3);border-bottom:1px solid var(--line)}
+.svc-card-name{font-size:.85rem;letter-spacing:.16em;text-transform:uppercase;color:var(--chart-ink);margin:0 0 1rem}
+.svc-card-price{font-weight:700;font-size:clamp(2rem,3vw,2.7rem);line-height:1.2;letter-spacing:-.04em;margin:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:.75rem}
+.svc-card-price small{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);font-weight:400}
+.svc-card-tag{color:var(--ink2);font-size:.9rem;margin:1rem 0 0;max-width:44ch;min-height:3.4em}
+.svc-card-body{padding:var(--s3);display:flex;flex-direction:column;gap:1.5rem;flex:1}
+.svc-card-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin:0 0 .85rem}
+.svc-card ul{list-style:none;margin:0;padding:0;display:grid;gap:.75rem}
+.svc-card li{font-size:.85rem;color:var(--ink2);display:flex;gap:.75rem;line-height:1.65}
+.svc-card li::before{content:'↗';color:var(--chart-ink);flex:none}
+.svc-card-best{margin-top:auto;border-top:1px solid var(--line);padding-top:1.25rem}
+.svc-card-best p{color:var(--ink2);font-size:.85rem;margin:0}
+.svc-card-cta{display:flex}
+.svc-card-btn{width:100%;justify-content:center;padding:.8rem 1.2rem;font-size:.85rem}
+.svc-outro{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;margin-top:var(--s4);padding-top:var(--s3);border-top:1px solid var(--line)}
+.svc-outro p{color:var(--ink2);font-size:.9rem;margin:0}
+
+.process-wrap{position:relative;height:460svh;scroll-margin-top:var(--nav-h)}
+.process-viewport{position:sticky;top:var(--nav-h);height:calc(100svh - var(--nav-h));max-width:var(--container);margin-inline:auto;display:grid;grid-template-columns:43% 57%;grid-template-rows:auto minmax(0,1fr) auto;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);background:rgba(7,11,18,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:16px;box-shadow:var(--glass-shadow)}
+.process-toolbar{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.1rem var(--s3);border-bottom:1px solid var(--line)}
+.process-toolbar h2{margin:0;font-size:11px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--chart-ink)}
+.process-toolbar .text-link{font-size:10px;letter-spacing:.1em;flex:none}
+.process-copy{border-right:1px solid var(--line);position:relative;min-width:0;container-type:inline-size}
+
+.process-stage{position:absolute;inset:0;
+  padding:var(--s3);
+  display:flex;flex-direction:column;justify-content:center;
+  opacity:0;visibility:hidden;transform:translateY(18px);
+  transition:opacity .5s cubic-bezier(.16,1,.3,1),
+             transform .5s cubic-bezier(.16,1,.3,1),
+             visibility 0s linear .5s;
+  pointer-events:none}
+.process-stage.above{transform:translateY(-18px)}
+.process-stage.below{transform:translateY(18px)}
+.process-stage.active{
+  opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;
+  transition:opacity .5s cubic-bezier(.16,1,.3,1),
+             transform .5s cubic-bezier(.16,1,.3,1),
+             visibility 0s linear 0s}
+.stage-num{font-size:11px;letter-spacing:.2em;color:var(--ink3);margin:0 0 var(--s3)}
+.stage-num b{color:var(--ink);font-weight:700;margin-right:.5rem}
+.stage-title{font-weight:700;font-size:clamp(1.6rem,8cqw,2.75rem);line-height:1.15;letter-spacing:-.035em;margin:0 0 1rem}
+.stage-sub{font-size:clamp(.95rem,1.5vw,1.15rem);color:var(--ink);margin:0 0 .8rem;max-width:32ch;line-height:1.6}
+.stage-micro{font-size:.85rem;line-height:1.8;color:var(--ink2);margin:0;max-width:36ch}
+.stage-readout{margin-top:var(--s3);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);line-height:2}
+.stage-readout b{color:var(--ink2);font-weight:400}
+.process-canvas-wrap{position:relative;overflow:hidden;min-width:0;min-height:0}
+#processCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.process-corner{position:absolute;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);opacity:.7;pointer-events:none}
+.pc-tr{top:14px;right:14px}
+.pc-bl{bottom:14px;left:14px}
+.pc-br{bottom:14px;right:14px}
+.process-chapters{grid-column:1/-1;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));padding:.5rem 1rem;border-top:1px solid var(--line);gap:.25rem}
+.chapter-btn{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;min-height:64px;padding:.6rem .15rem;border:0;background:none;color:var(--ink3);cursor:pointer;font-size:10px;transition:color .2s}
+.chapter-btn::before{content:'';position:absolute;height:1px;top:20px;left:calc(50% + 10px);width:calc(100% - 16px);background:var(--line2)}
+.chapter-btn:last-child::before{display:none}
+.chapter-btn span{display:grid;place-items:center;position:relative;width:14px;height:14px;font-size:9px;color:var(--ink3)}
+.chapter-btn:hover,.chapter-btn[aria-current="step"]{color:var(--ink)}
+.chapter-btn[aria-current="step"] span{color:var(--chart-ink);text-shadow:0 0 14px var(--chart-ink)}
+.chapter-btn[aria-current="step"]::after{content:'';position:absolute;bottom:0;width:20px;height:1px;background:var(--chart-ink)}
+.process-progress{position:absolute;bottom:-1px;left:0;width:100%;height:1px;background:var(--chart-ink);transform:scaleX(var(--journey-progress,0));transform-origin:left;pointer-events:none}
+@media(max-width:740px){
+  .svc-hero{grid-template-columns:1fr;gap:0;padding-block:2.5rem}
+  .svc-hero-copy{position:relative;z-index:1}.svc-hero-title{font-size:clamp(2.3rem,7.5vw,3.5rem)}
+  .svc-sky{position:absolute;right:0;top:1rem;width:55%;opacity:.16;z-index:0}
+  .svc-lead{max-width:46ch}.svc-scroll-wrap{gap:1.25rem}
+  .svc-packages-head{display:block}.svc-packages-head>p{margin-top:1.25rem;max-width:48ch}
+  .svc-cards-grid{grid-template-columns:1fr}.svc-card-tag{min-height:0}
+  .svc-outro{align-items:flex-start;flex-direction:column}
+  .process-copy{border-right:0;border-bottom:1px solid var(--line)}
+  .process-viewport{grid-template-columns:1fr;grid-template-rows:auto minmax(220px,.85fr) minmax(180px,1fr) auto}
+  .process-stage{padding:1.25rem var(--gutter);justify-content:center}
+  .stage-num{margin-bottom:.6rem}.stage-title{font-size:clamp(1.6rem,7vw,2rem);margin-bottom:.5rem}
+  .stage-sub{font-size:.95rem;margin-bottom:.4rem;max-width:40ch}.stage-micro{font-size:.8rem;max-width:44ch}
+  .stage-readout{display:none}
+  .process-toolbar{padding:.8rem var(--gutter)}.process-toolbar h2{font-size:10px;letter-spacing:.1em}
+  .process-chapters{padding:.3rem .5rem}.chapter-btn{font-size:0;min-height:44px;gap:0}.chapter-btn span{font-size:11px}
+  .chapter-btn::before{top:22px}.chapter-btn[aria-current="step"]::after{bottom:4px}
+  .process-corner{font-size:8px;letter-spacing:.08em}.pc-tr{display:none}
+}
+/* On short screens and with reduced motion, chapters work without a pinned scroll. */
+@media(max-height:650px),(prefers-reduced-motion:reduce){
+  .process-wrap{height:auto}
+  .process-viewport{position:relative;top:auto;height:560px}
+  .stage-readout{display:none}
+}
+@media(max-width:740px) and (max-height:650px){.process-viewport{height:590px}}
+@media(max-width:740px) and (prefers-reduced-motion:reduce){.process-viewport{height:590px}}
+
+footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:1.15rem 0}
+.foot-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3)}
+.foot-in a{color:var(--ink3);text-decoration:none;transition:.25s}
+.foot-in a:hover{color:var(--accent)}
+.foot-page b{color:var(--accent);font-weight:400}
+.toast{position:fixed;left:50%;bottom:2rem;transform:translate(-50%,80px);z-index:999;color:var(--ink);
+  background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.06));
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.3);box-shadow:0 12px 34px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.25);
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:.8rem 1.4rem;border-radius:999px;
+  transition:transform .5s cubic-bezier(.16,1,.3,1);pointer-events:none}
+.toast.show{transform:translate(-50%,0)}
+.toast:not(.show){visibility:hidden}
+@media(max-width:640px){
+  body{font-size:14px}
+  .page-home{padding-top:calc(var(--nav-h) + 1rem);padding-bottom:1.5rem}
+  .hero .eyebrow{font-size:9px;letter-spacing:.1em;gap:.5rem}.hero .eyebrow::before,.hero .eyebrow::after{width:12px}
+  .hero-title{font-size:clamp(2rem,8.5vw,3.25rem)}
+  .page-home .hero-title .grad-em{display:block}
+  .hero-sub{max-width:36ch}
+  .foot-in{font-size:9px;letter-spacing:.08em;gap:.6rem}
+  .foot-page{display:none}
+  footer{padding:.85rem 0}
+  .stub-actions{gap:1.25rem}.stub-list li{font-size:10px;letter-spacing:.1em}
+}
+@media(max-height:700px){
+  .page-home{padding-top:calc(var(--nav-h) + .75rem);padding-bottom:1.25rem}
+  .page-home .hero-title{margin-top:1rem}
+  .type-line{margin-top:.75rem}
+  .hero-cta{margin-top:1.25rem}
+}
+@media(max-height:480px) and (min-width:641px){
+  :root{--nav-h:56px}
+  .page-home{padding-top:calc(var(--nav-h) + .5rem);padding-bottom:.75rem}
+  .page-home .hero-title{font-size:2.4rem;margin-top:.6rem}
+  .hero .eyebrow{font-size:9px}.type-line{min-height:1.7em;margin-top:.5rem}
+  .hero-sub{font-size:.8rem;max-width:70ch}.hero-cta{margin-top:.8rem}
+  footer{padding:.6rem 0}
+  .mmenu{padding:1rem 3rem}.mmenu a{font-size:1.25rem;padding:.15rem 0}.mmenu .mfoot{margin-top:.75rem}
+}
+
+
+/* Shared optical glass: the sky remains visible behind reading surfaces. */
+.pcard,.svc-card,.about-story,.about-journey,.stub,.contact-wrap{
+  background:var(--glass-surface);border:1px solid var(--glass-border);border-radius:16px;
+  box-shadow:var(--glass-shadow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+}
+.hero-role{font-size:11px;letter-spacing:.08em;color:var(--chart-ink);margin:0 0 1rem}
+.hero-title{max-width:18ch;margin-inline:auto}
+.hero .hero-title{max-width:none}
+.hero-sub{line-height:1.9}
+.stub h1{margin-top:0}
+.stub-tag{margin-bottom:1.5rem;color:var(--chart-ink)}
+.stub-list{border-top:1px solid var(--line);padding-top:1.5rem}
+.stub-list li{color:var(--ink2)}
+.contact-intro{color:var(--chart-ink);margin:0 0 1rem}
+.process-viewport{width:min(var(--container),100% - var(--gutter)*2)}
+.process-toolbar h2{line-height:1.6}
+.nav-links a{min-height:44px;display:flex;align-items:center}
+footer{background:rgba(9,13,20,.35)}
+@supports not (backdrop-filter:blur(1px)){
+  .pcard,.svc-card,.about-story,.about-journey,.stub,.contact-wrap,.process-viewport,.nav.scrolled .nav-in{background:#0d141e}
+}
+@media(max-width:740px){
+  .about-story,.about-journey,.stub,.contact-wrap{padding:1.5rem}
+  .process-viewport{width:100%;border-radius:0}
+  .projects-grid{margin-top:2rem}
+  .pcard-tags{min-height:0}
+  .pcard-meta{letter-spacing:.10em;line-height:1.8}
+  .svc-card-price{gap:.5rem}
+}
+@media(max-height:480px) and (min-width:641px){
+  :root{--nav-h:76px}
+  .hero-role{margin:0 0 .5rem;font-size:10px}
+}
+
+
+/* Project screenshots lift from their card into a same-page, full-screen viewer. */
+.pcard-media{cursor:zoom-in}
+.image-viewer{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;color:var(--ink);background:rgba(4,7,12,.96);overflow:hidden}
+.image-viewer::backdrop{background:transparent}
+.image-viewer[open]{display:grid;grid-template-rows:auto minmax(0,1fr);animation:viewerIn .35s ease-out}
+.image-viewer-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding: max(1rem,env(safe-area-inset-top)) max(1.25rem,env(safe-area-inset-right)) 1rem max(1.25rem,env(safe-area-inset-left));z-index:1}
+.image-viewer-title{margin:0;font-size:clamp(.8rem,2vw,1rem);font-weight:400;color:var(--ink2)}
+.image-viewer-close{flex:none;width:48px;height:48px}
+.image-viewer-stage{min-width:0;min-height:0;display:grid;place-items:center;padding:0 clamp(.75rem,2vw,2rem) max(1.25rem,env(safe-area-inset-bottom));cursor:zoom-out}
+.image-viewer-image{display:block;width:100%;height:100%;min-height:0;object-fit:contain;transform-origin:center;cursor:default}
+.image-viewer-error{color:var(--ink2);text-align:center;max-width:40ch}
+.image-viewer-error[hidden],.image-viewer-image[hidden]{display:none}
+@keyframes viewerIn{from{background:rgba(4,7,12,0)}to{background:rgba(4,7,12,.96)}}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+  .fade{opacity:1;transform:none}.caret{animation:none}.btn::after{display:none}.about-bg{animation:none}
+  .process-stage{transition:none}
+  .pcard-media img,.pcard-media .pcard-fallback{transition:none}
+}
+</style>
+<noscript><style>.page{display:flex!important}.nav,.mmenu,.toast{display:none!important}.process-wrap{height:auto!important}.process-viewport{position:static!important;display:block!important;height:auto!important}.process-stage{position:static!important;opacity:1!important;visibility:visible!important;transform:none!important}.svc-scroll-wrap,.process-canvas-wrap,.process-chapters{display:none!important}</style></noscript>
+<link rel="preload" href="assets/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/studio.css">
+<link rel="stylesheet" href="assets/css/entry.css">
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Skip to content</a>
+
+
+<header class="nav" id="navBar">
+  <div class="container nav-in">
+    <a class="brand" href="#/" aria-label="Jan — home"><img class="brand-logo" src="assets/images/websitelogo-blackbg1.svg" alt=""></a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#/about" data-route="about">About</a>
+      <a href="#/projects" data-route="projects">Projects</a>
+      <a href="#/services" data-route="services">Services</a>
+      <a href="#/blog" data-route="blog">Blog</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:.6rem">
+      <a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+      <button class="icon-btn burger" id="burger" aria-label="Open menu" aria-controls="mmenu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" role="navigation" aria-label="Mobile navigation">
+  <button class="icon-btn mmenu-close" id="mmenuClose" aria-label="Close menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#/about" data-route="about">About</a>
+  <a href="#/projects" data-route="projects">Projects</a>
+  <a href="#/services" data-route="services">Services</a>
+  <a href="#/blog" data-route="blog">Blog</a>
+  <a href="#/contact" data-route="contact">Contact</a>
+  <div class="mfoot">AI agents. Connected workflows.</div>
+</div>
+
+<main id="mainContent" tabindex="-1">
+  <section class="page page-home" data-page="home">
+ <div class="container hero">
+  <div class="hero-copy"><h1 class="hero-title" tabindex="-1" data-heading>Less busy.<br>More <span class="outline">built.</span></h1>
+   <p class="hero-role">JAN / AI AGENTS &amp; AUTOMATION</p>
+   <p class="hero-sub">I turn repetitive work into systems that work for you. Custom AI agents. Connected workflows. More time for what matters.</p>
+   <div class="hero-cta"><a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a><a class="text-link" href="#/projects">Explore my work</a></div>
+  </div>
+  <div class="signal-art"><canvas id="signalCanvas" aria-hidden="true"></canvas><button class="motion-toggle" type="button" aria-pressed="false">Pause motion</button><div class="formation-controls" role="group" aria-label="Particle formation"><button type="button" data-formation="0" aria-pressed="true">Logo</button><button type="button" data-formation="1" aria-pressed="false">Sphere</button><button type="button" data-formation="2" aria-pressed="false">Helix</button><button type="button" data-formation="3" aria-pressed="false">Cube</button></div><div class="art-caption"><span id="formationName">Jan / signature</span><span>1,500 PARTICLES</span></div></div>
+ </div>
+ <div class="container home-strip"><span>Built around the way you work.</span><a href="#/services">Explore the process <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a><span>IDEA → SYSTEM → IMPACT</span></div>
+ <section class="selected-work"><div class="container"><div class="selected-head"><h2>Built to do the work.</h2><a href="#/projects">All projects</a></div><a class="selected-feature" href="#/projects"><div><div class="selected-image"><img src="assets/images/JOS Dashboard.png" alt="J/OS dashboard showing the task queue and connected workspaces" width="1905" height="936" loading="lazy"></div><span class="selected-caption">J/OS HQ — OPERATIONS, CONNECTED</span></div><div><h3>A place for the moving parts.</h3><p>Explore J/OS HQ, custom AI agents, and the workflows that bring tools, decisions, and operations together.</p><span class="text-link">Explore the projects <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div></a></div></section><div class="container page-closing"><h2>Good systems start with a conversation.</h2><div><p>Tell me what’s slowing you down. Let’s find a better way to work.</p><a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div></div>
+ </section>
+
+
+  <section class="page" data-page="about">
+    <div class="about-bg" aria-hidden="true"></div>
+    <div class="about-glow" aria-hidden="true"></div>
+    <div class="container about-inner">
+      <header class="about-head">
+        <h1 class="hero-title" tabindex="-1" data-heading>Curious by nature.<br><em class="grad-em" id="aboutWord">Builder by practice.</em></h1>
+        <p class="about-h3">I'm Jan. I connect operations, technology, and the way people work.</p>
+      </header>
+      <div class="about-prose">
+        <div class="about-story">
+        <h2 class="about-h3-section">The person behind the systems</h2>
+        <p>I've always believed in the idea of <b>working smarter, not harder</b>. Not by cutting corners, but by finding better ways to solve problems, simplify repetitive work, and spend more time on the things that actually matter.</p>
+        <p>That mindset is what drew me to technology, automation, and AI. I enjoy thinking critically, asking questions, and figuring out how things can be done more efficiently — whether that means improving a workflow, automating a tedious process, or simply finding a better way to get from point A to point B.</p>
+        <p>I'm a Computer Science graduate who enjoys building practical solutions that make everyday work a little easier. Over the years, I've worked as a Virtual Assistant, AI Agent Builder, and Automation Specialist, helping businesses and teams improve their workflows, automate repetitive tasks, and make better use of technology.</p>
+        <p>Today, I work as an <b>Executive Assistant focused on Operations and AI Agents</b>, combining operations, automation, and AI to solve real problems and help things run more smoothly.</p>
+        <p>This site is also a place for me to share what I learn along the way — from AI agents and automation to operations, tools, experiments, and lessons from the work I do.</p>
+        <p>If any of that interests you, feel free to look around. You might learn something useful — and hopefully, so will I. :D</p>
+        </div>
+        <div class="about-journey">
+        <h2 class="about-h3-section">Professional Journey</h2>
+        <div class="timeline">
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">TLP</span><span class="timeline-date">August 2024 – January 2026</span></div><div class="timeline-role">Executive Assistant | Operations, HR &amp; Recruitment, Market Research, Workflows &amp; Automation</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">HFA</span><span class="timeline-date">August 2024 – December 2025</span></div><div class="timeline-role">Virtual Assistant | Community Management, Customer Support, Digital Content &amp; SEO Copywriting</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">AIOP</span><span class="timeline-date">September 2022 – July 2024</span></div><div class="timeline-role">Ecommerce Assistant | Customer Support | Social Media | Product Management | Data Reporting</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">8BT</span><span class="timeline-date">November 2022 – May 2023</span></div><div class="timeline-role">Customer Support | Subject Matter Expert, Customer Success Specialist, ECommerce, Social Media &amp; Content</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">TrueFootage</span><span class="timeline-date">September 2022 – January 2023</span></div><div class="timeline-role">Appraisal Data Assistant | Data Entry</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">WebProvise/Bamboo</span><span class="timeline-date">June 2022 – December 2022</span></div><div class="timeline-role">Software Support Specialist | Quality Assurance, Product, Client Engagement, &amp; Operations</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Ibex</span><span class="timeline-date">November 2021 – August 2022</span></div><div class="timeline-role">Technical Customer Support | Consumer Support Specialist</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Datamatics</span><span class="timeline-date">August 2020 – November 2021</span></div><div class="timeline-role">IT Helpdesk | Software Support, Product, Code, &amp; Subject Matter Expert</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Concentrix/QuickBooks</span><span class="timeline-date">July 2019 – January 2020</span></div><div class="timeline-role">Customer Support &amp; Technical Advisor II | Consumer &amp; Client Support, Product &amp; Sales</div></div>
+        </div>
+      </div>
+      </div>
+      <div class="about-cta">
+        <a class="btn btn-ghost" href="#/projects">See Projects <span class="ar">-&gt;</span></a>
+        <a class="btn btn-primary" href="https://flaxen-crayon-74f.notion.site/3e57c1c329e280228fcbd4f5d6f65657?pvs=105" target="_blank" rel="noopener">Submit Your Request <span class="ar">-&gt;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="page" data-page="projects">
+    <div class="container projects-head">
+      <h1 class="projects-title" tabindex="-1" data-heading>Selected work.</h1>
+      <p class="projects-lead">Over the years, I've worked on a variety of projects. Here are a few of them. Feel free to reach out if you've got any ideas or want to chat!</p>
+    </div>
+    <div class="container">
+      <div class="projects-grid">
+
+        <article class="pcard">
+          <a class="pcard-media" href="assets/images/JOS Dashboard.png" aria-haspopup="dialog" aria-controls="imageViewer" aria-label="Open J/OS HQ screenshot full screen">
+            <!-- REAL IMAGE: save your dashboard screenshot next to index.html
+                 with the exact filename: JOS Dashboard.png -->
+            <img width="1905" height="936" loading="lazy" decoding="async" src="assets/images/JOS Dashboard.png" alt="J/OS HQ dashboard screenshot showing the task queue with each workspace's runtime and status line, finished tasks, and the most used connections, in a darkroom greyscale theme with a single amber accent." onerror="this.onerror=null;this.parentNode.classList.add('no-img');">
+            <svg class="pcard-fallback" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Fallback diagram of the J/OS HQ dashboard: sidebar, queue, and runtime cards.">
+              <defs>
+                <pattern id="pdots3" width="26" height="26" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,.05)"/>
+                </pattern>
+              </defs>
+              <rect width="800" height="450" fill="#151515"/>
+              <rect width="800" height="450" fill="url(#pdots3)"/>
+              <rect width="800" height="46" fill="#1b1b1b" stroke="#2c2c2c"/>
+              <rect x="28" y="15" width="120" height="16" rx="4" fill="rgba(255,255,255,.12)"/>
+              <rect x="662" y="14" width="110" height="18" rx="9" fill="#e8c766"/>
+              <rect x="682" y="21" width="70" height="4" rx="2" fill="rgba(0,0,0,.30)"/>
+              <rect width="180" height="404" y="46" fill="#131313" stroke="#242424"/>
+              <rect x="24" y="74" width="132" height="9" rx="4.5" fill="rgba(255,255,255,.10)"/>
+              <rect x="24" y="102" width="96" height="9" rx="4.5" fill="rgba(255,255,255,.07)"/>
+              <rect x="24" y="130" width="112" height="9" rx="4.5" fill="rgba(255,255,255,.07)"/>
+              <rect x="24" y="158" width="88" height="9" rx="4.5" fill="rgba(255,255,255,.07)"/>
+              <rect x="24" y="186" width="104" height="9" rx="4.5" fill="rgba(255,255,255,.07)"/>
+              <rect x="24" y="360" width="132" height="26" rx="6" fill="#2a2a2a" stroke="#333"/>
+              <rect x="40" y="371" width="100" height="4" rx="2" fill="rgba(255,255,255,.14)"/>
+              <g>
+                <rect x="204" y="72" width="276" height="120" rx="10" fill="#1b1b1b" stroke="#2c2c2c"/>
+                <rect x="224" y="90" width="110" height="7" rx="3.5" fill="rgba(255,255,255,.12)"/>
+                <circle cx="440" cy="93" r="5" fill="#e8c766"/>
+                <rect x="224" y="112" width="60" height="40" rx="5" fill="#222222" stroke="#303030"/>
+                <rect x="232" y="120" width="24" height="5" rx="2.5" fill="#e8c766"/>
+                <rect x="232" y="132" width="38" height="5" rx="2.5" fill="rgba(255,255,255,.12)"/>
+                <rect x="296" y="112" width="60" height="40" rx="5" fill="#222222" stroke="#303030"/>
+                <rect x="304" y="120" width="24" height="5" rx="2.5" fill="rgba(255,255,255,.20)"/>
+                <rect x="304" y="132" width="38" height="5" rx="2.5" fill="rgba(255,255,255,.12)"/>
+                <rect x="368" y="112" width="60" height="40" rx="5" fill="#222222" stroke="#303030"/>
+                <rect x="376" y="120" width="24" height="5" rx="2.5" fill="rgba(255,255,255,.20)"/>
+                <rect x="376" y="132" width="38" height="5" rx="2.5" fill="rgba(255,255,255,.12)"/>
+                <rect x="224" y="164" width="236" height="6" rx="3" fill="rgba(255,255,255,.08)"/>
+                <rect x="224" y="176" width="180" height="6" rx="3" fill="rgba(255,255,255,.06)"/>
+              </g>
+              <g>
+                <rect x="504" y="72" width="272" height="120" rx="10" fill="#1b1b1b" stroke="#2c2c2c"/>
+                <rect x="524" y="90" width="96" height="7" rx="3.5" fill="rgba(255,255,255,.12)"/>
+                <rect x="524" y="108" width="232" height="5" rx="2.5" fill="rgba(255,255,255,.09)"/>
+                <rect x="524" y="120" width="200" height="5" rx="2.5" fill="rgba(255,255,255,.07)"/>
+                <rect x="524" y="132" width="220" height="5" rx="2.5" fill="rgba(255,255,255,.07)"/>
+                <rect x="524" y="144" width="176" height="5" rx="2.5" fill="rgba(255,255,255,.06)"/>
+                <rect x="524" y="160" width="72" height="14" rx="7" fill="#e8c766"/>
+                <rect x="534" y="165" width="52" height="4" rx="2" fill="rgba(0,0,0,.30)"/>
+              </g>
+              <g>
+                <rect x="204" y="216" width="572" height="206" rx="10" fill="#1b1b1b" stroke="#2c2c2c"/>
+                <rect x="224" y="234" width="120" height="7" rx="3.5" fill="rgba(255,255,255,.12)"/>
+                <g fill="rgba(255,255,255,.08)">
+                  <rect x="224" y="258" width="532" height="22" rx="4"/>
+                  <rect x="224" y="290" width="532" height="22" rx="4"/>
+                  <rect x="224" y="322" width="532" height="22" rx="4"/>
+                  <rect x="224" y="354" width="532" height="22" rx="4"/>
+                </g>
+                <circle cx="246" cy="269" r="5" fill="#e8c766"/>
+                <circle cx="246" cy="301" r="5" fill="#e8c766"/>
+                <circle cx="246" cy="333" r="5" fill="rgba(255,255,255,.25)"/>
+                <circle cx="246" cy="365" r="5" fill="rgba(255,255,255,.25)"/>
+                <g fill="rgba(255,255,255,.12)">
+                  <rect x="268" y="265" width="160" height="6" rx="3"/>
+                  <rect x="268" y="297" width="140" height="6" rx="3"/>
+                  <rect x="268" y="329" width="176" height="6" rx="3"/>
+                  <rect x="268" y="361" width="150" height="6" rx="3"/>
+                </g>
+                <rect x="616" y="264" width="120" height="8" rx="4" fill="#2a2a2a"/>
+                <rect x="616" y="296" width="120" height="8" rx="4" fill="#2a2a2a"/>
+                <rect x="616" y="328" width="120" height="8" rx="4" fill="#2a2a2a"/>
+                <rect x="616" y="360" width="120" height="8" rx="4" fill="#2a2a2a"/>
+              </g>
+            </svg>
+          </a>
+          <div class="pcard-body">
+            <h2 class="pcard-title">J/OS HQ</h2>
+            <p class="pcard-meta">One CLI · multi-agent orchestration · approval-gated</p>
+            <p class="pcard-desc">J/OS HQ is a local command center that runs AI agents for two businesses behind a single approval gate. Built on the One CLI, Claude Code, and the Codex CLI, it routes each request to the right workspace, plans it against live connections, dry-runs every external write, and requires explicit approval before anything leaves the machine. The Next.js dashboard queues and logs every task, pins each workspace's runtime, and scopes sub-agents to only their own connections.</p>
+            <a class="btn btn-ghost" href="https://github.com/janmm97/janhq" target="_blank" rel="noopener" style="align-self:flex-start;padding:.6rem 1.2rem;font-size:.8rem">View on GitHub <span class="ar">-&gt;</span></a>
+            <div class="pcard-tags">
+              <span>Next.js</span><span>Claude Code</span><span>Codex CLI</span><span>One CLI</span><span>Approval gate</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="pcard">
+          <a class="pcard-media" href="assets/images/JOS Agents.png" aria-haspopup="dialog" aria-controls="imageViewer" aria-label="Open J/OS Agents screenshot full screen">
+            <!-- REAL IMAGE: save your agents screenshot next to index.html
+                 with the exact filename: JOS Agents.png -->
+            <img width="1582" height="857" loading="lazy" decoding="async" src="assets/images/JOS Agents.png" alt="J/OS Agents command center screenshot showing two isolated business workspaces routed through a central approval gate." onerror="this.onerror=null;this.parentNode.classList.add('no-img');">
+            <svg class="pcard-fallback" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Fallback diagram of J/OS Agents: two isolated workspaces behind one central approval gate.">
+              <defs>
+                <pattern id="pdots4" width="26" height="26" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,.05)"/>
+                </pattern>
+              </defs>
+              <rect width="800" height="450" fill="#151515"/>
+              <rect width="800" height="450" fill="url(#pdots4)"/>
+              <rect width="800" height="46" fill="#1b1b1b" stroke="#2c2c2c"/>
+              <rect x="28" y="15" width="130" height="16" rx="4" fill="rgba(255,255,255,.12)"/>
+              <rect x="670" y="14" width="102" height="18" rx="9" fill="#e8c766"/>
+              <rect x="688" y="21" width="66" height="4" rx="2" fill="rgba(0,0,0,.30)"/>
+              <rect x="40" y="80" width="250" height="300" rx="12" fill="#1b1b1b" stroke="#2c2c2c"/>
+              <rect x="62" y="102" width="140" height="8" rx="4" fill="rgba(255,255,255,.12)"/>
+              <rect x="62" y="132" width="206" height="30" rx="6" fill="#222222" stroke="#303030"/>
+              <circle cx="84" cy="147" r="5" fill="rgba(255,255,255,.25)"/>
+              <rect x="100" y="143" width="130" height="7" rx="3.5" fill="rgba(255,255,255,.10)"/>
+              <rect x="62" y="182" width="206" height="30" rx="6" fill="#222222" stroke="#303030"/>
+              <circle cx="84" cy="197" r="5" fill="rgba(255,255,255,.25)"/>
+              <rect x="100" y="193" width="110" height="7" rx="3.5" fill="rgba(255,255,255,.10)"/>
+              <rect x="62" y="232" width="206" height="30" rx="6" fill="#222222" stroke="#303030"/>
+              <circle cx="84" cy="247" r="5" fill="rgba(255,255,255,.25)"/>
+              <rect x="100" y="243" width="150" height="7" rx="3.5" fill="rgba(255,255,255,.10)"/>
+              <rect x="62" y="310" width="90" height="18" rx="9" fill="#2a2a2a" stroke="#333"/>
+              <rect x="78" y="317" width="58" height="4" rx="2" fill="rgba(255,255,255,.14)"/>
+              <rect x="176" y="310" width="90" height="18" rx="9" fill="#2a2a2a" stroke="#333"/>
+              <rect x="192" y="317" width="58" height="4" rx="2" fill="rgba(255,255,255,.14)"/>
+              <rect x="510" y="80" width="250" height="300" rx="12" fill="#1b1b1b" stroke="#2c2c2c"/>
+              <rect x="532" y="102" width="140" height="8" rx="4" fill="rgba(255,255,255,.12)"/>
+              <rect x="532" y="132" width="206" height="30" rx="6" fill="#222222" stroke="#303030"/>
+              <circle cx="554" cy="147" r="5" fill="rgba(255,255,255,.25)"/>
+              <rect x="570" y="143" width="120" height="7" rx="3.5" fill="rgba(255,255,255,.10)"/>
+              <rect x="532" y="182" width="206" height="30" rx="6" fill="#222222" stroke="#303030"/>
+              <circle cx="554" cy="197" r="5" fill="rgba(255,255,255,.25)"/>
+              <rect x="570" y="193" width="150" height="7" rx="3.5" fill="rgba(255,255,255,.10)"/>
+              <rect x="532" y="232" width="206" height="30" rx="6" fill="#222222" stroke="#303030"/>
+              <circle cx="554" cy="247" r="5" fill="rgba(255,255,255,.25)"/>
+              <rect x="570" y="243" width="100" height="7" rx="3.5" fill="rgba(255,255,255,.10)"/>
+              <rect x="532" y="310" width="90" height="18" rx="9" fill="#2a2a2a" stroke="#333"/>
+              <rect x="548" y="317" width="58" height="4" rx="2" fill="rgba(255,255,255,.14)"/>
+              <rect x="646" y="310" width="90" height="18" rx="9" fill="#2a2a2a" stroke="#333"/>
+              <rect x="662" y="317" width="58" height="4" rx="2" fill="rgba(255,255,255,.14)"/>
+              <g stroke="rgba(255,255,255,.25)" stroke-width="2" fill="none">
+                <path d="M290 230 C 340 230 340 230 366 230"/>
+                <path d="M510 230 C 460 230 460 230 434 230"/>
+              </g>
+              <rect x="352" y="168" width="96" height="126" rx="14" fill="#1b1b1b" stroke="#333"/>
+              <rect x="366" y="184" width="68" height="10" rx="5" fill="rgba(255,255,255,.10)"/>
+              <rect x="366" y="210" width="68" height="26" rx="13" fill="#e8c766"/>
+              <rect x="384" y="220" width="32" height="6" rx="3" fill="rgba(0,0,0,.30)"/>
+              <rect x="366" y="252" width="68" height="8" rx="4" fill="#2a2a2a"/>
+              <path d="M390 266 l5 5 l10 -10" stroke="#45c063" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <div class="pcard-body">
+            <h2 class="pcard-title">J/OS Agents</h2>
+            <p class="pcard-meta">One CLI · isolated multi-agent hub · approval-first</p>
+            <p class="pcard-desc">J/OS Agents is a private command center that runs AI agents for two separate businesses from one place while keeping the two strictly apart. Each request is routed to the right business based on the people, projects, and connected apps it mentions — when it can't tell, it asks instead of guessing. A read-only planning pass checks the real live connections before acting, work runs under each business's own account and pinned AI model, and every side effect is drafted and approved before it runs once. Every task is logged on arrival and on completion, and each agent's access is enforced in code, not just written down.</p>
+            <a class="btn btn-ghost" href="https://github.com/janmm97/janhq" target="_blank" rel="noopener" style="align-self:flex-start;padding:.6rem 1.2rem;font-size:.8rem">View on GitHub <span class="ar">-&gt;</span></a>
+            <div class="pcard-tags">
+              <span>One CLI</span><span>Multi-agent</span><span>Approval gate</span><span>Workspace isolation</span><span>Agent memory</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="pcard">
+          <a class="pcard-media" href="assets/images/n8n-pipeline.png" aria-haspopup="dialog" aria-controls="imageViewer" aria-label="Open AI Video Ad AutoSync Pipeline screenshot full screen">
+            <!-- REAL IMAGE: save your n8n screenshot next to index.html
+                 with the exact filename: n8n-pipeline.png -->
+            <img width="1672" height="941" loading="lazy" decoding="async" src="assets/images/n8n-pipeline.png" alt="n8n workflow editor showing the AI Video Ad AutoSync Pipeline: seven connected nodes from form trigger through script generation, video generation, Airtable storage, URL collection and trimming, up to the Google Drive upload, with a successful execution log and vertical video output preview." onerror="this.onerror=null;this.parentNode.classList.add('no-img');">
+            <svg class="pcard-fallback" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Fallback diagram of the AI video ad automation pipeline.">
+              <defs>
+                <pattern id="pdots" width="26" height="26" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,.05)"/>
+                </pattern>
+              </defs>
+              <rect width="800" height="450" fill="#151515"/>
+              <rect width="800" height="450" fill="url(#pdots)"/>
+              <rect x="330" y="22" width="140" height="28" rx="8" fill="#e05a4e"/>
+              <rect x="348" y="33" width="66" height="6" rx="3" fill="rgba(255,255,255,.85)"/>
+              <g stroke="#45c063" stroke-width="2">
+                <line x1="94" y1="160" x2="106" y2="160"/><line x1="176" y1="160" x2="188" y2="160"/>
+                <line x1="258" y1="160" x2="270" y2="160"/><line x1="340" y1="160" x2="352" y2="160"/>
+                <line x1="422" y1="160" x2="434" y2="160"/><line x1="504" y1="160" x2="516" y2="160"/>
+              </g>
+              <g fill="#45c063">
+                <rect x="98" y="157" width="6" height="6"/><rect x="180" y="157" width="6" height="6"/>
+                <rect x="262" y="157" width="6" height="6"/><rect x="344" y="157" width="6" height="6"/>
+                <rect x="426" y="157" width="6" height="6"/><rect x="508" y="157" width="6" height="6"/>
+              </g>
+              <g>
+                <g transform="translate(24,131)"><rect width="70" height="58" rx="10" fill="#232323" stroke="#333"/><g transform="translate(35,29)">
+                  <path d="M2 -14 L-8 4 L-1 4 L-4 16 L8 -2 L1 -2 Z" fill="#f6a13c"/></g>
+                  <circle cx="62" cy="52" r="6" fill="#2fbf62"/><path d="M59.5 52 l1.8 1.8 l3.4 -3.4" stroke="#fff" stroke-width="1.5" fill="none"/></g>
+                <g transform="translate(106,131)"><rect width="70" height="58" rx="10" fill="#232323" stroke="#333"/><g transform="translate(35,29)">
+                  <circle r="12" fill="none" stroke="#f4f4f4" stroke-width="3" stroke-dasharray="42 18" stroke-linecap="round"/><circle r="4.5" fill="#f4f4f4"/></g>
+                  <circle cx="62" cy="52" r="6" fill="#2fbf62"/><path d="M59.5 52 l1.8 1.8 l3.4 -3.4" stroke="#fff" stroke-width="1.5" fill="none"/></g>
+                <g transform="translate(188,131)"><rect width="70" height="58" rx="10" fill="#232323" stroke="#333"/><g transform="translate(35,29)" stroke="#5b8def" fill="none" stroke-width="2.2">
+                  <circle r="12"/><ellipse rx="5" ry="12"/><line x1="-12" x2="12" y1="0" y2="0"/></g>
+                  <circle cx="62" cy="52" r="6" fill="#2fbf62"/><path d="M59.5 52 l1.8 1.8 l3.4 -3.4" stroke="#fff" stroke-width="1.5" fill="none"/></g>
+                <g transform="translate(270,131)"><rect width="70" height="58" rx="10" fill="#232323" stroke="#333"/><g transform="translate(35,29)">
+                  <path d="M0 -13 L12 -6.5 L0 0 L-12 -6.5 Z" fill="#e6c84f"/>
+                  <path d="M-12 -6.5 L0 0 L0 13 L-12 6.5 Z" fill="#d66f4a"/>
+                  <path d="M12 -6.5 L0 0 L0 13 L12 6.5 Z" fill="#4f8fe6"/></g>
+                  <circle cx="62" cy="52" r="6" fill="#2fbf62"/><path d="M59.5 52 l1.8 1.8 l3.4 -3.4" stroke="#fff" stroke-width="1.5" fill="none"/></g>
+                <g transform="translate(352,131)"><rect width="70" height="58" rx="10" fill="#232323" stroke="#333"/><g transform="translate(35,29)" fill="#e0654f">
+                  <rect x="-11" y="-11" width="22" height="4.5" rx="2.2"/><rect x="-11" y="-2.5" width="22" height="4.5" rx="2.2"/><rect x="-11" y="6" width="15" height="4.5" rx="2.2"/></g>
+                  <circle cx="62" cy="52" r="6" fill="#2fbf62"/><path d="M59.5 52 l1.8 1.8 l3.4 -3.4" stroke="#fff" stroke-width="1.5" fill="none"/></g>
+                <g transform="translate(434,131)"><rect width="70" height="58" rx="10" fill="#232323" stroke="#333"/><g transform="translate(35,29)" stroke="#5b8def" fill="none" stroke-width="2.2">
+                  <circle r="12"/><ellipse rx="5" ry="12"/><line x1="-12" x2="12" y1="0" y2="0"/></g>
+                  <circle cx="62" cy="52" r="6" fill="#2fbf62"/><path d="M59.5 52 l1.8 1.8 l3.4 -3.4" stroke="#fff" stroke-width="1.5" fill="none"/></g>
+                <g transform="translate(516,131)"><rect width="70" height="58" rx="10" fill="#232323" stroke="#333"/><g transform="translate(35,29)" fill="none" stroke-width="4" stroke-linecap="round">
+                  <path d="M0 -12 L12 9" stroke="#f6c445"/><path d="M12 9 L-12 9" stroke="#4f8fe6"/><path d="M-12 9 L0 -12" stroke="#57b26a"/></g>
+                  <circle cx="62" cy="52" r="6" fill="#2fbf62"/><path d="M59.5 52 l1.8 1.8 l3.4 -3.4" stroke="#fff" stroke-width="1.5" fill="none"/></g>
+              </g>
+              <g>
+                <g transform="translate(620,50)"><rect width="150" height="44" rx="4" fill="#e8c766"/><circle cx="138" cy="9" r="3" fill="rgba(0,0,0,.35)"/><rect x="10" y="14" width="112" height="5" rx="2.5" fill="rgba(0,0,0,.28)"/><rect x="10" y="26" width="82" height="5" rx="2.5" fill="rgba(0,0,0,.22)"/></g>
+                <g transform="translate(620,104)"><rect width="150" height="44" rx="4" fill="#9fc98a"/><circle cx="138" cy="9" r="3" fill="rgba(0,0,0,.35)"/><rect x="10" y="14" width="104" height="5" rx="2.5" fill="rgba(0,0,0,.28)"/><rect x="10" y="26" width="70" height="5" rx="2.5" fill="rgba(0,0,0,.22)"/></g>
+                <g transform="translate(620,158)"><rect width="150" height="44" rx="4" fill="#8fb8e6"/><circle cx="138" cy="9" r="3" fill="rgba(0,0,0,.35)"/><rect x="10" y="14" width="118" height="5" rx="2.5" fill="rgba(0,0,0,.28)"/><rect x="10" y="26" width="64" height="5" rx="2.5" fill="rgba(0,0,0,.22)"/></g>
+                <g transform="translate(620,212)"><rect width="150" height="44" rx="4" fill="#b7a4dd"/><circle cx="138" cy="9" r="3" fill="rgba(0,0,0,.35)"/><rect x="10" y="14" width="96" height="5" rx="2.5" fill="rgba(0,0,0,.28)"/><rect x="10" y="26" width="76" height="5" rx="2.5" fill="rgba(0,0,0,.22)"/></g>
+                <g transform="translate(620,266)"><rect width="150" height="44" rx="4" fill="#e39fb1"/><circle cx="138" cy="9" r="3" fill="rgba(0,0,0,.35)"/><rect x="10" y="14" width="110" height="5" rx="2.5" fill="rgba(0,0,0,.28)"/><rect x="10" y="26" width="58" height="5" rx="2.5" fill="rgba(0,0,0,.22)"/></g>
+              </g>
+              <g>
+                <rect x="24" y="300" width="566" height="126" rx="10" fill="#1b1b1b" stroke="#2c2c2c"/>
+                <rect x="25" y="301" width="564" height="24" rx="9" fill="#202020"/>
+                <rect x="40" y="310" width="70" height="6" rx="3" fill="rgba(255,255,255,.14)"/>
+                <circle cx="46" cy="344" r="4" fill="#2fbf62"/><rect x="62" y="340" width="180" height="8" rx="4" fill="rgba(255,255,255,.10)"/><rect x="262" y="340" width="56" height="8" rx="4" fill="rgba(255,255,255,.06)"/><rect x="486" y="340" width="60" height="8" rx="4" fill="rgba(255,255,255,.06)"/>
+                <circle cx="46" cy="368" r="4" fill="#2fbf62"/><rect x="62" y="364" width="150" height="8" rx="4" fill="rgba(255,255,255,.10)"/><rect x="262" y="364" width="44" height="8" rx="4" fill="rgba(255,255,255,.06)"/><rect x="486" y="364" width="60" height="8" rx="4" fill="rgba(255,255,255,.06)"/>
+                <circle cx="46" cy="392" r="4" fill="#2fbf62"/><rect x="62" y="388" width="196" height="8" rx="4" fill="rgba(255,255,255,.10)"/><rect x="262" y="388" width="62" height="8" rx="4" fill="rgba(255,255,255,.06)"/><rect x="486" y="388" width="60" height="8" rx="4" fill="rgba(255,255,255,.06)"/>
+              </g>
+            </svg>
+          </a>
+          <div class="pcard-body">
+            <h2 class="pcard-title">AI Video Ad AutoSync Pipeline</h2>
+            <p class="pcard-meta">n8n · AI video automation · end-to-end</p>
+            <p class="pcard-desc">Built an end-to-end AI video ad automation in n8n that turns a simple form submission into a finished vertical video asset. The workflow uses AI to generate a short advertising script, creates video content through an image-to-video API, tracks production data in Airtable, automatically renders and formats the video for social platforms, and uploads the final MP4 to Google Drive. The system reduces repetitive production work and makes it faster to create and test multiple ad variations.</p>
+            <a class="btn btn-ghost" href="https://github.com/janmm97/n8n-proj/tree/main/sora-2-autosync-v2" target="_blank" rel="noopener" style="align-self:flex-start;padding:.6rem 1.2rem;font-size:.8rem">View on GitHub <span class="ar">-&gt;</span></a>
+            <div class="pcard-tags">
+              <span>n8n</span><span>AI script</span><span>Image-to-Video API</span><span>Airtable</span><span>Google Drive</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="pcard">
+          <a class="pcard-media" href="assets/images/n8n-content-writer.png" aria-haspopup="dialog" aria-controls="imageViewer" aria-label="Open Multi-Agent Content Automation screenshot full screen">
+            <!-- REAL IMAGE: save your n8n screenshot next to index.html
+                 with the exact filename: n8n-content-writer.png -->
+            <img width="1917" height="867" loading="lazy" decoding="async" src="assets/images/n8n-content-writer.png" alt="n8n workflow editor showing a multi-agent content automation system: an idea agent and switch node routing to specialized writing agents for LinkedIn, X, and other platforms, with sheet storage nodes and an image prompt agent chain." onerror="this.onerror=null;this.parentNode.classList.add('no-img');">
+            <svg class="pcard-fallback" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Fallback diagram of the multi-agent content automation system.">
+              <defs>
+                <pattern id="pdots2" width="26" height="26" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,.05)"/>
+                </pattern>
+              </defs>
+              <rect width="800" height="450" fill="#151515"/>
+              <rect width="800" height="450" fill="url(#pdots2)"/>
+              <!-- trigger + idea agent -->
+              <circle cx="52" cy="225" r="14" fill="#232323" stroke="#333"/><path d="M52 218 v7 l5 4" stroke="#57b26a" stroke-width="2" fill="none"/>
+              <line x1="66" y1="225" x2="86" y2="225" stroke="#45c063" stroke-width="2"/>
+              <g transform="translate(86,196)"><rect width="76" height="58" rx="10" fill="#232323" stroke="#333"/>
+                <g transform="translate(38,29)"><circle r="12" fill="none" stroke="#f4f4f4" stroke-width="3" stroke-dasharray="42 18" stroke-linecap="round"/><circle r="4.5" fill="#f4f4f4"/></g>
+                <rect x="10" y="66" width="56" height="6" rx="3" fill="rgba(255,255,255,.10)"/></g>
+              <line x1="162" y1="225" x2="196" y2="225" stroke="#45c063" stroke-width="2"/>
+              <!-- switch hub -->
+              <g transform="translate(196,175)"><rect width="40" height="100" rx="8" fill="#232323" stroke="#333"/>
+                <path d="M20 38 l-8 12 h16 l-8 12" stroke="#8fb8e6" stroke-width="2.5" fill="none"/></g>
+              <!-- dashed routing to four branches -->
+              <g stroke="rgba(255,255,255,.28)" stroke-width="1.5" fill="none" stroke-dasharray="5 4">
+                <path d="M236 190 C 300 190 300 70 360 70"/>
+                <path d="M236 210 C 300 210 300 160 360 160"/>
+                <path d="M236 240 C 300 240 300 290 360 290"/>
+                <path d="M236 260 C 300 260 300 380 360 380"/>
+              </g>
+              <!-- branch rows: topic -> content -> sheet -> wait -->
+              <g>
+                <g transform="translate(360,44)"><rect width="52" height="52" rx="9" fill="#232323" stroke="#333"/><path d="M18 34 L34 18 l4 4 L22 34 z" fill="#b7a4dd"/></g>
+                <line x1="412" y1="70" x2="436" y2="70" stroke="#45c063" stroke-width="2"/>
+                <g transform="translate(436,44)"><rect width="76" height="52" rx="9" fill="#232323" stroke="#333"/><rect x="26" y="14" width="24" height="24" rx="4" fill="#57b26a"/><rect x="31" y="20" width="14" height="3" fill="rgba(255,255,255,.8)"/><rect x="31" y="26" width="14" height="3" fill="rgba(255,255,255,.6)"/></g>
+                <line x1="512" y1="70" x2="536" y2="70" stroke="#45c063" stroke-width="2"/>
+                <circle cx="552" cy="70" r="14" fill="#232323" stroke="#333"/><path d="M548 64 v6 h8 v6" stroke="#e39fb1" stroke-width="2" fill="none"/>
+                <g transform="translate(360,134)"><rect width="52" height="52" rx="9" fill="#232323" stroke="#333"/><path d="M18 34 L34 18 l4 4 L22 34 z" fill="#b7a4dd"/></g>
+                <line x1="412" y1="160" x2="436" y2="160" stroke="#45c063" stroke-width="2"/>
+                <g transform="translate(436,134)"><rect width="76" height="52" rx="9" fill="#232323" stroke="#333"/><rect x="26" y="14" width="24" height="24" rx="4" fill="#57b26a"/><rect x="31" y="20" width="14" height="3" fill="rgba(255,255,255,.8)"/><rect x="31" y="26" width="14" height="3" fill="rgba(255,255,255,.6)"/></g>
+                <line x1="512" y1="160" x2="536" y2="160" stroke="#45c063" stroke-width="2"/>
+                <circle cx="552" cy="160" r="14" fill="#232323" stroke="#333"/><path d="M548 154 v6 h8 v6" stroke="#e39fb1" stroke-width="2" fill="none"/>
+                <g transform="translate(360,264)"><rect width="52" height="52" rx="9" fill="#232323" stroke="#333"/><path d="M18 34 L34 18 l4 4 L22 34 z" fill="#b7a4dd"/></g>
+                <line x1="412" y1="290" x2="436" y2="290" stroke="#45c063" stroke-width="2"/>
+                <g transform="translate(436,264)"><rect width="76" height="52" rx="9" fill="#232323" stroke="#333"/><rect x="26" y="14" width="24" height="24" rx="4" fill="#57b26a"/><rect x="31" y="20" width="14" height="3" fill="rgba(255,255,255,.8)"/><rect x="31" y="26" width="14" height="3" fill="rgba(255,255,255,.6)"/></g>
+                <line x1="512" y1="290" x2="536" y2="290" stroke="#45c063" stroke-width="2"/>
+                <circle cx="552" cy="290" r="14" fill="#232323" stroke="#333"/><path d="M548 284 v6 h8 v6" stroke="#e39fb1" stroke-width="2" fill="none"/>
+              </g>
+              <!-- visual asset chain -->
+              <g>
+                <g transform="translate(360,354)"><rect width="76" height="52" rx="9" fill="#232323" stroke="#333"/><g transform="translate(38,26)" stroke="#f6c445" fill="none" stroke-width="2.4"><rect x="-12" y="-10" width="24" height="20" rx="3"/><circle cx="-4" cy="-3" r="3"/><path d="M-12 6 l8 -6 l6 5 l5 -4 l5 4"/></g></g>
+                <line x1="436" y1="380" x2="460" y2="380" stroke="#45c063" stroke-width="2"/>
+                <g transform="translate(460,354)"><rect width="60" height="52" rx="9" fill="#232323" stroke="#333"/><g transform="translate(30,26)" stroke="#5b8def" fill="none" stroke-width="2.2"><circle r="11"/><ellipse rx="4.5" ry="11"/><line x1="-11" x2="11" y1="0" y2="0"/></g></g>
+                <line x1="520" y1="380" x2="544" y2="380" stroke="#45c063" stroke-width="2"/>
+                <g transform="translate(544,354)"><rect width="60" height="52" rx="9" fill="#232323" stroke="#333"/><rect x="18" y="14" width="24" height="24" rx="4" fill="#57b26a"/><rect x="23" y="20" width="14" height="3" fill="rgba(255,255,255,.8)"/><rect x="23" y="26" width="14" height="3" fill="rgba(255,255,255,.6)"/></g>
+                <line x1="604" y1="380" x2="628" y2="380" stroke="#45c063" stroke-width="2"/>
+                <g transform="translate(628,354)"><rect width="60" height="52" rx="9" fill="#232323" stroke="#333"/><path d="M22 20 h16 M22 26 h16 M22 32 h10" stroke="#e0654f" stroke-width="2.4"/></g>
+              </g>
+              <!-- review note -->
+              <g transform="translate(640,60)"><rect width="136" height="60" rx="4" fill="#e8c766"/><circle cx="124" cy="10" r="3" fill="rgba(0,0,0,.35)"/><rect x="10" y="18" width="104" height="5" rx="2.5" fill="rgba(0,0,0,.28)"/><rect x="10" y="30" width="86" height="5" rx="2.5" fill="rgba(0,0,0,.22)"/><rect x="10" y="42" width="60" height="5" rx="2.5" fill="rgba(0,0,0,.18)"/></g>
+              <g transform="translate(640,140)"><rect width="136" height="60" rx="4" fill="#9fc98a"/><circle cx="124" cy="10" r="3" fill="rgba(0,0,0,.35)"/><rect x="10" y="18" width="96" height="5" rx="2.5" fill="rgba(0,0,0,.28)"/><rect x="10" y="30" width="72" height="5" rx="2.5" fill="rgba(0,0,0,.22)"/><rect x="10" y="42" width="52" height="5" rx="2.5" fill="rgba(0,0,0,.18)"/></g>
+            </svg>
+          </a>
+          <div class="pcard-body">
+            <h2 class="pcard-title">Multi-Agent Content Automation</h2>
+            <p class="pcard-meta">n8n · multi-agent AI · content ops</p>
+            <p class="pcard-desc">A multi-agent AI content automation system that generates, organizes, and prepares social media content across multiple channels. The workflow reviews previous content to avoid repetition, develops new ideas, routes them to specialized AI agents for platform-specific writing, creates supporting visual assets, and stores everything in a centralized review system. It also automatically notifies the team when new content is ready for approval, helping make content production more consistent, scalable, and less dependent on manual work.</p>
+            <a class="btn btn-ghost" href="https://github.com/janmm97/n8n-proj/tree/main/content-automation" target="_blank" rel="noopener" style="align-self:flex-start;padding:.6rem 1.2rem;font-size:.8rem">View on GitHub <span class="ar">-&gt;</span></a>
+            <div class="pcard-tags">
+              <span>n8n</span><span>Multi-agent</span><span>Social content</span><span>Sheets review</span><span>Team alerts</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="pcard">
+          <a class="pcard-media" href="assets/images/Deal Flow Checker.png" aria-haspopup="dialog" aria-controls="imageViewer" aria-label="Open Deal Flow Checker screenshot full screen">
+            <!-- REAL IMAGE: save your workflow screenshot next to index.html
+                 with the exact filename: Deal Flow Checker.png -->
+            <img width="1672" height="941" loading="lazy" decoding="async" src="assets/images/Deal Flow Checker.png" alt="n8n workflow editor showing the Deal Flow Checker: a Gmail trigger feeding an AI agent that counts businesses per email, branching into single- and multi-business analyst agents, with structured output parsers, a pass/pursue/unsure switch, and Slack notification nodes." onerror="this.onerror=null;this.parentNode.classList.add('no-img');">
+            <svg class="pcard-fallback" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Fallback diagram of the deal flow checker: an inbox routed through an AI screen into a Slack channel.">
+              <defs>
+                <pattern id="pdots5" width="26" height="26" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,.05)"/>
+                </pattern>
+              </defs>
+              <rect width="800" height="450" fill="#151515"/>
+              <rect width="800" height="450" fill="url(#pdots5)"/>
+              <rect width="800" height="46" fill="#1b1b1b" stroke="#2c2c2c"/>
+              <rect x="28" y="15" width="130" height="16" rx="4" fill="rgba(255,255,255,.12)"/>
+              <rect x="670" y="14" width="102" height="18" rx="9" fill="#e8c766"/>
+              <rect x="688" y="21" width="66" height="4" rx="2" fill="rgba(0,0,0,.30)"/>
+              <!-- inbox -->
+              <rect x="56" y="140" width="180" height="170" rx="12" fill="#1b1b1b" stroke="#2c2c2c"/>
+              <g transform="translate(96,180)" fill="none" stroke="#8fb8e6" stroke-width="2.2">
+                <rect x="0" y="0" width="100" height="70" rx="8"/>
+                <path d="M0 6 L50 40 L100 6"/>
+              </g>
+              <rect x="96" y="268" width="100" height="8" rx="4" fill="rgba(255,255,255,.10)"/>
+              <rect x="96" y="284" width="72" height="8" rx="4" fill="rgba(255,255,255,.07)"/>
+              <!-- flow line -->
+              <line x1="236" y1="225" x2="296" y2="225" stroke="#45c063" stroke-width="2"/>
+              <rect x="246" y="222" width="6" height="6" fill="#45c063"/>
+              <!-- AI screen agent -->
+              <circle cx="342" cy="225" r="46" fill="#1b1b1b" stroke="#333"/>
+              <circle cx="342" cy="225" r="30" fill="none" stroke="#f4f4f4" stroke-width="3" stroke-dasharray="52 22" stroke-linecap="round"/>
+              <circle cx="342" cy="225" r="6" fill="#e8c766"/>
+              <!-- branches -->
+              <g stroke="rgba(255,255,255,.28)" stroke-width="1.5" fill="none" stroke-dasharray="5 4">
+                <path d="M388 200 C 430 200 430 110 486 110"/>
+                <path d="M388 250 C 430 250 430 340 486 340"/>
+              </g>
+              <g>
+                <rect x="486" y="84" width="130" height="52" rx="9" fill="#222222" stroke="#333"/>
+                <rect x="508" y="100" width="86" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+                <rect x="508" y="114" width="60" height="6" rx="3" fill="rgba(255,255,255,.08)"/>
+                <rect x="486" y="314" width="130" height="52" rx="9" fill="#222222" stroke="#333"/>
+                <rect x="508" y="330" width="86" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+                <rect x="508" y="344" width="60" height="6" rx="3" fill="rgba(255,255,255,.08)"/>
+              </g>
+              <!-- qualified -> slack -->
+              <line x1="616" y1="110" x2="660" y2="110" stroke="#45c063" stroke-width="2"/>
+              <g transform="translate(660,84)">
+                <rect width="150" height="52" rx="9" fill="#1b1b1b" stroke="#333"/>
+                <rect x="16" y="12" width="118" height="28" rx="6" fill="#2a2a2a" stroke="#3a3a3a"/>
+                <path d="M28 20 l-6 6 l12 0 Z" fill="rgba(255,255,255,.35)"/>
+                <rect x="38" y="24" width="84" height="5" rx="2.5" fill="rgba(255,255,255,.12)"/>
+                <rect x="28" y="44" width="30" height="5" rx="2.5" fill="#e8c766"/>
+              </g>
+              <!-- queue -->
+              <rect x="56" y="356" width="700" height="58" rx="10" fill="#1b1b1b" stroke="#2c2c2c"/>
+              <circle cx="86" cy="385" r="5" fill="#e8c766"/>
+              <rect x="106" y="381" width="180" height="7" rx="3.5" fill="rgba(255,255,255,.12)"/>
+              <circle cx="356" cy="385" r="5" fill="rgba(255,255,255,.25)"/>
+              <rect x="376" y="381" width="150" height="7" rx="3.5" fill="rgba(255,255,255,.10)"/>
+              <circle cx="596" cy="385" r="5" fill="rgba(255,255,255,.25)"/>
+              <rect x="616" y="381" width="110" height="7" rx="3.5" fill="rgba(255,255,255,.10)"/>
+            </svg>
+          </a>
+          <div class="pcard-body">
+            <h2 class="pcard-title">Deal Flow Checker</h2>
+            <p class="pcard-meta">n8n · AI deal screening · Gmail → Slack</p>
+            <p class="pcard-desc">Deal Flow Checker is an n8n automation that monitors incoming deal-flow emails in Gmail and screens every business opportunity against a defined set of acquisition criteria. An AI agent counts how many businesses each email mentions and routes it to single- or multi-business analyst agents, which evaluate industry, revenue, EBITDA, location, and years active. Qualified opportunities are posted to Slack for team review, while everything else is filtered out automatically — turning a crowded inbox into a short list of deals worth pursuing.</p>
+            <a class="btn btn-ghost" href="https://github.com/janmm97/n8n-proj/tree/main/deal-flow-checker" target="_blank" rel="noopener" style="align-self:flex-start;padding:.6rem 1.2rem;font-size:.8rem">View on GitHub <span class="ar">-&gt;</span></a>
+            <div class="pcard-tags">
+              <span>n8n</span><span>Gmail</span><span>AI agents</span><span>Slack</span><span>OpenAI</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="pcard">
+          <a class="pcard-media" href="assets/images/Automation Idea Summary and Prompt Writer.png" aria-haspopup="dialog" aria-controls="imageViewer" aria-label="Open Automation Idea Summary and Prompt Writer screenshot full screen">
+            <!-- REAL IMAGE: save your workflow screenshot next to index.html
+                 with the exact filename: Automation Idea Summary and Prompt Writer.png -->
+            <img width="1918" height="867" loading="lazy" decoding="async" src="assets/images/Automation Idea Summary and Prompt Writer.png" alt="n8n workflow editor showing the Automation Idea Summary and Prompt Writer: a Google Sheets trigger feeding AI agents that isolate the automation idea, rewrite it into a prompt, and classify the tools needed, then write the cleaned result back to a Google Sheet." onerror="this.onerror=null;this.parentNode.classList.add('no-img');">
+            <svg class="pcard-fallback" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Fallback diagram of the automation idea intake: a sheet flows through AI agents into a cleaned sheet.">
+              <defs>
+                <pattern id="pdots6" width="26" height="26" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,.05)"/>
+                </pattern>
+              </defs>
+              <rect width="800" height="450" fill="#151515"/>
+              <rect width="800" height="450" fill="url(#pdots6)"/>
+              <rect width="800" height="46" fill="#1b1b1b" stroke="#2c2c2c"/>
+              <rect x="28" y="15" width="130" height="16" rx="4" fill="rgba(255,255,255,.12)"/>
+              <rect x="670" y="14" width="102" height="18" rx="9" fill="#e8c766"/>
+              <rect x="688" y="21" width="66" height="4" rx="2" fill="rgba(0,0,0,.30)"/>
+              <!-- source sheet -->
+              <rect x="64" y="130" width="200" height="190" rx="12" fill="#1b1b1b" stroke="#2c2c2c"/>
+              <rect x="84" y="154" width="160" height="20" rx="5" fill="#57b26a"/>
+              <rect x="96" y="160" width="90" height="4" rx="2" fill="rgba(255,255,255,.8)"/>
+              <rect x="96" y="169" width="56" height="4" rx="2" fill="rgba(255,255,255,.55)"/>
+              <g stroke="rgba(255,255,255,.10)">
+                <line x1="84" y1="196" x2="244" y2="196"/><line x1="84" y1="220" x2="244" y2="220"/>
+                <line x1="84" y1="244" x2="244" y2="244"/><line x1="84" y1="268" x2="244" y2="268"/>
+                <line x1="84" y1="196" x2="84" y2="268"/><line x1="164" y1="196" x2="164" y2="268"/><line x1="244" y1="196" x2="244" y2="268"/>
+              </g>
+              <rect x="84" y="292" width="110" height="8" rx="4" fill="rgba(255,255,255,.10)"/>
+              <rect x="84" y="308" width="76" height="8" rx="4" fill="rgba(255,255,255,.07)"/>
+              <!-- flow -->
+              <line x1="264" y1="225" x2="300" y2="225" stroke="#45c063" stroke-width="2"/>
+              <rect x="274" y="222" width="6" height="6" fill="#45c063"/>
+              <!-- agents -->
+              <circle cx="346" cy="185" r="32" fill="#1b1b1b" stroke="#333"/>
+              <circle cx="346" cy="185" r="20" fill="none" stroke="#f4f4f4" stroke-width="2.5" stroke-dasharray="38 18" stroke-linecap="round"/>
+              <circle cx="346" cy="185" r="4" fill="#e8c766"/>
+              <circle cx="346" cy="265" r="32" fill="#1b1b1b" stroke="#333"/>
+              <circle cx="346" cy="265" r="20" fill="none" stroke="#f4f4f4" stroke-width="2.5" stroke-dasharray="38 18" stroke-linecap="round"/>
+              <circle cx="346" cy="265" r="4" fill="#e8c766"/>
+              <line x1="346" y1="217" x2="346" y2="233" stroke="#45c063" stroke-width="2"/>
+              <line x1="378" y1="225" x2="414" y2="225" stroke="#45c063" stroke-width="2"/>
+              <rect x="388" y="222" width="6" height="6" fill="#45c063"/>
+              <!-- cleaned sheet -->
+              <rect x="536" y="130" width="200" height="190" rx="12" fill="#1b1b1b" stroke="#2c2c2c"/>
+              <rect x="556" y="154" width="160" height="20" rx="5" fill="#e8c766"/>
+              <rect x="568" y="160" width="90" height="4" rx="2" fill="rgba(0,0,0,.35)"/>
+              <rect x="568" y="169" width="56" height="4" rx="2" fill="rgba(0,0,0,.25)"/>
+              <g stroke="rgba(255,255,255,.10)">
+                <line x1="556" y1="196" x2="716" y2="196"/><line x1="556" y1="220" x2="716" y2="220"/>
+                <line x1="556" y1="244" x2="716" y2="244"/><line x1="556" y1="268" x2="716" y2="268"/>
+                <line x1="556" y1="196" x2="556" y2="268"/><line x1="636" y1="196" x2="636" y2="268"/><line x1="716" y1="196" x2="716" y2="268"/>
+              </g>
+              <rect x="556" y="292" width="110" height="8" rx="4" fill="rgba(255,255,255,.10)"/>
+              <rect x="556" y="308" width="76" height="8" rx="4" fill="rgba(255,255,255,.07)"/>
+              <path d="M668 296 l5 5 l10 -10" stroke="#45c063" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <div class="pcard-body">
+            <h2 class="pcard-title">Automation Idea Summary and Prompt Writer</h2>
+            <p class="pcard-meta">n8n · AI intake pipeline · Google Sheets</p>
+            <p class="pcard-desc">Automation Idea Summary and Prompt Writer is an n8n intake workflow that turns messy automation requests into structured, actionable data. New submissions from a Google Sheet flow through a series of AI agents: one isolates the actual automation idea, another rewrites it into an execution-ready prompt, and a third identifies the tools needed to build it. The cleaned output is written back to a Google Sheet, making every submission faster to review, qualify, and act on.</p>
+            <a class="btn btn-ghost" href="https://github.com/janmm97/n8n-proj/tree/main/automation-idea-summary-and-prompt-writer" target="_blank" rel="noopener" style="align-self:flex-start;padding:.6rem 1.2rem;font-size:.8rem">View on GitHub <span class="ar">-&gt;</span></a>
+            <div class="pcard-tags">
+              <span>n8n</span><span>Google Sheets</span><span>AI agents</span><span>Prompt writing</span><span>Lead intake</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <div class="projects-cta">
+        <a class="btn btn-ghost" href="https://flaxen-crayon-74f.notion.site/3e57c1c329e280228fcbd4f5d6f65657?pvs=105" target="_blank" rel="noopener">Have an idea? Let's talk <span class="ar">-&gt;</span></a>
+      </div>
+    </div><div class="container page-closing"><h2>Good systems start with a conversation.</h2><div><p>Tell me what’s slowing you down. Let’s find a better way to work.</p><a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div></div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="page" data-page="services">
+    <div class="container svc-hero">
+      <div class="svc-hero-copy">
+        <h1 class="svc-hero-title fade f2" tabindex="-1" data-heading>From a spark.<br><em class="grad-em" id="svcWord">To a system.</em></h1>
+        <p class="svc-lead fade f3">Custom AI agents and connected workflows, built around the way your business works. Here's how we get from your first idea to a system you can rely on.</p>
+        <div class="svc-scroll-wrap fade f4">
+          <button class="btn btn-primary svc-scroll" id="svcScroll">Explore the process <span aria-hidden="true">↓</span></button>
+          <a class="text-link" href="#servicePackages" data-scroll-target="servicePackages">View packages ↗</a>
+        </div>
+      </div>
+      <svg class="svc-sky fade f3" viewBox="0 0 480 380" fill="none" aria-hidden="true">
+        <g class="sky-orbit" stroke="currentColor" stroke-opacity=".18">
+          <circle cx="240" cy="190" r="152" stroke-dasharray="2 10"/>
+          <ellipse cx="240" cy="190" rx="200" ry="94" transform="rotate(-30 240 190)" stroke="#FFFFFF" stroke-opacity=".6"/>
+          <circle cx="372" cy="115" r="4" fill="currentColor" stroke="none"/>
+        </g>
+        <g stroke="#FFFFFF" stroke-opacity=".9">
+          <path d="M240 180 207 135 166 95 90 62 122 136 180 186 240 210 300 186 358 136 390 62 314 95 273 135 240 180 240 210 209 262 240 315 271 262 240 210"/>
+          <path d="M90 62 180 186 166 95M390 62 300 186 314 95M207 135 240 210 273 135M209 262 271 262M240 180 226 153 240 135 254 153 240 180" stroke-opacity=".28"/>
+        </g>
+        <g fill="currentColor">
+          <circle cx="240" cy="180" r="3"/><circle cx="207" cy="135" r="2"/><circle cx="166" cy="95" r="2.5"/>
+          <circle cx="90" cy="62" r="3"/><circle cx="122" cy="136" r="2"/><circle cx="180" cy="186" r="2"/>
+          <circle cx="240" cy="210" r="3"/><circle cx="300" cy="186" r="2"/><circle cx="358" cy="136" r="2"/>
+          <circle cx="390" cy="62" r="3"/><circle cx="314" cy="95" r="2.5"/><circle cx="273" cy="135" r="2"/>
+          <circle cx="209" cy="262" r="2"/><circle cx="240" cy="315" r="3"/><circle cx="271" cy="262" r="2"/>
+          <path d="m240 125 2 8 8 2-8 2-2 8-2-8-8-2 8-2Z"/>
+        </g>
+        <g fill="currentColor" font-family="Consolas,monospace" font-size="9" letter-spacing="1.5" opacity=".6">
+          <text x="36" y="35">THE SHAPE OF POSSIBILITY</text><text x="277" y="356">08 STAGES · ONE SYSTEM</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="process-wrap" id="processWrap">
+      <div class="process-viewport" id="processViewport">
+        <div class="process-toolbar">
+          <h2>The journey / idea to impact</h2>
+          <a class="text-link" href="#servicePackages" data-scroll-target="servicePackages">View packages ↗</a>
+        </div>
+        <div class="process-copy" id="processCopy">
+          <article class="process-stage" data-stage="0">
+            <span class="stage-num"><b>01</b>/ 08</span>
+            <h3 class="stage-title">Know</h3>
+            <p class="stage-sub">Know the problem.</p>
+            <p class="stage-micro">Observe the work before automating it.</p>
+            <div class="stage-readout">The outcome<br><b>A clear problem to solve</b></div>
+          </article>
+          <article class="process-stage" data-stage="1">
+            <span class="stage-num"><b>02</b>/ 08</span>
+            <h3 class="stage-title">Blueprint</h3>
+            <p class="stage-sub">Blueprint the solution.</p>
+            <p class="stage-micro">Turn the problem into architecture.</p>
+            <div class="stage-readout">The outcome<br><b>A plan for your workflow</b></div>
+          </article>
+          <article class="process-stage" data-stage="2">
+            <span class="stage-num"><b>03</b>/ 08</span>
+            <h3 class="stage-title">Foundation</h3>
+            <p class="stage-sub">Build a solid foundation.</p>
+            <p class="stage-micro">Give the architecture something solid to stand on.</p>
+            <div class="stage-readout">The outcome<br><b>The right tools, ready to build</b></div>
+          </article>
+          <article class="process-stage" data-stage="3">
+            <span class="stage-num"><b>04</b>/ 08</span>
+            <h3 class="stage-title">Wire</h3>
+            <p class="stage-sub">Wire the pieces together.</p>
+            <p class="stage-micro">Connect tools, logic, data, and decisions.</p>
+            <div class="stage-readout">The outcome<br><b>A connected, working system</b></div>
+          </article>
+          <article class="process-stage" data-stage="4">
+            <span class="stage-num"><b>05</b>/ 08</span>
+            <h3 class="stage-title">Refine</h3>
+            <p class="stage-sub">Refine how it works.</p>
+            <p class="stage-micro">Remove friction. Tighten the logic.</p>
+            <div class="stage-readout">The outcome<br><b>Fewer steps. Less friction.</b></div>
+          </article>
+          <article class="process-stage" data-stage="5">
+            <span class="stage-num"><b>06</b>/ 08</span>
+            <h3 class="stage-title">Stress</h3>
+            <p class="stage-sub">Stress every weak point.</p>
+            <p class="stage-micro">Find the failure before the real world does.</p>
+            <div class="stage-readout">The outcome<br><b>Confidence before launch</b></div>
+          </article>
+          <article class="process-stage" data-stage="6">
+            <span class="stage-num"><b>07</b>/ 08</span>
+            <h3 class="stage-title">Release</h3>
+            <p class="stage-sub">Release it into the real world.</p>
+            <p class="stage-micro">Put the system to work.</p>
+            <div class="stage-readout">The outcome<br><b>A live system and a clear handover</b></div>
+          </article>
+          <article class="process-stage" data-stage="7">
+            <span class="stage-num"><b>08</b>/ 08</span>
+            <h3 class="stage-title">Evolve</h3>
+            <p class="stage-sub">Evolve it as the system learns and grows.</p>
+            <p class="stage-micro">Build once. Improve continuously.</p>
+            <div class="stage-readout">The outcome<br><b>Room for what comes next</b></div>
+          </article>
+        </div>
+        <div class="process-canvas-wrap">
+          <canvas id="processCanvas" aria-hidden="true"></canvas>
+          <span class="process-corner pc-tr" id="pcTR">SCROLL TO TRANSFORM</span>
+          <span class="process-corner pc-bl" id="pcBL">JOURNEY 01 / 08</span>
+          <span class="process-corner pc-br" id="pcBR">0% CONNECTED</span>
+        </div>
+        <nav class="process-chapters" aria-label="Process chapters">
+          <button class="chapter-btn" data-chapter="0" aria-label="Chapter 1: Know" aria-controls="processCopy"><span>01</span>Know</button>
+          <button class="chapter-btn" data-chapter="1" aria-label="Chapter 2: Blueprint" aria-controls="processCopy"><span>02</span>Blueprint</button>
+          <button class="chapter-btn" data-chapter="2" aria-label="Chapter 3: Foundation" aria-controls="processCopy"><span>03</span>Foundation</button>
+          <button class="chapter-btn" data-chapter="3" aria-label="Chapter 4: Wire" aria-controls="processCopy"><span>04</span>Wire</button>
+          <button class="chapter-btn" data-chapter="4" aria-label="Chapter 5: Refine" aria-controls="processCopy"><span>05</span>Refine</button>
+          <button class="chapter-btn" data-chapter="5" aria-label="Chapter 6: Stress" aria-controls="processCopy"><span>06</span>Stress</button>
+          <button class="chapter-btn" data-chapter="6" aria-label="Chapter 7: Release" aria-controls="processCopy"><span>07</span>Release</button>
+          <button class="chapter-btn" data-chapter="7" aria-label="Chapter 8: Evolve" aria-controls="processCopy"><span>08</span>Evolve</button>
+        </nav>
+        <span class="process-progress" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <div class="container svc-cards" id="servicePackages" tabindex="-1">
+      <div class="svc-packages-head">
+        <div><h2 class="section-title">Make room for better work.</h2></div>
+        <p>Start with a bottleneck, or connect your whole operation. Choose the scope that fits your business.</p>
+      </div>
+      <div class="svc-cards-grid">
+        <article class="svc-card">
+          <header class="svc-card-top">
+            <p class="svc-card-name">Start Up</p>
+            <p class="svc-card-price">$3,500<small>one-time</small></p>
+            <p class="svc-card-tag">For individuals and small teams getting their first agents live.</p>
+          </header>
+          <div class="svc-card-body">
+            <div>
+              <p class="svc-card-label">What you'll get</p>
+              <ul>
+                <li>3 custom AI Agents / Workflows</li>
+                <li>Discovery session + workflow mapping</li>
+                <li>Unlimited standard tool connections</li>
+                <li>One workspace setup (Starter plan included — 1M API calls, 500 req/min)</li>
+                <li>Full testing &amp; QA</li>
+                <li>Written documentation + recorded handover session</li>
+                <li>30 days of post-launch bug fixes</li>
+                <li>Email support during build</li>
+              </ul>
+            </div>
+            <div class="svc-card-best">
+              <p class="svc-card-label">Best for</p>
+              <p>Automating a specific bottleneck — lead qualification, inbox triage, content ops, reporting.</p>
+            </div>
+            <div class="svc-card-cta">
+              <a class="btn btn-ghost svc-card-btn" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a Call <span class="ar">-&gt;</span></a>
+            </div>
+          </div>
+        </article>
+        <article class="svc-card">
+          <header class="svc-card-top">
+            <p class="svc-card-name">Growth</p>
+            <p class="svc-card-price">$7,500<small>one-time</small></p>
+            <p class="svc-card-tag">For businesses running agents as core operations.</p>
+          </header>
+          <div class="svc-card-body">
+            <div>
+              <p class="svc-card-label">What you'll get</p>
+              <ul>
+                <li>10 custom AI Agents / Workflows</li>
+                <li>Full discovery + business process audit</li>
+                <li>Unlimited standard tool connections + 2 custom integrations</li>
+                <li>One workspace setup (Pro plan included — 1M API calls, 1,000 req/min, 50 projects)</li>
+                <li>Multi-agent orchestration (agents that talk to each other)</li>
+                <li>Full testing &amp; QA against your real data</li>
+                <li>Written documentation + team training session</li>
+                <li>90 days of bug fixes &amp; error resolution</li>
+                <li>Dedicated Slack channel with direct access to me</li>
+                <li>Priority response (within 24 hrs business days)</li>
+              </ul>
+            </div>
+            <div class="svc-card-best">
+              <p class="svc-card-label">Best for</p>
+              <p>Teams replacing manual ops — sales ops, customer support triage, back-office workflows, internal tooling.</p>
+            </div>
+            <div class="svc-card-cta">
+              <a class="btn btn-ghost svc-card-btn" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a Call <span class="ar">-&gt;</span></a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="svc-outro"><p>Not sure where to start? Tell me what's slowing you down.</p><a class="text-link" href="https://flaxen-crayon-74f.notion.site/3e57c1c329e280228fcbd4f5d6f65657?pvs=105" target="_blank" rel="noopener">Let's find the right fit ↗</a></div>
+    </div>
+  </section>
+
+  <section class="page" data-page="blog">
+    <div class="container stub">
+      <h1 tabindex="-1" data-heading>The working<br><em class="grad-em" id="blogWord">notes.</em></h1>
+      <span class="stub-tag"><i></i> In production</span>
+      <p>Notes, lessons and experiments — from AI agents and automation to operations, tools and the work itself.</p>
+      <ul class="stub-list">
+        <li><b>-&gt;</b> build notes &amp; post-mortems</li>
+        <li><b>-&gt;</b> tool reviews &amp; comparisons</li>
+        <li><b>-&gt;</b> lessons from the field</li>
+      </ul>
+      <div class="stub-actions">
+        <a class="btn btn-ghost" href="#/">&lt;- Back home</a>
+        <a class="text-link" href="https://flaxen-crayon-74f.notion.site/3e57c1c329e280228fcbd4f5d6f65657?pvs=105" target="_blank" rel="noopener">Have a project in mind? Talk now</a>
+      </div>
+    </div><div class="container page-closing"><h2>Good systems start with a conversation.</h2><div><p>Tell me what’s slowing you down. Let’s find a better way to work.</p><a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div></div>
+  </section>
+
+  <section class="page" data-page="contact">
+    <div class="container contact-wrap">
+      <h1 class="projects-title" tabindex="-1" data-heading>Your next idea.<br>Let’s build it.</h1>
+      <p class="contact-intro">A conversation is a good place to start.</p>
+      <p class="contact-note">An idea, a repetitive task, or a workflow that could work better. Tell me about it.</p>
+      <div class="contact-actions"><a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a 30-minute call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a><a class="btn btn-primary" href="https://flaxen-crayon-74f.notion.site/3e57c1c329e280228fcbd4f5d6f65657?pvs=105" target="_blank" rel="noopener">Submit a Request <span class="ar">-&gt;</span></a></div><p class="contact-detail">Bring an idea, a question, or the task you would love to stop doing manually.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container foot-in">
+    <span>© <span id="yr">2025</span> Jan</span>
+    <span class="foot-page">page <b id="footPage">01</b> / 06 · <span id="footName">home</span></span>
+    <span><a href="https://flaxen-crayon-74f.notion.site/3e57c1c329e280228fcbd4f5d6f65657?pvs=105" target="_blank" rel="noopener">submit a request</a></span>
+  </div>
+</footer>
+
+
+<dialog class="image-viewer" id="imageViewer" aria-labelledby="imageViewerTitle">
+  <div class="image-viewer-bar">
+    <h2 class="image-viewer-title" id="imageViewerTitle">Project screenshot</h2>
+    <button class="icon-btn image-viewer-close" id="imageViewerClose" type="button" aria-label="Close image viewer" autofocus><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="image-viewer-stage" id="imageViewerStage">
+    <img class="image-viewer-image" id="imageViewerImage" alt="">
+    <p class="image-viewer-error" id="imageViewerError" role="status" hidden>This image could not be loaded. Close the viewer and try again.</p>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,c){return (c||document).querySelector(s);};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+var reduced=false;
+try{reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function smoothstep(a,b,t){var x=clamp((t-a)/(b-a),0,1);return x*x*(3-2*x);}
+var STAGE_COUNT=8;
+function stageOf(p){return clamp(Math.floor(p*STAGE_COUNT),0,STAGE_COUNT-1);}
+function stageLocal(p){return clamp(p*STAGE_COUNT-stageOf(p),0,1);}
+
+var toastEl=$('#toast'),toastT=null;
+function toast(msg){if(!toastEl)return;toastEl.textContent=msg;toastEl.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show');},2600);}
+
+(function(){
+  var cv=$('#stars');if(!cv||!cv.getContext)return;
+  var ctx=cv.getContext('2d'),W=0,H=0,starsArr=[];
+  var halo=document.createElement('canvas');halo.width=64;halo.height=64;
+  var hc=halo.getContext('2d');
+  var g=hc.createRadialGradient(32,32,0,32,32,32);
+  g.addColorStop(0,'rgba(255,255,255,.55)');g.addColorStop(.35,'rgba(255,255,255,.16)');g.addColorStop(1,'rgba(255,255,255,0)');
+  hc.fillStyle=g;hc.fillRect(0,0,64,64);
+  function makeStar(){
+    var roll=Math.random(),tier,r,a;
+    if(roll<.42){tier=0;}else if(roll<.86){tier=1;}else{tier=2;}
+    if(tier===0){r=.7+Math.random()*.7;a=.22+Math.random()*.28;}
+    else if(tier===1){r=1.3+Math.random()*1.1;a=.45+Math.random()*.35;}
+    else{r=2.2+Math.random()*1.3;a=.8+Math.random()*.2;}
+    return {x:Math.random()*W,y:Math.random()*H,r:r,a:a,tier:tier,bright:tier===2,
+      sp:Math.random()*1.1+.35,ph:Math.random()*6.283,vy:(Math.random()*.05+.015)*(tier===2?.6:1)};
+  }
+  function build(){var count=Math.round(Math.min(210,(W*H)/10000));starsArr=[];for(var i=0;i<count;i++){starsArr.push(makeStar());}}
+  function draw(t){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<starsArr.length;i++){
+      var s=starsArr[i];
+      var depth=s.tier===0?.55:.35;
+      var tw=reduced?1:((1-depth)+depth*(.5+.5*Math.sin(t*.001*s.sp+s.ph)));
+      var alpha=Math.min(1,s.a*tw);
+      if(s.bright){var hs=s.r*9;ctx.globalAlpha=alpha*.85;ctx.drawImage(halo,s.x-hs/2,s.y-hs/2,hs,hs);ctx.globalAlpha=1;}
+      ctx.fillStyle='rgba(255,255,255,'+alpha.toFixed(3)+')';
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.2832);ctx.fill();
+      if(!reduced){s.y-=s.vy;if(s.y<-4){s.y=H+4;s.x=Math.random()*W;}}
+    }
+  }
+  function resize(){
+    var w=window.innerWidth,h=window.innerHeight;
+    if(w<1||h<1)return;
+    var d=Math.min(2,window.devicePixelRatio||1);
+    W=w;H=h;cv.width=Math.round(W*d);cv.height=Math.round(H*d);ctx.setTransform(d,0,0,d,0,0);
+    build();if(reduced){draw(0);}
+  }
+  function loop(t){draw(t);window.requestAnimationFrame(loop);}
+  window.addEventListener('resize',resize);
+  resize();
+  if(!reduced){window.requestAnimationFrame(loop);}
+})();
+
+var stageEls=$$('.process-stage');
+var lastStage=-1;
+function updateStageUI(p){
+  var stage=stageOf(p);
+  $('#processViewport').style.setProperty('--journey-progress',String(p));
+  if(stage===lastStage)return;
+  lastStage=stage;
+  stageEls.forEach(function(s,i){
+    s.setAttribute('aria-hidden',String(i!==stage));
+    s.classList.remove('active','above','below');
+    if(i===stage){s.classList.add('active');}
+    else if(i<stage){s.classList.add('above');}
+    else{s.classList.add('below');}
+  });
+  $$('.chapter-btn').forEach(function(button,i){
+    if(i===stage){button.setAttribute('aria-current','step');}
+    else{button.removeAttribute('aria-current');}
+  });
+}
+
+var processEngine=(function(){
+  var cv=$('#processCanvas');if(!cv||!cv.getContext)return null;
+  var ctx=cv.getContext('2d');if(!ctx)return null;
+  var wrapEl=$('#processWrap'),viewEl=$('#processViewport');
+  var W=0,H=0,dpr=1,active=false,rafId=null;
+  var targetProgress=0,renderedProgress=0;
+  function rng(n){var s=(n*9301+49297)%233280;return s/233280;}
+
+  function resize(){
+    if(!cv.parentElement)return;
+    var w=cv.parentElement.clientWidth,h=cv.parentElement.clientHeight;
+    if(w<1||h<1)return;
+    W=w;H=h;dpr=Math.min(2,window.devicePixelRatio||1);
+    cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+
+  function stickyTop(){
+    if(!viewEl)return 0;
+    var v=parseFloat(getComputedStyle(viewEl).top);
+    return isFinite(v)?v:0;
+  }
+  function processProgress(){
+    if(!wrapEl||!viewEl)return 0;
+    var wrapH=wrapEl.offsetHeight,viewH=viewEl.offsetHeight;
+    var scrollable=wrapH-viewH;
+    if(scrollable<=0)return targetProgress;
+    var traveled=stickyTop()-wrapEl.getBoundingClientRect().top;
+    return clamp(traveled/scrollable,0,1);
+  }
+
+  function updateCorners(stage,p){
+    var bl=$('#pcBL'),br=$('#pcBR');
+    if(bl)bl.textContent='JOURNEY '+String(stage+1).padStart(2,'0')+' / 08';
+    if(br)br.textContent=Math.round(p*100)+'% CONNECTED';
+    var tr=$('#pcTR');
+    if(tr)tr.textContent=wrapEl.offsetHeight>viewEl.offsetHeight?'SCROLL OR CHOOSE A CHAPTER':'CHOOSE A CHAPTER BELOW';
+  }
+
+﻿  // A single set of stars morphs through eight formations into a celestial phoenix.
+  var constellationPaths=[];
+  var featherPaths=[
+    [[0,-28],[35,-58],[73,-101],[115,-151],[162,-189],[217,-207],[190,-137],[145,-65],[68,-2]],
+    [[0,-12],[39,-31],[79,-60],[123,-100],[169,-145],[193,-157],[159,-90],[113,-28],[48,20]],
+    [[0,8],[33,9],[69,-6],[106,-31],[141,-65],[158,-88],[126,-24],[83,23],[25,42]]
+  ];
+  [-1,1].forEach(function(side){featherPaths.forEach(function(path){
+    constellationPaths.push(path.map(function(pt){return {x:pt[0]*side,y:pt[1]};}));
+  });});
+  constellationPaths.push([[0,46],[-16,12],[-13,-29],[-24,-57],[-11,-81],[5,-92],[24,-80],[6,-72],[0,-28]].map(function(pt){return {x:pt[0],y:pt[1]};}));
+  constellationPaths.push([[0,19],[-32,67],[-55,116],[-44,169],[0,211],[43,168],[54,113],[31,65],[0,19]].map(function(pt){return {x:pt[0],y:pt[1]};}));
+  var constellationStars=[];
+  constellationPaths.forEach(function(path,branch){path.forEach(function(pt,j){
+    var i=branch*9+j,a=i*2.399963;
+    var forms=[
+      {x:(rng(i*23+71)-.5)*450,y:(rng(i*41+29)-.5)*420},
+      {x:Math.cos(a)*Math.sqrt(i/72)*220,y:Math.sin(a)*Math.sqrt(i/72)*220},
+      {x:Math.cos(i*Math.PI/18)*190,y:(i/71-.5)*390},
+      {x:Math.cos(j*Math.PI/4)*[92,148,205][branch%3],y:Math.sin(j*Math.PI/4)*[92,148,205][branch%3]},
+      {x:Math.cos(branch*Math.PI/4+j*.095)*Math.sin(j/8*Math.PI)*225,y:Math.sin(branch*Math.PI/4+j*.095)*Math.sin(j/8*Math.PI)*225},
+      {x:pt.x*.67,y:pt.y*.83},
+      {x:pt.x*.94,y:pt.y*.94},pt
+    ];
+    constellationStars.push({forms:forms,branch:branch,j:j});
+  });});
+  var constellationNames=['A FIELD OF POSSIBILITIES','THE FIRST CONNECTION','FINDING THE STRUCTURE','EVERY PART, CONNECTED','ORDER FROM COMPLEXITY','READY TO UNFOLD','IDEAS TAKE FLIGHT','BUILT TO KEEP EVOLVING'];
+
+  function drawFrame(){
+    if(W<1||H<1)return;
+    var p=renderedProgress,stage=stageOf(targetProgress),tau=Math.PI*2;
+    updateCorners(stage,p);
+    ctx.clearRect(0,0,W,H);
+    var scale=Math.max(.01,Math.min(W/520,(H-76)/490));
+    var chapter=p*7,from=Math.min(6,Math.floor(chapter)),blend=smoothstep(0,1,chapter-from);
+    // Reduced motion retains chapter illustrations without spatial interpolation.
+    if(reduced){from=Math.min(6,stage);blend=stage===7?1:0;}
+    var points=constellationStars.map(function(star){
+      var a=star.forms[from],b=star.forms[from+1];
+      return {x:a.x+(b.x-a.x)*blend,y:a.y+(b.y-a.y)*blend};
+    });
+    ctx.save();ctx.translate(W/2,H/2-16);ctx.scale(scale,scale);
+    var mist=ctx.createRadialGradient(0,0,15,0,0,270);
+    mist.addColorStop(0,'rgba(197,213,225,.045)');mist.addColorStop(1,'rgba(197,213,225,0)');
+    ctx.fillStyle=mist;ctx.fillRect(-280,-280,560,560);
+    // A quiet background sky makes the connected stars feel suspended in space.
+    for(var i=0;i<90;i++){
+      var x=(rng(i*29+8)-.5)*550,y=(rng(i*31+21)-.5)*500;
+      ctx.beginPath();ctx.arc(x,y,.35+rng(i*11+4)*.7,0,tau);
+      ctx.fillStyle='rgba(219,228,234,'+(.09+rng(i+44)*.24)+')';ctx.fill();
+    }
+    function connect(a,b,alpha,width,amount){
+      var end=amount===undefined?1:amount;
+      ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(a.x+(b.x-a.x)*end,a.y+(b.y-a.y)*end);
+      ctx.strokeStyle='rgba(220,233,241,'+alpha+')';ctx.lineWidth=width;ctx.stroke();
+    }
+    var reveal=smoothstep(0,.19,p),flight=smoothstep(.68,1,p);
+    // Trace the primary constellation, drawing each segment from its source star.
+    for(var branch=0;branch<8;branch++){
+      for(var j=0;j<8;j++){
+        var id=branch*9+j,a=points[id],b=points[id+1];
+        var amount=smoothstep((j/8)*.13,(j/8)*.13+.09,p);
+        connect(a,b,(.30+flight*.32)*amount,1,amount);
+        // A traveling point of light runs along the lines as the page is scrolled.
+        var signal=(p*8+branch*.137)%1;
+        if(signal>=j/8&&signal<(j+1)/8&&reveal>.2){
+          var t=signal*8-j;
+          ctx.beginPath();ctx.arc(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t,1.7,0,tau);
+          ctx.fillStyle='rgba(243,249,249,.9)';ctx.fill();
+        }
+      }
+    }
+    // Fine cross-bracing gives the wings a feathered, architectural silhouette.
+    for(var side=0;side<2;side++){
+      for(var row=0;row<2;row++){
+        for(var j=1;j<8;j++){
+          var id=(side*3+row)*9+j;
+          connect(points[id],points[id+9],(.10+flight*.18)*reveal,.65);
+          if(j%2===0)connect(points[id],points[id+8],(.08+flight*.12)*reveal,.55);
+        }
+      }
+    }
+    // The tail fans into long, luminous feathers as the final form emerges.
+    for(var j=1;j<8;j++){
+      connect(points[63],points[63+j],flight*.3,.65);
+      if(j<4)connect(points[63+j],points[71-j],flight*.16,.55);
+    }
+    // A faint outer orbit opens out and disappears as the constellation takes flight.
+    ctx.save();ctx.rotate(-.3+p*.4);ctx.scale(1,.62);
+    ctx.beginPath();ctx.arc(0,0,251,-.2,Math.PI*1.5);ctx.strokeStyle='rgba(217,227,232,'+(.14*(1-flight))+')';ctx.lineWidth=.6;ctx.stroke();ctx.restore();
+    points.forEach(function(pt,i){
+      var major=i%9===5||i%9===0||i===59;
+      var brightness=.55+.35*rng(i*7+23);
+      var r=major?2.2:1.1;
+      var glow=ctx.createRadialGradient(pt.x,pt.y,0,pt.x,pt.y,major?17:7);
+      glow.addColorStop(0,'rgba(224,241,250,'+(major?.27:.14)+')');glow.addColorStop(1,'rgba(224,241,250,0)');
+      ctx.fillStyle=glow;ctx.beginPath();ctx.arc(pt.x,pt.y,major?17:7,0,tau);ctx.fill();
+      ctx.fillStyle='rgba(239,246,247,'+brightness+')';ctx.beginPath();ctx.arc(pt.x,pt.y,r,0,tau);ctx.fill();
+      if(major){
+        ctx.beginPath();ctx.moveTo(pt.x,pt.y-7);ctx.quadraticCurveTo(pt.x+1,pt.y-1,pt.x+5,pt.y);ctx.quadraticCurveTo(pt.x+1,pt.y+1,pt.x,pt.y+7);ctx.quadraticCurveTo(pt.x-1,pt.y+1,pt.x-5,pt.y);ctx.quadraticCurveTo(pt.x-1,pt.y-1,pt.x,pt.y-7);
+        ctx.fillStyle='rgba(236,245,248,.8)';ctx.fill();
+      }
+    });
+    // Small star-chart annotations stay secondary to the drawing.
+    if(W>560){
+      ctx.font='8px Consolas,monospace';ctx.fillStyle='rgba(201,217,225,.48)';ctx.textAlign='left';
+      [5,32,59].forEach(function(i,k){
+        var right=points[i].x>100;ctx.textAlign=right?'right':'left';
+        ctx.fillText(['\u03b1 / ORIGIN','\u03b2 / CONNECTION','\u03b3 / POSSIBILITY'][k],points[i].x+(right?-12:12),points[i].y-10);
+      });
+    }
+    ctx.restore();
+    ctx.textAlign='center';ctx.font=(W<450?'9':'10')+'px Consolas,monospace';ctx.fillStyle='rgba(209,220,226,.65)';
+    ctx.fillText(constellationNames[stage],W/2,H-44);
+  }
+
+  function loop(now){
+    rafId=null;
+    renderedProgress+=(targetProgress-renderedProgress)*.12;
+    if(Math.abs(targetProgress-renderedProgress)<.0005)renderedProgress=targetProgress;
+    drawFrame();
+    if(renderedProgress!==targetProgress)start();
+  }
+  function start(){if(reduced)return;if(rafId!==null)return;rafId=window.requestAnimationFrame(loop);}
+  function stop(){if(rafId!==null){window.cancelAnimationFrame(rafId);rafId=null;}}
+
+  function syncFromScroll(){
+    if(!active)return;
+    targetProgress=processProgress();
+    updateStageUI(targetProgress);
+    if(reduced){renderedProgress=targetProgress;drawFrame();}
+    else{start();}
+  }
+
+  function setActive(v){
+    if(v===active){if(v){syncFromScroll();}return;}
+    active=v;
+    if(v){targetProgress=0;renderedProgress=0;resize();syncFromScroll();start();}
+    else{stop();}
+  }
+
+  window.addEventListener('resize',function(){if(active){resize();syncFromScroll();}});
+  window.addEventListener('scroll',syncFromScroll,{passive:true});
+
+  function selectChapter(index){
+    var p=index===0?0:index===STAGE_COUNT-1?1:(index+.2)/STAGE_COUNT;
+    var distance=wrapEl.offsetHeight-viewEl.offsetHeight;
+    if(distance>0){
+      window.scrollTo({top:window.scrollY+wrapEl.getBoundingClientRect().top-stickyTop()+distance*p,behavior:'instant'});
+    }
+    targetProgress=p;
+    updateStageUI(p);
+    if(reduced){renderedProgress=p;drawFrame();}else{start();}
+  }
+  return {setActive:setActive,refresh:syncFromScroll,selectChapter:selectChapter};
+})();
+
+$$('.chapter-btn').forEach(function(button){
+  button.addEventListener('click',function(){
+    if(processEngine)processEngine.selectChapter(Number(button.getAttribute('data-chapter')));
+  });
+});
+$$('[data-scroll-target]').forEach(function(link){
+  link.addEventListener('click',function(event){
+    var target=document.getElementById(link.getAttribute('data-scroll-target'));
+    if(!target)return;
+    event.preventDefault();
+    target.scrollIntoView({behavior:reduced?'instant':'smooth',block:'start'});
+    target.focus({preventScroll:true});
+  });
+});
+
+var svcScroll=$('#svcScroll');
+if(svcScroll){
+  svcScroll.addEventListener('click',function(){
+    var target=$('#processWrap');
+    if(!target)return;
+    if(reduced){target.scrollIntoView({behavior:'instant',block:'start'});}
+    else{target.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+}
+
+var ROUTES=['home','about','projects','services','blog','contact'];
+var TITLES={home:'Jan — AI Agent Builder',about:'About — Jan',projects:'Projects — Jan',services:'Services — Jan',blog:'Blog — Jan',contact:'Submit a request — Jan'};
+var NUMS={home:'01',about:'02',projects:'03',services:'04',blog:'05',contact:'06'};
+function normRoute(h){h=(h||'').replace(/^#\/?/,'').replace(/\/$/,'').toLowerCase();return ROUTES.indexOf(h)>-1?h:'home';}
+function parseHash(){return normRoute(location.hash);}
+var currentRoute=parseHash();
+
+function render(focusHeading){
+  var r=currentRoute;
+  $$('.page').forEach(function(p){p.classList.toggle('active',p.getAttribute('data-page')===r);});
+  $$('#navLinks a').forEach(function(a){
+    var on=a.getAttribute('data-route')===r;
+    a.classList.toggle('active',on);
+    if(on){a.setAttribute('aria-current','page');}else{a.removeAttribute('aria-current');}
+  });
+  $$('#mmenu a[data-route]').forEach(function(a){
+    var on=a.getAttribute('data-route')===r;
+    if(on){a.setAttribute('aria-current','page');}else{a.removeAttribute('aria-current');}
+  });
+  document.title=TITLES[r];
+  var fp=$('#footPage'),fn=$('#footName');
+  if(fp){fp.textContent=NUMS[r];}
+  if(fn){fn.textContent=r;}
+  document.body.style.setProperty('--stars-op', r==='home' ? '1' : '.38');
+  if(r==='home'){applyGradient($('#spaceWord'));}
+  if(r==='about'){applyGradient($('#aboutWord'));}
+  if(r==='blog'){applyGradient($('#blogWord'));}
+  if(r==='services'){applyGradient($('#svcWord'));}
+  window.scrollTo({top:0,left:0,behavior:'instant'});
+  if(processEngine){processEngine.setActive(r==='services');}
+  setMenu(false);
+  if(focusHeading){
+    var h=document.querySelector('.page.active [data-heading]');
+    if(h){try{h.focus({preventScroll:true});}catch(e){h.focus();}}
+  }
+}
+
+function navigate(r){
+  r=normRoute(r);
+  if(r===currentRoute){render(true);return;}
+  var hash='#/'+(r==='home'?'':r);
+  var changed=false;
+  try{
+    if(location.hash!==hash){location.hash=hash;changed=true;}
+  }catch(err){changed=false;}
+  if(!changed&&parseHash()!==r){
+    currentRoute=r;render(true);
+  }
+}
+
+document.addEventListener('click',function(e){
+  var t=e.target;
+  var a=t&&t.closest?t.closest('a[href^="#/"]'):null;
+  if(!a)return;
+  e.preventDefault();
+  if(a.closest('#mmenu')){setMenu(false);}
+  navigate(normRoute(a.getAttribute('href')));
+},true);
+
+window.addEventListener('hashchange',function(){
+  var p=parseHash();
+  if(p!==currentRoute){currentRoute=p;if(document.startViewTransition&&!reduced){document.startViewTransition(function(){render(true);});}else{render(true);}}
+});
+window.addEventListener('popstate',function(){
+  var p=parseHash();
+  if(p!==currentRoute){currentRoute=p;render(true);}
+});
+
+if(!location.hash){
+  try{if(window.history&&history.replaceState){history.replaceState(null,'','#/');}}catch(e){}
+}
+
+var nav=$('#navBar');
+function onScroll(){if(nav){nav.classList.toggle('scrolled',(window.scrollY||0)>24);}}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+var mmenu=$('#mmenu'),burger=$('#burger'),mmenuClose=$('#mmenuClose');
+function setMenu(open,opts){
+  if(!mmenu)return;
+  var isOpen=mmenu.classList.contains('open');
+  if(open===isOpen)return;
+  mmenu.classList.toggle('open',open);
+  if(burger){
+    burger.setAttribute('aria-expanded',String(open));
+    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  }
+  document.body.style.overflow=open?'hidden':'';
+  ['main','footer','#navBar'].forEach(function(selector){
+    var region=$(selector);if(region)region.inert=open;
+  });
+  $$('#mmenu a').forEach(function(a,i){a.style.transitionDelay=open?(0.07*i+0.12)+'s':'0s';});
+  if(open){
+    if(mmenuClose){window.requestAnimationFrame(function(){
+      if(mmenu.classList.contains('open'))mmenuClose.focus({preventScroll:true});
+    });}
+  }else if(opts&&opts.restoreFocus&&burger){
+    burger.focus();
+  }
+}
+if(burger){burger.addEventListener('click',function(){setMenu(!mmenu.classList.contains('open'));});}
+if(mmenu){mmenu.addEventListener('transitionend',function(event){
+  if(event.target===mmenu&&event.propertyName==='transform'&&mmenu.classList.contains('open')&&mmenuClose){
+    mmenuClose.focus({preventScroll:true});
+  }
+});}
+if(mmenuClose){mmenuClose.addEventListener('click',function(){setMenu(false,{restoreFocus:true});});}
+document.addEventListener('keydown',function(e){
+  if(!mmenu||!mmenu.classList.contains('open'))return;
+  if(e.key==='Escape'){setMenu(false,{restoreFocus:true});}
+  if(e.key==='Tab'){
+    var items=$$('button,a[href]',mmenu),first=items[0],last=items[items.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  }
+});
+
+
+// Native dialog supplies modal focus containment and makes the page behind it inert.
+(function(){
+  var viewer=$('#imageViewer'),picture=$('#imageViewerImage'),closeButton=$('#imageViewerClose');
+  var origin=null,openingImage=null,animation=null,closing=false,previousOverflow='',previousScroll={x:0,y:0};
+  function reducedViewerMotion(){return window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
+  function imageBounds(img){
+    var rect=img.getBoundingClientRect();
+    var scale=Math.min(rect.width/img.naturalWidth,rect.height/img.naturalHeight);
+    var width=img.naturalWidth*scale,height=img.naturalHeight*scale;
+    return {left:rect.left+(rect.width-width)/2,top:rect.top+(rect.height-height)/2,width:width,height:height};
+  }
+  function originTransform(){
+    if(!openingImage||!openingImage.naturalWidth||!picture.naturalWidth)return 'scale(.96)';
+    var a=imageBounds(openingImage),b=imageBounds(picture);
+    if(!b.width||!b.height)return 'scale(.96)';
+    return 'translate('+(a.left+a.width/2-b.left-b.width/2)+'px,'+(a.top+a.height/2-b.top-b.height/2)+'px) scale('+(a.width/b.width)+','+(a.height/b.height)+')';
+  }
+  function finishClose(){
+    if(animation){animation.cancel();animation=null;}
+    if(viewer.open)viewer.close();
+  }
+  function closeViewer(immediate){
+    if(!viewer.open)return;
+    if(immediate){finishClose();return;}
+    if(closing)return;
+    closing=true;
+    if(animation){animation.cancel();animation=null;}
+    if(reducedViewerMotion()||picture.hidden){finishClose();return;}
+    animation=picture.animate([{transform:'none'},{transform:originTransform()}],{duration:260,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});
+    animation.onfinish=finishClose;
+  }
+  $$('.pcard-media').forEach(function(link){
+    link.addEventListener('click',function(event){
+      event.preventDefault();
+      if(viewer.open)return;
+      origin=link;openingImage=link.querySelector('img');closing=false;
+      picture.hidden=false;$('#imageViewerError').hidden=true;
+      picture.alt=openingImage.alt;
+      picture.src=link.href;
+      $('#imageViewerTitle').textContent=link.closest('.pcard').querySelector('.pcard-title').textContent;
+      previousOverflow=document.body.style.overflow;
+      previousScroll={x:window.scrollX,y:window.scrollY};
+      document.body.style.overflow='hidden';
+      viewer.showModal();closeButton.focus({preventScroll:true});
+      if(!reducedViewerMotion()){
+        animation=picture.animate([{transform:originTransform()},{transform:'none'}],{duration:480,easing:'cubic-bezier(.16,1,.3,1)'});
+      }
+    });
+  });
+  picture.addEventListener('error',function(){picture.hidden=true;$('#imageViewerError').hidden=false;});
+  closeButton.addEventListener('click',function(){closeViewer(false);});
+  viewer.addEventListener('cancel',function(event){event.preventDefault();closeViewer(false);});
+  $('#imageViewerStage').addEventListener('click',function(event){if(event.target===this)closeViewer(false);});
+  viewer.addEventListener('close',function(){
+    if(animation){animation.cancel();animation=null;}
+    document.body.style.overflow=previousOverflow;closing=false;
+    if(origin&&origin.getClientRects().length){
+      origin.focus({preventScroll:true});
+      window.scrollTo({left:previousScroll.x,top:previousScroll.y,behavior:'instant'});
+    }
+  });
+  window.addEventListener('hashchange',function(){closeViewer(true);});
+})();
+
+var PHRASES=['an AI agent in mind','a workflow to automate','a question about AI','a task to take off your plate'];
+var typedEl=$('#typed'),typedSr=$('#typedSr');
+if(reduced){
+  if(typedEl){typedEl.textContent=PHRASES[0];}
+  if(typedSr){typedSr.textContent='Got '+PHRASES.join(', ')+'?';}
+}else if(typedEl){
+  var pi=0,ci=PHRASES[0].length,deleting=false;
+  var tick=function(){
+    if(currentRoute!=='home'){setTimeout(tick,600);return;}
+    var phrase=PHRASES[pi];
+    if(!deleting){
+      ci++;typedEl.textContent=phrase.slice(0,ci);
+      if(ci>=phrase.length){
+        deleting=true;
+        if(typedSr){typedSr.textContent='Got '+phrase+'?';}
+        setTimeout(tick,2100);return;
+      }
+      setTimeout(tick,58+Math.random()*44);
+    }else{
+      ci--;typedEl.textContent=phrase.slice(0,ci);
+      if(ci<=0){deleting=false;pi=(pi+1)%PHRASES.length;setTimeout(tick,420);return;}
+      setTimeout(tick,26);
+    }
+  };
+  setTimeout(function(){deleting=true;tick();},1600);
+}
+
+function applyGradient(el) { if(el) el.style.backgroundImage="none"; }
+
+var yr=$('#yr');if(yr){yr.textContent=String(new Date().getFullYear());}
+render(false);
+})();
+</script>
+<dialog class="entry-dialog" id="entryDialog" aria-labelledby="entryTitle" aria-describedby="entryIntro">
+  <img class="entry-mark" src="assets/images/websitelogo-blackbg1.svg" alt="Jan" width="32" height="32">
+  <h2 id="entryTitle">Before we begin.</h2>
+  <p class="entry-intro" id="entryIntro">A quick introduction. Leave your name and email to explore my work.</p>
+  <form class="entry-form" id="entryForm">
+    <div class="entry-field"><label for="visitorName">Full name</label><input id="visitorName" name="fullName" autocomplete="name" placeholder="Your full name" maxlength="120" required autofocus></div>
+    <div class="entry-field"><label for="visitorEmail">Email address</label><input id="visitorEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required></div>
+    <div class="entry-honey" aria-hidden="true"><label for="visitorWebsite">Website</label><input id="visitorWebsite" name="website" tabindex="-1" autocomplete="off"></div>
+    <p class="entry-notice">By continuing, you agree to share your name and email with Jan. Your details will be stored in his visitor database in Notion.</p>
+    <p class="entry-status" id="entryStatus" role="status" aria-live="polite"></p>
+    <button type="submit" class="btn btn-primary">Enter the portfolio</button>
+  </form>
+</dialog>
+<noscript><div class="entry-dialog" style="position:fixed;inset:0;margin:auto;height:fit-content;z-index:2000">Please enable JavaScript to complete the visitor introduction.</div></noscript>
+<script src="assets/js/visitor-config.js"></script>
+<script src="assets/js/studio.js"></script>
+<script src="assets/js/entry.js"></script>
+</body>
+</html>
