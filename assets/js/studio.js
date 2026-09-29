@@ -215,3 +215,26 @@
   }),{threshold:.12});
   document.querySelectorAll('.pcard,.timeline-item,.selected-feature,.svc-card,.page-closing').forEach(el=>observer.observe(el));
 })();
+
+/* The HQ showcase plays only while it is on screen, like the particle scenes. */
+(()=>{
+  'use strict';
+  const video=document.getElementById('hqShowcase');
+  if(!video)return;
+  const button=video.parentElement.querySelector('.motion-toggle');
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+  let paused=reduced.matches,visible=false;
+  function running(){return !paused&&visible&&!document.hidden&&!document.documentElement.classList.contains('entry-pending')}
+  function label(){button.textContent=paused?'Play video':'Pause video';button.setAttribute('aria-pressed',String(paused))}
+  function sync(){
+    label();
+    if(!running()){video.pause();return}
+    // A browser that refuses autoplay leaves the poster up and the button on Play.
+    video.play().catch(e=>{if(e.name==='NotAllowedError'){paused=true;label()}});
+  }
+  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync()}).observe(video);
+  button.addEventListener('click',()=>{paused=!paused;sync()});
+  reduced.addEventListener('change',()=>{paused=reduced.matches;sync()});
+  document.addEventListener('visibilitychange',sync);document.addEventListener('portfolio:entered',sync);
+  sync();
+})();
