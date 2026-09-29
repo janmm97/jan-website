@@ -1,9 +1,6 @@
 /* Compact navigation and the visitor introduction. */
 :root{--nav-h:64px}
 .nav .brand-logo{width:27px;height:27px}.nav .btn{min-height:36px;padding:.45rem .9rem}.nav .icon-btn{width:36px;height:36px;min-height:36px}
-.formation-controls{position:absolute;bottom:30px;left:0;right:0;display:flex;justify-content:center;gap:8px}
-.formation-controls button{background:#111;border:1px solid #444;color:#aaa;font:inherit;font-size:11px;min-height:36px;padding:7px 12px;cursor:pointer}
-.formation-controls button:hover,.formation-controls button[aria-pressed=true]{color:#111;background:#eee;border-color:#eee}
 .signal-art .art-caption{left:0}.signal-art{margin-left:-35px}
 .entry-pending{overflow:hidden}.entry-pending body>header,.entry-pending body>main,.entry-pending body>footer{filter:blur(13px);pointer-events:none;user-select:none}
 .entry-dialog{width:min(480px,calc(100% - 36px));max-height:calc(100dvh - 36px);padding:clamp(24px,5vw,44px);border:1px solid #4b4b4b;background:#111;color:#f2f2f2;box-shadow:0 32px 100px #0009;overflow:auto}
@@ -12,5 +9,5 @@
 .entry-form{display:grid;gap:19px}.entry-field{display:grid;gap:9px}.entry-field label{font-size:12px}.entry-field input{width:100%;min-height:48px;border:1px solid #555;background:#191919;border-radius:0;color:#f2f2f2;padding:12px;font:inherit;font-size:16px;caret-color:#fff}.entry-field input::placeholder{color:#999}.entry-field input:focus-visible{outline:2px solid #eee;outline-offset:3px}
 .entry-form .btn{width:100%;margin-top:2px}.entry-notice{font-size:11px;line-height:1.7;color:#aaa;margin:0}.entry-status{font-size:12px;color:#f2f2f2;line-height:1.7;margin:0}.entry-status:empty{display:none}.entry-honey{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
 .entry-dialog[open]{animation:entry-arrive .5s cubic-bezier(.16,1,.3,1)}@keyframes entry-arrive{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-@media(max-width:640px){:root{--nav-h:60px}.nav .btn{padding:7px 10px!important}.signal-art{margin-left:0;height:340px}.formation-controls{gap:5px}.formation-controls button{padding:7px 10px}.entry-mark{margin-bottom:24px}.entry-intro{margin-bottom:24px}}
+@media(max-width:640px){:root{--nav-h:60px}.nav .btn{padding:7px 10px!important}.signal-art{margin-left:0;height:340px}.entry-mark{margin-bottom:24px}.entry-intro{margin-bottom:24px}}
 @media(prefers-reduced-motion:reduce){.entry-dialog[open]{animation:none}}
