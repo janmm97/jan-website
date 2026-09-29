@@ -417,6 +417,7 @@ main{flex:1;min-width:0;display:flex;flex-direction:column;position:relative;z-i
 .svc-card li::before{content:'↗';color:var(--chart-ink);flex:none}
 .svc-card-best{margin-top:auto;border-top:1px solid var(--line);padding-top:1.25rem}
 .svc-card-best p{color:var(--ink2);font-size:.85rem;margin:0}
+.svc-costs{margin-top:var(--s4);max-width:62rem}.svc-costs p+p{margin-top:.5rem}
 .svc-card-cta{display:flex}
 .svc-card-btn{width:100%;justify-content:center;padding:.8rem 1.2rem;font-size:.85rem}
 .svc-outro{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;margin-top:var(--s4);padding-top:var(--s3);border-top:1px solid var(--line)}
@@ -1280,27 +1281,30 @@ footer{background:rgba(9,13,20,.35)}
       <div class="svc-cards-grid">
         <article class="svc-card">
           <header class="svc-card-top">
-            <p class="svc-card-name">Start Up</p>
-            <p class="svc-card-price">$3,500<small>one-time</small></p>
-            <p class="svc-card-tag">For individuals and small teams getting their first agents live.</p>
+            <p class="svc-card-name">AI Automation Starter</p>
+            <p class="svc-card-price">$1,999<small>one-time</small></p>
+            <p class="svc-card-tag">For businesses that already know what they want to automate.</p>
           </header>
           <div class="svc-card-body">
             <div>
-              <p class="svc-card-label">What you'll get</p>
+              <p class="svc-card-label">Includes</p>
               <ul>
-                <li>3 custom AI Agents / Workflows</li>
-                <li>Discovery session + workflow mapping</li>
-                <li>Unlimited standard tool connections</li>
-                <li>One workspace setup (Starter plan included — 1M API calls, 500 req/min)</li>
-                <li>Full testing &amp; QA</li>
-                <li>Written documentation + recorded handover session</li>
+                <li>Up to 3 custom AI Agents</li>
+                <li>Up to 3 automated workflows</li>
+                <li>Up to 5 standard app integrations</li>
+                <li>Client-owned One Starter workspace setup</li>
+                <li>Workflow configuration and AI agent setup</li>
+                <li>Full functional testing and QA</li>
+                <li>1 implementation/revision round</li>
+                <li>Written documentation</li>
+                <li>Recorded handover walkthrough</li>
                 <li>30 days of post-launch bug fixes</li>
-                <li>Email support during build</li>
+                <li>Email support during implementation</li>
               </ul>
             </div>
             <div class="svc-card-best">
-              <p class="svc-card-label">Best for</p>
-              <p>Automating a specific bottleneck — lead qualification, inbox triage, content ops, reporting.</p>
+              <p class="svc-card-label">Overview</p>
+              <p>Get a custom AI automation system built around your existing processes.</p>
             </div>
             <div class="svc-card-cta">
               <a class="btn btn-ghost svc-card-btn" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a Call <span class="ar">-&gt;</span></a>
@@ -1309,35 +1313,45 @@ footer{background:rgba(9,13,20,.35)}
         </article>
         <article class="svc-card">
           <header class="svc-card-top">
-            <p class="svc-card-name">Growth</p>
-            <p class="svc-card-price">$7,500<small>one-time</small></p>
-            <p class="svc-card-tag">For businesses running agents as core operations.</p>
+            <p class="svc-card-name">AI Automation Pro</p>
+            <p class="svc-card-price">$3,499<small>one-time</small></p>
+            <p class="svc-card-tag">For businesses that want us to identify, design, and implement their AI automation opportunities.</p>
           </header>
           <div class="svc-card-body">
             <div>
-              <p class="svc-card-label">What you'll get</p>
+              <p class="svc-card-label">Includes</p>
               <ul>
-                <li>10 custom AI Agents / Workflows</li>
-                <li>Full discovery + business process audit</li>
-                <li>Unlimited standard tool connections + 2 custom integrations</li>
-                <li>One workspace setup (Pro plan included — 1M API calls, 1,000 req/min, 50 projects)</li>
-                <li>Multi-agent orchestration (agents that talk to each other)</li>
-                <li>Full testing &amp; QA against your real data</li>
-                <li>Written documentation + team training session</li>
-                <li>90 days of bug fixes &amp; error resolution</li>
-                <li>Dedicated Slack channel with direct access to me</li>
-                <li>Priority response (within 24 hrs business days)</li>
+                <li>Full business process discovery</li>
+                <li>AI automation opportunity audit</li>
+                <li>Process and workflow mapping</li>
+                <li>Up to 5 custom AI Agents</li>
+                <li>Up to 5 automated workflows</li>
+                <li>Up to 10 standard app integrations</li>
+                <li>1 custom integration</li>
+                <li>Client-owned One Pro workspace setup</li>
+                <li>End-to-end testing using real business scenarios</li>
+                <li>2 implementation/revision rounds</li>
+                <li>Full written documentation</li>
+                <li>Live team training session</li>
+                <li>90 days of post-launch bug fixes and error resolution</li>
+                <li>Dedicated Slack support channel</li>
+                <li>Priority response within 1 business day</li>
               </ul>
             </div>
             <div class="svc-card-best">
-              <p class="svc-card-label">Best for</p>
-              <p>Teams replacing manual ops — sales ops, customer support triage, back-office workflows, internal tooling.</p>
+              <p class="svc-card-label">Overview</p>
+              <p>We analyze your processes, identify where AI can create the most leverage, and build a more complete automation system for your business.</p>
             </div>
             <div class="svc-card-cta">
               <a class="btn btn-ghost svc-card-btn" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a Call <span class="ar">-&gt;</span></a>
             </div>
           </div>
         </article>
+      </div>
+      <div class="svc-card-best svc-costs">
+        <p class="svc-card-label">Additional costs</p>
+        <p>One subscriptions, AI model/API usage, Cloud Agent hosting, premium integrations, and other third-party software or usage fees are billed separately to the client.</p>
+        <p>Additional workflows, agents, integrations, or functionality outside the agreed project scope can be quoted separately.</p>
       </div>
       <div class="svc-outro"><p>Not sure where to start? Tell me what's slowing you down.</p><a class="text-link" href="https://flaxen-crayon-74f.notion.site/3e57c1c329e280228fcbd4f5d6f65657?pvs=105" target="_blank" rel="noopener">Let's find the right fit ↗</a></div>
     </div>
