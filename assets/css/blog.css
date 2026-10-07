@@ -1,0 +1,213 @@
+/* Blog: standalone post pages (html.blog-post) and the post list in #/blog.
+   Post pages load studio.css, entry.css, then this file. */
+
+/* 1. Site shell for post pages.
+   index.html keeps its base layer inline, so post pages get the same rules here.
+   They sit in a cascade layer so studio.css and entry.css (unlayered) override
+   them exactly as they override the inline base layer on index.html. */
+@layer site-shell{
+  .blog-post{background:#0b0b0b;color-scheme:dark;scroll-behavior:smooth;scrollbar-color:#555 #0b0b0b;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  .blog-post *,.blog-post *::before,.blog-post *::after{box-sizing:border-box}
+  .blog-post body{margin:0;min-height:100svh;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:var(--term);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .blog-post img{display:block;max-width:100%}
+  .blog-post a{color:inherit;text-underline-offset:.25em;-webkit-tap-highlight-color:transparent}
+  .blog-post button{font-family:var(--term);-webkit-tap-highlight-color:transparent}
+  .blog-post :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  .blog-post .container{width:min(var(--container),100% - var(--gutter)*2);margin-inline:auto}
+  .blog-post .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .blog-post .nav{position:fixed;top:0;left:0;right:0;z-index:900}
+  .blog-post .nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem}
+  .blog-post .nav-end{justify-self:end;display:flex;align-items:center;gap:.6rem}
+  .blog-post .brand{display:flex;align-items:center;text-decoration:none}
+  .blog-post .brand-logo{object-fit:contain;flex:none;display:block}
+  .blog-post .nav-links{display:flex;align-items:center}
+  .blog-post .nav-links a{color:var(--ink2);text-decoration:none;min-height:44px;display:flex;align-items:center;transition:color .25s}
+  .blog-post .nav-links a:hover,.blog-post .nav-links a.active{color:var(--ink)}
+  .blog-post .icon-btn{width:44px;height:44px;cursor:pointer;display:grid;place-items:center;color:var(--ink);background:none;border:1px solid #555}
+  .blog-post .burger{display:none}
+  .blog-post .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.65rem;padding:.85rem 1.6rem;font-family:var(--term);letter-spacing:.01em;cursor:pointer;text-decoration:none}
+  .blog-post .text-link{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--line2);padding-bottom:3px;transition:color .25s,border-color .25s}
+  .blog-post .text-link:hover{color:var(--ink);border-color:var(--ink)}
+  .blog-post .mmenu{position:fixed;inset:0;z-index:940;display:flex;flex-direction:column;justify-content:center;padding:2rem;transform:translateY(-100%);visibility:hidden;transition:transform .6s cubic-bezier(.7,0,.2,1),visibility 0s linear .6s}
+  .blog-post .mmenu.open{transform:none;visibility:visible;transition:transform .6s cubic-bezier(.7,0,.2,1)}
+  .blog-post .mmenu-close{position:absolute;top:1.1rem;right:1.25rem}
+  .blog-post .mmenu a{font-size:clamp(1.7rem,7vw,2.5rem);letter-spacing:-.01em;text-decoration:none;color:var(--ink);padding:.4rem 0;border-bottom:1px solid var(--line);opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s}
+  .blog-post .mmenu.open a{opacity:1;transform:none}
+  .blog-post .mmenu .mfoot{margin-top:2rem;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3)}
+  .blog-post footer{position:relative;z-index:1}
+  .blog-post .foot-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;text-transform:uppercase;color:var(--ink3)}
+  .blog-post .foot-in a{color:var(--ink3);text-decoration:none;transition:color .25s}
+  .blog-post .foot-in a:hover{color:var(--ink)}
+  @media(max-width:820px){.blog-post .nav-links{display:none}.blog-post .burger{display:grid}.blog-post .nav-in{grid-template-columns:1fr auto}}
+}
+
+/* 2. Post page. One centred reading column; figures and tables break out to the wide track. */
+.blog-post{
+  --measure:38.5rem;
+  --breakout:7rem;
+  --runhead-h:44px;
+  --read:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --well:#1a1a1a;
+  --well-line:#303030;
+  --post-grid:[full-start] minmax(var(--gutter),1fr) [wide-start] minmax(0,var(--breakout)) [col-start] min(var(--measure),100% - var(--gutter)*2) [col-end] minmax(0,var(--breakout)) [wide-end] minmax(var(--gutter),1fr) [full-end];
+}
+.blog-post ::selection{background:var(--ink);color:var(--bg)}
+.blog-post main{flex:1;min-width:0}
+
+.post{display:grid;grid-template-columns:var(--post-grid);padding-top:calc(var(--nav-h) + clamp(3rem,7vw,5.5rem))}
+.post>*{grid-column:col;min-width:0}
+
+.post-head{margin-bottom:clamp(2.25rem,5vw,3.25rem)}
+.post-title{margin:0;font-family:var(--term);font-weight:400;font-size:clamp(2rem,1.25rem + 2.4vw,3rem);line-height:1.14;letter-spacing:-.04em;color:var(--ink);text-wrap:balance}
+.post-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 0;margin:1.5rem 0 0;font-family:var(--term);font-size:11px;line-height:1.6;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3);font-variant-numeric:tabular-nums}
+.post-meta>*+*{margin-left:1rem;padding-left:1rem;border-left:1px solid var(--line2)}
+
+/* Figure: the media well, as on the Projects page. */
+.post-figure{grid-column:wide;margin:0 0 clamp(2.75rem,6vw,4rem);padding:clamp(10px,1.8vw,24px);background:var(--well);border:1px solid var(--well-line)}
+.post-figure img{width:100%;height:auto;filter:grayscale(1)}
+.post-figure--cover img{aspect-ratio:2/1;object-fit:cover}
+.post-figure figcaption{margin-top:.9rem;font-family:var(--term);font-size:11px;line-height:1.6;letter-spacing:.04em;color:var(--ink3)}
+
+/* Contents. */
+.post-toc{margin:0 0 clamp(3rem,6vw,4rem);padding:clamp(1.25rem,3vw,1.75rem) clamp(1.25rem,3vw,2rem) clamp(1rem,2.5vw,1.5rem);border:1px solid var(--line2)}
+.post-toc-title{margin:0 0 .75rem;font-family:var(--term);font-weight:400;font-size:11px;line-height:1.6;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3)}
+.post-toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:column;column-gap:2.5rem}
+.post-toc ol[data-rows="1"]{grid-template-rows:repeat(1,auto)}.post-toc ol[data-rows="2"]{grid-template-rows:repeat(2,auto)}.post-toc ol[data-rows="3"]{grid-template-rows:repeat(3,auto)}.post-toc ol[data-rows="4"]{grid-template-rows:repeat(4,auto)}.post-toc ol[data-rows="5"]{grid-template-rows:repeat(5,auto)}.post-toc ol[data-rows="6"]{grid-template-rows:repeat(6,auto)}.post-toc ol[data-rows="7"]{grid-template-rows:repeat(7,auto)}.post-toc ol[data-rows="8"]{grid-template-rows:repeat(8,auto)}
+.post-toc a{display:grid;grid-template-columns:2.25rem 1fr;padding:.45rem 0;font-family:var(--term);font-size:12.5px;line-height:1.55;color:var(--ink2);text-decoration:none;transition:color .25s}
+.post-toc a:hover{color:var(--ink)}
+.post-toc a:hover .post-toc-label{text-decoration:underline;text-decoration-color:var(--line2);text-underline-offset:.3em}
+.post-toc-n{color:var(--ink3);font-variant-numeric:tabular-nums}
+
+/* Running text. */
+.post-content{--body-size:clamp(1rem,.93rem + .3vw,1.125rem);--step-gutter:3.25rem;grid-column:full;display:grid;grid-template-columns:var(--post-grid);font-family:var(--read);font-size:var(--body-size);line-height:1.72;color:var(--ink2);font-kerning:normal;text-rendering:optimizeLegibility}
+.post-content>*{grid-column:col;min-width:0}
+.post-content>.post-wide{grid-column:wide}
+.post-content p{margin:0 0 1.2em;text-wrap:pretty}
+.post-content strong{font-weight:600;color:var(--ink)}
+.post-content a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:#666;text-underline-offset:.22em;transition:text-decoration-color .25s}
+.post-content a:hover{text-decoration-color:var(--ink)}
+
+/* Section openers: a hairline above, the heading in the site's mono. */
+.post-content h2{margin:clamp(3rem,6vw,4.25rem) 0 1.1rem;padding-top:clamp(1.6rem,3vw,2.1rem);border-top:1px solid var(--line);font-family:var(--term);font-weight:400;font-size:clamp(1.45rem,1.15rem + 1vw,1.9rem);line-height:1.25;letter-spacing:-.035em;color:var(--ink);text-wrap:balance;scroll-margin-top:calc(var(--nav-h) + var(--runhead-h) + 1rem)}
+.post-content h2:first-child{margin-top:0}
+.post-content h3{margin:2.5rem 0 .75rem;font-family:var(--term);font-weight:400;font-size:clamp(1.1rem,1rem + .35vw,1.25rem);line-height:1.4;letter-spacing:-.02em;color:var(--ink);text-wrap:balance;scroll-margin-top:calc(var(--nav-h) + var(--runhead-h) + 1rem)}
+.post-content h2+h3{margin-top:1.75rem}
+
+/* Lists. */
+.post-content ul{list-style:none;margin:0 0 1.5em;padding:0}
+.post-content ul>li{position:relative;margin:0 0 .7em;padding-left:1.75rem}
+.post-content ul>li::before{content:"";position:absolute;left:0;top:.86em;width:.75rem;height:1px;background:var(--ink3)}
+
+/* Numbered steps: each step on its own hairline row, its title in mono. */
+.post-content ol{list-style:none;margin:.5rem 0 2rem;padding:0;counter-reset:step;border-top:1px solid var(--line)}
+.post-content ol>li{position:relative;counter-increment:step;padding:1.15rem 0 1.15rem var(--step-gutter);border-bottom:1px solid var(--line)}
+.post-content ol>li::before{content:counter(step,decimal-leading-zero);position:absolute;left:0;top:1.15rem;font-family:var(--term);font-size:12px;line-height:2.1;letter-spacing:.04em;color:var(--ink3);font-variant-numeric:tabular-nums}
+.post-content ol>li>strong:first-child{display:block;margin-bottom:.3rem;font-family:var(--term);font-weight:400;font-size:.94em;letter-spacing:-.01em;color:var(--ink)}
+.post-content ol>li:has(>strong:first-child)::before{content:none}
+.post-content ol>li>strong:first-child::before{content:counter(step,decimal-leading-zero);display:inline-block;width:var(--step-gutter);margin-left:calc(var(--step-gutter) * -1);font-size:12px;letter-spacing:.04em;color:var(--ink3);font-variant-numeric:tabular-nums}
+
+/* Quotes, code, callouts. */
+.post-content blockquote{margin:2rem 0;padding:0 0 0 1.5rem;border-left:1px solid var(--line2);color:var(--ink)}
+.post-content blockquote p:last-child{margin-bottom:0}
+.post-pullquote{margin:clamp(2.25rem,5vw,3.25rem) 0;padding:clamp(1.5rem,3vw,2rem) 0;border-block:1px solid var(--line2);font-family:var(--term);font-size:clamp(1.25rem,1rem + .9vw,1.7rem);line-height:1.35;letter-spacing:-.03em;color:var(--ink);text-wrap:balance}
+.post-content code{font-family:var(--term);font-size:.84em;padding:.12em .4em;color:var(--ink);background:var(--well);border:1px solid var(--line)}
+.post-content pre{margin:1.75rem 0 2rem;padding:1.25rem 1.5rem;overflow-x:auto;font-family:var(--term);font-size:13px;line-height:1.75;color:var(--ink);background:var(--well);border:1px solid var(--well-line);tab-size:2;scrollbar-color:#555 var(--well)}
+.post-content pre code{padding:0;font-size:inherit;background:none;border:0}
+.post-callout{margin:2rem 0;padding:1.25rem 1.5rem;border:1px solid var(--line2)}
+.post-callout-title{display:block;margin-bottom:.4rem;font-family:var(--term);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3)}
+.post-callout p:last-child{margin-bottom:0}
+
+/* Tables: mono heads and row labels; scroll sideways inside their own frame on narrow screens. */
+.post-table{margin:1.25rem 0 2.25rem;overflow-x:auto;scrollbar-color:#555 var(--bg)}
+.post-table:focus-visible{outline-offset:4px}
+.post-table table{width:100%;min-width:34rem;border-collapse:collapse;font-size:.9em;line-height:1.55}
+.post-table th,.post-table td{padding:.95rem 1.25rem .95rem 0;text-align:left;vertical-align:baseline}
+.post-table thead th{padding-top:0;padding-bottom:.85rem;border-bottom:1px solid var(--line2);font-family:var(--term);font-weight:400;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3)}
+.post-table tbody th{font-family:var(--term);font-weight:400;font-size:12.5px;line-height:1.85;color:var(--ink);white-space:nowrap}
+.post-table tbody tr{border-bottom:1px solid var(--line)}
+.post-table td{color:var(--ink2)}
+.post-table td:last-child{color:var(--ink)}
+.post-table th:last-child,.post-table td:last-child{padding-right:0}
+/* Comparison tables stack on phones: each row becomes a labelled block (labels are the column heads). */
+@media(max-width:640px){
+  .post-table--stack{overflow:visible}
+  .post-table--stack table{min-width:0}
+  .post-table--stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .post-table--stack tbody{display:block;border-top:1px solid var(--line2)}
+  .post-table--stack tbody tr{display:block;padding:1.1rem 0 .4rem}
+  .post-table--stack tbody th{display:block;padding:0 0 .6rem;white-space:normal}
+  .post-table--stack td{display:block;padding:0 0 .8rem}
+  .post-table--stack td::before{content:attr(data-label);display:block;margin-bottom:.1rem;font-family:var(--term);font-size:11px;line-height:1.6;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3)}
+}
+
+/* Close: the post's own last line and its booking link, then the way back. */
+.post-close{margin-top:clamp(2.75rem,6vw,3.75rem);padding-top:clamp(1.75rem,4vw,2.5rem);border-top:1px solid var(--line)}
+.post-close p{margin:0 0 1.75rem;font-family:var(--term);font-size:clamp(1.05rem,.95rem + .45vw,1.3rem);line-height:1.55;letter-spacing:-.02em;color:var(--ink);text-wrap:pretty}
+.post-close .btn{min-height:48px;text-decoration:none}
+.post-close .btn-primary,.post-close .btn-primary:hover{color:var(--bg)}
+.post-close .btn svg{flex:none}
+.post-back{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin:clamp(3.5rem,8vw,5.5rem) 0 clamp(2.5rem,6vw,4rem);padding-top:1.5rem;border-top:1px solid var(--line)}
+.post-back .text-link{display:inline-flex;align-items:center;gap:.6rem}
+
+/* Running head: under the nav once the reader is past the contents. */
+.runhead{position:fixed;top:var(--nav-h);left:0;right:0;z-index:850;height:var(--runhead-h);background:var(--bg);border-bottom:1px solid var(--line);transform:translateY(-100%);visibility:hidden;transition:transform .45s cubic-bezier(.16,1,.3,1),visibility 0s linear .45s}
+.runhead.is-on{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.runhead-in{display:flex;align-items:center;gap:.9rem;width:min(var(--measure),100% - var(--gutter)*2);height:100%;margin-inline:auto;font-family:var(--term);font-size:11.5px;line-height:1.4;letter-spacing:.02em;color:var(--ink3);white-space:nowrap}
+.runhead-in a{color:var(--ink3);text-decoration:none;transition:color .25s}
+.runhead-in a:hover{color:var(--ink)}
+.runhead-n:empty{display:none}
+.runhead-n{flex:none;color:var(--ink3);font-variant-numeric:tabular-nums}
+.runhead-title{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--ink)}
+.runhead-toc{margin-left:auto;flex:none}
+.runhead-bar{position:absolute;left:0;bottom:-1px;width:100%;height:1px;background:var(--ink);transform:scaleX(var(--read-progress,0));transform-origin:left}
+
+/* Phones. */
+@media(max-width:640px){
+  .blog-post{--runhead-h:40px}
+  .post-meta{font-size:11px}
+  .post-toc ol,.post-toc ol[data-rows]{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}
+  .post-content{--step-gutter:2.5rem}
+  .post-back{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  .runhead,.runhead.is-on{transition:none}
+}
+
+/* Roadmap: the approved six steps, in reading order across two rows. */
+.post-intro{margin-bottom:2rem}
+.post-content .post-roadmap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:1rem 0 0;border-top:1px solid var(--line2)}
+.post-content .post-roadmap>li{padding:1.5rem 1.5rem 1.5rem 0;font-size:1rem;line-height:1.7}
+.post-content .post-roadmap>li:nth-child(3n+2),.post-content .post-roadmap>li:nth-child(3n+3){padding-left:1.5rem;border-left:1px solid var(--line)}
+.post-content .post-roadmap>li>strong:first-child{font-size:14px;line-height:1.5;margin-bottom:.75rem}
+.post-content .post-roadmap>li>strong:first-child::before{display:block;width:auto;margin:0 0 1.5rem;font-size:11px}
+.post-table tbody th{white-space:normal}
+.post-content code{overflow-wrap:anywhere}
+.post-continue{margin:clamp(3.5rem,8vw,5.5rem) 0 clamp(2.5rem,6vw,4rem);padding-top:1.5rem;border-top:1px solid var(--line2)}
+.post-continue h2{font-family:var(--term);font-size:11px;font-weight:400;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3);margin:0 0 1rem}
+.post-continue-links{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.post-continue-links a{display:flex;justify-content:space-between;align-items:center;gap:1rem;min-height:48px;padding-block:.75rem;border-bottom:1px solid var(--line);font:400 14px/1.5 var(--term);text-decoration:none}
+.post-continue-links a:hover{border-color:var(--ink)}
+.post-continue-links svg{flex:none}
+@media(max-width:640px){
+  .post-content .post-roadmap{grid-template-columns:1fr}
+  .post-content .post-roadmap>li,.post-content .post-roadmap>li:nth-child(3n+2),.post-content .post-roadmap>li:nth-child(3n+3){padding:1.25rem 0 1.25rem 2.5rem;border-left:0}
+  .post-content .post-roadmap>li>strong:first-child::before{display:inline-block;width:2.5rem;margin:0 0 0 -2.5rem}
+  .post-continue-links{grid-template-columns:1fr;gap:.25rem}
+}
+
+/* 3. Post list in #/blog (index.html). Same 1.2fr / 1fr split and hairlines as the page head above it. */
+.post-list{list-style:none;margin:0;padding:0}
+.post-entry{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:1.25rem 8vw;align-items:start;padding-block:45px;border-bottom:1px solid var(--line)}
+.post-entry:last-child{border-bottom:0}
+.post-entry-title{margin:0;font-weight:400;font-size:clamp(22px,2.3vw,30px);line-height:1.3;letter-spacing:-.035em;text-wrap:balance}
+.post-entry-title a{color:var(--ink);text-decoration:none}
+.post-entry-title a::after{content:"";position:absolute;inset:0}
+.post-entry-title a:focus-visible{outline:0}
+.post-entry:has(a:focus-visible){outline:2px solid var(--ink);outline-offset:4px}
+.post-entry-meta{display:flex;flex-wrap:wrap;gap:.5rem 0;margin:1.1rem 0 0;font-size:11px;line-height:1.6;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3);font-variant-numeric:tabular-nums}
+.post-entry-meta>*+*{margin-left:1rem;padding-left:1rem;border-left:1px solid var(--line2)}
+.post-entry-excerpt{margin:0;font-size:13px;line-height:1.9;color:var(--ink2);max-width:52ch}
+.post-entry-more{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.4rem;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--line2);padding-bottom:3px;transition:border-color .25s}
+.post-entry:hover .post-entry-more{border-color:var(--ink)}
+.post-entry:hover .post-entry-title a{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--line2);text-underline-offset:.2em}
+@media(max-width:740px){.post-entry{grid-template-columns:1fr;padding-block:35px}}
