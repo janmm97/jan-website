@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Human-in-the-Loop AI Agents: How My Approval Gate Works — Jan</title>
+<meta name="description" content="AI agents that send email or raise invoices need a human approval gate. Here's how mine dry-runs every action, shows the exact payload and runs it once.">
+<meta name="theme-color" content="#0b0b0b">
+<link rel="canonical" href="https://janmm97.github.io/jan-website/blog/human-in-the-loop-ai-agents/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Jan — AI Agent Builder">
+<meta property="og:title" content="Human-in-the-Loop AI Agents: How My Approval Gate Works">
+<meta property="og:description" content="AI agents that send email or raise invoices need a human approval gate. Here's how mine dry-runs every action, shows the exact payload and runs it once.">
+<meta property="og:url" content="https://janmm97.github.io/jan-website/blog/human-in-the-loop-ai-agents/">
+<meta property="og:image" content="https://janmm97.github.io/jan-website/assets/images/HQ-Showcase-Poster-2026-09-30.jpg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta property="og:image:alt" content="J/OS HQ showcase: AI agents behind an approval gate">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Human-in-the-Loop AI Agents: How My Approval Gate Works">
+<meta name="twitter:description" content="AI agents that send email or raise invoices need a human approval gate. Here's how mine dry-runs every action, shows the exact payload and runs it once.">
+<meta name="twitter:image" content="https://janmm97.github.io/jan-website/assets/images/HQ-Showcase-Poster-2026-09-30.jpg">
+<meta property="article:published_time" content="2026-10-07">
+<meta property="article:author" content="Jan">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Human-in-the-Loop AI Agents: How My Approval Gate Works",
+  "description": "AI agents that send email or raise invoices need a human approval gate. Here's how mine dry-runs every action, shows the exact payload and runs it once.",
+  "image": "https://janmm97.github.io/jan-website/assets/images/HQ-Showcase-Poster-2026-09-30.jpg",
+  "datePublished": "2026-10-07",
+  "author": {
+    "@type": "Person",
+    "@id": "https://janmm97.github.io/jan-website/#person",
+    "name": "Jan",
+    "url": "https://janmm97.github.io/jan-website/"
+  }
+}
+</script>
+<link rel="stylesheet" href="../../assets/css/entry.css?v=2026-10-07">
+<link rel="stylesheet" href="../../assets/css/studio.css?v=2026-10-07">
+<style>
+  body { background: #0b0b0b; color: #e8e8e8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; line-height: 1.6; }
+  .nav { border-bottom: 1px solid rgba(232,232,232,.1); padding: 1rem 0; }
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+  .nav-in { display: flex; justify-content: space-between; align-items: center; }
+  .brand { display: flex; align-items: center; }
+  .brand-logo { width: 32px; height: 32px; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { text-decoration: none; color: #e8e8e8; font-size: 0.95rem; transition: color 0.2s; }
+  .nav-links a:hover { color: #fff; }
+  main { min-height: calc(100vh - 200px); }
+  .blog-article { padding: 3rem 0; }
+  .blog-header { margin-bottom: 3rem; }
+  .blog-title { font-size: 2rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.2; }
+  .blog-meta { font-size: 0.9rem; color: #999; margin-bottom: 2rem; }
+  .blog-meta span { margin-right: 2rem; }
+  .blog-featured { width: 100%; max-width: 1000px; margin: 2rem 0; border-radius: 8px; }
+  .blog-content h2 { font-size: 1.5rem; font-weight: 600; margin: 2rem 0 1rem; }
+  .blog-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.8rem; }
+  .blog-content h4 { font-size: 1.1rem; font-weight: 600; margin: 1.2rem 0 0.6rem; }
+  .blog-content p { margin-bottom: 1.5rem; }
+  .blog-content ul, .blog-content ol { margin: 1.5rem 0; padding-left: 2rem; }
+  .blog-content li { margin-bottom: 0.5rem; }
+  .blog-content blockquote { border-left: 3px solid #666; padding-left: 1.5rem; margin: 1.5rem 0; color: #aaa; }
+  .blog-content code { background: rgba(232,232,232,.08); padding: 0.2em 0.4em; border-radius: 3px; font-size: 0.9em; font-family: 'JetBrains Mono', monospace; }
+  .blog-content pre { background: rgba(0,0,0,.4); padding: 1rem; border-radius: 6px; overflow-x: auto; margin: 1.5rem 0; }
+  .blog-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+  .blog-content table th { text-align: left; padding: 0.75rem; border-bottom: 2px solid rgba(232,232,232,.2); font-weight: 600; }
+  .blog-content table td { padding: 0.75rem; border-bottom: 1px solid rgba(232,232,232,.1); }
+  .blog-content a { color: #fff; text-decoration: underline; }
+  .blog-content a:hover { opacity: 0.8; }
+  .blog-video { margin: 2rem 0; width: 100%; max-width: 100%; }
+  .blog-footer { margin-top: 3rem; padding: 2rem; border-top: 1px solid rgba(232,232,232,.1); }
+  .blog-cta { margin: 2rem 0; padding: 1.5rem; background: rgba(232,232,232,.05); border-radius: 8px; text-align: center; }
+  .blog-cta a { display: inline-block; margin-top: 1rem; }
+  footer { border-top: 1px solid rgba(232,232,232,.1); padding: 2rem 0; text-align: center; color: #666; font-size: 0.9rem; }
+  .btn { display: inline-block; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: 500; transition: all 0.2s; border: none; cursor: pointer; }
+  .btn-primary { background: #fff; color: #0b0b0b; }
+  .btn-primary:hover { opacity: 0.9; }
+  .back-link { display: inline-block; margin-bottom: 2rem; color: #999; text-decoration: none; }
+  .back-link:hover { color: #e8e8e8; }
+  @media (max-width: 768px) {
+    .nav-links { gap: 1rem; }
+    .blog-title { font-size: 1.5rem; }
+    .blog-content h2 { font-size: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="container nav-in">
+    <a class="brand" href="/" aria-label="Jan — home"><img class="brand-logo" src="../../assets/images/websitelogo-blackbg1.svg" alt="Jan"></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/#/about">About</a>
+      <a href="/#/projects">Projects</a>
+      <a href="/#/blog">Blog</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <article class="blog-article">
+    <div class="container">
+      <a href="/#/blog" class="back-link">← Back to blog</a>
+
+      <header class="blog-header">
+        <h1 class="blog-title">Human-in-the-Loop AI Agents: How My Approval Gate Works</h1>
+        <div class="blog-meta">
+          <span>October 7, 2026</span>
+          <span>2,273 words</span>
+        </div>
+      </header>
+
+      <img src="../../assets/images/HQ-Showcase-Poster-2026-09-30.jpg" alt="J/OS HQ showcase: AI agents behind an approval gate" class="blog-featured">
+
+      <div class="blog-content">
+        <p>An AI agent that can send an email can also send the wrong one. The same goes for an agent that raises invoices or publishes posts: the ability to act is exactly what lets it make a mistake in front of a customer, under your name. Human-in-the-loop AI agents are the standard answer, but the advice rarely says what the human actually approves, or what stops the agent from acting anyway.</p>
+
+        <p>This post shows how I answered both questions in <a href="https://github.com/janmm97/janhq">J/OS HQ</a> (HQ for short), the local command center I built to run AI agents on real business systems without anything leaving the machine unapproved. You'll get the three ways agents go wrong once they can act, the six-step gate that handles them, what that gate costs, and a checklist you can apply to your own agents, whatever tools you use.</p>
+
+        <h2>What is a human-in-the-loop AI agent?</h2>
+
+        <p>A human-in-the-loop AI agent is an AI agent that can plan and prepare actions on its own but can't run anything with a side effect until a person approves that exact action. Reading, searching and drafting happen freely; sending, creating, deleting, publishing and charging wait for a yes.</p>
+
+        <p>An AI agent, in this sense, is a language model that can use tools: read an inbox, look up a record, run a command, call another app.</p>
+
+        <p>You can put a person in that loop in two ways. One is to tell the agent to ask first ("check with me before you send anything"), which works as long as the model follows its instructions every time. The other is to make the write impossible without approval, so the agent's tools can't reach the outside world except through a gate that refuses anything nobody approved. Only the second is a control. The OWASP Gen AI Security Project draws the same line in its 2025 guidance on <a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" target="_blank" rel="noopener">excessive agency</a>, recommending human-in-the-loop control "to require a human to approve high-impact actions before they are taken," and authorization "in downstream systems rather than relying on an LLM to decide if an action is allowed or not."</p>
+
+        <p>Coding agents ship with useful permission prompts of their own. <a href="https://code.claude.com/docs/en/permissions">Claude Code, Anthropic's coding agent, asks before running most shell commands</a> in its default mode, and <a href="https://learn.chatgpt.com/docs/sandboxing">Codex CLI, OpenAI's coding agent, pairs approvals that decide when it pauses with a sandbox that limits which files and network resources its commands can reach</a>. Both ask "may the agent run this command?" When the command talks to a business app, an operator's real questions sit inside it: who receives this, how much is it for, and which account is sending it?</p>
+
+        <h2>Three ways an AI agent goes wrong on real systems</h2>
+
+        <p>I built HQ around three failure modes. None of them requires a badly behaved model; a capable agent doing its best with what it was given can hit any of them.</p>
+
+        <h3>It acts as the wrong account</h3>
+
+        <p>Picture an agent that works for two businesses. You ask it to send a client update, and it goes out from the other business's inbox. Nothing failed technically: the command succeeded, under the wrong login.</p>
+
+        <p>HQ runs AI agents for two businesses, and each business has its own workspace folder that signs in as its own account. Before every write, HQ checks the project folder and the account email it's about to act as, and a mismatch blocks the action instead of printing a warning that's easy to scroll past. Routing follows the same rule: when HQ can't tell which business a request belongs to, it asks rather than guessing.</p>
+
+        <h3>Its plan relies on something that isn't there</h3>
+
+        <p>Agents plan with confidence. A plan can assume a connection that was never set up, or call an action with parameters the model guessed instead of looked up, and it reads just as convincingly as a plan that works.</p>
+
+        <p>HQ checks every plan against the live connections and against its own record of which action docs the agent actually read. Anything it can't check gets flagged. HQ's README sums up the design choice in one line: "The planner is reasoning; the environment is truth."</p>
+
+        <h3>It does something nobody approved</h3>
+
+        <p>This is the failure most people picture first. In HQ, the agents that carry out the work reach outside platforms only through a gateway, a single checkpoint every outside call has to pass, and it refuses any write that isn't an approved, hashed payload. The agent can't argue its way past that check, because the check doesn't run inside the agent.</p>
+
+        <h2>How the approval gate works, step by step</h2>
+
+        <p>Every task in HQ passes through the same six stations, in order. The names borrow from darkroom printing, where a print is tested, exposed, developed, fixed and dried before it leaves the room.</p>
+
+        <ol>
+          <li><strong>Compose: route and plan.</strong> HQ works out which business the request belongs to: an explicit choice first, then the people and flows it names, then which workspace holds a live connection for it. If doubt remains, it asks. Unless the logs show a close repeat of an earlier task, it plans in a read-only session capped at 10 minutes, so the agent sees what's really there before proposing anything.</li>
+          <li><strong>Test strip: preview.</strong> The agent runs in preview, resolving real IDs (the actual contact, the actual record) and dry-running every write while the gateway refuses all writes. A dry run prepares an action against the real system so you can see what it would do, without it happening.</li>
+          <li><strong>Expose: approve.</strong> You see each proposed action with its exact payload and HQ's own dry-run result, then approve or reject it.</li>
+          <li><strong>Develop: execute once.</strong> The approved payload runs exactly once, and only if its hash matches what you approved.</li>
+          <li><strong>Fix: verify.</strong> HQ checks the real outcome, not the exit code.</li>
+          <li><strong>Dry: log.</strong> The task gets logged twice, once when it's routed and once when its result has been evaluated, and an interrupted task is never reported as done.</li>
+        </ol>
+
+        <p><a href="../../assets/images/HQ-Showcase-Video-2026-09-30.mp4">Watch the 59-second tour of J/OS HQ</a> to see one request routed, planned read-only, approved once and verified. Three of those stations carry most of the weight.</p>
+
+        <h3>Approve the payload, not the summary</h3>
+
+        <p>A payload is the exact data an action sends. For an email that's the recipients, subject and body; for an invoice, the customer, line items and amount. An approval prompt can show you a description instead, something like "Send follow-up email to the client," and that description comes from the same agent you're trying to check.</p>
+
+        <p>HQ shows the payload itself, prepared by a dry run against the real platform. You approve the email that will actually go out, real recipient list included, not the agent's account of it.</p>
+
+        <h3>One approval is one send</h3>
+
+        <p>After you approve, HQ hashes the payload. A hash works like a fingerprint for data: the same input always produces the same short string, and changing a single character produces a different one. The gateway runs the payload only if its fingerprint matches the approved one, and only once. An edited payload won't match, so it won't run.</p>
+
+        <p>Payment APIs handle a related problem with idempotency, meaning an operation has the same effect whether it's requested once or several times. <a href="https://docs.stripe.com/api/idempotent_requests">Stripe's API accepts an idempotency key</a> so a client can retry a request "without accidentally performing the same operation twice." The approval gate applies that idea to people: one yes maps to exactly one execution.</p>
+
+        <h3>"Done" means the result was read back</h3>
+
+        <p>A command can exit cleanly without doing the job you wanted. HQ doesn't count a task as finished until it has read the real outcome back: a sent-message ID, a read-back of the record it created, or the final event of a workflow run. Or, in the README's words, "Tool success is not objective success."</p>
+
+        <h2>An agent on its own vs the same agent behind a gate</h2>
+
+        <p>HQ doesn't replace Claude Code or Codex CLI; it orchestrates them. Claude Code carries out the work for one business and Codex CLI for the other, each signed in to a different account.</p>
+
+        <table header-row="true">
+          <tr>
+            <th>Aspect</th>
+            <th>An agent on its own</th>
+            <th>The same agent under J/OS HQ</th>
+          </tr>
+          <tr>
+            <td>Account</td>
+            <td>Whatever the shell is logged in to</td>
+            <td>Checked before every write; a mismatch blocks</td>
+          </tr>
+          <tr>
+            <td>Side effects</td>
+            <td>Governed by the agent's own permission prompts</td>
+            <td>Dry-run, exact-payload approval, hash-checked, run once</td>
+          </tr>
+          <tr>
+            <td>Plan</td>
+            <td>Formed as it goes</td>
+            <td>Read-only planning session, checked against live connections</td>
+          </tr>
+          <tr>
+            <td>"Done" means</td>
+            <td>The command succeeded</td>
+            <td>The real outcome was read back</td>
+          </tr>
+          <tr>
+            <td>Record</td>
+            <td>Terminal scrollback</td>
+            <td>Markdown logs, written twice per task</td>
+          </tr>
+          <tr>
+            <td>Concurrency</td>
+            <td>Anything goes</td>
+            <td>One task per workspace, queued in order</td>
+          </tr>
+        </table>
+
+        <p>All of it runs on the operator's own machine. HQ listens on 127.0.0.1 only and reaches third-party apps through the <a href="https://www.withone.ai">One</a> CLI, an integration platform whose command-line tool gives an agent authenticated actions on other platforms, never through direct API calls. The code is public to read under a view-only license, and you'll find HQ alongside my other builds on the <a href="https://janmm97.github.io/jan-website/#/projects">Projects page</a>.</p>
+
+        <h2>The trade-offs</h2>
+
+        <p>You wait for a click. That's the point of the gate and also its cost: a task the agent could finish in seconds sits until someone reads the payload and says yes.</p>
+
+        <p>Not every task pays the full price. A single read-only lookup on one connection can take a fast path that skips planning, and it still runs where no write is possible. A close repeat of a finished task reuses that task's plan as a reference. Each business also gets one task at a time, queued in order, so a busy day means a queue, although the two businesses' lines never wait on each other.</p>
+
+        <p>Auto mode is the bigger trade-off. It replaces the wait with the operator's standing approval; HQ's own dry-run and validation still run on every action, and anything it can't validate still stops for a person. You stop reading each payload yourself and rely on validation instead, which fits work you've already watched go right many times far better than anything new. The manual gate has a limit too: a payload you approve without reading goes out exactly as written.</p>
+
+        <p>Some jobs don't need a gate at all. Searching, summarizing, looking things up and drafting text that never leaves your machine change nothing outside it, so there's nothing to approve.</p>
+
+        <h2>How to add a human approval gate to your own agents</h2>
+
+        <p>You don't need HQ to apply this. The pattern carries over to any stack:</p>
+
+        <ul>
+          <li><strong>Split reads from writes.</strong> Let the agent read freely, and send every write (send, create, update, delete, publish, charge) through one path you control.</li>
+          <li><strong>Dry-run every write</strong> against the real system, so recipients, IDs and amounts are resolved before anyone approves.</li>
+          <li><strong>Show the approver the exact payload</strong>, never a sentence describing it.</li>
+          <li><strong>Bind the approval to that payload and execute it once.</strong> A hash works; any change to the payload needs a fresh approval.</li>
+          <li><strong>Check which account is about to act</strong> before every write, and block on a mismatch.</li>
+          <li><strong>Verify by reading the result back</strong>: the message ID, the created record.</li>
+          <li><strong>Log every task</strong> when it starts and again when its outcome is known.</li>
+        </ul>
+
+        <p>If you build in n8n, the workflow automation tool, <a href="https://docs.n8n.io/build/integrate-ai/ai-examples/human-in-the-loop-for-tools">its AI Agent node can require human review before specific tools run</a>. The workflow pauses until a person approves or denies the tool call, through channels such as Slack, Gmail, Microsoft Teams or n8n's built-in chat. Put the tool's parameters in the review message (n8n exposes them as <code>$tool.parameters</code>) so the reviewer sees the payload rather than only the tool's name.</p>
+
+        <p>The same thinking shapes the "Stress" step in <a href="https://janmm97.github.io/jan-website/#/services">my build process</a>: find the failure before the real world does.</p>
+
+        <h2>FAQ</h2>
+
+        <h3>Can an AI agent send an email without my approval?</h3>
+
+        <p>It can if the only safeguard is an instruction to ask first, because nothing forces the model to follow it. In J/OS HQ it can't: the gateway refuses any external write that isn't an approved, hashed payload, and even Auto mode validates every action and stops on anything it couldn't validate.</p>
+
+        <h3>How do you stop an AI agent from using the wrong account?</h3>
+
+        <p>Give each business its own workspace that signs in as its own account, then check that identity before every write. J/OS HQ checks the project folder and account email before each write, blocks on a mismatch, and asks when it can't tell which business a request belongs to.</p>
+
+        <h3>Does human approval slow AI agents down too much?</h3>
+
+        <p>It adds a wait, but only where an action leaves the machine. Reading, searching and planning run without approval. For work you already trust, a standing approval such as HQ's Auto mode removes the wait while keeping the dry-run and validation.</p>
+
+        <h3>Does J/OS HQ need a cloud server?</h3>
+
+        <p>No. J/OS HQ runs on the operator's own machine and listens on 127.0.0.1 only. The only outside calls are the agents' own model calls and the platform calls that go through One.</p>
+
+        <h2>What a real approval gate comes down to</h2>
+
+        <p>Once agents can act, human in the loop means three specific things: the agent can't write while it plans, you approve the exact payload and it runs once, and nothing counts as done until the result has been read back. Anything short of that is a request the agent may or may not honor.</p>
+
+        <p>If there's a task you'd hand to an agent if you could trust it with your real accounts, tell me about it.</p>
+      </div>
+
+      <div class="blog-cta">
+        <h3 style="font-size: 1.25rem; margin: 0 0 0.5rem; font-weight: 600;">Ready to build AI agents you can trust?</h3>
+        <p style="margin: 0 0 1.5rem; color: #bbb;">Book a 30-minute call to discuss your workflow.</p>
+        <a class="btn btn-primary" href="https://calendly.com/janmm-va/30min?utm_source=jws-blog&utm_medium=article&utm_campaign=human-in-the-loop-ai-agents" target="_blank" rel="noopener">Book a call</a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Jan. <a href="/">Back to home</a></p>
+  </div>
+</footer>
+</body>
+</html>
