@@ -97,7 +97,7 @@
      "item": {
       "@type": "SoftwareSourceCode",
       "name": "Lil Orchy",
-      "description": "The orchestrator behind J/OS. It routes plain-language instructions to the right client workspace and agent, runs them on Claude Code or Codex under that workspace's own account, and pauses for approval before anything is sent, spent, shared or deleted.",
+      "description": "The orchestrator behind J/OS. It uses Jev to route plain-language instructions to the right client workspace and agent, runs them on Claude Code or Codex under that workspace's own account, and pauses for approval before anything is sent, spent, shared or deleted.",
       "image": "https://janmm97.github.io/jan-website/assets/images/Lil%20Orchy.png",
       "author": {
        "@id": "https://janmm97.github.io/jan-website/#person"
@@ -733,9 +733,9 @@ footer{background:rgba(9,13,20,.35)}
           <div class="pcard-body">
             <h2 class="pcard-title">Lil Orchy</h2>
             <p class="pcard-meta">AI orchestrator · multi-workspace · approval-first</p>
-            <p class="pcard-desc">Lil Orchy is the orchestrator at the heart of J/OS. I give it an instruction in plain language and it routes the work to the right client workspace and agent, then runs it on Claude Code or Codex under that workspace's own account. Each workspace keeps its own folder, connections and agents, so nothing crosses between clients. Anything that sends, spends, shares or deletes pauses for my approval, and when an instruction is unclear Lil Orchy asks instead of guessing. Every run is logged, and each generalist task keeps its own folder with a record of what was asked and what was done.</p>
+            <p class="pcard-desc">Lil Orchy is the orchestrator at the heart of J/OS. I give it an instruction in plain language and it uses Jev, a TypeSafe model, to work out which client workspace, agent and model fits, then runs it on Claude Code or Codex under that workspace's own account. Each workspace keeps its own folder, connections and agents, so nothing crosses between clients. Anything that sends, spends, shares or deletes pauses for my approval, and when an instruction is unclear Lil Orchy asks instead of guessing. Every run is logged, and each generalist task keeps its own folder with a record of what was asked and what was done.</p>
             <div class="pcard-tags">
-              <span>Claude Code</span><span>Codex CLI</span><span>One CLI</span><span>Task routing</span><span>Approval gate</span>
+              <span>Claude Code</span><span>Codex CLI</span><span>One CLI</span><span>Jev</span><span>Task routing</span><span>Approval gate</span>
             </div>
           </div>
         </article>
