@@ -1,11 +1,11 @@
 # Jan — AI Agent Builder & Automation Specialist
 
-> Portfolio of Jan, a Computer Science graduate and Executive Assistant focused on operations and AI agents. Jan builds custom AI agents and connected workflows: the multi-agent command centers J/OS HQ and J/OS Agents, built on the One CLI, Claude Code and the Codex CLI, and n8n automations for deal screening, social content, video ads and request intake. The site is a single page; the section links below are hash routes of the same HTML document.
+> Portfolio of Jan, a Computer Science graduate and Executive Assistant focused on operations and AI agents. Jan builds custom AI agents and connected workflows: the multi-agent command centers J/OS HQ and J/OS Agents, built on the One CLI, Claude Code and the Codex CLI, and n8n automations for deal screening, social content, video ads and request intake. Home, About, Projects, Services and each blog post have their own URLs; the Blog list and Contact are hash routes of the home page.
 
 ## Site
 - [Home](https://janmm97.github.io/jan-website/): Overview, services and booking link
 - [About](https://janmm97.github.io/jan-website/about/): Background and professional timeline
-- [Projects](https://janmm97.github.io/jan-website/#/projects): Six projects with descriptions, tools and screenshots
+- [Projects](https://janmm97.github.io/jan-website/projects/): Seven projects with descriptions, tools and screenshots
 - [Services](https://janmm97.github.io/jan-website/services/): Service packages and the idea-to-system process
 - [Blog](https://janmm97.github.io/jan-website/blog/what-to-learn-instead-of-ai-automation/): Here's What I'd Learn Instead of AI Automation in 2027, a roadmap for virtual assistants
 
