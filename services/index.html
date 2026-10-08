@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
 <script>
 (()=>{
   const root=document.documentElement;
@@ -24,24 +25,24 @@
 </script>
 <link rel="preload" href="assets/images/websitelogo-blackbg1.svg" as="image">
 <script src="assets/js/entry.js?v=2026-09-30.loader1" defer></script>
-<noscript><style>.page.page-home{display:flex}</style></noscript>
-<title>Jan — AI Agent Builder & Automation Specialist</title>
-<meta name="description" content="Jan, AI agent builder and automation specialist. Custom AI agents, n8n workflows and multi-agent systems like J/OS HQ that turn repetitive work into systems.">
+<noscript><style>.page[data-page="services"]{display:block}</style></noscript>
+<title>Services — AI Agents &amp; Workflow Automation | Jan</title>
+<meta name="description" content="Custom AI agents and connected workflows, built around the way your business works. See the process from your first idea to a system you can rely on.">
 <meta name="theme-color" content="#0b0b0b">
-<link rel="canonical" href="https://janmm97.github.io/jan-website/">
+<link rel="canonical" href="https://janmm97.github.io/jan-website/services/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Jan — AI Agent Builder">
-<meta property="og:title" content="Jan — AI Agent Builder & Automation Specialist">
-<meta property="og:description" content="Jan, AI agent builder and automation specialist. Custom AI agents, n8n workflows and multi-agent systems like J/OS HQ that turn repetitive work into systems.">
-<meta property="og:url" content="https://janmm97.github.io/jan-website/">
+<meta property="og:title" content="Services — AI Agents &amp; Workflow Automation | Jan">
+<meta property="og:description" content="Custom AI agents and connected workflows, built around the way your business works. See the process from your first idea to a system you can rely on.">
+<meta property="og:url" content="https://janmm97.github.io/jan-website/services/">
 <meta property="og:image" content="https://janmm97.github.io/jan-website/assets/images/JOS%20Dashboard.png">
 <meta property="og:image:width" content="1905">
 <meta property="og:image:height" content="936">
 <meta property="og:image:alt" content="J/OS HQ dashboard, a command center for AI agents built by Jan">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Jan — AI Agent Builder & Automation Specialist">
-<meta name="twitter:description" content="Jan, AI agent builder and automation specialist. Custom AI agents, n8n workflows and multi-agent systems like J/OS HQ that turn repetitive work into systems.">
+<meta name="twitter:title" content="Services — AI Agents &amp; Workflow Automation | Jan">
+<meta name="twitter:description" content="Custom AI agents and connected workflows, built around the way your business works. See the process from your first idea to a system you can rely on.">
 <meta name="twitter:image" content="https://janmm97.github.io/jan-website/assets/images/JOS%20Dashboard.png">
 <script type="application/ld+json">
 {
@@ -629,7 +630,7 @@ footer{background:rgba(9,13,20,.35)}
     </div>
   </div>
 </div>
-<a class="skip-link" href="#mainContent">Skip to content</a>
+<a class="skip-link" href="services/#mainContent">Skip to content</a>
 
 
 <header class="nav" id="navBar">
@@ -1208,7 +1209,7 @@ footer{background:rgba(9,13,20,.35)}
         <p class="svc-lead fade f3">Custom AI agents and connected workflows, built around the way your business works. Here's how we get from your first idea to a system you can rely on.</p>
         <div class="svc-scroll-wrap fade f4">
           <button class="btn btn-primary svc-scroll" id="svcScroll">Explore the process <span aria-hidden="true">↓</span></button>
-          <a class="text-link" href="#servicePackages" data-scroll-target="servicePackages">View packages ↗</a>
+          <a class="text-link" href="services/#servicePackages" data-scroll-target="servicePackages">View packages ↗</a>
         </div>
       </div>
       <div class="svc-logo-slot">
@@ -1222,7 +1223,7 @@ footer{background:rgba(9,13,20,.35)}
       <div class="process-viewport" id="processViewport">
         <div class="process-toolbar">
           <h2>The journey / idea to impact</h2>
-          <a class="text-link" href="#servicePackages" data-scroll-target="servicePackages">View packages ↗</a>
+          <a class="text-link" href="services/#servicePackages" data-scroll-target="servicePackages">View packages ↗</a>
         </div>
         <div class="process-copy" id="processCopy">
           <article class="process-stage" data-stage="0">
@@ -1746,6 +1747,7 @@ var TITLES={home:'Jan — AI Agent Builder & Automation Specialist',about:'About
 var NUMS={home:'01',about:'02',projects:'03',services:'04',blog:'05',contact:'06'};
 function normRoute(h){h=(h||'').replace(/^#\/?/,'').replace(/\/$/,'').toLowerCase();return ROUTES.indexOf(h)>-1?h:'home';}
 function parseHash(){return normRoute(location.hash);}
+if(!location.hash){try{history.replaceState(null,'',location.pathname+'#/services');}catch(e){}}
 var currentRoute=parseHash();
 
 function render(focusHeading){
