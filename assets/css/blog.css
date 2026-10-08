@@ -211,3 +211,30 @@
 .post-entry:hover .post-entry-more{border-color:var(--ink)}
 .post-entry:hover .post-entry-title a{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--line2);text-underline-offset:.2em}
 @media(max-width:740px){.post-entry{grid-template-columns:1fr;padding-block:35px}}
+
+
+/* Time comparison: approved measurements on a shared zero-based seconds scale. */
+.post-chart{grid-column:wide;margin:0 0 3rem;padding:clamp(1rem,3vw,2rem);border:1px solid var(--line2);font-family:var(--term);color:var(--ink)}
+.post-chart-title{margin:0 0 2rem;font-size:clamp(1.1rem,1rem + .35vw,1.25rem);font-weight:400;line-height:1.4;letter-spacing:-.02em}
+.post-chart-row{margin-top:1.5rem}
+.post-chart-label{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;margin-bottom:.65rem;font-size:12.5px;line-height:1.6}
+.post-chart-label>span:last-child{flex:none;color:var(--ink3);font-size:11px}
+.post-chart-track{border-left:1px solid var(--line2)}
+.post-chart-bar{height:30px;display:flex;align-items:center;justify-content:flex-end;background:var(--ink2);color:var(--bg);font-size:11px;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.post-chart-bar>span{padding-inline:2px}
+.post-chart-bar--35{width:calc(100% * 35 / 300)}
+.post-chart-bar--45{width:calc(100% * 45 / 300)}
+.post-chart-bar--273{width:calc(100% * 273 / 300)}
+.post-chart-axis{position:relative;height:2rem;margin-top:1rem;margin-left:1px;border-top:1px solid var(--line2);color:var(--ink3);font-size:11px;font-variant-numeric:tabular-nums}
+.post-chart-axis>span{position:absolute;top:0;padding-top:.5rem}
+.post-chart-axis>span::before{content:"";position:absolute;top:0;left:0;height:4px;border-left:1px solid var(--line2)}
+.post-chart-axis>span:nth-child(1){left:0}
+.post-chart-axis>span:nth-child(2){left:calc(100% / 3)}
+.post-chart-axis>span:nth-child(3){left:calc(100% * 2 / 3)}
+.post-chart-axis>span:nth-child(4){right:0}
+.post-chart-axis>span:nth-child(4)::before{left:auto;right:0}
+.post-chart figcaption{margin-top:1.5rem;font-size:11px;line-height:1.7;color:var(--ink3)}
+@media(max-width:640px){.post-chart-label{font-size:11px;gap:.5rem}}
+.post-continue--compact .post-entry{grid-template-columns:1fr;gap:1rem;padding-block:2rem}
+.post-continue--compact .post-entry-title{font-size:clamp(1.1rem,1rem + .35vw,1.25rem);line-height:1.4;letter-spacing:-.02em}
+.post-continue--compact .post-entry-excerpt{font-family:var(--read);font-size:1rem;line-height:1.72;max-width:none}

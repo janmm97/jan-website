@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="blog-post">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash: A Research-Agent Test — Jan</title>
+<meta name="description" content="Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash on one research-agent task: Haiku took 35 s, Luna 4m 33s. What it shows and what it doesn't.">
+<meta name="theme-color" content="#0b0b0b">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="article:published_time" content="2026-10-08">
+<meta property="article:modified_time" content="2026-10-08">
+<link rel="canonical" href="https://janmm97.github.io/jan-website/blog/claude-haiku-5-5-vs-deepseek-v4-1-flash-vs-gpt-6-luna/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Jan — AI Agent Builder">
+<meta property="og:title" content="Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash: A Research-Agent Test">
+<meta property="og:description" content="Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash on one research-agent task: Haiku took 35 s, Luna 4m 33s. What it shows and what it doesn't.">
+<meta property="og:url" content="https://janmm97.github.io/jan-website/blog/claude-haiku-5-5-vs-deepseek-v4-1-flash-vs-gpt-6-luna/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash: A Research-Agent Test">
+<meta name="twitter:description" content="Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash on one research-agent task: Haiku took 35 s, Luna 4m 33s. What it shows and what it doesn't.">
+<meta property="article:tag" content="AI Agents">
+<meta property="article:tag" content="Automation">
+<meta property="article:tag" content="Workflow Design">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash: A Research-Agent Test",
+  "description": "Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash on one research-agent task: Haiku took 35 s, Luna 4m 33s. What it shows and what it doesn't.",
+  "url": "https://janmm97.github.io/jan-website/blog/claude-haiku-5-5-vs-deepseek-v4-1-flash-vs-gpt-6-luna/",
+  "mainEntityOfPage": "https://janmm97.github.io/jan-website/blog/claude-haiku-5-5-vs-deepseek-v4-1-flash-vs-gpt-6-luna/",
+  "author": {
+    "@type": "Person",
+    "name": "Jan Manalo",
+    "url": "https://janmm97.github.io/jan-website/#/about"
+  },
+  "datePublished": "2026-10-08",
+  "dateModified": "2026-10-08",
+  "wordCount": 748,
+  "keywords": [
+    "AI Agents",
+    "Automation",
+    "Workflow Design"
+  ],
+  "inLanguage": "en"
+}</script>
+<link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg?v=2026-09-30.1">
+<link rel="preload" href="../../assets/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/studio.css?v=2026-09-30.1">
+<link rel="stylesheet" href="../../assets/css/entry.css?v=2026-09-30.loader1">
+<link rel="stylesheet" href="../../assets/css/blog.css?v=2026-10-08.1">
+<script src="../../assets/js/blog.js?v=2026-10-07.2" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#post">Skip to content</a>
+
+<header class="nav">
+  <div class="container nav-in">
+    <a class="brand" href="../../" aria-label="Jan — home"><img class="brand-logo" src="../../assets/images/websitelogo-blackbg1.svg" alt="" width="27" height="27"></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../../#/about">About</a>
+      <a href="../../#/projects">Projects</a>
+      <a href="../../#/services">Services</a>
+      <a href="../../#/blog" class="active" aria-current="page">Blog</a>
+    </nav>
+    <div class="nav-end">
+      <a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+      <button class="icon-btn burger" id="burger" type="button" aria-label="Open menu" aria-controls="mmenu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" role="navigation" aria-label="Mobile navigation">
+  <button class="icon-btn mmenu-close" id="mmenuClose" type="button" aria-label="Close menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../../#/about">About</a>
+  <a href="../../#/projects">Projects</a>
+  <a href="../../#/services">Services</a>
+  <a href="../../#/blog" aria-current="page">Blog</a>
+  <a href="../../#/contact">Contact</a>
+  <div class="mfoot">AI agents. Connected workflows.</div>
+</div>
+
+<div class="runhead" aria-hidden="true">
+  <div class="runhead-in">
+    <span class="runhead-n"></span>
+    <span class="runhead-title">Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash: A Research-Agent Test</span>
+    <a class="runhead-toc" href="#contents" tabindex="-1">Contents</a>
+  </div>
+  <span class="runhead-bar"></span>
+</div>
+
+
+<main><article class="post" id="post" tabindex="-1">
+<header class="post-head"><h1 class="post-title">Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash: A Research-Agent Test</h1><p class="post-meta"><time datetime="2026-10-08">October 8, 2026</time><span>3 min read</span><span>748 words</span></p></header>
+<div class="post-content post-intro"><p>I gave three new small models the same research job, and Claude Haiku 5.5 finished first: 35 seconds, against 45 seconds for DeepSeek V4.1 Flash and 4 minutes 33 seconds for GPT-6 Luna. Its answer wasn't the most accurate of the three, though. DeepSeek scored a little higher. So this is a post about a trade-off, plus an honest list of what one small test can and can't tell you.</p></div>
+<figure class="post-chart post-wide" aria-labelledby="chart-title" aria-describedby="chart-caption">
+<h2 class="post-chart-title" id="chart-title">Time to finish the same research task</h2>
+<div class="post-chart-row"><div class="post-chart-label"><span>Claude Haiku 5.5</span><span>66% quality</span></div><div class="post-chart-track"><div class="post-chart-bar post-chart-bar--35"><span>35 s</span></div></div></div>
+<div class="post-chart-row"><div class="post-chart-label"><span>DeepSeek V4.1 Flash</span><span>69% quality</span></div><div class="post-chart-track"><div class="post-chart-bar post-chart-bar--45"><span>45 s</span></div></div></div>
+<div class="post-chart-row"><div class="post-chart-label"><span>GPT-6 Luna</span><span>64% quality</span></div><div class="post-chart-track"><div class="post-chart-bar post-chart-bar--273"><span>4 m 33 s</span></div></div></div>
+<div class="post-chart-axis" aria-hidden="true"><span>0</span><span>100</span><span>200</span><span>300 s</span></div>
+<figcaption id="chart-caption">One task, one run per model, same setup. DeepSeek ran with reasoning off; Haiku and Luna at default effort.</figcaption>
+</figure>
+<nav class="post-toc" id="contents" aria-labelledby="contents-title"><h2 class="post-toc-title" id="contents-title">Contents</h2><ol data-rows="3"><li><a href="#the-test"><span class="post-toc-n" aria-hidden="true">01</span><span class="post-toc-label">The test</span></a></li><li><a href="#claude-haiku-5-5-vs-gpt-6-luna-vs-deepseek-the-results"><span class="post-toc-n" aria-hidden="true">02</span><span class="post-toc-label">Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek: the results</span></a></li><li><a href="#why-speed-matters-for-an-ai-agent"><span class="post-toc-n" aria-hidden="true">03</span><span class="post-toc-label">Why speed matters for an AI agent</span></a></li><li><a href="#what-this-test-doesn-t-prove"><span class="post-toc-n" aria-hidden="true">04</span><span class="post-toc-label">What this test doesn't prove</span></a></li><li><a href="#my-pick"><span class="post-toc-n" aria-hidden="true">05</span><span class="post-toc-label">My pick</span></a></li></ol></nav>
+<div class="post-content"><h2 id="the-test">The test</h2>
+<p>Each model ran as a research agent on one task: find and compare three AI meeting scheduling tools that integrate with Google Calendar. All three got the exact same prompt.</p>
+<p>They ran in the same agent setup with the same tools, including web search, and each model got one run.</p>
+<div class="post-table post-table--stack post-wide" role="region" tabindex="0" aria-label="The test"><table><thead><tr><th scope="col">Model</th><th scope="col">Reasoning setting</th><th scope="col">Time to finish</th><th scope="col">Quality score (provisional)</th></tr></thead><tbody><tr><th scope="row">Claude Haiku 5.5</th><td data-label="Reasoning setting">Default (medium)</td><td data-label="Time to finish">35 s</td><td data-label="Quality score (provisional)">66%</td></tr><tr><th scope="row">DeepSeek V4.1 Flash</th><td data-label="Reasoning setting">Off</td><td data-label="Time to finish">45 s</td><td data-label="Quality score (provisional)">69%</td></tr><tr><th scope="row">GPT-6 Luna</th><td data-label="Reasoning setting">Default (medium)</td><td data-label="Time to finish">4 m 33 s (273 s)</td><td data-label="Quality score (provisional)">64%</td></tr></tbody></table></div>
+<p>&quot;Default&quot; means medium for both Haiku 5.5 and Luna, according to <a href="https://platform.claude.com/docs/en/about-claude/models/choosing-a-model" rel="noopener">Anthropic's model guide</a> and <a href="https://developers.openai.com/api/docs/models/gpt-6-luna" rel="noopener">OpenAI's GPT-6 Luna model page</a>.</p>
+<p>I scored each output myself, which is why I call the quality scores provisional: one reviewer, one run.</p>
+<h2 id="claude-haiku-5-5-vs-gpt-6-luna-vs-deepseek-the-results">Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek: the results</h2>
+<p>Speed first. <a href="https://www.anthropic.com/claude-haiku-5-5" rel="noopener">Claude Haiku 5.5</a>, which Anthropic released on October 7, 2026, took about 22% less time than DeepSeek and ran roughly 7.8 times faster than Luna (35 seconds versus 273).</p>
+<p>Quality tells a different story. <a href="https://www.deepseek.com/en/news/deepseek-v4-1-flash/" rel="noopener">DeepSeek V4.1 Flash</a>, released September 10, 2026, delivered slightly more complete research and scored 69%. Haiku came in at 66% with a structured comparison that covered pricing, features, Google Calendar compatibility, limitations and a final recommendation. GPT-6 Luna, which OpenAI calls its &quot;most efficient model for focused, high-volume tasks,&quot; gave careful explanations and scored 64%, but it took more than four minutes to get there.</p>
+<p>So Haiku was not the most accurate model in this test. What it did was land within three points of the top score in under a minute.</p>
+<h2 id="why-speed-matters-for-an-ai-agent">Why speed matters for an AI agent</h2>
+<p>An agent doesn't answer once. It searches, reads a page, decides what to do next, calls another tool and repeats, and a slow model pays its delay on every one of those steps while someone waits for the result.</p>
+<p>Anthropic's own guidance points the same way. Its model guide says choosing a model means &quot;balancing capabilities, speed, and cost,&quot; and it suggests an efficiency-first approach: start with Haiku 5.5, test your use case, and &quot;upgrade only if necessary for specific capability gaps.&quot; It lists that approach as a fit for applications with tight latency requirements. That's vendor advice about its own product, not proof of my result, but it matches what I saw.</p>
+<h2 id="what-this-test-doesn-t-prove">What this test doesn't prove</h2>
+<ul>
+<li>It's one task and one run per model. A coding agent or a long document review could rank these models differently.</li>
+<li>The settings weren't identical. DeepSeek ran with reasoning off, which you'd expect to help its speed, and Haiku still finished faster in this test.</li>
+<li>The quality scores are provisional, and I gave them myself.</li>
+<li>It isn't a ranking of general intelligence.</li>
+<li>Providers update models, so these numbers can change.</li>
+</ul>
+<h2 id="my-pick">My pick</h2>
+<p>For a basic research agent, Claude Haiku 5.5 is my preferred model of the three. It finished faster than DeepSeek V4.1 Flash, far faster than GPT-6 Luna, and its output was close enough in quality that I'd rather have the speed. DeepSeek was a bit more thorough, and Luna explained itself carefully; neither matched Haiku's time.</p>
+<p>If you're building a responsive research assistant, extra thinking time that doesn't produce a noticeably better answer is just waiting. A fairer follow-up would use matched settings, several tasks and more than one run per model. You can see the agents I've built so far on my <a href="https://janmm97.github.io/jan-website/#/projects">projects page</a>.</p>
+<div class="post-close"><p>Choosing a model for an agent in your own workflow?</p><a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" rel="noopener">Book a 30-minute call</a><span class="sr-only">.</span></div>
+</div>
+<nav class="post-continue post-continue--compact" aria-labelledby="keep-reading-title"><h2 id="keep-reading-title">Keep reading</h2><div class="post-entry"><div><h3 class="post-entry-title"><a href="../virtual-assistant-job-sites/">Top 10 Websites to Find Virtual Assistant Jobs in 2026: Best Sites to Apply Online</a></h3><p class="post-entry-meta"><span>Next post</span></p></div><div><p class="post-entry-excerpt">Upwork, OnlineJobs.ph, BELAY and seven more, with the details most lists skip: who can actually apply from where, what each site costs you, and the FTC's warning signs for fake VA jobs.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></div>
+<div class="post-entry"><div><h3 class="post-entry-title"><a href="../what-to-learn-instead-of-ai-automation/">Here's What I'd Learn Instead of AI Automation in 2027</a></h3><p class="post-entry-meta"><span>Related</span></p></div><div><p class="post-entry-excerpt">Know some Zapier, Make or n8n? Here's the six-stage roadmap I'd follow next: LLMs, process mapping, APIs and webhooks, integrations, AI agents, and AI systems that run safely with human approval.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></div><div class="post-continue-links"><a href="../../#/projects">See the projects<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a href="../../#/services">Services<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a href="../../#/blog">All posts<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></nav>
+</article></main>
+<footer>
+  <div class="container foot-in">
+    <span>© 2026 Jan</span>
+    <span class="foot-page">The working notes</span>
+    <span><a href="https://flaxen-crayon-74f.notion.site/3e57c1c329e280228fcbd4f5d6f65657?pvs=105" target="_blank" rel="noopener">submit a request</a></span>
+  </div>
+</footer>
+</body>
+</html>
