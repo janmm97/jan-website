@@ -10,7 +10,7 @@
 - [Blog](https://janmm97.github.io/jan-website/blog/what-to-learn-instead-of-ai-automation/): Here's What I'd Learn Instead of AI Automation in 2027, a roadmap for virtual assistants
 
 ## Projects
-- Lil Orchy: One orchestrator for running multiple businesses with AI agents. Uses Jev to route plain-language instructions to the right business and agent, keeps each business separate, and gates anything outward-facing behind approval (Claude Code, Codex CLI, One CLI)
+- Orchy: One orchestrator for running multiple businesses with AI agents. Uses Jev to route plain-language instructions to the right business and agent, keeps each business separate, and gates anything outward-facing behind approval (Claude Code, Codex CLI, One CLI)
 - [J/OS HQ](https://github.com/janmm97/janhq): Local command center that runs AI agents for two businesses behind one approval gate (Next.js, Claude Code, Codex CLI, One CLI)
 - [AI Video Ad AutoSync Pipeline](https://github.com/janmm97/n8n-proj/tree/main/sora-2-autosync-v2): n8n workflow that turns a form submission into a finished vertical video ad
 - [Multi-Agent Content Automation](https://github.com/janmm97/n8n-proj/tree/main/content-automation): n8n multi-agent system that plans and writes social content across channels
