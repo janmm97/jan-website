@@ -238,3 +238,38 @@
 .post-continue--compact .post-entry{grid-template-columns:1fr;gap:1rem;padding-block:2rem}
 .post-continue--compact .post-entry-title{font-size:clamp(1.1rem,1rem + .35vw,1.25rem);line-height:1.4;letter-spacing:-.02em}
 .post-continue--compact .post-entry-excerpt{font-family:var(--read);font-size:1rem;line-height:1.72;max-width:none}
+
+/* Intro comparisons: exact scores on 0–5; billed costs on $0–$0.020. */
+.post-chart--intros{margin-block:1.25rem 3rem}
+.post-chart--intros .post-chart-title{font-size:clamp(1.1rem,1rem + .35vw,1.25rem);line-height:1.4}
+.post-chart--intros .post-chart-label small{display:block;color:var(--ink3);font-size:11px}
+.post-chart--intros .post-chart-bar{position:relative}
+.post-chart--score .post-chart-bar>span{padding-inline:8px}
+.intro-score-0,.intro-score-1{width:78.6%}
+.intro-score-2{width:76%}
+.intro-score-3{width:66%}
+.intro-cost-0{width:5%}
+.intro-cost-1{width:8.5%}
+.intro-cost-2{width:70.5%}
+.intro-cost-3{width:89%}
+.post-chart--cost .post-chart-track{margin-right:5.5rem}
+.post-chart--cost .post-chart-bar>span{position:absolute;left:100%;padding-left:.6rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.post-chart--intros .intro-axis>span{transform:translateX(-50%)}
+.post-chart--intros .intro-axis>span::before{left:50%}
+.post-chart--intros .intro-axis>span:first-child::before{left:0}
+.post-chart--intros .intro-axis>span:first-child{left:0;transform:none}
+.post-chart--intros .intro-axis>span:last-child{left:100%;right:auto;transform:translateX(-100%)}
+.post-chart--intros .intro-axis>span:last-child::before{left:auto;right:0}
+.post-chart--score .intro-axis>span:nth-child(2){left:20%}
+.post-chart--score .intro-axis>span:nth-child(3){left:40%}
+.post-chart--score .intro-axis>span:nth-child(4){left:60%;right:auto}
+.post-chart--score .intro-axis>span:nth-child(5){left:80%}
+.post-chart--cost .intro-axis{margin-right:5.5rem}
+.post-chart--cost .intro-axis>span:nth-child(2){left:25%}
+.post-chart--cost .intro-axis>span:nth-child(3){left:50%}
+.post-chart--cost .intro-axis>span:nth-child(4){left:75%;right:auto}
+@media(max-width:640px){
+ .post-chart--intros .post-chart-label{display:block;font-size:12.5px}
+ .post-chart--intros .post-chart-label>span{display:block}
+ .post-chart--cost .intro-axis>span:nth-child(2),.post-chart--cost .intro-axis>span:nth-child(4){display:none}
+}
