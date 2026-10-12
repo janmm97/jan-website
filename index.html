@@ -1765,7 +1765,12 @@ function parsePath(){
   return normRoute(p);
 }
 function isOldHashRoute(h){return /^#\/[a-z]*\/?$/i.test(h||'');}
+// The home page holds every section. Each section page (about/, projects/ ...) holds only its
+// own, so search engines see a different page at each URL. A section that isn't in this
+// document is reached with a normal page load.
+function hasPage(r){return !!document.querySelector('.page[data-page="'+r+'"]');}
 var currentRoute=isOldHashRoute(location.hash)?normRoute(location.hash):parsePath();
+if(!hasPage(currentRoute)){location.replace(routeUrl(currentRoute)+location.search);return;}
 (function cleanStartUrl(){
   // Old links (#/about) and any leftover fragment become the clean path for the same page.
   var target=routeUrl(currentRoute)+location.search;
@@ -1815,6 +1820,7 @@ function showRoute(r){
 
 function navigate(r){
   r=normRoute(r);
+  if(!hasPage(r)){location.href=routeUrl(r);return;}
   if(r===currentRoute){render(true);return;}
   try{history.pushState(null,'',routeUrl(r));}
   catch(err){location.href=routeUrl(r);return;}
@@ -1846,12 +1852,15 @@ document.addEventListener('click',function(e){
 
 window.addEventListener('popstate',function(){
   var p=parsePath();
-  if(p!==currentRoute){currentRoute=p;render(true);}
+  if(p===currentRoute)return;
+  if(!hasPage(p)){location.reload();return;}
+  currentRoute=p;render(true);
 });
 // Someone typing or pasting an old #/route link into the address bar of an open page.
 window.addEventListener('hashchange',function(){
   if(!isOldHashRoute(location.hash))return;
   var r=normRoute(location.hash);
+  if(!hasPage(r)){location.replace(routeUrl(r));return;}
   try{history.replaceState(null,'',routeUrl(r));}catch(e){}
   if(r!==currentRoute){showRoute(r);}
 });
