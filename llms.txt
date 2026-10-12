@@ -1,13 +1,19 @@
 # Jan — AI Agent Builder & Automation Specialist
 
-> Portfolio of Jan, a Computer Science graduate and Executive Assistant focused on operations and AI agents. Jan builds custom AI agents and connected workflows: the multi-agent command centers J/OS HQ and J/OS Agents, built on the One CLI, Claude Code and the Codex CLI, and n8n automations for deal screening, social content, video ads and request intake. Home, About, Projects, Services and each blog post have their own URLs; the Blog list and Contact are hash routes of the home page.
+> Portfolio of Jan, a Computer Science graduate and Executive Assistant focused on operations and AI agents. Jan builds custom AI agents and connected workflows: the multi-agent command centers J/OS HQ and J/OS Agents, built on the One CLI, Claude Code and the Codex CLI, and n8n automations for deal screening, social content, video ads and request intake. Home, About, Projects, Services, Blog and each blog post have their own URLs; Contact is a hash route of the home page.
 
 ## Site
 - [Home](https://janmm97.github.io/jan-website/): Overview, services and booking link
 - [About](https://janmm97.github.io/jan-website/about/): Background and professional timeline
 - [Projects](https://janmm97.github.io/jan-website/projects/): Seven projects with descriptions, tools and screenshots
 - [Services](https://janmm97.github.io/jan-website/services/): Service packages and the idea-to-system process
-- [Blog](https://janmm97.github.io/jan-website/blog/what-to-learn-instead-of-ai-automation/): Here's What I'd Learn Instead of AI Automation in 2027, a roadmap for virtual assistants
+- [Blog](https://janmm97.github.io/jan-website/blog/): All blog posts, newest first
+
+## Blog posts
+- [DeepSeek V4.1 Flash tied Claude Sonnet 5.5 on my blog intros, at about an eighth of the cost](https://janmm97.github.io/jan-website/blog/deepseek-v4-1-flash-vs-claude-sonnet-5-5/): Four AI models wrote the same three blog intros; scores, costs and what the test doesn't prove
+- [Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash: A Research-Agent Test](https://janmm97.github.io/jan-website/blog/claude-haiku-5-5-vs-deepseek-v4-1-flash-vs-gpt-6-luna/): Three models compared on the same research-agent task
+- [Top 10 Websites to Find Virtual Assistant Jobs in 2026](https://janmm97.github.io/jan-website/blog/virtual-assistant-job-sites/): Job boards, freelance marketplaces and VA companies, with how to spot fake VA jobs
+- [Here's What I'd Learn Instead of AI Automation in 2027](https://janmm97.github.io/jan-website/blog/what-to-learn-instead-of-ai-automation/): A roadmap for virtual assistants
 
 ## Projects
 - Orchy: One orchestrator for running multiple businesses with AI agents. Uses Jev to route plain-language instructions to the right business and agent, keeps each business separate, and gates anything outward-facing behind approval (Claude Code, Codex CLI, One CLI)
