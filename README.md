@@ -43,11 +43,15 @@ integrations/visitor-worker/    legacy visitor integration (not used by the site
 
 Every page has a clean URL: `/jan-website/`, `/about/`, `/projects/`, `/services/`,
 `/blog/`, `/contact/` and `/blog/<slug>/`. The site never puts a `#` in the address.
-Moving between sections doesn't reload the page: the script swaps the section and
-updates the address with the History API, and each address is a real folder, so
-reloading or sharing it works. Old `#/about`-style links are rewritten to the clean
-URL on arrival. After changing `index.html`, run `node tools/pages.mjs` so the
-section pages match it (`--check` reports pages that are out of date).
+The home page (`index.html`) holds every section. Each section page holds only its
+own section, so search engines see different content at each URL rather than six
+copies of the home page. From the home page, moving between sections doesn't reload:
+the script swaps the section and updates the address with the History API. From a
+section page, a link to another section loads that section's own page. Each address
+is a real folder, so reloading or sharing it works. Old `#/about`-style links are
+rewritten to the clean URL on arrival. After changing `index.html`, run
+`node tools/pages.mjs` so the section pages match it (`--check` reports pages that
+are out of date).
 
 Visitors enter through a short bouncing-logo intro. Its progress reaches 100% before
 the page opens, with a 2.8-second fallback deadline. Reduced-motion visitors see a

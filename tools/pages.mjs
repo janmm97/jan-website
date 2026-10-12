@@ -7,6 +7,7 @@
 //
 // Each section page is index.html with its own <title>, meta description, canonical,
 // og:/twitter: tags and a <base href="../"> so every path still resolves from the site root.
+// It keeps only its own section of the page; the home page keeps all of them.
 // The page script reads the route from the URL path, so /about/ opens on About and the
 // address bar never shows a "#".
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
@@ -47,6 +48,36 @@ const src = readFileSync(join(ROOT, 'index.html'), 'utf8');
 const must = (s, a, b) => { if (!s.includes(a)) throw new Error('index.html no longer contains: ' + a); return s.replace(a, () => b); };
 const esc = t => t.replace(/&/g, '&amp;');
 
+// Each section page keeps only its own <section class="page" data-page="..."> and drops the
+// others, so /about/, /projects/ ... each carry their own content instead of a hidden copy of
+// the whole home page (which Google treats as duplicates of the home page). The page script
+// loads a section's own URL when that section isn't in the document.
+function sectionEnd(s, start) {
+  const tag = /<(\/?)section\b[^>]*>/g;
+  tag.lastIndex = start;
+  let depth = 0, m;
+  while ((m = tag.exec(s))) {
+    depth += m[1] ? -1 : 1;
+    if (depth === 0) return tag.lastIndex;
+  }
+  throw new Error('index.html: unclosed <section> at ' + start);
+}
+function onlySection(s, slug) {
+  const open = /<section class="page[^"]*" data-page="([a-z]+)">/g;
+  let out = '', last = 0, kept = false, m;
+  while ((m = open.exec(s))) {
+    const end = sectionEnd(s, m.index);
+    if (m[1] === slug) { kept = true; open.lastIndex = end; continue; }
+    const from = s.lastIndexOf('\n', m.index) + 1;          // the line's leading spaces
+    const to = s[end] === '\n' ? end + 1 : end;             // and its line break
+    out += s.slice(last, /^[ \t]*$/.test(s.slice(from, m.index)) ? from : m.index);
+    last = to;
+    open.lastIndex = end;
+  }
+  if (!kept) throw new Error('index.html has no section with data-page="' + slug + '"');
+  return out + s.slice(last);
+}
+
 let stale = 0;
 for (const [slug, p] of Object.entries(pages)) {
   const url = SITE + slug + '/';
@@ -58,6 +89,7 @@ for (const [slug, p] of Object.entries(pages)) {
   head = must(head, '<title>' + home.title + '</title>', '<title>' + esc(p.title) + '</title>');
   head = head.split(home.desc).join(p.desc).split('content="' + home.title + '"').join('content="' + esc(p.title) + '"');
   head = must(head, '<noscript><style>.page.page-home{display:flex}</style></noscript>', '<noscript><style>.page[data-page="' + slug + '"]{display:block}</style></noscript>');
+  rest = onlySection(rest, slug);
   // Same-page anchors (#mainContent ...) keep pointing at this page even without JavaScript.
   const html = (head + rest).replace(/href="#([A-Za-z][^"\/]*)"/g, 'href="' + slug + '/#$1"');
   if (/href="[^"]*#\//.test(html)) throw new Error(slug + ': a link still uses a #/ route');
