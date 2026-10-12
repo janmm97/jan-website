@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <base href="../">
 <script>
+// Pages switch with clean paths (/about/, /projects/ ...) without reloading, so every
+// relative link and asset path must keep resolving from the site root. Pin <base> to it.
+(()=>{
+  let b=document.querySelector('base');
+  if(!b){b=document.createElement('base');document.head.prepend(b);}
+  b.setAttribute('href',new URL(b.getAttribute('href')||'./',location.href).href);
+})();
+</script>
+<script>
 (()=>{
   const root=document.documentElement;
   root.classList.add('entry-pending');
@@ -635,7 +644,7 @@ footer{background:rgba(9,13,20,.35)}
 
 <header class="nav" id="navBar">
   <div class="container nav-in">
-    <a class="brand" href="#/" aria-label="Jan — home"><img class="brand-logo" src="assets/images/websitelogo-blackbg1.svg" alt=""></a>
+    <a class="brand" href="./" data-route="home" aria-label="Jan — home"><img class="brand-logo" src="assets/images/websitelogo-blackbg1.svg" alt=""></a>
     <nav class="nav-links" id="navLinks" aria-label="Primary">
       <a href="about/" data-route="about">About</a>
       <a href="projects/" data-route="projects">Projects</a>
@@ -655,7 +664,7 @@ footer{background:rgba(9,13,20,.35)}
   <a href="projects/" data-route="projects">Projects</a>
   <a href="services/" data-route="services">Services</a>
   <a href="blog/" data-route="blog">Blog</a>
-  <a href="#/contact" data-route="contact">Contact</a>
+  <a href="contact/" data-route="contact">Contact</a>
   <div class="mfoot">AI agents. Connected workflows.</div>
 </div>
 
@@ -1744,12 +1753,31 @@ if(svcScroll){
 }
 
 var ROUTES=['home','about','projects','services','blog','contact'];
-var TITLES={home:'Jan — AI Agent Builder & Automation Specialist',about:'About Jan — AI Agent Builder & Automation Specialist',projects:'Projects — AI Agents & Automation Systems | Jan',services:'Services — AI Agents & Workflow Automation | Jan',blog:'Blog — Notes on AI Agents & Automation | Jan',contact:'Submit a request — Jan'};
+var TITLES={home:'Jan — AI Agent Builder & Automation Specialist',about:'About Jan — AI Agent Builder & Automation Specialist',projects:'Projects — AI Agents & Automation Systems | Jan',services:'Services — AI Agents & Workflow Automation | Jan',blog:'Blog — Notes on AI Agents & Automation | Jan',contact:'Contact Jan — Book a Call or Submit a Request'};
 var NUMS={home:'01',about:'02',projects:'03',services:'04',blog:'05',contact:'06'};
-function normRoute(h){h=(h||'').replace(/^#\/?/,'').replace(/\/$/,'').toLowerCase();return ROUTES.indexOf(h)>-1?h:'home';}
-function parseHash(){return normRoute(location.hash);}
-if(!location.hash){try{history.replaceState(null,'',location.pathname+'#/about');}catch(e){}}
-var currentRoute=parseHash();
+function normRoute(h){h=(h||'').replace(/^#\/?/,'').replace(/^\.?\//,'').replace(/\/.*$/,'').toLowerCase();return ROUTES.indexOf(h)>-1?h:'home';}
+// Every route is a real folder (about/, projects/ ...), so URLs never need a "#".
+// SITE_ROOT is the site's folder: /jan-website/ on GitHub Pages, / on a local preview.
+var SITE_ROOT=new URL('./',document.baseURI).pathname;
+function routeUrl(r){return SITE_ROOT+(r==='home'?'':r+'/');}
+function parsePath(){
+  var p=decodeURIComponent(location.pathname);
+  if(p.indexOf(SITE_ROOT)===0){p=p.slice(SITE_ROOT.length);}
+  return normRoute(p);
+}
+function isOldHashRoute(h){return /^#\/[a-z]*\/?$/i.test(h||'');}
+var currentRoute=isOldHashRoute(location.hash)?normRoute(location.hash):parsePath();
+(function cleanStartUrl(){
+  // Old links (#/about) and any leftover fragment become the clean path for the same page.
+  var target=routeUrl(currentRoute)+location.search;
+  var hash=location.hash,anchor=hash&&!isOldHashRoute(hash)?hash.slice(1):'';
+  if(location.pathname+location.search+hash===target)return;
+  try{history.replaceState(null,'',target);}catch(e){}
+  if(anchor){window.addEventListener('load',function(){
+    var el=document.getElementById(anchor);
+    if(el){el.scrollIntoView({block:'start'});}
+  });}
+})();
 
 function render(focusHeading){
   var r=currentRoute;
@@ -1781,41 +1809,53 @@ function render(focusHeading){
   }
 }
 
+function showRoute(r){
+  currentRoute=r;
+  if(document.startViewTransition&&!reduced){document.startViewTransition(function(){render(true);});}else{render(true);}
+}
+
 function navigate(r){
   r=normRoute(r);
   if(r===currentRoute){render(true);return;}
-  var hash='#/'+(r==='home'?'':r);
-  var changed=false;
-  try{
-    if(location.hash!==hash){location.hash=hash;changed=true;}
-  }catch(err){changed=false;}
-  if(!changed&&parseHash()!==r){
-    currentRoute=r;render(true);
-  }
+  try{history.pushState(null,'',routeUrl(r));}
+  catch(err){location.href=routeUrl(r);return;}
+  showRoute(r);
 }
 
 document.addEventListener('click',function(e){
   var t=e.target;
-  var a=t&&t.closest?t.closest('a[href^="#/"],a[data-route]'):null;
+  var a=t&&t.closest?t.closest('a[data-route]'):null;
   if(!a)return;
-  if(a.hasAttribute('data-route')&&(e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey))return;
+  if(e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
   e.preventDefault();
   if(a.closest('#mmenu')){setMenu(false);}
-  navigate(normRoute(a.getAttribute('data-route')||a.getAttribute('href')));
+  navigate(a.getAttribute('data-route'));
 },true);
 
-window.addEventListener('hashchange',function(){
-  var p=parseHash();
-  if(p!==currentRoute){currentRoute=p;if(document.startViewTransition&&!reduced){document.startViewTransition(function(){render(true);});}else{render(true);}}
-});
-window.addEventListener('popstate',function(){
-  var p=parseHash();
-  if(p!==currentRoute){currentRoute=p;render(true);}
+// Same-page links (skip link, section anchors) scroll and move focus without adding a "#" to the URL.
+document.addEventListener('click',function(e){
+  if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+  var a=e.target&&e.target.closest?e.target.closest('a[href*="#"]'):null;
+  if(!a||/^[a-z][a-z0-9+.-]*:/i.test(a.getAttribute('href')))return;
+  var id=a.getAttribute('href').split('#')[1],el=id&&document.getElementById(id);
+  if(!el)return;
+  e.preventDefault();
+  el.scrollIntoView({behavior:reduced?'instant':'smooth',block:'start'});
+  if(!el.hasAttribute('tabindex')&&!/^(A|BUTTON|INPUT|SELECT|TEXTAREA)$/.test(el.tagName)){el.setAttribute('tabindex','-1');}
+  try{el.focus({preventScroll:true});}catch(err){el.focus();}
 });
 
-if(!location.hash){
-  try{if(window.history&&history.replaceState){history.replaceState(null,'','#/');}}catch(e){}
-}
+window.addEventListener('popstate',function(){
+  var p=parsePath();
+  if(p!==currentRoute){currentRoute=p;render(true);}
+});
+// Someone typing or pasting an old #/route link into the address bar of an open page.
+window.addEventListener('hashchange',function(){
+  if(!isOldHashRoute(location.hash))return;
+  var r=normRoute(location.hash);
+  try{history.replaceState(null,'',routeUrl(r));}catch(e){}
+  if(r!==currentRoute){showRoute(r);}
+});
 
 var nav=$('#navBar');
 function onScroll(){if(nav){nav.classList.toggle('scrolled',(window.scrollY||0)>24);}}
@@ -1923,6 +1963,7 @@ document.addEventListener('keydown',function(e){
       window.scrollTo({left:previousScroll.x,top:previousScroll.y,behavior:'instant'});
     }
   });
+  window.addEventListener('popstate',function(){closeViewer(true);});
   window.addEventListener('hashchange',function(){closeViewer(true);});
 })();
 

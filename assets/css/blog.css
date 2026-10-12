@@ -1,4 +1,4 @@
-/* Blog: standalone post pages (html.blog-post) and the post list in #/blog.
+/* Blog: standalone post pages (html.blog-post) and the post list on /blog/.
    Post pages load studio.css, entry.css, then this file. */
 
 /* 1. Site shell for post pages.
@@ -195,7 +195,7 @@
   .post-continue-links{grid-template-columns:1fr;gap:.25rem}
 }
 
-/* 3. Post list in #/blog (index.html). Same 1.2fr / 1fr split and hairlines as the page head above it. */
+/* 3. Post list on /blog/ (blog/index.html). Same 1.2fr / 1fr split and hairlines as the page head above it. */
 .post-list{list-style:none;margin:0;padding:0}
 .post-entry{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:1.25rem 8vw;align-items:start;padding-block:45px;border-bottom:1px solid var(--line)}
 .post-entry:last-child{border-bottom:0}

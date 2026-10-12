@@ -32,10 +32,22 @@ production, video ads, request intake) and turn it into systems that run on thei
 A static site on GitHub Pages, with no build step and no framework.
 
 ```
-index.html                      single-page site (#/home, #/about, #/projects, …)
+index.html                      home page; also holds every section (About, Projects, …)
+about/ projects/ services/      section pages built from index.html by tools/pages.mjs
+blog/ contact/                  (blog/<slug>/ are the blog posts, written by hand)
+home/                           sends /home/ to the home page
 assets/css, fonts, images, js   styles, JetBrains Mono, screenshots, scripts
+tools/                          pages.mjs (section pages) and sitemap.mjs (sitemap.xml)
 integrations/visitor-worker/    legacy visitor integration (not used by the site)
 ```
+
+Every page has a clean URL: `/jan-website/`, `/about/`, `/projects/`, `/services/`,
+`/blog/`, `/contact/` and `/blog/<slug>/`. The site never puts a `#` in the address.
+Moving between sections doesn't reload the page: the script swaps the section and
+updates the address with the History API, and each address is a real folder, so
+reloading or sharing it works. Old `#/about`-style links are rewritten to the clean
+URL on arrival. After changing `index.html`, run `node tools/pages.mjs` so the
+section pages match it (`--check` reports pages that are out of date).
 
 Visitors enter through a short bouncing-logo intro. Its progress reaches 100% before
 the page opens, with a 2.8-second fallback deadline. Reduced-motion visitors see a

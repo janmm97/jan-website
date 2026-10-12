@@ -1,6 +1,6 @@
 # Jan — AI Agent Builder & Automation Specialist
 
-> Portfolio of Jan, a Computer Science graduate and Executive Assistant focused on operations and AI agents. Jan builds custom AI agents and connected workflows: the multi-agent command centers J/OS HQ and J/OS Agents, built on the One CLI, Claude Code and the Codex CLI, and n8n automations for deal screening, social content, video ads and request intake. Home, About, Projects, Services, Blog and each blog post have their own URLs; Contact is a hash route of the home page.
+> Portfolio of Jan, a Computer Science graduate and Executive Assistant focused on operations and AI agents. Jan builds custom AI agents and connected workflows: the multi-agent command centers J/OS HQ and J/OS Agents, built on the One CLI, Claude Code and the Codex CLI, and n8n automations for deal screening, social content, video ads and request intake. Home, About, Projects, Services, Blog, Contact and each blog post have their own URLs.
 
 ## Site
 - [Home](https://janmm97.github.io/jan-website/): Overview, services and booking link
@@ -8,6 +8,7 @@
 - [Projects](https://janmm97.github.io/jan-website/projects/): Seven projects with descriptions, tools and screenshots
 - [Services](https://janmm97.github.io/jan-website/services/): Service packages and the idea-to-system process
 - [Blog](https://janmm97.github.io/jan-website/blog/): All blog posts, newest first
+- [Contact](https://janmm97.github.io/jan-website/contact/): Book a 30-minute call or submit a request
 
 ## Blog posts
 - [DeepSeek V4.1 Flash tied Claude Sonnet 5.5 on my blog intros, at about an eighth of the cost](https://janmm97.github.io/jan-website/blog/deepseek-v4-1-flash-vs-claude-sonnet-5-5/): Four AI models wrote the same three blog intros; scores, costs and what the test doesn't prove
