@@ -1,0 +1,52 @@
+# Keeps sitemap.xml complete. On every pull request into main it adds any new
+# page (for example a new blog/<slug>/index.html) to sitemap.xml and commits that
+# to the pull request's own branch, so it is reviewed and merged with the page.
+# It never commits to main. On main it only checks, and fails if a page is missing.
+name: Sitemap
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sitemap-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - name: Add missing pages to sitemap.xml
+        run: node tools/sitemap.mjs --write
+
+      - name: Commit the updated sitemap to the pull request branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          if git diff --quiet -- sitemap.xml; then
+            echo "sitemap.xml already lists every page."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "Add new pages to sitemap.xml"
+          git push
+
+      - name: Fail if sitemap.xml is missing pages
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          git diff --exit-code -- sitemap.xml || {
+            echo "::error file=sitemap.xml::sitemap.xml is missing the pages shown above. Run 'node tools/sitemap.mjs --write' and commit the result."
+            exit 1
+          }
