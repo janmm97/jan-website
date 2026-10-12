@@ -640,7 +640,7 @@ footer{background:rgba(9,13,20,.35)}
       <a href="about/" data-route="about">About</a>
       <a href="projects/" data-route="projects">Projects</a>
       <a href="services/" data-route="services">Services</a>
-      <a href="#/blog" data-route="blog">Blog</a>
+      <a href="blog/" data-route="blog">Blog</a>
     </nav>
     <div style="display:flex;align-items:center;gap:.6rem">
       <a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
@@ -654,7 +654,7 @@ footer{background:rgba(9,13,20,.35)}
   <a href="about/" data-route="about">About</a>
   <a href="projects/" data-route="projects">Projects</a>
   <a href="services/" data-route="services">Services</a>
-  <a href="#/blog" data-route="blog">Blog</a>
+  <a href="blog/" data-route="blog">Blog</a>
   <a href="#/contact" data-route="contact">Contact</a>
   <div class="mfoot">AI agents. Connected workflows.</div>
 </div>
@@ -1389,6 +1389,7 @@ footer{background:rgba(9,13,20,.35)}
         <p class="projects-lead">Notes, lessons and experiments — from AI agents and automation to operations, tools and the work itself.</p>
       </div>
       <ol class="post-list">
+<li class="post-entry"><div><h2 class="post-entry-title"><a href="blog/deepseek-v4-1-flash-vs-claude-sonnet-5-5/">DeepSeek V4.1 Flash tied Claude Sonnet 5.5 on my blog intros, at about an eighth of the cost</a></h2><p class="post-entry-meta"><time datetime="2026-10-10">October 10, 2026</time><span>5 min read</span></p></div><div><p class="post-entry-excerpt">Four AI models wrote the same three blog intros. DeepSeek V4.1 Flash tied Claude Sonnet 5.5 at 3.93 out of 5 for about an eighth of the cost, Claude Haiku 5.5 was cheapest, and hidden reasoning made up most of every bill. Three prompts, one run each: an early signal for routine writing.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></li>
 <li class="post-entry"><div><h2 class="post-entry-title"><a href="blog/claude-haiku-5-5-vs-deepseek-v4-1-flash-vs-gpt-6-luna/">Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash: A Research-Agent Test</a></h2><p class="post-entry-meta"><time datetime="2026-10-08">October 8, 2026</time><span>3 min read</span><span>748 words</span></p></div><div><p class="post-entry-excerpt">Claude Haiku 5.5 finished my research-agent task in 35 seconds, ahead of DeepSeek V4.1 Flash and GPT-6 Luna. It wasn't the most accurate, and one task proves little.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></li>
         <li class="post-entry">
           <div>
@@ -1743,7 +1744,7 @@ if(svcScroll){
 }
 
 var ROUTES=['home','about','projects','services','blog','contact'];
-var TITLES={home:'Jan — AI Agent Builder & Automation Specialist',about:'About Jan — AI Agent Builder & Automation Specialist',projects:'Projects — AI Agents & Automation Systems | Jan',services:'Services — AI Agents & Workflow Automation | Jan',blog:'Blog — Jan',contact:'Submit a request — Jan'};
+var TITLES={home:'Jan — AI Agent Builder & Automation Specialist',about:'About Jan — AI Agent Builder & Automation Specialist',projects:'Projects — AI Agents & Automation Systems | Jan',services:'Services — AI Agents & Workflow Automation | Jan',blog:'Blog — Notes on AI Agents & Automation | Jan',contact:'Submit a request — Jan'};
 var NUMS={home:'01',about:'02',projects:'03',services:'04',blog:'05',contact:'06'};
 function normRoute(h){h=(h||'').replace(/^#\/?/,'').replace(/\/$/,'').toLowerCase();return ROUTES.indexOf(h)>-1?h:'home';}
 function parseHash(){return normRoute(location.hash);}
