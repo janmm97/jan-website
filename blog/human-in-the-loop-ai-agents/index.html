@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" class="blog-post">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How can a small service business use AI agents without losing control of what goes out? — Jan</title>
+<meta name="description" content="Let the agent read and draft on its own, but make it stop for a yes or no before money, messages, calendar changes, deletions and sharing. Here&#x27;s how.">
+<meta name="theme-color" content="#0b0b0b">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="article:published_time" content="2026-10-13">
+<meta property="article:modified_time" content="2026-10-13">
+<link rel="canonical" href="https://janmm97.github.io/jan-website/blog/human-in-the-loop-ai-agents/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Jan — AI Agent Builder">
+<meta property="og:title" content="How can a small service business use AI agents without losing control of what goes out?">
+<meta property="og:description" content="Let the agent read and draft on its own, but make it stop for a yes or no before money, messages, calendar changes, deletions and sharing. Here&#x27;s how.">
+<meta property="og:url" content="https://janmm97.github.io/jan-website/blog/human-in-the-loop-ai-agents/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How can a small service business use AI agents without losing control of what goes out?">
+<meta name="twitter:description" content="Let the agent read and draft on its own, but make it stop for a yes or no before money, messages, calendar changes, deletions and sharing. Here&#x27;s how.">
+<meta property="article:tag" content="AI Agents">
+<meta property="article:tag" content="Human in the Loop">
+<meta property="article:tag" content="Small Business Automation">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How can a small service business use AI agents without losing control of what goes out?",
+  "description": "Let the agent read and draft on its own, but make it stop for a yes or no before money, messages, calendar changes, deletions and sharing. Here's how.",
+  "url": "https://janmm97.github.io/jan-website/blog/human-in-the-loop-ai-agents/",
+  "mainEntityOfPage": "https://janmm97.github.io/jan-website/blog/human-in-the-loop-ai-agents/",
+  "author": {
+    "@type": "Person",
+    "name": "Jan Manalo",
+    "url": "https://janmm97.github.io/jan-website/about/",
+    "sameAs": [
+      "https://x.com/janmm_va",
+      "https://www.youtube.com/@janmm2997",
+      "https://github.com/janmm97"
+    ]
+  },
+  "datePublished": "2026-10-13",
+  "dateModified": "2026-10-13",
+  "wordCount": 1250,
+  "keywords": [
+    "human in the loop AI agents small business",
+    "AI Agents",
+    "Human in the Loop",
+    "Small Business Automation"
+  ],
+  "inLanguage": "en",
+  "citation": [
+    "https://www.uschamber.com/technology/artificial-intelligence/u-s-chambers-latest-empowering-small-business-report-shows-majority-of-businesses-in-all-50-states-are-embracing-ai",
+    "https://www.bluevine.com/blog/small-business-ai-trends-report-2026",
+    "https://docs.n8n.io/build/integrate-ai/ai-examples/human-in-the-loop-for-tools"
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why are owners nervous about handing work to AI agents?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many have watched a chatbot get something confidently wrong, and an agent can act on its mistakes. A chatbot with a wrong fact wastes ten minutes of your time; an agent with the same wrong fact can email it to your best client. Small businesses already use AI in big numbers. The U.S. Chamber of Commerce's 2025 Empowering Small Business report found that 58% of small businesses say they use generative AI, up from 40% in 2024 (U.S. Chamber of Commerce, August 2025). Trust hasn't kept up. In Bluevine's April 2026 survey of 942 owners and financial decision-makers, 78% said they don't fully trust AI to handle low-level tasks without oversight, and 31% named distrust of AI's accuracy as a barrier to using it more (Bluevine, 2026 Small Business AI Trends Report). I think those owners are right to be careful. Nobody should hand an agent the keys and walk away. But refusing to trust it with anything leaves your team doing the slow work by hand, which is the reason you looked at AI in the first place, so the useful move is to decide action by action what the agent may do alone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What can an AI agent safely do on its own?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anything that stays inside your business and is easy to check or undo. In the agents I run every day, that list is long: Reading email, forms and documents, and pulling out the details that matter. Labelling and filing. Drafting replies, proposals and follow-ups, saved as drafts and never sent. Writing notes and summaries into your own tools, such as a Notion page or a Google Sheet. Researching a lead or a topic before you talk to anyone. An agent can work through a full inbox while you're on a client call, and nothing it does there can embarrass you, because nobody outside ever sees it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which actions should always wait for a person?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I sort them into five groups. Anything in them stops and waits for a yes or no: Money: Refunds, charges, invoices, payouts, subscriptions. Hard to reverse, and clients notice fast. Sending: Emails, replies, texts, social posts. Once it's out, it's out. Calendar: Booking, moving or cancelling meetings. It changes someone else's day. Deleting: Trashing files, records or emails. Recovery isn't always possible. Sharing: File shares, invites, access and permissions. Your data leaves your control. Look at what isn't on the list. Writing a draft, updating an internal note and reading a contract all run without a click."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does an approval gate work in a real build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "My own marketing runs on a small team of JWS agents, built on Claude Code with an approval step before anything goes out. Each agent is one Markdown file that sets its job, the apps it may use, whether it can only read or can also write, and the hard limits it must never cross. Take the two agents that write email. Hazel, my pipeline agent, researches small businesses that could use automation and drafts outreach and follow-ups. Reid drafts collaboration and guest-post pitches. Both save their work as Gmail drafts, and neither of them can send. I read each draft and press send myself, or I don't. Hazel's limits go further: she never books a call or quotes a price, because her file says so. The rest of the team works the same way. Agents draft and I decide, so nothing gets posted, sent, published, bought or deleted until I've said yes. One lesson from building it: action names can mislead. A tool called \"Create Message\" sounds harmless until you notice it texts a customer through Twilio. So I sort every write action an agent can reach into the five groups by what it does. The name doesn't decide. This article went through the same steps. Owen, my content agent, drafted it, and Brooke, my marketing lead agent, reviewed it. Then it waited for my approval before Clara, my web agent, could prepare it for the site, and I still merge that change myself."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How would I set this up for a 10-person agency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Suppose you run a 10-person marketing agency and new-client onboarding eats a chunk of your account managers' week. Here's the shape I'd build, with each gate marked: A signed proposal arrives. The agent reads it and sets up the client's folder, project board, kickoff checklist and internal notes page in your tools. Runs on its own. It drafts the welcome email with the kickoff details and the questionnaire link. Waits: sending. It finds a few open kickoff slots across the team's calendars and suggests them. Waits: calendar. It drafts the first invoice from the numbers in the proposal. Waits: money. It shares the client folder with the client's contacts. Waits: sharing. Your account manager reads four drafts and clicks yes. The setup, the copying between tools and the \"did anyone send the questionnaire?\" chasing all move to the agent. I don't have a measured client result to share yet, so I won't guess at the hours this saves; what I can show you is the build itself."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Doesn't approving everything defeat the point?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not if the gates sit in the right places. The slow part of most client work is reading, working out what's needed and writing it up, while clicking send on a draft you've skimmed takes seconds. The gates don't have to stay forever, either. Once an agent has drafted the same kind of reply correctly for weeks, you can let that one action through and keep the rest gated. I'd start strict and loosen one action at a time. You also don't need a custom system to get this. If you build in n8n, it can require human approval before an AI Agent runs a specific tool (n8n docs: human-in-the-loop for tools). I build in n8n too: my Deal Flow Checker, for example, screens deal-flow emails in Gmail against a set of acquisition criteria."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where should you start?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pick the one workflow where your team copies the same information between the same tools every week. Write down every action in it, mark the ones that touch money, client messages, calendars, deletions or access, and gate those. Everything else is fair game for an agent. If you'd like a second pair of eyes on that list, book a 30-minute call with me and we'll map your first workflow together, gates included."
+      }
+    }
+  ]
+}</script>
+<link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg?v=2026-09-30.1">
+<link rel="preload" href="../../assets/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/studio.css?v=2026-10-09.1">
+<link rel="stylesheet" href="../../assets/css/entry.css?v=2026-09-30.loader1">
+<link rel="stylesheet" href="../../assets/css/blog.css?v=2026-10-10.1">
+<script src="../../assets/js/blog.js?v=2026-10-07.2" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#post">Skip to content</a>
+
+<header class="nav">
+  <div class="container nav-in">
+    <a class="brand" href="../../" aria-label="Jan — home"><img class="brand-logo" src="../../assets/images/websitelogo-blackbg1.svg" alt="" width="27" height="27"></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../../about/">About</a>
+      <a href="../../projects/">Projects</a>
+      <a href="../../services/">Services</a>
+      <a href="../../blog/" class="active" aria-current="page">Blog</a>
+    </nav>
+    <div class="nav-end">
+      <a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+      <button class="icon-btn burger" id="burger" type="button" aria-label="Open menu" aria-controls="mmenu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" role="navigation" aria-label="Mobile navigation">
+  <button class="icon-btn mmenu-close" id="mmenuClose" type="button" aria-label="Close menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../../about/">About</a>
+  <a href="../../projects/">Projects</a>
+  <a href="../../services/">Services</a>
+  <a href="../../blog/" aria-current="page">Blog</a>
+  <a href="../../contact/">Contact</a>
+  <div class="mfoot">AI agents. Connected workflows.</div>
+</div>
+
+<div class="runhead" aria-hidden="true">
+  <div class="runhead-in">
+    <span class="runhead-n"></span>
+    <span class="runhead-title">How can a small service business use AI agents without losing control of what goes out?</span>
+    <a class="runhead-toc" href="#contents" tabindex="-1">Contents</a>
+  </div>
+  <span class="runhead-bar"></span>
+</div>
+
+
+<main><article class="post" id="post" tabindex="-1"><header class="post-head"><h1 class="post-title">How can a small service business use AI agents without losing control of what goes out?</h1><p class="post-meta"><time datetime="2026-10-13">October 13, 2026</time><span>6 min read</span><span>1,250 words</span></p></header><div class="post-content post-intro"><p><em>By Jan Manalo, AI Agent Builder &amp; Automation Specialist. Revised 13 October 2026.</em></p><p><strong>Short answer:</strong> Let the agent do the reading and drafting on its own, and make it stop and ask before anything that leaves your business or can't be undone: money, messages to clients, calendar changes, deletions and sharing. Keep a human in the loop on those few actions with a one-click yes or no, and let the agent take the slow part off your team.</p></div><nav class="post-toc" id="contents" aria-labelledby="contents-title"><h2 class="post-toc-title" id="contents-title">Contents</h2><ol data-rows="4"><li><a href="#why-are-owners-nervous-about-handing-work-to-ai-agents"><span class="post-toc-n" aria-hidden="true">01</span><span class="post-toc-label">Why are owners nervous about handing work to AI agents?</span></a></li><li><a href="#what-can-an-ai-agent-safely-do-on-its-own"><span class="post-toc-n" aria-hidden="true">02</span><span class="post-toc-label">What can an AI agent safely do on its own?</span></a></li><li><a href="#which-actions-should-always-wait-for-a-person"><span class="post-toc-n" aria-hidden="true">03</span><span class="post-toc-label">Which actions should always wait for a person?</span></a></li><li><a href="#how-does-an-approval-gate-work-in-a-real-build"><span class="post-toc-n" aria-hidden="true">04</span><span class="post-toc-label">How does an approval gate work in a real build?</span></a></li><li><a href="#how-would-i-set-this-up-for-a-10-person-agency"><span class="post-toc-n" aria-hidden="true">05</span><span class="post-toc-label">How would I set this up for a 10-person agency?</span></a></li><li><a href="#doesn-t-approving-everything-defeat-the-point"><span class="post-toc-n" aria-hidden="true">06</span><span class="post-toc-label">Doesn&#x27;t approving everything defeat the point?</span></a></li><li><a href="#where-should-you-start"><span class="post-toc-n" aria-hidden="true">07</span><span class="post-toc-label">Where should you start?</span></a></li></ol></nav><div class="post-content"><h2 id="why-are-owners-nervous-about-handing-work-to-ai-agents">Why are owners nervous about handing work to AI agents?</h2><p>Many have watched a chatbot get something confidently wrong, and an agent can act on its mistakes. A chatbot with a wrong fact wastes ten minutes of your time; an agent with the same wrong fact can email it to your best client.</p><p>Small businesses already use AI in big numbers. The U.S. Chamber of Commerce's 2025 <em>Empowering Small Business</em> report found that 58% of small businesses say they use generative AI, up from 40% in 2024 (<a href="https://www.uschamber.com/technology/artificial-intelligence/u-s-chambers-latest-empowering-small-business-report-shows-majority-of-businesses-in-all-50-states-are-embracing-ai" rel="noopener">U.S. Chamber of Commerce, August 2025</a>). Trust hasn't kept up. In Bluevine's April 2026 survey of 942 owners and financial decision-makers, 78% said they don't fully trust AI to handle low-level tasks without oversight, and 31% named distrust of AI's accuracy as a barrier to using it more (<a href="https://www.bluevine.com/blog/small-business-ai-trends-report-2026" rel="noopener">Bluevine, 2026 Small Business AI Trends Report</a>).</p><p>I think those owners are right to be careful. Nobody should hand an agent the keys and walk away. But refusing to trust it with anything leaves your team doing the slow work by hand, which is the reason you looked at AI in the first place, so the useful move is to decide action by action what the agent may do alone.</p><h2 id="what-can-an-ai-agent-safely-do-on-its-own">What can an AI agent safely do on its own?</h2><p>Anything that stays inside your business and is easy to check or undo. In the agents I run every day, that list is long:</p><ul><li>Reading email, forms and documents, and pulling out the details that matter</li><li>Labelling and filing</li><li>Drafting replies, proposals and follow-ups, saved as drafts and never sent</li><li>Writing notes and summaries into your own tools, such as a Notion page or a Google Sheet</li><li>Researching a lead or a topic before you talk to anyone</li></ul><p>An agent can work through a full inbox while you're on a client call, and nothing it does there can embarrass you, because nobody outside ever sees it.</p><h2 id="which-actions-should-always-wait-for-a-person">Which actions should always wait for a person?</h2><p>I sort them into five groups. Anything in them stops and waits for a yes or no:</p><div class="post-table post-table--stack post-wide" role="region" tabindex="0" aria-label="Which actions should always wait for a person?"><table><thead><tr><th scope="col">Group</th><th scope="col">Examples</th><th scope="col">Why it waits</th></tr></thead><tbody><tr><th scope="row">Money</th><td data-label="Examples">Refunds, charges, invoices, payouts, subscriptions</td><td data-label="Why it waits">Hard to reverse, and clients notice fast</td></tr><tr><th scope="row">Sending</th><td data-label="Examples">Emails, replies, texts, social posts</td><td data-label="Why it waits">Once it's out, it's out</td></tr><tr><th scope="row">Calendar</th><td data-label="Examples">Booking, moving or cancelling meetings</td><td data-label="Why it waits">It changes someone else's day</td></tr><tr><th scope="row">Deleting</th><td data-label="Examples">Trashing files, records or emails</td><td data-label="Why it waits">Recovery isn't always possible</td></tr><tr><th scope="row">Sharing</th><td data-label="Examples">File shares, invites, access and permissions</td><td data-label="Why it waits">Your data leaves your control</td></tr></tbody></table></div><p>Look at what isn't on the list. Writing a draft, updating an internal note and reading a contract all run without a click.</p><h2 id="how-does-an-approval-gate-work-in-a-real-build">How does an approval gate work in a real build?</h2><p>My own marketing runs on a small team of JWS agents, built on Claude Code with an approval step before anything goes out. Each agent is one Markdown file that sets its job, the apps it may use, whether it can only read or can also write, and the hard limits it must never cross.</p><p>Take the two agents that write email. Hazel, my pipeline agent, researches small businesses that could use automation and drafts outreach and follow-ups. Reid drafts collaboration and guest-post pitches. Both save their work as Gmail drafts, and neither of them can send. I read each draft and press send myself, or I don't. Hazel's limits go further: she never books a call or quotes a price, because her file says so.</p><p>The rest of the team works the same way. Agents draft and I decide, so nothing gets posted, sent, published, bought or deleted until I've said yes.</p><p>One lesson from building it: action names can mislead. A tool called &quot;Create Message&quot; sounds harmless until you notice it texts a customer through Twilio. So I sort every write action an agent can reach into the five groups by what it does. The name doesn't decide.</p><p>This article went through the same steps. Owen, my content agent, drafted it, and Brooke, my marketing lead agent, reviewed it. Then it waited for my approval before Clara, my web agent, could prepare it for the site, and I still merge that change myself.</p><h2 id="how-would-i-set-this-up-for-a-10-person-agency">How would I set this up for a 10-person agency?</h2><p>Suppose you run a 10-person marketing agency and new-client onboarding eats a chunk of your account managers' week. Here's the shape I'd build, with each gate marked:</p><ol><li>A signed proposal arrives. The agent reads it and sets up the client's folder, project board, kickoff checklist and internal notes page in your tools. <em>Runs on its own.</em></li><li>It drafts the welcome email with the kickoff details and the questionnaire link. <em>Waits: sending.</em></li><li>It finds a few open kickoff slots across the team's calendars and suggests them. <em>Waits: calendar.</em></li><li>It drafts the first invoice from the numbers in the proposal. <em>Waits: money.</em></li><li>It shares the client folder with the client's contacts. <em>Waits: sharing.</em></li></ol><p>Your account manager reads four drafts and clicks yes. The setup, the copying between tools and the &quot;did anyone send the questionnaire?&quot; chasing all move to the agent. I don't have a measured client result to share yet, so I won't guess at the hours this saves; what I can show you is the build itself.</p><h2 id="doesn-t-approving-everything-defeat-the-point">Doesn&#x27;t approving everything defeat the point?</h2><p>Not if the gates sit in the right places. The slow part of most client work is reading, working out what's needed and writing it up, while clicking send on a draft you've skimmed takes seconds.</p><p>The gates don't have to stay forever, either. Once an agent has drafted the same kind of reply correctly for weeks, you can let that one action through and keep the rest gated. I'd start strict and loosen one action at a time.</p><p>You also don't need a custom system to get this. If you build in n8n, it can require human approval before an AI Agent runs a specific tool (<a href="https://docs.n8n.io/build/integrate-ai/ai-examples/human-in-the-loop-for-tools" rel="noopener">n8n docs: human-in-the-loop for tools</a>). I build in n8n too: my Deal Flow Checker, for example, screens deal-flow emails in Gmail against a set of acquisition criteria.</p><h2 id="where-should-you-start">Where should you start?</h2><p>Pick the one workflow where your team copies the same information between the same tools every week. Write down every action in it, mark the ones that touch money, client messages, calendars, deletions or access, and gate those. Everything else is fair game for an agent.</p><p>If you'd like a second pair of eyes on that list, <a href="https://calendly.com/janmm-va/30min?utm_source=website&amp;utm_medium=article&amp;utm_campaign=ai-agents-approval-gate" rel="noopener">book a 30-minute call with me</a> and we'll map your first workflow together, gates included.</p><p class="post-tagline"><em>Less busy. More built.</em></p><h2 id="sources">Sources</h2><ul><li>U.S. Chamber of Commerce, <em>Empowering Small Business: The Impact of Technology on U.S. Small Business</em> (2025), press release of 18 August 2025: <a href="https://www.uschamber.com/technology/artificial-intelligence/u-s-chambers-latest-empowering-small-business-report-shows-majority-of-businesses-in-all-50-states-are-embracing-ai" rel="noopener">https://www.uschamber.com/technology/artificial-intelligence/u-s-chambers-latest-empowering-small-business-report-shows-majority-of-businesses-in-all-50-states-are-embracing-ai</a></li><li>Bluevine, <em>2026 Small Business AI Trends Report</em> (survey of 942 U.S. owners and financial decision-makers by Centiment, fielded 7 to 9 April 2026): <a href="https://www.bluevine.com/blog/small-business-ai-trends-report-2026" rel="noopener">https://www.bluevine.com/blog/small-business-ai-trends-report-2026</a></li><li>n8n docs, Human-in-the-loop for tools: <a href="https://docs.n8n.io/build/integrate-ai/ai-examples/human-in-the-loop-for-tools" rel="noopener">https://docs.n8n.io/build/integrate-ai/ai-examples/human-in-the-loop-for-tools</a></li><li>Deal Flow Checker: Brand &amp; Fact Base; project page on <a href="https://janmm97.github.io/jan-website/" rel="noopener">janmm97.github.io/jan-website</a>. The JWS agents described here (Hazel, Reid, Owen, Brooke, Clara): Agent Showcase Fact Sheet, 13 October 2026.</li></ul></div><nav class="post-continue post-continue--compact" aria-labelledby="keep-reading-title"><h2 id="keep-reading-title">Keep reading</h2><div class="post-entry"><div><h3 class="post-entry-title"><a href="../what-to-learn-instead-of-ai-automation/">Here's What I'd Learn Instead of AI Automation in 2027</a></h3><p class="post-entry-meta"><span>Related</span></p></div><div><p class="post-entry-excerpt">Know some Zapier, Make or n8n? Here's the six-stage roadmap I'd follow next: LLMs, process mapping, APIs and webhooks, integrations, AI agents, and AI systems that run safely with human approval.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></div>
+<div class="post-entry"><div><h3 class="post-entry-title"><a href="../deepseek-v4-1-flash-vs-claude-sonnet-5-5/">DeepSeek V4.1 Flash tied Claude Sonnet 5.5 on my blog intros, at about an eighth of the cost</a></h3><p class="post-entry-meta"><span>Related</span></p></div><div><p class="post-entry-excerpt">Four AI models wrote the same three blog intros. DeepSeek V4.1 Flash tied Claude Sonnet 5.5 at 3.93 out of 5 for about an eighth of the cost, and hidden reasoning made up most of every bill.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></div><div class="post-continue-links"><a href="../../projects/">See the projects<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a href="../../services/">Services<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a href="../../blog/">All posts<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></nav></article></main><footer>
+  <div class="container foot-in">
+    <span>© 2026 Jan</span>
+    <span class="foot-page">The working notes</span>
+    <span><a href="https://flaxen-crayon-74f.notion.site/3e57c1c329e280228fcbd4f5d6f65657?pvs=105" target="_blank" rel="noopener">submit a request</a></span>
+  </div>
+</footer>
+</body>
+</html>
