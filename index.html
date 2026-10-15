@@ -12,31 +12,12 @@
   b.setAttribute('href',new URL(b.getAttribute('href')||'./',location.href).href);
 })();
 </script>
-<script>
-(()=>{
-  const root=document.documentElement;
-  root.classList.add('entry-pending');
-  root.dataset.introStarted=String(performance.now());
-  performance.mark('portfolio:intro-start');
-  const finish=()=>{
-    if(!root.classList.contains('entry-pending'))return;
-    root.classList.remove('entry-pending');
-    document.getElementById('entryLoader')?.remove();
-    document.querySelectorAll('[data-intro-inert]').forEach(el=>{el.inert=false;el.removeAttribute('data-intro-inert')});
-    delete root.dataset.introStarted;
-    performance.mark('portfolio:intro-end');
-    document.dispatchEvent(new Event('portfolio:entered'));
-  };
-  window.__finishPortfolioIntro=finish;
-  setTimeout(finish,2800);
-})();
-</script>
 <link rel="preload" href="assets/images/websitelogo-blackbg1.svg" as="image">
-<script src="assets/js/entry.js?v=2026-09-30.loader1" defer></script>
+
 <noscript><style>.page.page-home{display:flex}</style></noscript>
 <title>Jan — AI Agent Builder & Automation Specialist</title>
 <meta name="description" content="Jan, AI agent builder and automation specialist. Custom AI agents, n8n workflows and multi-agent systems like J/OS HQ that turn repetitive work into systems.">
-<meta name="theme-color" content="#0b0b0b">
+<meta name="theme-color" content="#05070b">
 <link rel="canonical" href="https://janmm97.github.io/jan-website/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
@@ -129,78 +110,137 @@
      "position": 2
     },
     {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "J/OS Agents",
-      "description": "A private command center that runs AI agents for two separate businesses from one place while keeping the two strictly apart.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Agents.png",
-      "codeRepository": "https://github.com/janmm97/janhq",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
+      "@type": "WebSite",
+      "@id": "https://janmm97.github.io/jan-website/#website",
+      "url": "https://janmm97.github.io/jan-website/",
+      "name": "Jan — AI Agent Builder & Automation Specialist",
+      "description": "Jan, AI agent builder and automation specialist. Custom AI agents, n8n workflows and multi-agent systems like J/OS HQ that turn repetitive work into systems.",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://janmm97.github.io/jan-website/#person"
       }
-     },
-     "position": 3
     },
     {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "AI Video Ad AutoSync Pipeline",
-      "description": "An end-to-end AI video ad automation in n8n that turns a simple form submission into a finished vertical video asset.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/n8n-pipeline.png",
-      "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/sora-2-autosync-v2",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
+      "@type": "ProfilePage",
+      "@id": "https://janmm97.github.io/jan-website/#profilepage",
+      "url": "https://janmm97.github.io/jan-website/",
+      "name": "Jan — AI Agent Builder & Automation Specialist",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://janmm97.github.io/jan-website/#website"
+      },
+      "mainEntity": {
+        "@type": "Person",
+        "@id": "https://janmm97.github.io/jan-website/#person",
+        "name": "Jan",
+        "url": "https://janmm97.github.io/jan-website/",
+        "jobTitle": "AI Agent Builder & Automation Specialist",
+        "description": "Computer Science graduate who builds custom AI agents and connected workflows, combining operations, automation, and AI to simplify repetitive work.",
+        "knowsAbout": [
+          "AI agents",
+          "Workflow automation",
+          "Multi-agent systems",
+          "Operations",
+          "n8n"
+        ],
+        "sameAs": [
+          "https://github.com/janmm97"
+        ]
       }
-     },
-     "position": 4
     },
     {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "Multi-Agent Content Automation",
-      "description": "A multi-agent AI content automation system that generates, organizes, and prepares social media content across multiple channels.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/n8n-content-writer.png",
-      "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/content-automation",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
-      }
-     },
-     "position": 5
-    },
-    {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "Deal Flow Checker",
-      "description": "An n8n automation that monitors incoming deal-flow emails in Gmail and screens every business opportunity against a defined set of acquisition criteria.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/Deal%20Flow%20Checker.png",
-      "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/deal-flow-checker",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
-      }
-     },
-     "position": 6
-    },
-    {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "Automation Idea Summary and Prompt Writer",
-      "description": "An n8n intake workflow that turns messy automation requests into structured, actionable data.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/Automation%20Idea%20Summary%20and%20Prompt%20Writer.png",
-      "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/automation-idea-summary-and-prompt-writer",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
-      }
-     },
-     "position": 7
+      "@type": "ItemList",
+      "@id": "https://janmm97.github.io/jan-website/#projects",
+      "name": "Selected work",
+      "numberOfItems": 6,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "J/OS HQ",
+            "description": "A local command center that runs AI agents for two businesses behind a single approval gate. Built on the One CLI, Claude Code, and the Codex CLI, it routes each request to the right workspace.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Dashboard.png",
+            "codeRepository": "https://github.com/janmm97/janhq",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 1
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "J/OS Agents",
+            "description": "A private command center that runs AI agents for two separate businesses from one place while keeping the two strictly apart.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Agents.png",
+            "codeRepository": "https://github.com/janmm97/janhq",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 2
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "AI Video Ad AutoSync Pipeline",
+            "description": "An end-to-end AI video ad automation in n8n that turns a simple form submission into a finished vertical video asset.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/n8n-pipeline.png",
+            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/sora-2-autosync-v2",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 3
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "Multi-Agent Content Automation",
+            "description": "A multi-agent AI content automation system that generates, organizes, and prepares social media content across multiple channels.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/n8n-content-writer.png",
+            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/content-automation",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 4
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "Deal Flow Checker",
+            "description": "An n8n automation that monitors incoming deal-flow emails in Gmail and screens every business opportunity against a defined set of acquisition criteria.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/Deal%20Flow%20Checker.png",
+            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/deal-flow-checker",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 5
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "Automation Idea Summary and Prompt Writer",
+            "description": "An n8n intake workflow that turns messy automation requests into structured, actionable data.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/Automation%20Idea%20Summary%20and%20Prompt%20Writer.png",
+            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/automation-idea-summary-and-prompt-writer",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 6
+        }
+      ]
     }
-   ]
-  }
- ]
+  ]
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=2026-09-30.1">
@@ -616,28 +656,18 @@ footer{background:rgba(9,13,20,.35)}
   .pcard-media img,.pcard-media .pcard-fallback{transition:none}
 }
 </style>
-<noscript><style>.page{display:flex!important}.nav,.mmenu,.toast{display:none!important}.process-wrap{height:auto!important}.process-viewport{position:static!important;display:block!important;height:auto!important}.process-stage{position:static!important;opacity:1!important;visibility:visible!important;transform:none!important}.svc-scroll-wrap,.process-canvas-wrap,.process-chapters{display:none!important}</style></noscript>
+<noscript><style>.page{display:flex!important;flex-direction:column}.nav,.mmenu,.toast{display:none!important}.process-wrap{height:auto!important}.process-viewport{position:static!important;display:block!important;height:auto!important}.process-stage{position:static!important;opacity:1!important;visibility:visible!important;transform:none!important}.svc-scroll-wrap,.process-canvas-wrap,.process-chapters{display:none!important}</style></noscript>
 <link rel="preload" href="assets/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Bump ?v= on these six files whenever any of them changes, so browsers drop cached copies. -->
 <link rel="stylesheet" href="assets/css/studio.css?v=2026-10-09.1">
 <link rel="stylesheet" href="assets/css/service-logo.css?v=2026-09-30.3">
 <link rel="stylesheet" href="assets/css/entry.css?v=2026-09-30.loader1">
 <link rel="stylesheet" href="assets/css/blog.css?v=2026-10-10.1">
+<link rel="stylesheet" href="assets/css/lab.css?v=2026-10-13.1">
+<link rel="stylesheet" href="assets/css/astral.css?v=2026-10-15.3">
+<link rel="stylesheet" href="assets/css/mission.css?v=2026-10-15.2">
 </head>
 <body>
-<div class="entry-loader" id="entryLoader" aria-label="Opening Jan's portfolio">
-  <div class="loader-content">
-    <div class="loader-stage" aria-hidden="true">
-      <div class="loader-shadow"></div>
-      <img class="loader-logo" src="assets/images/websitelogo-blackbg1.svg" alt="" width="84" height="84" fetchpriority="high">
-      <div class="loader-floor"></div>
-    </div>
-    <div class="loader-progress" role="progressbar" aria-label="Opening portfolio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-      <div class="loader-readout" aria-hidden="true"><span>Loading</span><span id="loaderPercent">0%</span></div>
-      <div class="loader-track" aria-hidden="true"><span id="loaderFill"></span></div>
-    </div>
-  </div>
-</div>
 <a class="skip-link" href="#mainContent">Skip to content</a>
 
 
@@ -669,22 +699,127 @@ footer{background:rgba(9,13,20,.35)}
 
 <main id="mainContent" tabindex="-1">
   <section class="page page-home" data-page="home">
- <div class="container hero">
-  <div class="hero-copy"><h1 class="hero-title" tabindex="-1" data-heading>Less busy.<br>More <span class="outline">built.</span></h1>
-   <p class="hero-role">JAN / AI AGENTS &amp; AUTOMATION</p>
-   <p class="hero-sub">I turn repetitive work into systems that work for you. Custom AI agents. Connected workflows. More time for what matters.</p>
-   <div class="hero-cta"><a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a><a class="text-link" href="projects/" data-route="projects">Explore my work</a></div>
+<div class="sky-hero mission-hero" id="skyHero">
+  <div class="container sky-hero-in">
+    <div class="hero-copy">
+      <h1 class="hero-title" tabindex="-1" data-heading>Less busy.<br>More built.</h1>
+      <p class="hero-role">Jan / AI agents &amp; automation</p>
+      <p class="hero-sub">I turn repetitive work into systems that work for you. Custom AI agents. Connected workflows. More time for what matters.</p>
+      <div class="hero-cta"><a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a><a class="text-link" href="projects/" data-route="projects">Explore my work</a></div>
+    </div>
+<figure class="mission-art" data-stage="0" aria-label="An illustration of an AI agent connecting requests to business workflows through your approval">
+      <div class="mission-viewport">
+        <svg class="mission-poster" viewBox="0 0 700 625" aria-hidden="true">
+          <g fill="none" stroke="#9fd8ff" stroke-width="1">
+            <circle cx="350" cy="318" r="230" opacity=".2" stroke-dasharray="1 12"/>
+            <ellipse cx="350" cy="318" rx="260" ry="110" transform="rotate(-22 350 318)" opacity=".65"/>
+            <ellipse cx="350" cy="318" rx="220" ry="115" transform="rotate(62 350 318)" opacity=".5"/>
+            <ellipse cx="350" cy="318" rx="278" ry="75" transform="rotate(23 350 318)" opacity=".4"/>
+            <circle cx="350" cy="318" r="105" opacity=".6" stroke-dasharray="1 4"/>
+            <ellipse cx="350" cy="318" rx="65" ry="105" opacity=".3"/>
+            <ellipse cx="350" cy="318" rx="105" ry="34" opacity=".3"/>
+            <path d="M42 190C190 190 140 310 240 310M42 213C180 213 155 325 240 325M460 330C540 330 525 425 644 425M460 343C540 343 535 448 644 448" opacity=".4"/>
+          </g>
+          <g fill="#f2f4f8"><circle cx="121" cy="367" r="3"/><circle cx="437" cy="139" r="3"/><circle cx="568" cy="333" r="3"/><circle cx="246" cy="481" r="3"/></g>
+        </svg>
+        <canvas class="mission-canvas" aria-hidden="true"></canvas>
+        <span class="mission-label input">Your request<small>Repetitive work, reimagined</small></span>
+        <span class="mission-label core">AI agent<small>Jan / systems</small></span>
+        <span class="mission-label approval">Your approval<small>Permission to act</small></span>
+        <span class="mission-label output">Connected workflows<small>Actions on real systems</small></span>
+      </div>
+      <figcaption class="mission-caption">
+        <div class="mission-caption-top"><span>Agents that act. You stay in control.</span><span>Illustration</span></div>
+        <ol class="mission-stages" aria-label="Workflow stages">
+          <li class="mission-step is-active"><span>01</span>Dry run</li>
+          <li class="mission-step"><span>02</span>Approve</li>
+          <li class="mission-step"><span>03</span>Run once</li>
+          <li class="mission-step"><span>04</span>Read back</li>
+        </ol>
+        <p class="mission-detail" id="missionDetail">Dry-run every write. See what the agent plans to change before anything happens.</p>
+      </figcaption>
+    </figure>
   </div>
-  <div class="signal-art"><canvas id="signalCanvas" aria-hidden="true"></canvas><button class="motion-toggle" type="button" aria-pressed="false">Pause motion</button><div class="art-caption"><span id="formationName">Nanotechnology / assembling</span><span>1,500 PARTICLES</span></div></div>
- </div>
- <div class="container home-strip"><span>Built around the way you work.</span><a href="services/" data-route="services">Explore the process <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a><span>IDEA → SYSTEM → IMPACT</span></div>
- <section class="selected-work"><div class="container"><div class="selected-head"><h2>Built to do the work.</h2><a href="projects/" data-route="projects">All projects</a></div><div class="selected-feature"><div><div class="selected-image"><video id="hqShowcase" width="1920" height="1080" muted loop playsinline preload="none" poster="assets/images/HQ-Showcase-Poster-2026-09-30.jpg" aria-label="J/OS HQ demo: an AI agent task is routed to the right workspace, planned read-only, approved once by the operator, then verified and logged."><source src="assets/images/HQ-Showcase-Video-2026-09-30.mp4" type="video/mp4"></video><button class="motion-toggle" type="button" aria-controls="hqShowcase" aria-pressed="false">Pause video</button></div><span class="selected-caption">J/OS HQ — OPERATIONS, CONNECTED</span></div><div><h3>A place for the moving parts.</h3><p>Explore J/OS HQ, custom AI agents, and the workflows that bring tools, decisions, and operations together.</p><a class="text-link selected-link" href="projects/" data-route="projects">Explore the projects <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div></div></div></section><div class="container page-closing"><h2>Good systems start with a conversation.</h2><div><p>Tell me what’s slowing you down. Let’s find a better way to work.</p><a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div></div>
+</div>
+<section class="gate container" id="approvalGate" aria-labelledby="gateTitle">
+  <div class="gate-head">
+    <h2 id="gateTitle">Every write passes the gate.</h2>
+    <p>Dry-run every write, approve the exact payload, run it once, read the result back. I run these agents on my own businesses’ accounts every day.</p>
+  </div>
+  <div class="gate-stage">
+    <div class="gate-orbit" aria-hidden="true">
+      <svg viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid meet">
+        <path class="g-ring" d="M 80 320 A 520 230 0 1 1 1120 320 A 520 230 0 1 1 80 320"/>
+        <path class="g-ring-lit" pathLength="1" d="M 80 320 A 520 230 0 1 1 1120 320 A 520 230 0 1 1 80 320"/>
+        <circle class="g-sun-ring" cx="600" cy="320" r="64"/>
+        <image href="assets/images/websitelogo-blackbg1.svg" x="572" y="292" width="56" height="56"/>
+        <g class="g-station"><circle cx="80" cy="320" r="7"/><text class="g-lbl-d" x="60" y="324" text-anchor="end">Dry run</text><text class="g-lbl-m" x="80" y="372" text-anchor="middle">Dry run</text></g>
+        <g class="g-station"><circle cx="600" cy="90" r="7"/><text class="g-lbl-d" x="600" y="66" text-anchor="middle">Approve</text><text class="g-lbl-m" x="600" y="58" text-anchor="middle">Approve</text></g>
+        <g class="g-station"><circle cx="1120" cy="320" r="7"/><text class="g-lbl-d" x="1140" y="324" text-anchor="start">Run once</text><text class="g-lbl-m" x="1120" y="372" text-anchor="middle">Run once</text></g>
+        <g class="g-station"><circle cx="600" cy="550" r="7"/><text class="g-lbl-d" x="600" y="590" text-anchor="middle">Read back</text><text class="g-lbl-m" x="600" y="598" text-anchor="middle">Read back</text></g>
+        <circle class="g-signal-tail" r="9" style="offset-path:path('M 80 320 A 520 230 0 1 1 1120 320 A 520 230 0 1 1 80 320')"/>
+        <circle class="g-signal" r="5" style="offset-path:path('M 80 320 A 520 230 0 1 1 1120 320 A 520 230 0 1 1 80 320')"/>
+      </svg>
+    </div>
+    <ol class="gate-steps">
+      <li><b>Dry run</b><span>every write</span></li>
+      <li><b>Approve</b><span>the exact payload</span></li>
+      <li><b>Run</b><span>it once</span></li>
+      <li><b>Read back</b><span>the result</span></li>
+    </ol>
+  </div>
+</section>
+ <section class="orbit" id="modelOrbit" aria-labelledby="orbitTitle">
+  <div class="container orbit-head">
+   <h2 id="orbitTitle">The models,<br>in orbit.</h2>
+   <p class="orbit-lead">The labs and platforms behind today’s language models.</p>
+  </div>
+  <div class="orbit-stage" id="orbitStage">
+   <div class="orbit-ring" data-ring="0" aria-hidden="true"></div><div class="orbit-ring" data-ring="1" aria-hidden="true"></div><div class="orbit-ring" data-ring="2" aria-hidden="true"></div>
+   <div class="orbit-sun" aria-hidden="true"><img src="assets/images/websitelogo-blackbg1.svg" alt="" width="72" height="72"></div>
+   <ul class="orbit-list" aria-label="Language-model makers">
+    <li data-ring="0" tabindex="0"><img src="assets/images/llm-logos/claude.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Claude</span></li>
+    <li data-ring="0" tabindex="0"><img src="assets/images/llm-logos/openai.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>OpenAI</span></li>
+    <li data-ring="0" tabindex="0"><img src="assets/images/llm-logos/withone.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>One</span></li>
+    <li data-ring="0" tabindex="0"><img src="assets/images/llm-logos/deepseek.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>DeepSeek</span></li>
+    <li data-ring="0" tabindex="0"><img src="assets/images/llm-logos/qwen.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Qwen</span></li>
+    <li data-ring="0" tabindex="0"><img src="assets/images/llm-logos/antigravity.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Antigravity</span></li>
+    <li data-ring="1" tabindex="0"><img src="assets/images/llm-logos/anthropic.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Anthropic</span></li>
+    <li data-ring="1" tabindex="0"><img src="assets/images/llm-logos/deepmind.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Google DeepMind</span></li>
+    <li data-ring="1" tabindex="0"><img src="assets/images/llm-logos/meta.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Meta</span></li>
+    <li data-ring="1" tabindex="0"><img src="assets/images/llm-logos/mistral.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Mistral AI</span></li>
+    <li data-ring="1" tabindex="0"><img src="assets/images/llm-logos/xai.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>xAI</span></li>
+    <li data-ring="1" tabindex="0"><img src="assets/images/llm-logos/moonshot.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Moonshot AI</span></li>
+    <li data-ring="1" tabindex="0"><img src="assets/images/llm-logos/zai.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Zhipu AI</span></li>
+    <li data-ring="1" tabindex="0"><img src="assets/images/llm-logos/minimax.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>MiniMax</span></li>
+    <li data-ring="1" tabindex="0"><img src="assets/images/llm-logos/perplexity.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Perplexity</span></li>
+    <li data-ring="1" tabindex="0"><img src="assets/images/llm-logos/nvidia.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>NVIDIA</span></li>
+    <li data-ring="1" tabindex="0"><img src="assets/images/llm-logos/microsoft.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Microsoft</span></li>
+    <li data-ring="1" tabindex="0"><img src="assets/images/llm-logos/openrouter.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>OpenRouter</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/cohere.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Cohere</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/huggingface.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Hugging Face</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/groq.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Groq</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/ai21.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>AI21 Labs</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/stepfun.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>StepFun</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/bytedance.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>ByteDance</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/tencent.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Tencent</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/baidu.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Baidu</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/amazon.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Amazon</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/ibm.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>IBM</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/liquid.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Liquid AI</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/reka.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Reka</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/ai2.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Ai2</span></li>
+    <li data-ring="2" tabindex="0"><img src="assets/images/llm-logos/inflection.png" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Inflection AI</span></li>
+   </ul>
+  </div>
+  <p class="container orbit-credit">Marks via Logo.dev and Lobe Icons. Trademarks belong to their owners; shown for reference, not endorsement.</p>
+ </section>
+ <section class="selected-work"><div class="container"><div class="selected-head"><h2>Built to do the work.</h2><a href="projects/" data-route="projects">All projects</a></div><div class="selected-feature"><div><div class="selected-image"><img class="hq-poster" width="1920" height="1080" loading="lazy" src="assets/images/HQ-Showcase-Poster-2026-09-30.jpg" alt="J/OS HQ: AI agents working with real systems behind an approval gate."></div><span class="selected-caption">J/OS HQ — OPERATIONS, CONNECTED</span></div><div><h3>A place for the moving parts.</h3><p>Explore J/OS HQ, custom AI agents, and the workflows that bring tools, decisions, and operations together.</p><a class="text-link selected-link" href="projects/" data-route="projects">Explore the projects <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div></div></div></section><div class="container page-closing"><h2>Good systems start with a conversation.</h2><div><p>Tell me what’s slowing you down. Let’s find a better way to work.</p><a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div></div>
  </section>
 
 
   <section class="page" data-page="about">
-    <div class="about-bg" aria-hidden="true"></div>
-    <div class="about-glow" aria-hidden="true"></div>
+    <div class="sky-head about-sky" aria-hidden="true"><img src="assets/images/cosmos/nebula.webp" alt="" width="2400" height="1340" data-parallax=".22"></div>
     <div class="container about-inner">
       <header class="about-head">
         <h1 class="hero-title" tabindex="-1" data-heading>Curious by nature.<br><em class="grad-em" id="aboutWord">Builder by practice.</em></h1>
@@ -699,23 +834,16 @@ footer{background:rgba(9,13,20,.35)}
         <p>Today, I work as an <b>Executive Assistant focused on Operations and AI Agents</b>, combining operations, automation, and AI to solve real problems and help things run more smoothly.</p>
         <p>This site is also a place for me to share what I learn along the way — from AI agents and automation to operations, tools, experiments, and lessons from the work I do.</p>
         <p>If any of that interests you, feel free to look around. You might learn something useful — and hopefully, so will I. :D</p>
-        <div class="nano-scene nano-moonwalk">
-          <canvas id="moonwalkCanvas" role="img" aria-label="Luminous white particles assemble into Jan's personal logo, Claude, ChatGPT, DeepSeek, Qwen, Antigravity, and WithOne, scattering through depth between each logo and looping back to Jan's personal logo."></canvas>
-          <button class="motion-toggle" type="button" aria-controls="moonwalkCanvas" aria-pressed="false">Pause motion</button>
-        </div>
+        <figure class="mark-swarm" id="markSwarm"><canvas role="img" aria-label="Luminous particles assemble into Jan's logo, then Claude, OpenAI, One, DeepSeek, Qwen, Antigravity, Anthropic, Google DeepMind, Meta, Mistral AI, xAI and NVIDIA, scattering through depth between each mark."></canvas><figcaption aria-hidden="true"><span id="swarmIndex">01</span><span id="swarmName">Jan</span></figcaption></figure>
         </div>
         <div class="about-journey">
         <h2 class="about-h3-section">Professional Journey</h2>
         <div class="timeline">
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">TLP</span><span class="timeline-date">August 2024 – January 2026</span></div><div class="timeline-role">Executive Assistant | Operations, HR &amp; Recruitment, Market Research, Workflows &amp; Automation</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">HFA</span><span class="timeline-date">August 2024 – December 2025</span></div><div class="timeline-role">Virtual Assistant | Community Management, Customer Support, Digital Content &amp; SEO Copywriting</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">AIOP</span><span class="timeline-date">September 2022 – July 2024</span></div><div class="timeline-role">Ecommerce Assistant | Customer Support | Social Media | Product Management | Data Reporting</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">8BT</span><span class="timeline-date">November 2022 – May 2023</span></div><div class="timeline-role">Customer Support | Subject Matter Expert, Customer Success Specialist, ECommerce, Social Media &amp; Content</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">TrueFootage</span><span class="timeline-date">September 2022 – January 2023</span></div><div class="timeline-role">Appraisal Data Assistant | Data Entry</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">WebProvise/Bamboo</span><span class="timeline-date">June 2022 – December 2022</span></div><div class="timeline-role">Software Support Specialist | Quality Assurance, Product, Client Engagement, &amp; Operations</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Ibex</span><span class="timeline-date">November 2021 – August 2022</span></div><div class="timeline-role">Technical Customer Support | Consumer Support Specialist</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Datamatics</span><span class="timeline-date">August 2020 – November 2021</span></div><div class="timeline-role">IT Helpdesk | Software Support, Product, Code, &amp; Subject Matter Expert</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Concentrix/QuickBooks</span><span class="timeline-date">July 2019 – January 2020</span></div><div class="timeline-role">Customer Support &amp; Technical Advisor II | Consumer &amp; Client Support, Product &amp; Sales</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Independent Search Fund</span><span class="timeline-date">August 2024 – January 2026</span></div><div class="timeline-role">Executive Assistant | Operations, HR &amp; Recruitment, Market Research, Workflows &amp; Automation</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Investment Intelligence &amp; Hedge Fund Research Platform</span><span class="timeline-date">August 2024 – December 2025</span></div><div class="timeline-role">Virtual Assistant | Community Management, Customer Support, Digital Content &amp; SEO Copywriting</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Online Retail &amp; E-commerce Business</span><span class="timeline-date">September 2022 – July 2024</span></div><div class="timeline-role">Ecommerce Assistant | Customer Support | Social Media | Product Management | Data Reporting</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Environmental Conservation &amp; Carbon Offset Company</span><span class="timeline-date">November 2022 – May 2023</span></div><div class="timeline-role">Customer Support | Subject Matter Expert, Customer Success Specialist, ECommerce, Social Media &amp; Content</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Real Estate Firm</span><span class="timeline-date">September 2022 – January 2023</span></div><div class="timeline-role">Appraisal Data Assistant | Data Entry</div></div>
         </div>
       </div>
       </div>
@@ -728,12 +856,13 @@ footer{background:rgba(9,13,20,.35)}
 
   <!-- ============ PROJECTS ============ -->
   <section class="page" data-page="projects">
-    <div class="container projects-head">
-      <h1 class="projects-title" tabindex="-1" data-heading>Selected work.</h1>
-      <p class="projects-lead">Over the years, I've worked on a variety of projects. Here are a few of them. Feel free to reach out if you've got any ideas or want to chat!</p>
+    <div class="sky-art projects-sky" aria-hidden="true"><img src="assets/images/cosmos/eclipse.webp" alt="" width="2400" height="1340" data-parallax=".2"></div><div class="container projects-head">
+      <h1 class="projects-title" tabindex="-1" data-heading>Systems,<br>in practice.</h1>
+      <p class="projects-lead">Explore the agents and connected workflows I’ve built. Select a project to inspect the system, its tools, and the work it does.</p>
     </div>
     <div class="container">
-      <div class="projects-grid">
+      <div class="project-tools" hidden><div class="lab-filters" role="group" aria-label="Project category"><button type="button" data-project-filter="all" aria-pressed="true">All work</button><button type="button" data-project-filter="agents" aria-pressed="false">Agent systems</button><button type="button" data-project-filter="workflows" aria-pressed="false">Workflows</button></div><button id="projectView" class="lab-text-button" type="button" aria-pressed="true">Show project explorer</button></div><div class="project-workbench"><nav class="project-index" aria-label="Select a project" hidden></nav><div class="projects-grid">
+
 
         <article class="pcard">
           <a class="pcard-media" href="assets/images/Lil Orchy.png" aria-haspopup="dialog" aria-controls="imageViewer" aria-label="Open Orchy screenshot full screen">
@@ -1202,7 +1331,7 @@ footer{background:rgba(9,13,20,.35)}
           </div>
         </article>
 
-      </div>
+      </div></div>
       <div class="projects-cta">
         <a class="btn btn-ghost" href="https://flaxen-crayon-74f.notion.site/3e57c1c329e280228fcbd4f5d6f65657?pvs=105" target="_blank" rel="noopener">Have an idea? Let's talk <span class="ar">-&gt;</span></a>
       </div>
@@ -1220,11 +1349,7 @@ footer{background:rgba(9,13,20,.35)}
           <a class="text-link" href="#servicePackages" data-scroll-target="servicePackages">View packages ↗</a>
         </div>
       </div>
-      <div class="svc-logo-slot">
-        <canvas id="serviceGod" role="img" aria-label="A Greek god formed from luminous particles holds a laptop in his left hand, types with his right, looks up, waves, and points down to invite you to explore.">A classical Greek god holding a laptop and welcoming you to explore the process below.</canvas>
-        <button class="motion-toggle" type="button" aria-controls="serviceGod" aria-pressed="false">Pause motion</button>
-        <noscript><img class="svc-god-fallback" src="assets/images/greek-god/Waving.webp" alt="A marble Greek god waves while supporting a laptop in his left hand."></noscript>
-      </div>
+      <div class="services-film" aria-hidden="true"><video class="sky-video" muted loop playsinline preload="none" poster="assets/video/ignition-poster.webp" data-src="assets/video/ignition.mp4" data-src-small="assets/video/ignition-720.mp4"></video></div>
     </div>
 
     <div class="process-wrap" id="processWrap">
@@ -1390,13 +1515,13 @@ footer{background:rgba(9,13,20,.35)}
     </div>
   </section>
 
-  <section class="page" data-page="blog">
+  <section class="page" data-page="blog"><div class="sky-art blog-sky" aria-hidden="true"><video class="sky-video" muted loop playsinline preload="none" poster="assets/video/deepfield-poster.webp" data-src="assets/video/deepfield.mp4" data-src-small="assets/video/deepfield-960.mp4"></video></div>
     <div class="container">
       <div class="projects-head">
         <h1 class="projects-title" tabindex="-1" data-heading>The working<br><em class="grad-em" id="blogWord">notes.</em></h1>
         <p class="projects-lead">Notes, lessons and experiments — from AI agents and automation to operations, tools and the work itself.</p>
       </div>
-      <ol class="post-list">
+      <div class="journal-tools" hidden><label class="journal-search" for="journalSearch">Search the notes<input id="journalSearch" type="search" placeholder="Agents, tools, operations…" autocomplete="off"></label><div class="lab-filters" role="group" aria-label="Article topic"><button type="button" data-topic="all" aria-pressed="true">All notes</button><button type="button" data-topic="experiments" aria-pressed="false">Experiments</button><button type="button" data-topic="guides" aria-pressed="false">Guides</button></div><p id="journalCount" role="status">5 notes</p></div><ol class="post-list">
 <li class="post-entry"><div><h2 class="post-entry-title"><a href="blog/human-in-the-loop-ai-agents/">How can a small service business use AI agents without losing control of what goes out?</a></h2><p class="post-entry-meta"><time datetime="2026-10-15">October 15, 2026</time><span>6 min read</span></p></div><div><p class="post-entry-excerpt">Let the agent read and draft on its own, and make it stop for a yes or no before money, client messages, calendar changes, deletions and sharing. The five actions to gate, a table, and a 10-person agency example.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></li>
 <li class="post-entry"><div><h2 class="post-entry-title"><a href="blog/deepseek-v4-1-flash-vs-claude-sonnet-5-5/">DeepSeek V4.1 Flash tied Claude Sonnet 5.5 on my blog intros, at about an eighth of the cost</a></h2><p class="post-entry-meta"><time datetime="2026-10-10">October 10, 2026</time><span>5 min read</span></p></div><div><p class="post-entry-excerpt">Four AI models wrote the same three blog intros. DeepSeek V4.1 Flash tied Claude Sonnet 5.5 at 3.93 out of 5 for about an eighth of the cost, Claude Haiku 5.5 was cheapest, and hidden reasoning made up most of every bill. Three prompts, one run each: an early signal for routine writing.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></li>
 <li class="post-entry"><div><h2 class="post-entry-title"><a href="blog/claude-haiku-5-5-vs-deepseek-v4-1-flash-vs-gpt-6-luna/">Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash: A Research-Agent Test</a></h2><p class="post-entry-meta"><time datetime="2026-10-08">October 8, 2026</time><span>3 min read</span><span>748 words</span></p></div><div><p class="post-entry-excerpt">Claude Haiku 5.5 finished my research-agent task in 35 seconds, ahead of DeepSeek V4.1 Flash and GPT-6 Luna. It wasn't the most accurate, and one task proves little.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></li>
@@ -1414,11 +1539,12 @@ footer{background:rgba(9,13,20,.35)}
           </div>
           <div><p class="post-entry-excerpt">Know some Zapier, Make or n8n? Here's the six-stage roadmap I'd follow next: LLMs, process mapping, APIs and webhooks, integrations, AI agents, and AI systems that run safely with human approval.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div>
         </li>
-      </ol>
+      </ol><div id="journalEmpty" hidden><h2>No matching notes.</h2><p>Try another phrase or clear your filters.</p><button class="btn btn-ghost" id="clearJournal" type="button">Clear search and filters</button></div>
     </div>
   </section>
 
   <section class="page" data-page="contact">
+    <div class="sky-head contact-sky" aria-hidden="true"><img src="assets/images/cosmos/ripples.webp" alt="" width="2400" height="1018" data-parallax=".12"></div>
     <div class="container contact-wrap">
       <h1 class="projects-title" tabindex="-1" data-heading>Your next idea.<br>Let’s build it.</h1>
       <p class="contact-intro">A conversation is a good place to start.</p>
@@ -2009,8 +2135,9 @@ var yr=$('#yr');if(yr){yr.textContent=String(new Date().getFullYear());}
 render(false);
 })();
 </script>
-<script src="assets/js/studio.js?v=2026-09-30.1"></script>
-<script src="assets/js/nano-scenes.js?v=2026-09-30.2"></script>
-<script src="assets/js/service-logo.js?v=2026-09-30.3"></script>
+
+<script src="assets/js/vendor/gsap.min.js"></script><script src="assets/js/vendor/CustomEase.min.js"></script><script src="assets/js/stardust.js?v=2026-10-15.4"></script><script src="assets/js/lab.js?v=2026-10-15.3"></script><script src="assets/js/astral.js?v=2026-10-15.2"></script><script src="assets/js/mission.js?v=2026-10-15.2"></script>
+
+
 </body>
 </html>

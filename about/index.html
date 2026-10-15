@@ -13,31 +13,12 @@
   b.setAttribute('href',new URL(b.getAttribute('href')||'./',location.href).href);
 })();
 </script>
-<script>
-(()=>{
-  const root=document.documentElement;
-  root.classList.add('entry-pending');
-  root.dataset.introStarted=String(performance.now());
-  performance.mark('portfolio:intro-start');
-  const finish=()=>{
-    if(!root.classList.contains('entry-pending'))return;
-    root.classList.remove('entry-pending');
-    document.getElementById('entryLoader')?.remove();
-    document.querySelectorAll('[data-intro-inert]').forEach(el=>{el.inert=false;el.removeAttribute('data-intro-inert')});
-    delete root.dataset.introStarted;
-    performance.mark('portfolio:intro-end');
-    document.dispatchEvent(new Event('portfolio:entered'));
-  };
-  window.__finishPortfolioIntro=finish;
-  setTimeout(finish,2800);
-})();
-</script>
 <link rel="preload" href="assets/images/websitelogo-blackbg1.svg" as="image">
-<script src="assets/js/entry.js?v=2026-09-30.loader1" defer></script>
+
 <noscript><style>.page[data-page="about"]{display:block}</style></noscript>
 <title>About Jan — AI Agent Builder &amp; Automation Specialist</title>
 <meta name="description" content="I'm Jan. I connect operations, technology, and the way people work. Computer Science graduate, Virtual Assistant, AI Agent Builder and Automation Specialist.">
-<meta name="theme-color" content="#0b0b0b">
+<meta name="theme-color" content="#05070b">
 <link rel="canonical" href="https://janmm97.github.io/jan-website/about/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
@@ -130,78 +111,137 @@
      "position": 2
     },
     {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "J/OS Agents",
-      "description": "A private command center that runs AI agents for two separate businesses from one place while keeping the two strictly apart.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Agents.png",
-      "codeRepository": "https://github.com/janmm97/janhq",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
+      "@type": "WebSite",
+      "@id": "https://janmm97.github.io/jan-website/#website",
+      "url": "https://janmm97.github.io/jan-website/",
+      "name": "Jan — AI Agent Builder & Automation Specialist",
+      "description": "Jan, AI agent builder and automation specialist. Custom AI agents, n8n workflows and multi-agent systems like J/OS HQ that turn repetitive work into systems.",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://janmm97.github.io/jan-website/#person"
       }
-     },
-     "position": 3
     },
     {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "AI Video Ad AutoSync Pipeline",
-      "description": "An end-to-end AI video ad automation in n8n that turns a simple form submission into a finished vertical video asset.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/n8n-pipeline.png",
-      "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/sora-2-autosync-v2",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
+      "@type": "ProfilePage",
+      "@id": "https://janmm97.github.io/jan-website/#profilepage",
+      "url": "https://janmm97.github.io/jan-website/",
+      "name": "Jan — AI Agent Builder & Automation Specialist",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://janmm97.github.io/jan-website/#website"
+      },
+      "mainEntity": {
+        "@type": "Person",
+        "@id": "https://janmm97.github.io/jan-website/#person",
+        "name": "Jan",
+        "url": "https://janmm97.github.io/jan-website/",
+        "jobTitle": "AI Agent Builder & Automation Specialist",
+        "description": "Computer Science graduate who builds custom AI agents and connected workflows, combining operations, automation, and AI to simplify repetitive work.",
+        "knowsAbout": [
+          "AI agents",
+          "Workflow automation",
+          "Multi-agent systems",
+          "Operations",
+          "n8n"
+        ],
+        "sameAs": [
+          "https://github.com/janmm97"
+        ]
       }
-     },
-     "position": 4
     },
     {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "Multi-Agent Content Automation",
-      "description": "A multi-agent AI content automation system that generates, organizes, and prepares social media content across multiple channels.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/n8n-content-writer.png",
-      "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/content-automation",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
-      }
-     },
-     "position": 5
-    },
-    {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "Deal Flow Checker",
-      "description": "An n8n automation that monitors incoming deal-flow emails in Gmail and screens every business opportunity against a defined set of acquisition criteria.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/Deal%20Flow%20Checker.png",
-      "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/deal-flow-checker",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
-      }
-     },
-     "position": 6
-    },
-    {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "Automation Idea Summary and Prompt Writer",
-      "description": "An n8n intake workflow that turns messy automation requests into structured, actionable data.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/Automation%20Idea%20Summary%20and%20Prompt%20Writer.png",
-      "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/automation-idea-summary-and-prompt-writer",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
-      }
-     },
-     "position": 7
+      "@type": "ItemList",
+      "@id": "https://janmm97.github.io/jan-website/#projects",
+      "name": "Selected work",
+      "numberOfItems": 6,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "J/OS HQ",
+            "description": "A local command center that runs AI agents for two businesses behind a single approval gate. Built on the One CLI, Claude Code, and the Codex CLI, it routes each request to the right workspace.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Dashboard.png",
+            "codeRepository": "https://github.com/janmm97/janhq",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 1
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "J/OS Agents",
+            "description": "A private command center that runs AI agents for two separate businesses from one place while keeping the two strictly apart.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Agents.png",
+            "codeRepository": "https://github.com/janmm97/janhq",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 2
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "AI Video Ad AutoSync Pipeline",
+            "description": "An end-to-end AI video ad automation in n8n that turns a simple form submission into a finished vertical video asset.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/n8n-pipeline.png",
+            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/sora-2-autosync-v2",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 3
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "Multi-Agent Content Automation",
+            "description": "A multi-agent AI content automation system that generates, organizes, and prepares social media content across multiple channels.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/n8n-content-writer.png",
+            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/content-automation",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 4
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "Deal Flow Checker",
+            "description": "An n8n automation that monitors incoming deal-flow emails in Gmail and screens every business opportunity against a defined set of acquisition criteria.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/Deal%20Flow%20Checker.png",
+            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/deal-flow-checker",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 5
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "Automation Idea Summary and Prompt Writer",
+            "description": "An n8n intake workflow that turns messy automation requests into structured, actionable data.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/Automation%20Idea%20Summary%20and%20Prompt%20Writer.png",
+            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/automation-idea-summary-and-prompt-writer",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 6
+        }
+      ]
     }
-   ]
-  }
- ]
+  ]
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=2026-09-30.1">
@@ -617,28 +657,18 @@ footer{background:rgba(9,13,20,.35)}
   .pcard-media img,.pcard-media .pcard-fallback{transition:none}
 }
 </style>
-<noscript><style>.page{display:flex!important}.nav,.mmenu,.toast{display:none!important}.process-wrap{height:auto!important}.process-viewport{position:static!important;display:block!important;height:auto!important}.process-stage{position:static!important;opacity:1!important;visibility:visible!important;transform:none!important}.svc-scroll-wrap,.process-canvas-wrap,.process-chapters{display:none!important}</style></noscript>
+<noscript><style>.page{display:flex!important;flex-direction:column}.nav,.mmenu,.toast{display:none!important}.process-wrap{height:auto!important}.process-viewport{position:static!important;display:block!important;height:auto!important}.process-stage{position:static!important;opacity:1!important;visibility:visible!important;transform:none!important}.svc-scroll-wrap,.process-canvas-wrap,.process-chapters{display:none!important}</style></noscript>
 <link rel="preload" href="assets/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Bump ?v= on these six files whenever any of them changes, so browsers drop cached copies. -->
 <link rel="stylesheet" href="assets/css/studio.css?v=2026-10-09.1">
 <link rel="stylesheet" href="assets/css/service-logo.css?v=2026-09-30.3">
 <link rel="stylesheet" href="assets/css/entry.css?v=2026-09-30.loader1">
 <link rel="stylesheet" href="assets/css/blog.css?v=2026-10-10.1">
+<link rel="stylesheet" href="assets/css/lab.css?v=2026-10-13.1">
+<link rel="stylesheet" href="assets/css/astral.css?v=2026-10-15.3">
+<link rel="stylesheet" href="assets/css/mission.css?v=2026-10-15.2">
 </head>
 <body>
-<div class="entry-loader" id="entryLoader" aria-label="Opening Jan's portfolio">
-  <div class="loader-content">
-    <div class="loader-stage" aria-hidden="true">
-      <div class="loader-shadow"></div>
-      <img class="loader-logo" src="assets/images/websitelogo-blackbg1.svg" alt="" width="84" height="84" fetchpriority="high">
-      <div class="loader-floor"></div>
-    </div>
-    <div class="loader-progress" role="progressbar" aria-label="Opening portfolio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-      <div class="loader-readout" aria-hidden="true"><span>Loading</span><span id="loaderPercent">0%</span></div>
-      <div class="loader-track" aria-hidden="true"><span id="loaderFill"></span></div>
-    </div>
-  </div>
-</div>
 <a class="skip-link" href="about/#mainContent">Skip to content</a>
 
 
@@ -671,9 +701,9 @@ footer{background:rgba(9,13,20,.35)}
 <main id="mainContent" tabindex="-1">
 
 
+
   <section class="page" data-page="about">
-    <div class="about-bg" aria-hidden="true"></div>
-    <div class="about-glow" aria-hidden="true"></div>
+    <div class="sky-head about-sky" aria-hidden="true"><img src="assets/images/cosmos/nebula.webp" alt="" width="2400" height="1340" data-parallax=".22"></div>
     <div class="container about-inner">
       <header class="about-head">
         <h1 class="hero-title" tabindex="-1" data-heading>Curious by nature.<br><em class="grad-em" id="aboutWord">Builder by practice.</em></h1>
@@ -688,23 +718,16 @@ footer{background:rgba(9,13,20,.35)}
         <p>Today, I work as an <b>Executive Assistant focused on Operations and AI Agents</b>, combining operations, automation, and AI to solve real problems and help things run more smoothly.</p>
         <p>This site is also a place for me to share what I learn along the way — from AI agents and automation to operations, tools, experiments, and lessons from the work I do.</p>
         <p>If any of that interests you, feel free to look around. You might learn something useful — and hopefully, so will I. :D</p>
-        <div class="nano-scene nano-moonwalk">
-          <canvas id="moonwalkCanvas" role="img" aria-label="Luminous white particles assemble into Jan's personal logo, Claude, ChatGPT, DeepSeek, Qwen, Antigravity, and WithOne, scattering through depth between each logo and looping back to Jan's personal logo."></canvas>
-          <button class="motion-toggle" type="button" aria-controls="moonwalkCanvas" aria-pressed="false">Pause motion</button>
-        </div>
+        <figure class="mark-swarm" id="markSwarm"><canvas role="img" aria-label="Luminous particles assemble into Jan's logo, then Claude, OpenAI, One, DeepSeek, Qwen, Antigravity, Anthropic, Google DeepMind, Meta, Mistral AI, xAI and NVIDIA, scattering through depth between each mark."></canvas><figcaption aria-hidden="true"><span id="swarmIndex">01</span><span id="swarmName">Jan</span></figcaption></figure>
         </div>
         <div class="about-journey">
         <h2 class="about-h3-section">Professional Journey</h2>
         <div class="timeline">
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">TLP</span><span class="timeline-date">August 2024 – January 2026</span></div><div class="timeline-role">Executive Assistant | Operations, HR &amp; Recruitment, Market Research, Workflows &amp; Automation</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">HFA</span><span class="timeline-date">August 2024 – December 2025</span></div><div class="timeline-role">Virtual Assistant | Community Management, Customer Support, Digital Content &amp; SEO Copywriting</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">AIOP</span><span class="timeline-date">September 2022 – July 2024</span></div><div class="timeline-role">Ecommerce Assistant | Customer Support | Social Media | Product Management | Data Reporting</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">8BT</span><span class="timeline-date">November 2022 – May 2023</span></div><div class="timeline-role">Customer Support | Subject Matter Expert, Customer Success Specialist, ECommerce, Social Media &amp; Content</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">TrueFootage</span><span class="timeline-date">September 2022 – January 2023</span></div><div class="timeline-role">Appraisal Data Assistant | Data Entry</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">WebProvise/Bamboo</span><span class="timeline-date">June 2022 – December 2022</span></div><div class="timeline-role">Software Support Specialist | Quality Assurance, Product, Client Engagement, &amp; Operations</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Ibex</span><span class="timeline-date">November 2021 – August 2022</span></div><div class="timeline-role">Technical Customer Support | Consumer Support Specialist</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Datamatics</span><span class="timeline-date">August 2020 – November 2021</span></div><div class="timeline-role">IT Helpdesk | Software Support, Product, Code, &amp; Subject Matter Expert</div></div>
-          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Concentrix/QuickBooks</span><span class="timeline-date">July 2019 – January 2020</span></div><div class="timeline-role">Customer Support &amp; Technical Advisor II | Consumer &amp; Client Support, Product &amp; Sales</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Independent Search Fund</span><span class="timeline-date">August 2024 – January 2026</span></div><div class="timeline-role">Executive Assistant | Operations, HR &amp; Recruitment, Market Research, Workflows &amp; Automation</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Investment Intelligence &amp; Hedge Fund Research Platform</span><span class="timeline-date">August 2024 – December 2025</span></div><div class="timeline-role">Virtual Assistant | Community Management, Customer Support, Digital Content &amp; SEO Copywriting</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Online Retail &amp; E-commerce Business</span><span class="timeline-date">September 2022 – July 2024</span></div><div class="timeline-role">Ecommerce Assistant | Customer Support | Social Media | Product Management | Data Reporting</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Environmental Conservation &amp; Carbon Offset Company</span><span class="timeline-date">November 2022 – May 2023</span></div><div class="timeline-role">Customer Support | Subject Matter Expert, Customer Success Specialist, ECommerce, Social Media &amp; Content</div></div>
+          <div class="timeline-item"><div class="timeline-head"><span class="timeline-company">Real Estate Firm</span><span class="timeline-date">September 2022 – January 2023</span></div><div class="timeline-role">Appraisal Data Assistant | Data Entry</div></div>
         </div>
       </div>
       </div>
@@ -717,7 +740,11 @@ footer{background:rgba(9,13,20,.35)}
 
   <!-- ============ PROJECTS ============ -->
 
+
   <!-- ============ SERVICES ============ -->
+
+
+
 
 
 </main>
@@ -1303,8 +1330,9 @@ var yr=$('#yr');if(yr){yr.textContent=String(new Date().getFullYear());}
 render(false);
 })();
 </script>
-<script src="assets/js/studio.js?v=2026-09-30.1"></script>
-<script src="assets/js/nano-scenes.js?v=2026-09-30.2"></script>
-<script src="assets/js/service-logo.js?v=2026-09-30.3"></script>
+
+<script src="assets/js/vendor/gsap.min.js"></script><script src="assets/js/vendor/CustomEase.min.js"></script><script src="assets/js/stardust.js?v=2026-10-15.4"></script><script src="assets/js/lab.js?v=2026-10-15.3"></script><script src="assets/js/astral.js?v=2026-10-15.2"></script><script src="assets/js/mission.js?v=2026-10-15.2"></script>
+
+
 </body>
 </html>

@@ -1,0 +1,344 @@
+/* The Observatory (Jan, 2026-10-15): one night sky from Home to the last note.
+ * Night ground #05070b, ink #f2f4f8, muted #aab3c2, faint #78828f; starlight #9fd8ff is the one tint.
+ * One curve: expo-out cubic-bezier(.16,1,.3,1). Square corners. Light comes from density and starlight, not blur.
+ * Loads last and supersedes the inline base layer, studio.css, lab.css for everything it names. */
+:root{--ground:#05070b;--ground-2:#0a0d14;--well:#0d1119;--ink:#f2f4f8;--ink-2:#aab3c2;--ink-3:#78828f;--star:#9fd8ff;--star-2:#5aa7d8;--star-deep:#17344d;
+  --line:#161c27;--line-2:#27303f;--expo:cubic-bezier(.16,1,.3,1);--sheet:cubic-bezier(.7,0,.2,1);
+  --bg:#05070b;--panel:#0a0d14;--panel2:#10151f;--ink2:#aab3c2;--ink3:#78828f;--chart-ink:#cfe6f7;--line2:#27303f;--accent:#f2f4f8;--accent-ink:#05070b;--glass-border:#161c27}
+html{background:var(--ground);color-scheme:dark;scrollbar-color:#2a3647 var(--ground);scrollbar-width:thin}
+html.astral body{background:transparent;color:var(--ink)}
+html.astral main,html.astral footer{position:relative;z-index:1}
+::selection{background:var(--star);color:var(--ground)}
+input{caret-color:var(--star)}
+:focus-visible{outline:1px solid var(--star)!important;outline-offset:3px}
+[tabindex="-1"]:focus,[tabindex="-1"]:focus-visible{outline:0!important}
+.nav-links a:focus-visible,.text-link:focus-visible{outline-offset:6px}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--ground)}::-webkit-scrollbar-thumb{background:#2a3647;border:2px solid var(--ground)}
+
+/* ---------- the sky, behind everything ---------- */
+.sky-field{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block;view-transition-name:sky-field}
+.sky-haze{position:fixed;inset:-20%;z-index:0;pointer-events:none;opacity:.9;view-transition-name:sky-haze;will-change:transform;
+  background:
+    radial-gradient(42% 34% at 78% 22%,rgba(159,216,255,.11),transparent 70%),
+    radial-gradient(36% 30% at 18% 68%,rgba(90,167,216,.07),transparent 70%),
+    radial-gradient(60% 40% at 50% 100%,rgba(23,52,77,.5),transparent 70%)}
+html.astral .sky-haze{animation:sky-haze 36s ease-in-out infinite alternate}
+@keyframes sky-haze{from{transform:translate3d(-1.5%,-1%,0) scale(1)}to{transform:translate3d(1.5%,1.5%,0) scale(1.06)}}
+::view-transition-group(sky-field),::view-transition-new(sky-field),::view-transition-group(sky-haze),::view-transition-new(sky-haze){animation:none}
+::view-transition-old(sky-field),::view-transition-old(sky-haze){display:none}
+.sky-grain{position:fixed;inset:-50%;z-index:950;pointer-events:none;opacity:.038;view-transition-name:sky-grain;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px;animation:sky-grain .8s steps(6) infinite}
+::view-transition-group(sky-grain),::view-transition-new(sky-grain){animation:none}::view-transition-old(sky-grain){display:none}
+@keyframes sky-grain{0%{transform:translate3d(0,0,0)}17%{transform:translate3d(-3%,2%,0)}33%{transform:translate3d(2%,-4%,0)}50%{transform:translate3d(-4%,-1%,0)}67%{transform:translate3d(3%,3%,0)}83%{transform:translate3d(-1%,4%,0)}100%{transform:translate3d(0,0,0)}}
+.sky-reticle{position:fixed;left:0;top:0;width:30px;height:30px;margin:-15px 0 0 -15px;z-index:1000;pointer-events:none;opacity:0;transition:opacity .25s;view-transition-name:sky-reticle}
+.sky-reticle i{position:absolute;width:8px;height:8px;border:0 solid var(--star);transition:transform .45s var(--expo)}
+.sky-reticle i:nth-child(1){left:0;top:0;border-width:1px 0 0 1px}.sky-reticle i:nth-child(2){right:0;top:0;border-width:1px 1px 0 0}
+.sky-reticle i:nth-child(3){left:0;bottom:0;border-width:0 0 1px 1px}.sky-reticle i:nth-child(4){right:0;bottom:0;border-width:0 1px 1px 0}
+.sky-reticle.is-on{opacity:.6}.sky-reticle.is-hot{opacity:1}
+.sky-reticle.is-hot i:nth-child(1){transform:translate(-8px,-8px)}.sky-reticle.is-hot i:nth-child(2){transform:translate(8px,-8px)}
+.sky-reticle.is-hot i:nth-child(3){transform:translate(-8px,8px)}.sky-reticle.is-hot i:nth-child(4){transform:translate(8px,8px)}
+::view-transition-group(sky-reticle),::view-transition-new(sky-reticle){animation:none}::view-transition-old(sky-reticle){display:none}
+
+/* ---------- chrome ---------- */
+.nav{background:transparent;border-bottom:1px solid transparent;transition:background .45s,border-color .45s}
+.nav.scrolled{background:rgba(5,7,11,.82);border-bottom-color:var(--line)}
+.nav.scrolled .nav-in{background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav-links a{color:var(--ink-2)}.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-links a::after{background:var(--star)}
+.btn,.icon-btn{border-color:var(--line-2);color:var(--ink);transition:background .25s,color .25s,border-color .25s,transform .35s var(--expo)}
+.btn-primary{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.btn-primary:hover{background:var(--star);border-color:var(--star);color:var(--ground);transform:translateY(-2px)}
+.btn-ghost{color:var(--ink);border-color:var(--line-2)}.btn-ghost:hover,.icon-btn:hover{background:var(--star);border-color:var(--star);color:var(--ground)}
+.text-link{color:var(--ink);border-bottom-color:var(--line-2)}.text-link:hover{color:var(--star);border-color:var(--star)}
+.mmenu{background:var(--ground)}
+.mmenu a{font-weight:400;letter-spacing:-.04em;border-bottom-color:var(--line)}
+.mmenu .mfoot{color:var(--ink-3)}
+footer{background:transparent;border-top:1px solid var(--line);padding:24px 0}
+.foot-in{color:var(--ink-3)}.foot-in a:hover{color:var(--star)}
+.toast{background:var(--ink);color:var(--ground);border:0;border-radius:0}
+.page.active{animation:none}
+html.astral .page{padding-top:calc(var(--nav-h) + 70px)}
+h1,h2,h3{font-weight:400}
+.hero-title,.projects-title,.svc-hero-title,.stub h1,.about-head .hero-title{color:var(--ink);font-weight:400;letter-spacing:-.045em}
+.hero-title .outline{-webkit-text-stroke:0;color:var(--ink-2)}
+.grad-em{color:var(--star)!important;-webkit-text-fill-color:var(--star)!important}
+
+/* Clip-and-rise reveals: 12% clip, 16px rise, 0.7s expo-out. */
+html.reveal-ready [data-reveal]{transition:clip-path .7s var(--expo) var(--rd,0ms),transform .7s var(--expo) var(--rd,0ms),opacity .7s var(--expo) var(--rd,0ms)}
+html.reveal-ready [data-reveal]:not(.is-in){opacity:0;clip-path:inset(0 0 12% 0);transform:translateY(16px)}
+
+/* ---------- Home: the hero sky ---------- */
+html.astral .page-home{padding:0;overflow:visible}
+.sky-hero{position:relative;min-height:100svh;display:grid;align-items:end;isolation:isolate;overflow:hidden}
+.sky-hero-art{position:absolute;inset:0 0 auto 0;z-index:0;pointer-events:none;display:grid;justify-items:end;will-change:transform}
+.sky-hero-art svg{height:min(72svh,700px);width:auto;max-width:none;margin-top:calc(var(--nav-h) - 8px);margin-right:-4vw;opacity:.95}
+.sky-hero-in{position:relative;z-index:1;padding:calc(var(--nav-h) + 56px) 0 64px;display:grid;grid-template-columns:minmax(0,760px) auto;align-items:end;justify-content:space-between;gap:32px 48px}
+.hero-copy{max-width:760px}
+.sky-hero .hero-title{font-size:clamp(3rem,7.4vw,6rem);line-height:.98;margin:0;max-width:none;text-wrap:initial}
+.sky-hero .hero-role{margin:30px 0 14px;font-size:12px;letter-spacing:0;text-transform:none;color:var(--star)}
+.sky-hero .hero-sub{margin:0;max-width:44ch;font-size:14px;line-height:1.85;color:var(--ink-2)}
+.sky-hero .hero-cta{display:flex;gap:24px;align-items:center;margin-top:32px;flex-wrap:wrap}
+.hero-line{display:flex;flex-direction:column;align-items:flex-end;gap:14px;text-align:right;font-size:12px;line-height:1.7;color:var(--ink-2);padding-bottom:6px}
+.hero-line b{font-weight:400;color:var(--ink);display:block;max-width:22ch}
+.hero-scroll{display:inline-flex;align-items:center;gap:14px;color:var(--ink-3);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.hero-scroll svg{animation:hero-cue 2.4s var(--expo) infinite}
+@keyframes hero-cue{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(6px);opacity:1}}
+.sky-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line);z-index:1}
+
+/* ---------- Home: the approval gate as an orbit ---------- */
+.gate{position:relative;padding-block:clamp(80px,12vh,140px) clamp(60px,9vh,110px);border-bottom:1px solid var(--line)}
+.gate-head{display:grid;grid-template-columns:1.2fr 1fr;gap:24px 8vw;align-items:end}
+.gate-head h2{margin:0;font-size:clamp(34px,4.6vw,64px);line-height:1.04;letter-spacing:-.045em;max-width:14ch}
+.gate-head p{margin:0;max-width:40ch;font-size:13px;line-height:1.9;color:var(--ink-2)}
+.gate-stage{position:relative;margin-top:48px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,.8fr);gap:48px;align-items:center}
+.gate-orbit{position:relative;aspect-ratio:1200/640;width:100%}
+.gate-orbit svg{width:100%;height:100%;display:block;overflow:visible}
+.gate-orbit .g-ring{fill:none;stroke:var(--line-2);stroke-width:1}
+.gate-orbit .g-ring-lit{fill:none;stroke:var(--star);stroke-width:1.2;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--gp,0));pathLength:1;transition:stroke-dashoffset .12s linear}
+.gate-orbit .g-sun{fill:var(--ink)}
+.gate-orbit .g-sun-ring{fill:none;stroke:var(--star);stroke-width:1;opacity:.45}
+.gate-orbit .g-station circle{fill:var(--ground);stroke:var(--line-2);stroke-width:1.2;transition:fill .35s,stroke .35s}
+.gate-orbit .g-station text{font:12px/1 'JetBrains Mono',monospace;fill:var(--ink-3);transition:fill .35s}
+.gate-orbit .g-lbl-m{display:none}
+.gate-orbit .g-station.is-lit circle{fill:var(--star);stroke:var(--star)}
+.gate-orbit .g-station.is-lit text{fill:var(--ink)}
+.gate-orbit .g-signal{fill:var(--ink);offset-rotate:0deg;offset-distance:calc(var(--gp,0) * 100%);transition:offset-distance .12s linear}
+.gate-orbit .g-signal-tail{fill:var(--star);opacity:.55;offset-rotate:0deg;offset-distance:calc(max(0, var(--gp,0) - .018) * 100%);transition:offset-distance .12s linear}
+.gate-steps{list-style:none;margin:0;padding:0;counter-reset:gate;border-top:1px solid var(--line)}
+.gate-steps li{display:grid;grid-template-columns:2.2em 1fr;gap:0 16px;padding:22px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.7;color:var(--ink-3);transition:color .35s}
+.gate-steps li>*{grid-column:2}.gate-steps li::before{grid-column:1;grid-row:1;counter-increment:gate;content:counter(gate,decimal-leading-zero);font-size:11px;letter-spacing:.06em;color:var(--ink-3);padding-top:4px;transition:color .35s}
+.gate-steps li b{display:block;font-weight:400;font-size:18px;letter-spacing:-.025em;color:var(--ink-2);margin-bottom:4px;transition:color .35s}
+.gate-steps li.is-lit{color:var(--ink-2)}.gate-steps li.is-lit b{color:var(--ink)}.gate-steps li.is-lit::before{color:var(--star)}
+
+/* ---------- Home: the models, in orbit ---------- */
+.orbit{position:relative;padding-block:clamp(72px,10vh,120px) 48px;border-bottom:1px solid var(--line)}
+.orbit-head{display:grid;grid-template-columns:1.2fr 1fr;gap:20px 8vw;align-items:end}
+.orbit-head h2{margin:0;font-size:clamp(34px,4.6vw,64px);line-height:1.04;letter-spacing:-.045em}
+.orbit-lead{margin:0;max-width:34ch;font-size:13px;line-height:1.9;color:var(--ink-2)}
+.orbit-stage{position:relative;margin-top:28px}
+.orbit-ring,.orbit-sun{display:none}
+.orbit-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:36px 20px}
+.orbit-list li{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px}
+.orbit-list img{width:48px;height:48px;object-fit:contain;display:block}
+.orbit-list span{font-size:11px;color:var(--ink-2);text-align:center}
+.orbit-stage.is-live{height:clamp(520px,calc(100svh - 250px),780px);overflow:hidden;cursor:default}
+.orbit-stage.is-live .orbit-ring{display:block;position:absolute;left:50%;top:50%;border:1px solid var(--line-2);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
+.orbit-stage.is-live .orbit-ring[data-ring="0"]{border-color:var(--star-2);opacity:.7}
+.orbit-stage.is-live .orbit-sun{display:block;position:absolute;left:50%;top:50%;width:76px;height:76px;transform:translate(-50%,-50%);z-index:3}
+.orbit-sun img{width:100%;height:100%;display:block}
+.orbit-sun::before{content:"";position:absolute;inset:-26px;border-radius:50%;border:1px solid var(--star);opacity:.45;z-index:-1}
+.orbit-stage.is-live .orbit-list{display:block}
+.orbit-stage.is-live .orbit-list li{position:absolute;left:0;top:0;width:54px;height:54px;gap:0;justify-content:center;will-change:transform,opacity;opacity:0}
+.orbit-stage.is-live .orbit-list li[data-ring="0"]{width:62px;height:62px}
+.orbit-stage.is-live .orbit-list img{width:100%;height:100%}
+.orbit-stage.is-live .orbit-list span{position:absolute;top:100%;left:50%;transform:translate(-50%,6px);margin-top:8px;white-space:nowrap;color:var(--ink);opacity:0;transition:opacity .25s,transform .45s var(--expo);pointer-events:none}
+.orbit-stage.is-live .orbit-list li:hover span,.orbit-stage.is-live .orbit-list li:focus-visible span{opacity:1;transform:translate(-50%,0)}
+.orbit-stage.is-live .orbit-list li:focus-visible{outline:0}.orbit-stage.is-live .orbit-list li:focus-visible img{outline:1px solid var(--star);outline-offset:4px}
+.orbit-credit{margin-top:20px;font-size:11px;color:var(--ink-3);text-align:right}
+
+/* ---------- Home: selected work and the closing band ---------- */
+.selected-work{background:transparent;color:var(--ink);padding-block:clamp(72px,10vh,120px);border-top:0}
+.selected-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:40px}
+.selected-head h2{font-size:clamp(34px,4.6vw,64px);letter-spacing:-.045em;font-weight:400;margin:0;line-height:1.04}
+.selected-head a{font-size:12px;color:var(--ink-2)}
+.selected-feature{display:grid;grid-template-columns:1.6fr 1fr;gap:50px;align-items:center}
+.selected-image{background:var(--well);padding:24px;border:1px solid var(--line);position:relative;overflow:hidden}
+.selected-image img{display:block;width:100%;height:auto;filter:grayscale(1) contrast(1.05);transition:transform 1.2s var(--expo),filter .6s}
+.selected-feature:hover .selected-image img{transform:scale(1.025)}
+.selected-caption{display:block;font-size:11px;margin-top:20px;color:var(--ink-3);letter-spacing:.06em}
+.selected-feature h3{font-size:28px;line-height:1.25;font-weight:400;letter-spacing:-.03em;color:var(--ink);margin:0 0 16px}
+.selected-feature p{font-size:13px;color:var(--ink-2);line-height:1.9;margin:0}
+.selected-feature .text-link{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:12px}
+.page-closing{padding-block:clamp(72px,10vh,120px);display:flex;justify-content:space-between;align-items:center;gap:30px;border-top:1px solid var(--line);margin-top:0}
+.page-closing h2{font-size:clamp(28px,3.8vw,48px);font-weight:400;letter-spacing:-.045em;line-height:1.1;max-width:18ch;margin:0}
+.page-closing p{color:var(--ink-2);max-width:42ch;font-size:13px;margin:0 0 22px;line-height:1.8}
+
+/* ---------- Interior skies ---------- */
+.sky-head{position:absolute;left:0;right:0;top:0;height:min(96svh,940px);overflow:hidden;pointer-events:none;z-index:0;
+  -webkit-mask-image:linear-gradient(#000 48%,transparent);mask-image:linear-gradient(#000 48%,transparent)}
+.sky-head img,.sky-head video{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover;will-change:transform;display:block;background:var(--ground);
+  filter:grayscale(1) sepia(1) hue-rotate(168deg) saturate(1.9) brightness(.86) contrast(1.08)}
+.sky-head video{inset:0;height:100%}
+.sky-head::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,11,.35),rgba(5,7,11,0) 40%,rgba(5,7,11,0) 70%,var(--ground))}
+[data-page=about],[data-page=projects],[data-page=blog],[data-page=services],[data-page=contact]{isolation:isolate}
+.about-sky img{object-position:78% 40%;opacity:.85}
+.projects-sky img{object-position:100% 92%;opacity:.9}
+.blog-sky{height:min(88svh,860px)}
+.contact-sky{top:auto;bottom:0;height:min(70svh,640px);-webkit-mask-image:linear-gradient(transparent,#000 40%);mask-image:linear-gradient(transparent,#000 40%)}
+.contact-sky img{object-position:86% 50%;opacity:.9}
+.contact-sky::after{background:linear-gradient(180deg,var(--ground),rgba(5,7,11,0) 40%)}
+[data-page=about] .about-head{min-height:min(62svh,600px);display:flex;flex-direction:column;justify-content:flex-end;border-bottom:1px solid var(--line);padding-bottom:50px;margin-bottom:60px;text-align:left}
+.about-head .hero-title{font-size:clamp(2.8rem,6vw,5.4rem);line-height:1.02;max-width:none;margin:0}
+.about-h3{font-style:normal;font-size:15px;color:var(--ink-2);margin-top:22px;max-width:52ch}
+.about-prose{grid-template-columns:1.2fr 1fr;gap:8vw;max-width:none}
+.about-prose p{color:var(--ink-2);font-size:13px;line-height:1.9}
+.about-prose p b{color:var(--ink)}
+.about-h3-section{font-size:15px;color:var(--ink);letter-spacing:-.02em;font-weight:400}
+.contact-intro,.stage-title,.stage-sub,.process-copy h3,.timeline-company,.selected-feature h3,.svc-card-price,.pcard-title{font-weight:400}
+.about-cta{justify-content:flex-start;margin-top:56px}
+.mark-swarm{position:relative;margin:56px 0 0;height:440px;border-block:1px solid var(--line)}
+.mark-swarm canvas{width:100%;height:100%;display:block}
+.mark-swarm figcaption{position:absolute;left:0;bottom:14px;display:flex;gap:16px;font-size:11px;letter-spacing:.06em;color:var(--ink-3)}
+.mark-swarm figcaption span:last-child{color:var(--ink)}
+.mark-swarm.is-static::after{content:"";position:absolute;inset:0;margin:auto;width:120px;height:120px;background:url(../images/websitelogo-blackbg1.svg) center/contain no-repeat}
+.timeline{margin-top:24px;gap:0}
+.timeline.is-traced{position:relative;padding-left:30px}
+.timeline.is-traced::before,.timeline.is-traced::after{content:"";position:absolute;left:4px;top:8px;bottom:8px;width:1px;background:var(--line-2)}
+.timeline.is-traced::after{background:var(--star);transform-origin:top;transform:scaleY(var(--fill,0))}
+.timeline-item{border-left:0;border-bottom:1px solid var(--line);padding:22px 0}
+.timeline-item:first-child{padding-top:0}
+.timeline.is-traced .timeline-item::before{display:block;content:"";position:absolute;left:-30px;top:.5em;width:9px;height:9px;border-radius:0;border:1px solid var(--line-2);background:var(--ground);opacity:1;transition:background .25s,border-color .25s}
+.timeline.is-traced .timeline-item:first-child::before{top:0}
+.timeline.is-traced .timeline-item.is-lit::before{background:var(--star);border-color:var(--star)}
+.timeline-company{font-weight:400;font-size:15px;color:var(--ink);line-height:1.6}
+.timeline-date{font-size:11px;color:var(--ink-3);display:block;margin-top:8px;opacity:1}
+.timeline-role{font-size:12px;color:var(--ink-2);margin-top:12px;line-height:1.7}
+
+[data-page=projects],[data-page=blog]{padding-top:var(--nav-h)!important;position:relative}
+.sky-art{height:min(78svh,720px);position:relative;margin:0;overflow:hidden;pointer-events:none;
+  -webkit-mask-image:linear-gradient(#000 60%,transparent);mask-image:linear-gradient(#000 60%,transparent)}
+.sky-art img,.sky-art video{position:absolute;inset:-5% 0;width:100%;height:110%;object-fit:cover;object-position:62% 50%;display:block;background:var(--ground);will-change:transform;
+  filter:grayscale(1) sepia(1) hue-rotate(168deg) saturate(1.9) brightness(.86) contrast(1.08)}
+.sky-art video{inset:0;height:100%}
+.sky-art.projects-sky img{object-position:100% 96%}
+[data-page=projects]>.projects-head,[data-page=blog]>.container>.projects-head{position:relative;z-index:1;margin-top:-230px;padding-bottom:45px;align-items:end;border-bottom:1px solid var(--line)}
+.projects-head{grid-template-columns:1.2fr 1fr;gap:8vw}
+.projects-title,.svc-hero-title,.stub h1{font-size:clamp(2.8rem,6vw,5.4rem);line-height:1.02;max-width:12ch}
+.projects-head .projects-lead,.svc-lead{font-size:13px;color:var(--ink-2);line-height:1.9;max-width:44ch}
+.project-tools{padding-block:28px 40px}
+.lab-filters button,.lab-text-button,.project-index button{color:var(--ink-2);border-color:var(--line-2)}
+.lab-filters button[aria-pressed=true]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.lab-filters button:hover,.lab-text-button:hover{border-color:var(--star);color:var(--ink)}
+.project-index{border-top-color:var(--line-2)}
+.project-index button{border-bottom-color:var(--line);color:var(--ink-3)}
+.project-index button[aria-current=true]{color:var(--ink)}.project-index button[aria-current=true]::before{background:var(--star)}
+.project-index button:hover{color:var(--ink)}.project-index small{color:var(--ink-3)}
+.pcard-media{background:var(--well);border:1px solid var(--line);padding:24px}
+.pcard-media::after{background:var(--ink);color:var(--ground);border:0;border-radius:0}
+.pcard-media img,.pcard-fallback{filter:grayscale(1)}
+.pcard-title{font-weight:400;color:var(--ink)}.pcard-meta{color:var(--ink-3);font-size:10px;letter-spacing:.08em}
+.pcard-desc{color:var(--ink-2)}.pcard-tags span{color:var(--ink-3);font-size:10px}
+.project-index-hint{color:var(--ink-3)}
+.projects-cta{margin-top:48px}
+
+.svc-hero{padding-block:clamp(72px,10vh,120px) 64px}
+.svc-hero-title{font-size:clamp(2.8rem,6vw,5.4rem)}
+.svc-lead{max-width:48ch}
+/* Let the film blend with the shared sky instead of an isolated transparent group. */
+html.astral main:has(> [data-page=services].active){z-index:auto}
+[data-page=services],.svc-hero{isolation:auto}
+.services-film{position:relative;width:min(100%,600px);aspect-ratio:1;justify-self:end;border:0;background:transparent;overflow:hidden;mix-blend-mode:screen}
+.services-film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) sepia(1) hue-rotate(168deg) saturate(1.7) brightness(.9) contrast(1.2)}
+.process-viewport{background:var(--ground-2);border-color:var(--line-2)}
+.process-toolbar{border-bottom-color:var(--line)}.process-toolbar h2{font-size:11px;color:var(--ink-2)}
+.process-copy{border-right-color:var(--line)}
+.process-canvas-wrap{filter:grayscale(1) sepia(1) hue-rotate(168deg) saturate(1.5)}
+.process-corner{color:var(--ink-3)}
+.process-chapters{border-top-color:var(--line)}
+.chapter-btn{color:var(--ink-3)}.chapter-btn.active{background:var(--ink);color:var(--ground)}
+.process-progress{background:var(--star)}
+.stage-num,.stage-readout{color:var(--ink-3)}
+.sky-band{position:relative;height:min(72svh,680px);overflow:hidden;margin-top:56px;border-block:1px solid var(--line)}
+.sky-band img{position:absolute;inset:-9% 0;width:100%;height:118%;object-fit:cover;object-position:50% 72%;will-change:transform;
+  filter:grayscale(1) sepia(1) hue-rotate(168deg) saturate(1.9) brightness(.86)}
+.svc-packages-head .section-title{font-size:clamp(28px,3.8vw,48px);line-height:1.1}
+.svc-packages-head p{color:var(--ink-2);font-size:13px;line-height:1.9}
+.svc-cards-grid{border-color:var(--line-2)}
+.svc-card{background:transparent}.svc-card+.svc-card{border-left-color:var(--line-2);background:var(--ground-2)}
+.svc-card-top{border-bottom-color:var(--line)}
+.svc-card-name{color:var(--star);letter-spacing:.08em;font-size:11px}
+.svc-card-price{color:var(--ink)}.svc-card-price small{color:var(--ink-3)}
+.svc-card-tag,.svc-card li,.svc-card-best p{color:var(--ink-2)}
+.svc-card li::before{color:var(--star)}
+.svc-card-label{color:var(--ink-3)}
+.svc-card-best{border-top-color:var(--line)}
+.svc-card-btn{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.svc-card-btn:hover{background:var(--star);border-color:var(--star)}
+.svc-outro p{color:var(--ink-2)}
+
+.journal-tools{border-bottom-color:var(--line)}
+.journal-search input{border-color:var(--line-2);color:var(--ink)}.journal-search input::placeholder{color:var(--ink-3)}
+.journal-search input:focus{border-color:var(--star)}
+.journal-tools>p,.note-topic{color:var(--ink-3)}
+[data-page=blog] .post-entry{border-top-color:var(--line)}
+.post-entry-title a{color:var(--ink);text-decoration:none}.post-entry-title a:hover{color:var(--star)}
+.post-entry-meta,.post-entry-meta time,.post-entry-meta span{color:var(--ink-3)}
+.post-entry-excerpt{color:var(--ink-2)}
+.post-entry-more{color:var(--ink)}
+.note-art{border-block-color:var(--line);background:transparent}
+#journalEmpty h2{color:var(--ink)}#journalEmpty p{color:var(--ink-2)}
+
+[data-page=contact]{min-height:100svh}
+.contact-wrap{margin-inline:auto;text-align:left;padding:0;max-width:none;z-index:1}
+.contact-wrap .projects-title{max-width:14ch}
+.contact-intro{font-size:18px;color:var(--ink);margin:32px 0 10px;letter-spacing:-.02em}
+.contact-note{font-size:13px;color:var(--ink-2);max-width:44ch;line-height:1.9;margin:0}
+.contact-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px}
+.contact-detail{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3);max-width:52ch}
+
+/* Blog posts (standalone pages) */
+.sky-post{position:relative;height:min(52svh,480px);margin-top:var(--nav-h);overflow:hidden;pointer-events:none;border-bottom:1px solid var(--line);
+  -webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+.sky-post img{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover;object-position:50% 40%;display:block;will-change:transform;
+  filter:grayscale(1) sepia(1) hue-rotate(168deg) saturate(1.9) brightness(.8) contrast(1.08)}
+.sky-post svg{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+.blog-post .post{padding-top:45px}.blog-post .post-head{position:relative}.blog-post .post-title{max-width:28ch}
+
+/* ---------- responsive ---------- */
+@media(min-width:1500px){.sky-hero-art svg{width:min(100%,1800px)}}
+@media(max-width:1000px){.gate-stage{grid-template-columns:1fr;gap:32px}.gate-head,.orbit-head{grid-template-columns:1fr}.services-film{justify-self:center;margin-top:24px}}
+@media(max-width:900px){.selected-feature{grid-template-columns:1fr}.about-prose{grid-template-columns:1fr}}
+@media(max-width:740px){
+  .sky-hero{min-height:100svh}
+  .sky-hero-art{align-items:start}.sky-hero-art svg{width:150%;margin:calc(var(--nav-h) + 8px) 0 0 -10%;max-height:none;opacity:.8}
+  .sky-hero-in{grid-template-columns:1fr;padding:calc(var(--nav-h) + 300px) 0 44px;gap:28px}
+  .sky-hero .hero-title{font-size:clamp(2.7rem,12vw,4.4rem)}
+  .sky-hero .hero-role{margin:22px 0 10px}.sky-hero .hero-sub{font-size:13px}
+  .sky-hero .hero-cta{margin-top:24px;gap:16px}
+  .hero-line{flex-direction:row;justify-content:space-between;align-items:center;text-align:left;width:100%}
+  .hero-line b{max-width:18ch;font-size:12px}
+  .gate{padding-block:64px 48px}.gate-orbit{aspect-ratio:1200/760}
+  .gate-orbit .g-station text{font-size:24px}.gate-orbit .g-lbl-d{display:none}.gate-orbit .g-lbl-m{display:block}.gate-orbit .g-station circle{r:12}.gate-orbit .g-signal{r:9}.gate-orbit .g-signal-tail{r:15}
+  .sky-hero-art svg{height:auto}
+  .gate-steps li{padding:16px 0}.gate-steps li b{font-size:16px}
+  .orbit{padding-block:64px 40px}
+  .orbit-stage.is-live{height:min(70svh,520px);min-height:460px}
+  .orbit-stage.is-live .orbit-list li{width:32px;height:32px}.orbit-stage.is-live .orbit-list li[data-ring="0"]{width:38px;height:38px}
+  .orbit-stage.is-live .orbit-sun{width:52px;height:52px}.orbit-sun::before{inset:-18px}.orbit-credit{text-align:left}
+  .orbit-stage.is-live .orbit-list li[data-ring="0"] span{opacity:1;transform:translate(-50%,0);font-size:10px}
+  .selected-work{padding-block:64px}.page-closing{padding-block:64px;flex-direction:column;align-items:flex-start}
+  .sky-art{height:min(56svh,440px)}
+  [data-page=projects]>.projects-head,[data-page=blog]>.container>.projects-head{margin-top:-100px;gap:24px;grid-template-columns:1fr}
+  .sky-art img{object-position:72% 50%}.sky-art.projects-sky img{object-position:74% 40%}
+  .contact-sky img{object-position:64% 50%}
+  .sky-band{height:46svh;margin-top:32px}.mark-swarm{height:340px}
+  [data-page=about] .about-head{min-height:52svh;padding-bottom:36px;margin-bottom:40px}
+  .about-sky{height:72svh}.about-sky img{object-position:88% 12%;opacity:.6}
+  [data-page=contact]{padding-bottom:36svh}
+  .contact-sky{height:40svh;-webkit-mask-image:linear-gradient(transparent,#000 30%);mask-image:linear-gradient(transparent,#000 30%)}
+  .sky-post{height:min(40svh,340px)}
+  html.astral .page{padding-top:calc(var(--nav-h) + 45px)}
+}
+@media(max-height:700px) and (min-width:741px){.sky-hero-in{padding-top:calc(var(--nav-h) + 24px)}.sky-hero .hero-title{font-size:clamp(2.8rem,5.2vw,4.6rem)}}
+
+/* ---------- reduced motion and no script ---------- */
+@media(prefers-reduced-motion:reduce){
+  .sky-grain,.sky-haze,.hero-scroll svg{animation:none}
+  .sky-reticle{display:none}
+  html.reveal-ready [data-reveal]:not(.is-in){opacity:1;clip-path:none;transform:none}
+  .sky-head img,.sky-band img,.sky-art img,.sky-post img,.sky-hero-art{transform:none!important}
+  .gate-orbit .g-ring-lit,.gate-orbit .g-signal,.gate-orbit .g-signal-tail{transition:none}
+}
+@media(scripting:none){
+  .sky-hero-in{padding-top:calc(var(--nav-h) + 56px)}
+  .gate-orbit .g-station circle{fill:var(--star);stroke:var(--star)}.gate-orbit .g-station text{fill:var(--ink)}
+  .gate-steps li,.gate-steps li b{color:var(--ink)}
+}
+
+/* The old 220px arrow glyph on Contact goes: the ripple photograph carries the page. */
+.contact-wrap::after{display:none}
+
+/* Without JavaScript every page shows at once (the base noscript rule): stack them, do not row them. */
+@media(scripting:none){.page,.page-home{display:block!important}}
+html:not(.astral) .page.active{flex-direction:column}

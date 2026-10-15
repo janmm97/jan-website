@@ -1,0 +1,232 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="nc-title">
+<title id="nc-title">A night-sky constellation whose lines form a neural network; signals travel left to right.</title>
+<style>.nc-e{stroke:#9fd8ff;stroke-width:.8;opacity:.55;stroke-dasharray:1;stroke-dashoffset:1;animation:nc-draw 1.1s cubic-bezier(.16,1,.3,1) both}
+.nc-e[data-band="1"]{animation-delay:.2s}.nc-e[data-band="2"]{animation-delay:.55s}.nc-e[data-band="3"]{animation-delay:.9s}.nc-e[data-band="4"]{animation-delay:1.25s}.nc-e[data-band="5"]{animation-delay:1.6s}
+.nc-n{transform-box:fill-box;transform-origin:center;opacity:0;transform:scale(.2);animation:nc-node .9s cubic-bezier(.16,1,.3,1) both}
+.nc-n[data-band="1"]{animation-delay:.6s}.nc-n[data-band="2"]{animation-delay:.95s}.nc-n[data-band="3"]{animation-delay:1.3s}.nc-n[data-band="4"]{animation-delay:1.65s}.nc-n[data-band="5"]{animation-delay:2s}
+.nc-x line{stroke:#f2f4f8;stroke-width:.6;opacity:.75;stroke-dasharray:32;stroke-dashoffset:32;animation:nc-cross 1.4s cubic-bezier(.16,1,.3,1) 2.1s both}
+.nc-h{fill:#9fd8ff;opacity:0;animation:nc-halo 5.2s ease-in-out 2.4s infinite}
+#nc-stars circle{animation:nc-twinkle var(--p,4s) ease-in-out var(--d,0s) infinite}
+.nc-p{fill:#f2f4f8;opacity:0;offset-rotate:0deg;animation:nc-pulse var(--pd,3.6s) linear var(--pl,0s) infinite}
+#nc-chart{animation:nc-drift 14s ease-in-out infinite}
+@keyframes nc-draw{to{stroke-dashoffset:0}}
+@keyframes nc-node{to{opacity:1;transform:scale(1)}}
+@keyframes nc-cross{to{stroke-dashoffset:0}}
+@keyframes nc-halo{0%,100%{opacity:0}50%{opacity:.16}}
+@keyframes nc-twinkle{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes nc-pulse{0%{offset-distance:0%;opacity:0}8%{opacity:1}92%{opacity:1}100%{offset-distance:100%;opacity:0}}
+@keyframes nc-drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media (prefers-reduced-motion:reduce){.nc-e,.nc-n,.nc-x line,#nc-stars circle,#nc-chart{animation:none}.nc-e{stroke-dashoffset:0}.nc-n{opacity:1;transform:none}.nc-x line{stroke-dashoffset:0}.nc-p,.nc-h{display:none}}</style>
+<g id="nc-stars">
+<circle cx="134.5" cy="198.2" r="1.2" fill="#9fd8ff" opacity="0.3" style="--d:0.3s;--p:4.6s"/>
+<circle cx="138.3" cy="243.1" r="1.4" fill="#f2f4f8" opacity="0.4" style="--d:4.3s;--p:5.4s"/>
+<circle cx="278.3" cy="292.6" r="0.5" fill="#f2f4f8" opacity="0.9" style="--d:3s;--p:3.4s"/>
+<circle cx="351" cy="235.8" r="0.6" fill="#f2f4f8" opacity="0.7" style="--d:5.6s;--p:6s"/>
+<circle cx="160.2" cy="177.9" r="1" fill="#f2f4f8" opacity="0.3" style="--d:0.8s;--p:5.6s"/>
+<circle cx="362.2" cy="126.3" r="0.6" fill="#f2f4f8" opacity="0.7" style="--d:0.9s;--p:2.9s"/>
+<circle cx="267" cy="130.6" r="0.7" fill="#9fd8ff" opacity="0.7" style="--d:2.3s;--p:3.8s"/>
+<circle cx="227.1" cy="302.7" r="1" fill="#9fd8ff" opacity="0.8" style="--d:5.5s;--p:5.2s"/>
+<circle cx="221.2" cy="150" r="1.1" fill="#9fd8ff" opacity="0.5" style="--d:2.9s;--p:4.2s"/>
+<circle cx="187.3" cy="98.6" r="0.7" fill="#f2f4f8" opacity="0.8" style="--d:4.3s;--p:3.5s"/>
+<circle cx="251.7" cy="188.8" r="1.7" fill="#9fd8ff" opacity="0.7" style="--d:2s;--p:2.9s"/>
+<circle cx="411.8" cy="176.1" r="1.7" fill="#9fd8ff" opacity="0.9" style="--d:3.6s;--p:3.4s"/>
+<circle cx="356.6" cy="151.1" r="0.5" fill="#f2f4f8" opacity="0.9" style="--d:3.3s;--p:3.7s"/>
+<circle cx="272.6" cy="240.7" r="0.6" fill="#f2f4f8" opacity="0.5" style="--d:3.5s;--p:4.9s"/>
+<circle cx="369.4" cy="37.5" r="0.7" fill="#9fd8ff" opacity="0.3" style="--d:0s;--p:4.5s"/>
+<circle cx="376.4" cy="163" r="1.5" fill="#f2f4f8" opacity="0.6" style="--d:1.3s;--p:4.7s"/>
+<circle cx="278.9" cy="-15.3" r="1.8" fill="#9fd8ff" opacity="0.4" style="--d:0.6s;--p:4.8s"/>
+<circle cx="359" cy="277" r="0.9" fill="#f2f4f8" opacity="0.6" style="--d:4.5s;--p:5.9s"/>
+<circle cx="303.4" cy="175.8" r="0.5" fill="#f2f4f8" opacity="0.3" style="--d:5.9s;--p:5.6s"/>
+<circle cx="296.6" cy="125.7" r="1.4" fill="#f2f4f8" opacity="0.9" style="--d:0.1s;--p:3.2s"/>
+<circle cx="385.7" cy="181.5" r="1.7" fill="#9fd8ff" opacity="0.6" style="--d:4.4s;--p:5.5s"/>
+<circle cx="134.9" cy="88.4" r="1.2" fill="#f2f4f8" opacity="0.3" style="--d:5.8s;--p:3.9s"/>
+<circle cx="160.7" cy="182.3" r="0.8" fill="#f2f4f8" opacity="0.5" style="--d:5.8s;--p:4.5s"/>
+<circle cx="294.9" cy="58" r="0.7" fill="#f2f4f8" opacity="0.4" style="--d:2.7s;--p:5.7s"/>
+<circle cx="155.5" cy="280.9" r="1.4" fill="#f2f4f8" opacity="0.8" style="--d:4.6s;--p:5.4s"/>
+<circle cx="116.6" cy="97.4" r="0.9" fill="#f2f4f8" opacity="0.7" style="--d:2.6s;--p:4.6s"/>
+<circle cx="310.9" cy="162" r="0.6" fill="#9fd8ff" opacity="0.9" style="--d:0.9s;--p:4.8s"/>
+<circle cx="388.2" cy="228" r="0.7" fill="#f2f4f8" opacity="0.6" style="--d:5.6s;--p:5.4s"/>
+<circle cx="261" cy="312.9" r="1.2" fill="#f2f4f8" opacity="0.4" style="--d:6s;--p:3.1s"/>
+<circle cx="338.9" cy="263.8" r="0.7" fill="#9fd8ff" opacity="0.4" style="--d:3.6s;--p:3s"/>
+<circle cx="302.9" cy="7" r="0.5" fill="#f2f4f8" opacity="0.9" style="--d:4s;--p:4.2s"/>
+<circle cx="247.8" cy="152.5" r="1.2" fill="#9fd8ff" opacity="0.8" style="--d:2.8s;--p:5.6s"/>
+<circle cx="234" cy="15.2" r="0.6" fill="#f2f4f8" opacity="0.9" style="--d:5.6s;--p:3.1s"/>
+<circle cx="363.7" cy="116.6" r="1.3" fill="#9fd8ff" opacity="0.7" style="--d:2.3s;--p:5.8s"/>
+<circle cx="919.3" cy="579.5" r="0.7" fill="#9fd8ff" opacity="0.7" style="--d:4.2s;--p:5.4s"/>
+<circle cx="864.2" cy="642.7" r="0.7" fill="#f2f4f8" opacity="0.7" style="--d:2.4s;--p:3.1s"/>
+<circle cx="769.3" cy="557.5" r="0.6" fill="#f2f4f8" opacity="0.4" style="--d:4.3s;--p:5.8s"/>
+<circle cx="1046.5" cy="510.4" r="1.1" fill="#9fd8ff" opacity="0.5" style="--d:1.6s;--p:4.2s"/>
+<circle cx="928.6" cy="536.4" r="1" fill="#f2f4f8" opacity="0.4" style="--d:3.3s;--p:4s"/>
+<circle cx="1028.1" cy="633.4" r="0.8" fill="#f2f4f8" opacity="0.4" style="--d:3.1s;--p:5.2s"/>
+<circle cx="886.5" cy="630.8" r="0.5" fill="#9fd8ff" opacity="0.8" style="--d:3.5s;--p:3.7s"/>
+<circle cx="849.2" cy="720.7" r="0.6" fill="#9fd8ff" opacity="0.5" style="--d:3.4s;--p:2.9s"/>
+<circle cx="883.7" cy="553.2" r="1.1" fill="#f2f4f8" opacity="0.4" style="--d:3.7s;--p:3.5s"/>
+<circle cx="925.4" cy="581.1" r="1.2" fill="#f2f4f8" opacity="0.4" style="--d:0.2s;--p:3.1s"/>
+<circle cx="973.3" cy="607.7" r="1.6" fill="#f2f4f8" opacity="0.6" style="--d:3.8s;--p:5.9s"/>
+<circle cx="910.4" cy="470.2" r="0.7" fill="#f2f4f8" opacity="0.4" style="--d:3.4s;--p:3.6s"/>
+<circle cx="820.2" cy="602.4" r="1.7" fill="#f2f4f8" opacity="0.7" style="--d:3.2s;--p:5.6s"/>
+<circle cx="1011.7" cy="625.7" r="0.7" fill="#f2f4f8" opacity="0.5" style="--d:5.9s;--p:4.3s"/>
+<circle cx="988.4" cy="703.9" r="1.5" fill="#f2f4f8" opacity="0.7" style="--d:2.4s;--p:4.7s"/>
+<circle cx="994.2" cy="632.5" r="0.9" fill="#f2f4f8" opacity="0.7" style="--d:1.7s;--p:5.6s"/>
+<circle cx="959" cy="758.2" r="1.1" fill="#f2f4f8" opacity="0.9" style="--d:2.2s;--p:4.2s"/>
+<circle cx="985.5" cy="552.2" r="1.7" fill="#f2f4f8" opacity="0.6" style="--d:3.7s;--p:2.7s"/>
+<circle cx="903.3" cy="703.8" r="0.5" fill="#f2f4f8" opacity="0.5" style="--d:1.6s;--p:4s"/>
+<circle cx="1077.5" cy="677.5" r="1.1" fill="#f2f4f8" opacity="0.6" style="--d:1.3s;--p:5.5s"/>
+<circle cx="905.7" cy="611.6" r="1.1" fill="#f2f4f8" opacity="0.8" style="--d:0s;--p:3.9s"/>
+<circle cx="956.2" cy="557.2" r="0.9" fill="#f2f4f8" opacity="0.4" style="--d:1.6s;--p:2.6s"/>
+<circle cx="963" cy="662.9" r="0.8" fill="#f2f4f8" opacity="0.6" style="--d:5.6s;--p:4.5s"/>
+<circle cx="931.1" cy="600.6" r="1" fill="#9fd8ff" opacity="0.8" style="--d:1s;--p:5.8s"/>
+<circle cx="842.3" cy="737.5" r="0.6" fill="#f2f4f8" opacity="0.5" style="--d:5.9s;--p:3.8s"/>
+<circle cx="934.8" cy="707.6" r="1.3" fill="#9fd8ff" opacity="0.7" style="--d:0.2s;--p:4s"/>
+<circle cx="999.7" cy="696.1" r="1" fill="#f2f4f8" opacity="0.5" style="--d:2.1s;--p:6.1s"/>
+<circle cx="1064.7" cy="544.9" r="1.8" fill="#f2f4f8" opacity="0.4" style="--d:0.7s;--p:3.3s"/>
+<circle cx="914.1" cy="776.8" r="0.5" fill="#9fd8ff" opacity="0.8" style="--d:2.3s;--p:5.1s"/>
+<circle cx="1098.1" cy="563.4" r="0.6" fill="#9fd8ff" opacity="0.6" style="--d:1.4s;--p:3.2s"/>
+<circle cx="454.8" cy="270.8" r="1.2" fill="#9fd8ff" opacity="0.4" style="--d:5.1s;--p:2.8s"/>
+<circle cx="217.3" cy="239.2" r="0.6" fill="#f2f4f8" opacity="0.9" style="--d:4.7s;--p:3.6s"/>
+<circle cx="516" cy="557.9" r="0.9" fill="#9fd8ff" opacity="0.5" style="--d:3.7s;--p:6s"/>
+<circle cx="106.6" cy="429" r="1.1" fill="#f2f4f8" opacity="0.8" style="--d:2.7s;--p:6.1s"/>
+<circle cx="436.2" cy="680.2" r="0.5" fill="#9fd8ff" opacity="0.6" style="--d:2.5s;--p:4.5s"/>
+<circle cx="1110.1" cy="36.2" r="1" fill="#9fd8ff" opacity="0.4" style="--d:1s;--p:5.7s"/>
+<circle cx="476.5" cy="513.9" r="1.5" fill="#9fd8ff" opacity="0.3" style="--d:0.9s;--p:2.6s"/>
+<circle cx="236.8" cy="569.9" r="1.6" fill="#f2f4f8" opacity="0.5" style="--d:4.3s;--p:5.9s"/>
+<circle cx="114.5" cy="592.2" r="0.5" fill="#f2f4f8" opacity="0.7" style="--d:1.5s;--p:4.1s"/>
+<circle cx="64.7" cy="600.5" r="1.1" fill="#f2f4f8" opacity="0.5" style="--d:1.5s;--p:2.6s"/>
+<circle cx="873.1" cy="527" r="1.3" fill="#9fd8ff" opacity="0.6" style="--d:3.7s;--p:2.7s"/>
+<circle cx="887.6" cy="468.7" r="1.7" fill="#f2f4f8" opacity="0.7" style="--d:5.4s;--p:4.8s"/>
+<circle cx="917.1" cy="177.2" r="0.7" fill="#f2f4f8" opacity="0.5" style="--d:1.8s;--p:5.7s"/>
+<circle cx="514.2" cy="458.9" r="1" fill="#9fd8ff" opacity="0.8" style="--d:5.6s;--p:3s"/>
+<circle cx="1090.9" cy="147.2" r="0.6" fill="#f2f4f8" opacity="0.7" style="--d:3.5s;--p:4.9s"/>
+<circle cx="192.5" cy="127.7" r="0.7" fill="#f2f4f8" opacity="0.4" style="--d:3.5s;--p:4.4s"/>
+<circle cx="930.2" cy="598" r="1.6" fill="#f2f4f8" opacity="0.4" style="--d:0.2s;--p:2.6s"/>
+<circle cx="1044.8" cy="576.2" r="1.6" fill="#f2f4f8" opacity="0.7" style="--d:2.8s;--p:3.8s"/>
+<circle cx="1092.1" cy="84.3" r="1.2" fill="#f2f4f8" opacity="0.5" style="--d:1.9s;--p:3.2s"/>
+<circle cx="404.5" cy="679.8" r="1.1" fill="#9fd8ff" opacity="0.3" style="--d:0.4s;--p:3.3s"/>
+<circle cx="148" cy="330.1" r="1.1" fill="#f2f4f8" opacity="0.6" style="--d:5.3s;--p:3s"/>
+<circle cx="149.8" cy="87.7" r="0.6" fill="#f2f4f8" opacity="0.7" style="--d:1.2s;--p:4.2s"/>
+<circle cx="381.1" cy="654.9" r="0.7" fill="#9fd8ff" opacity="0.6" style="--d:5.9s;--p:6.2s"/>
+<circle cx="1027.4" cy="404.1" r="1" fill="#f2f4f8" opacity="0.6" style="--d:5.4s;--p:5.5s"/>
+<circle cx="334.9" cy="363.1" r="0.6" fill="#9fd8ff" opacity="0.3" style="--d:1.7s;--p:6.2s"/>
+<circle cx="460.4" cy="163.8" r="1.6" fill="#f2f4f8" opacity="0.6" style="--d:2.1s;--p:5.1s"/>
+<circle cx="153.7" cy="409.4" r="0.5" fill="#9fd8ff" opacity="0.9" style="--d:1.5s;--p:3.2s"/>
+<circle cx="833.5" cy="215.4" r="1.4" fill="#f2f4f8" opacity="0.4" style="--d:2.8s;--p:5.2s"/>
+<circle cx="461.7" cy="652.2" r="0.6" fill="#f2f4f8" opacity="0.3" style="--d:4.4s;--p:2.8s"/>
+<circle cx="750.6" cy="323.6" r="0.8" fill="#9fd8ff" opacity="0.5" style="--d:1.1s;--p:4.9s"/>
+<circle cx="1021.4" cy="408.2" r="1.2" fill="#f2f4f8" opacity="0.5" style="--d:2.3s;--p:6s"/>
+<circle cx="856.4" cy="3.4" r="0.5" fill="#f2f4f8" opacity="0.8" style="--d:2.8s;--p:5s"/>
+<circle cx="917.7" cy="619.8" r="1.5" fill="#f2f4f8" opacity="0.7" style="--d:5s;--p:5.2s"/>
+<circle cx="918.3" cy="799.2" r="1.6" fill="#f2f4f8" opacity="0.5" style="--d:4.2s;--p:2.7s"/>
+<circle cx="1110.2" cy="548.6" r="1" fill="#f2f4f8" opacity="0.9" style="--d:5.7s;--p:5.4s"/>
+<circle cx="1159.5" cy="221.1" r="0.7" fill="#f2f4f8" opacity="0.5" style="--d:5.9s;--p:4.5s"/>
+<circle cx="897.1" cy="507.1" r="0.5" fill="#f2f4f8" opacity="0.4" style="--d:5.6s;--p:3s"/>
+<circle cx="740.2" cy="549.8" r="0.7" fill="#9fd8ff" opacity="0.8" style="--d:4.3s;--p:6s"/>
+<circle cx="535.5" cy="741.3" r="0.7" fill="#9fd8ff" opacity="0.5" style="--d:0.1s;--p:3.5s"/>
+<circle cx="978.2" cy="724.6" r="1" fill="#f2f4f8" opacity="0.7" style="--d:5.1s;--p:3.3s"/>
+<circle cx="961.1" cy="375.9" r="0.7" fill="#9fd8ff" opacity="0.8" style="--d:4.9s;--p:5.9s"/>
+<circle cx="802.9" cy="525.4" r="1" fill="#f2f4f8" opacity="0.5" style="--d:0.4s;--p:5.5s"/>
+<circle cx="250.9" cy="536.7" r="1.8" fill="#9fd8ff" opacity="0.6" style="--d:2.3s;--p:4.6s"/>
+<circle cx="1038.6" cy="61.7" r="0.7" fill="#9fd8ff" opacity="0.7" style="--d:3.1s;--p:3.6s"/>
+<circle cx="1174" cy="759.7" r="0.6" fill="#f2f4f8" opacity="0.5" style="--d:5.1s;--p:3.8s"/>
+<circle cx="807.8" cy="181.3" r="0.8" fill="#f2f4f8" opacity="0.6" style="--d:0.9s;--p:3.5s"/>
+<circle cx="72.2" cy="401.9" r="1" fill="#f2f4f8" opacity="0.6" style="--d:0.9s;--p:4.9s"/>
+<circle cx="850.3" cy="11.2" r="0.7" fill="#f2f4f8" opacity="0.5" style="--d:2.2s;--p:3.9s"/>
+</g>
+<g id="nc-chart">
+<g id="nc-halos">
+<circle class="nc-h" cx="145" cy="420" r="13.440000000000001"/>
+<circle class="nc-h" cx="355" cy="520" r="14.719999999999999"/>
+<circle class="nc-h" cx="550" cy="390" r="13.12"/>
+<circle class="nc-h" cx="770" cy="440" r="14.080000000000002"/>
+<circle class="nc-h" cx="980" cy="320" r="13.76"/>
+</g>
+<g id="nc-edges">
+<line class="nc-e" data-band="1" x1="110" y1="180" x2="320" y2="310" pathLength="1"/>
+<line class="nc-e" data-band="1" x1="110" y1="180" x2="310" y2="195" pathLength="1"/>
+<line class="nc-e" data-band="1" x1="145" y1="420" x2="355" y2="520" pathLength="1"/>
+<line class="nc-e" data-band="1" x1="145" y1="420" x2="425" y2="450" pathLength="1"/>
+<line class="nc-e" data-band="1" x1="185" y1="260" x2="390" y2="140" pathLength="1"/>
+<line class="nc-e" data-band="1" x1="185" y1="260" x2="310" y2="195" pathLength="1"/>
+<line class="nc-e" data-band="1" x1="205" y1="580" x2="445" y2="680" pathLength="1"/>
+<line class="nc-e" data-band="1" x1="220" y1="105" x2="390" y2="140" pathLength="1"/>
+<line class="nc-e" data-band="1" x1="220" y1="105" x2="310" y2="195" pathLength="1"/>
+<line class="nc-e" data-band="2" x1="320" y1="310" x2="550" y2="390" pathLength="1"/>
+<line class="nc-e" data-band="2" x1="320" y1="310" x2="620" y2="210" pathLength="1"/>
+<line class="nc-e" data-band="2" x1="355" y1="520" x2="585" y2="580" pathLength="1"/>
+<line class="nc-e" data-band="2" x1="355" y1="520" x2="655" y2="500" pathLength="1"/>
+<line class="nc-e" data-band="2" x1="390" y1="140" x2="620" y2="210" pathLength="1"/>
+<line class="nc-e" data-band="2" x1="390" y1="140" x2="540" y2="120" pathLength="1"/>
+<line class="nc-e" data-band="2" x1="425" y1="450" x2="550" y2="390" pathLength="1"/>
+<line class="nc-e" data-band="2" x1="425" y1="450" x2="655" y2="500" pathLength="1"/>
+<line class="nc-e" data-band="2" x1="445" y1="680" x2="585" y2="580" pathLength="1"/>
+<line class="nc-e" data-band="2" x1="310" y1="195" x2="540" y2="120" pathLength="1"/>
+<line class="nc-e" data-band="3" x1="550" y1="390" x2="770" y2="440" pathLength="1"/>
+<line class="nc-e" data-band="3" x1="550" y1="390" x2="880" y2="370" pathLength="1"/>
+<line class="nc-e" data-band="3" x1="585" y1="580" x2="845" y2="590" pathLength="1"/>
+<line class="nc-e" data-band="3" x1="620" y1="210" x2="805" y2="260" pathLength="1"/>
+<line class="nc-e" data-band="3" x1="620" y1="210" x2="895" y2="155" pathLength="1"/>
+<line class="nc-e" data-band="3" x1="655" y1="500" x2="770" y2="440" pathLength="1"/>
+<line class="nc-e" data-band="3" x1="685" y1="315" x2="880" y2="370" pathLength="1"/>
+<line class="nc-e" data-band="3" x1="540" y1="120" x2="805" y2="260" pathLength="1"/>
+<line class="nc-e" data-band="3" x1="540" y1="120" x2="895" y2="155" pathLength="1"/>
+<line class="nc-e" data-band="4" x1="770" y1="440" x2="980" y2="320" pathLength="1"/>
+<line class="nc-e" data-band="4" x1="770" y1="440" x2="1065" y2="420" pathLength="1"/>
+<line class="nc-e" data-band="4" x1="805" y1="260" x2="980" y2="320" pathLength="1"/>
+<line class="nc-e" data-band="4" x1="805" y1="260" x2="1095" y2="235" pathLength="1"/>
+<line class="nc-e" data-band="4" x1="845" y1="590" x2="1025" y2="500" pathLength="1"/>
+<line class="nc-e" data-band="4" x1="880" y1="370" x2="1065" y2="420" pathLength="1"/>
+<line class="nc-e" data-band="4" x1="895" y1="155" x2="1095" y2="235" pathLength="1"/>
+<line class="nc-e" data-band="1" x1="145" y1="420" x2="655" y2="500" pathLength="1"/>
+<line class="nc-e" data-band="1" x1="205" y1="580" x2="550" y2="390" pathLength="1"/>
+<line class="nc-e" data-band="1" x1="220" y1="105" x2="805" y2="260" pathLength="1"/>
+<line class="nc-e" data-band="2" x1="445" y1="680" x2="770" y2="440" pathLength="1"/>
+<line class="nc-e" data-band="2" x1="425" y1="450" x2="685" y2="315" pathLength="1"/>
+<line class="nc-e" data-band="2" x1="355" y1="520" x2="425" y2="450" pathLength="1"/>
+<line class="nc-e" data-band="3" x1="655" y1="500" x2="685" y2="315" pathLength="1"/>
+<line class="nc-e" data-band="4" x1="880" y1="370" x2="1025" y2="500" pathLength="1"/>
+</g>
+<g id="nc-nodes">
+<circle class="nc-n" data-band="1" cx="110" cy="180" r="3.8" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="1" cx="145" cy="420" r="4.2" fill="#9fd8ff" data-bright="1"/>
+<circle class="nc-n" data-band="1" cx="185" cy="260" r="3.1" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="1" cx="205" cy="580" r="2.9" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="1" cx="220" cy="105" r="2.7" fill="#9fd8ff"/>
+<circle class="nc-n" data-band="2" cx="320" cy="310" r="3.4" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="2" cx="355" cy="520" r="4.6" fill="#f2f4f8" data-bright="1"/>
+<circle class="nc-n" data-band="2" cx="390" cy="140" r="2.8" fill="#9fd8ff"/>
+<circle class="nc-n" data-band="2" cx="425" cy="450" r="3.6" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="2" cx="445" cy="680" r="2.5" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="2" cx="310" cy="195" r="2.2" fill="#9fd8ff"/>
+<circle class="nc-n" data-band="3" cx="550" cy="390" r="4.1" fill="#f2f4f8" data-bright="1"/>
+<circle class="nc-n" data-band="3" cx="585" cy="580" r="3.3" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="3" cx="620" cy="210" r="2.6" fill="#9fd8ff"/>
+<circle class="nc-n" data-band="3" cx="655" cy="500" r="3.9" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="3" cx="685" cy="315" r="2.4" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="3" cx="540" cy="120" r="3" fill="#9fd8ff"/>
+<circle class="nc-n" data-band="4" cx="770" cy="440" r="4.4" fill="#f2f4f8" data-bright="1"/>
+<circle class="nc-n" data-band="4" cx="805" cy="260" r="3.2" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="4" cx="845" cy="590" r="2.8" fill="#9fd8ff"/>
+<circle class="nc-n" data-band="4" cx="880" cy="370" r="3.5" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="4" cx="895" cy="155" r="2.3" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="5" cx="980" cy="320" r="4.3" fill="#9fd8ff" data-bright="1"/>
+<circle class="nc-n" data-band="5" cx="1025" cy="500" r="3.7" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="5" cx="1065" cy="420" r="2.9" fill="#f2f4f8"/>
+<circle class="nc-n" data-band="5" cx="1095" cy="235" r="3.1" fill="#9fd8ff"/>
+</g>
+<g id="nc-bright">
+<g class="nc-x"><line x1="129" y1="420" x2="161" y2="420"/><line x1="145" y1="404" x2="145" y2="436"/></g>
+<g class="nc-x"><line x1="339" y1="520" x2="371" y2="520"/><line x1="355" y1="504" x2="355" y2="536"/></g>
+<g class="nc-x"><line x1="534" y1="390" x2="566" y2="390"/><line x1="550" y1="374" x2="550" y2="406"/></g>
+<g class="nc-x"><line x1="754" y1="440" x2="786" y2="440"/><line x1="770" y1="424" x2="770" y2="456"/></g>
+<g class="nc-x"><line x1="964" y1="320" x2="996" y2="320"/><line x1="980" y1="304" x2="980" y2="336"/></g>
+</g>
+<g id="nc-pulses">
+<circle class="nc-p" r="2.4" style="offset-path:path('M 110 180 L 320 310 L 550 390 L 770 440 L 980 320');--pd:3.4s;--pl:1.8s"/>
+<circle class="nc-p" r="2.4" style="offset-path:path('M 145 420 L 425 450 L 655 500 L 770 440 L 1065 420');--pd:4s;--pl:2.7s"/>
+<circle class="nc-p" r="2.4" style="offset-path:path('M 220 105 L 310 195 L 540 120 L 805 260 L 1095 235');--pd:4.5s;--pl:3.6s"/>
+<circle class="nc-p" r="2.4" style="offset-path:path('M 185 260 L 390 140 L 620 210 L 805 260 L 980 320');--pd:5.1s;--pl:4.5s"/>
+<circle class="nc-p" r="2.4" style="offset-path:path('M 205 580 L 445 680 L 585 580 L 845 590 L 1025 500');--pd:3.4s;--pl:5.4s"/>
+<circle class="nc-p" r="2.4" style="offset-path:path('M 145 420 L 355 520 L 585 580 L 845 590 L 1025 500');--pd:4s;--pl:6.3s"/>
+<circle class="nc-p" r="2.4" style="offset-path:path('M 220 105 L 390 140 L 540 120 L 895 155 L 1095 235');--pd:4.5s;--pl:7.2s"/>
+</g>
+</g>
+</svg>
