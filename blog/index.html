@@ -13,31 +13,12 @@
   b.setAttribute('href',new URL(b.getAttribute('href')||'./',location.href).href);
 })();
 </script>
-<script>
-(()=>{
-  const root=document.documentElement;
-  root.classList.add('entry-pending');
-  root.dataset.introStarted=String(performance.now());
-  performance.mark('portfolio:intro-start');
-  const finish=()=>{
-    if(!root.classList.contains('entry-pending'))return;
-    root.classList.remove('entry-pending');
-    document.getElementById('entryLoader')?.remove();
-    document.querySelectorAll('[data-intro-inert]').forEach(el=>{el.inert=false;el.removeAttribute('data-intro-inert')});
-    delete root.dataset.introStarted;
-    performance.mark('portfolio:intro-end');
-    document.dispatchEvent(new Event('portfolio:entered'));
-  };
-  window.__finishPortfolioIntro=finish;
-  setTimeout(finish,2800);
-})();
-</script>
 <link rel="preload" href="assets/images/websitelogo-blackbg1.svg" as="image">
-<script src="assets/js/entry.js?v=2026-09-30.loader1" defer></script>
+
 <noscript><style>.page[data-page="blog"]{display:block}</style></noscript>
 <title>Blog — Notes on AI Agents &amp; Automation | Jan</title>
 <meta name="description" content="Jan's working notes: lessons and experiments on AI agents, automation, operations and tools, plus practical guides for virtual assistants.">
-<meta name="theme-color" content="#0b0b0b">
+<meta name="theme-color" content="#05070b">
 <link rel="canonical" href="https://janmm97.github.io/jan-website/blog/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
@@ -130,78 +111,137 @@
      "position": 2
     },
     {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "J/OS Agents",
-      "description": "A private command center that runs AI agents for two separate businesses from one place while keeping the two strictly apart.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Agents.png",
-      "codeRepository": "https://github.com/janmm97/janhq",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
+      "@type": "WebSite",
+      "@id": "https://janmm97.github.io/jan-website/#website",
+      "url": "https://janmm97.github.io/jan-website/",
+      "name": "Jan — AI Agent Builder & Automation Specialist",
+      "description": "Jan, AI agent builder and automation specialist. Custom AI agents, n8n workflows and multi-agent systems like J/OS HQ that turn repetitive work into systems.",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://janmm97.github.io/jan-website/#person"
       }
-     },
-     "position": 3
     },
     {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "AI Video Ad AutoSync Pipeline",
-      "description": "An end-to-end AI video ad automation in n8n that turns a simple form submission into a finished vertical video asset.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/n8n-pipeline.png",
-      "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/sora-2-autosync-v2",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
+      "@type": "ProfilePage",
+      "@id": "https://janmm97.github.io/jan-website/#profilepage",
+      "url": "https://janmm97.github.io/jan-website/",
+      "name": "Jan — AI Agent Builder & Automation Specialist",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://janmm97.github.io/jan-website/#website"
+      },
+      "mainEntity": {
+        "@type": "Person",
+        "@id": "https://janmm97.github.io/jan-website/#person",
+        "name": "Jan",
+        "url": "https://janmm97.github.io/jan-website/",
+        "jobTitle": "AI Agent Builder & Automation Specialist",
+        "description": "Computer Science graduate who builds custom AI agents and connected workflows, combining operations, automation, and AI to simplify repetitive work.",
+        "knowsAbout": [
+          "AI agents",
+          "Workflow automation",
+          "Multi-agent systems",
+          "Operations",
+          "n8n"
+        ],
+        "sameAs": [
+          "https://github.com/janmm97"
+        ]
       }
-     },
-     "position": 4
     },
     {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "Multi-Agent Content Automation",
-      "description": "A multi-agent AI content automation system that generates, organizes, and prepares social media content across multiple channels.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/n8n-content-writer.png",
-      "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/content-automation",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
-      }
-     },
-     "position": 5
-    },
-    {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "Deal Flow Checker",
-      "description": "An n8n automation that monitors incoming deal-flow emails in Gmail and screens every business opportunity against a defined set of acquisition criteria.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/Deal%20Flow%20Checker.png",
-      "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/deal-flow-checker",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
-      }
-     },
-     "position": 6
-    },
-    {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "Automation Idea Summary and Prompt Writer",
-      "description": "An n8n intake workflow that turns messy automation requests into structured, actionable data.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/Automation%20Idea%20Summary%20and%20Prompt%20Writer.png",
-      "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/automation-idea-summary-and-prompt-writer",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
-      }
-     },
-     "position": 7
+      "@type": "ItemList",
+      "@id": "https://janmm97.github.io/jan-website/#projects",
+      "name": "Selected work",
+      "numberOfItems": 6,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "J/OS HQ",
+            "description": "A local command center that runs AI agents for two businesses behind a single approval gate. Built on the One CLI, Claude Code, and the Codex CLI, it routes each request to the right workspace.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Dashboard.png",
+            "codeRepository": "https://github.com/janmm97/janhq",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 1
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "J/OS Agents",
+            "description": "A private command center that runs AI agents for two separate businesses from one place while keeping the two strictly apart.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Agents.png",
+            "codeRepository": "https://github.com/janmm97/janhq",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 2
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "AI Video Ad AutoSync Pipeline",
+            "description": "An end-to-end AI video ad automation in n8n that turns a simple form submission into a finished vertical video asset.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/n8n-pipeline.png",
+            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/sora-2-autosync-v2",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 3
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "Multi-Agent Content Automation",
+            "description": "A multi-agent AI content automation system that generates, organizes, and prepares social media content across multiple channels.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/n8n-content-writer.png",
+            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/content-automation",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 4
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "Deal Flow Checker",
+            "description": "An n8n automation that monitors incoming deal-flow emails in Gmail and screens every business opportunity against a defined set of acquisition criteria.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/Deal%20Flow%20Checker.png",
+            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/deal-flow-checker",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 5
+        },
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "Automation Idea Summary and Prompt Writer",
+            "description": "An n8n intake workflow that turns messy automation requests into structured, actionable data.",
+            "image": "https://janmm97.github.io/jan-website/assets/images/Automation%20Idea%20Summary%20and%20Prompt%20Writer.png",
+            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/automation-idea-summary-and-prompt-writer",
+            "author": {
+              "@id": "https://janmm97.github.io/jan-website/#person"
+            }
+          },
+          "position": 6
+        }
+      ]
     }
-   ]
-  }
- ]
+  ]
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=2026-09-30.1">
@@ -617,28 +657,18 @@ footer{background:rgba(9,13,20,.35)}
   .pcard-media img,.pcard-media .pcard-fallback{transition:none}
 }
 </style>
-<noscript><style>.page{display:flex!important}.nav,.mmenu,.toast{display:none!important}.process-wrap{height:auto!important}.process-viewport{position:static!important;display:block!important;height:auto!important}.process-stage{position:static!important;opacity:1!important;visibility:visible!important;transform:none!important}.svc-scroll-wrap,.process-canvas-wrap,.process-chapters{display:none!important}</style></noscript>
+<noscript><style>.page{display:flex!important;flex-direction:column}.nav,.mmenu,.toast{display:none!important}.process-wrap{height:auto!important}.process-viewport{position:static!important;display:block!important;height:auto!important}.process-stage{position:static!important;opacity:1!important;visibility:visible!important;transform:none!important}.svc-scroll-wrap,.process-canvas-wrap,.process-chapters{display:none!important}</style></noscript>
 <link rel="preload" href="assets/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Bump ?v= on these six files whenever any of them changes, so browsers drop cached copies. -->
 <link rel="stylesheet" href="assets/css/studio.css?v=2026-10-09.1">
 <link rel="stylesheet" href="assets/css/service-logo.css?v=2026-09-30.3">
 <link rel="stylesheet" href="assets/css/entry.css?v=2026-09-30.loader1">
 <link rel="stylesheet" href="assets/css/blog.css?v=2026-10-10.1">
+<link rel="stylesheet" href="assets/css/lab.css?v=2026-10-13.1">
+<link rel="stylesheet" href="assets/css/astral.css?v=2026-10-15.3">
+<link rel="stylesheet" href="assets/css/mission.css?v=2026-10-15.2">
 </head>
 <body>
-<div class="entry-loader" id="entryLoader" aria-label="Opening Jan's portfolio">
-  <div class="loader-content">
-    <div class="loader-stage" aria-hidden="true">
-      <div class="loader-shadow"></div>
-      <img class="loader-logo" src="assets/images/websitelogo-blackbg1.svg" alt="" width="84" height="84" fetchpriority="high">
-      <div class="loader-floor"></div>
-    </div>
-    <div class="loader-progress" role="progressbar" aria-label="Opening portfolio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-      <div class="loader-readout" aria-hidden="true"><span>Loading</span><span id="loaderPercent">0%</span></div>
-      <div class="loader-track" aria-hidden="true"><span id="loaderFill"></span></div>
-    </div>
-  </div>
-</div>
 <a class="skip-link" href="blog/#mainContent">Skip to content</a>
 
 
@@ -672,17 +702,21 @@ footer{background:rgba(9,13,20,.35)}
 
 
 
+
+
   <!-- ============ PROJECTS ============ -->
+
 
   <!-- ============ SERVICES ============ -->
 
-  <section class="page" data-page="blog">
+
+  <section class="page" data-page="blog"><div class="sky-art blog-sky" aria-hidden="true"><video class="sky-video" muted loop playsinline preload="none" poster="assets/video/deepfield-poster.webp" data-src="assets/video/deepfield.mp4" data-src-small="assets/video/deepfield-960.mp4"></video></div>
     <div class="container">
       <div class="projects-head">
         <h1 class="projects-title" tabindex="-1" data-heading>The working<br><em class="grad-em" id="blogWord">notes.</em></h1>
         <p class="projects-lead">Notes, lessons and experiments — from AI agents and automation to operations, tools and the work itself.</p>
       </div>
-      <ol class="post-list">
+      <div class="journal-tools" hidden><label class="journal-search" for="journalSearch">Search the notes<input id="journalSearch" type="search" placeholder="Agents, tools, operations…" autocomplete="off"></label><div class="lab-filters" role="group" aria-label="Article topic"><button type="button" data-topic="all" aria-pressed="true">All notes</button><button type="button" data-topic="experiments" aria-pressed="false">Experiments</button><button type="button" data-topic="guides" aria-pressed="false">Guides</button></div><p id="journalCount" role="status">5 notes</p></div><ol class="post-list">
 <li class="post-entry"><div><h2 class="post-entry-title"><a href="blog/human-in-the-loop-ai-agents/">How can a small service business use AI agents without losing control of what goes out?</a></h2><p class="post-entry-meta"><time datetime="2026-10-15">October 15, 2026</time><span>6 min read</span></p></div><div><p class="post-entry-excerpt">Let the agent read and draft on its own, and make it stop for a yes or no before money, client messages, calendar changes, deletions and sharing. The five actions to gate, a table, and a 10-person agency example.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></li>
 <li class="post-entry"><div><h2 class="post-entry-title"><a href="blog/deepseek-v4-1-flash-vs-claude-sonnet-5-5/">DeepSeek V4.1 Flash tied Claude Sonnet 5.5 on my blog intros, at about an eighth of the cost</a></h2><p class="post-entry-meta"><time datetime="2026-10-10">October 10, 2026</time><span>5 min read</span></p></div><div><p class="post-entry-excerpt">Four AI models wrote the same three blog intros. DeepSeek V4.1 Flash tied Claude Sonnet 5.5 at 3.93 out of 5 for about an eighth of the cost, Claude Haiku 5.5 was cheapest, and hidden reasoning made up most of every bill. Three prompts, one run each: an early signal for routine writing.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></li>
 <li class="post-entry"><div><h2 class="post-entry-title"><a href="blog/claude-haiku-5-5-vs-deepseek-v4-1-flash-vs-gpt-6-luna/">Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash: A Research-Agent Test</a></h2><p class="post-entry-meta"><time datetime="2026-10-08">October 8, 2026</time><span>3 min read</span><span>748 words</span></p></div><div><p class="post-entry-excerpt">Claude Haiku 5.5 finished my research-agent task in 35 seconds, ahead of DeepSeek V4.1 Flash and GPT-6 Luna. It wasn't the most accurate, and one task proves little.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></li>
@@ -700,9 +734,10 @@ footer{background:rgba(9,13,20,.35)}
           </div>
           <div><p class="post-entry-excerpt">Know some Zapier, Make or n8n? Here's the six-stage roadmap I'd follow next: LLMs, process mapping, APIs and webhooks, integrations, AI agents, and AI systems that run safely with human approval.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div>
         </li>
-      </ol>
+      </ol><div id="journalEmpty" hidden><h2>No matching notes.</h2><p>Try another phrase or clear your filters.</p><button class="btn btn-ghost" id="clearJournal" type="button">Clear search and filters</button></div>
     </div>
   </section>
+
 
 </main>
 
@@ -1287,8 +1322,9 @@ var yr=$('#yr');if(yr){yr.textContent=String(new Date().getFullYear());}
 render(false);
 })();
 </script>
-<script src="assets/js/studio.js?v=2026-09-30.1"></script>
-<script src="assets/js/nano-scenes.js?v=2026-09-30.2"></script>
-<script src="assets/js/service-logo.js?v=2026-09-30.3"></script>
+
+<script src="assets/js/vendor/gsap.min.js"></script><script src="assets/js/vendor/CustomEase.min.js"></script><script src="assets/js/stardust.js?v=2026-10-15.4"></script><script src="assets/js/lab.js?v=2026-10-15.3"></script><script src="assets/js/astral.js?v=2026-10-15.2"></script><script src="assets/js/mission.js?v=2026-10-15.2"></script>
+
+
 </body>
 </html>
