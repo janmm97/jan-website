@@ -24,6 +24,9 @@
   const notes=[...document.querySelectorAll('.post-entry')],search=document.getElementById('journalSearch');let topic='all';
   // Topic, label and dot pattern per post, keyed by its URL so new posts and reordering don't shift them.
   const NOTE_META={
+    'claude-for-small-business':['guides','Guide / AI tools',1],
+    'gemini-4-argon-vs-claude-opus-5-5':['experiments','News / model releases',0],
+    'ai-marketing-agents-claude-code':['guides','Guide / AI agents',2],
     'human-in-the-loop-ai-agents':['guides','Guide / building systems',2],
     'deepseek-v4-1-flash-vs-claude-sonnet-5-5':['experiments','Experiment / model tests',0],
     'claude-haiku-5-5-vs-deepseek-v4-1-flash-vs-gpt-6-luna':['experiments','Experiment / research agents',0],
