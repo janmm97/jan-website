@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" class="blog-post">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V7TTFWT0GD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V7TTFWT0GD');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gemini 4 Argon: what&#x27;s new, the benchmarks, and how it compares to Claude Opus 5.5 — Jan</title>
+<meta name="description" content="Gemini 4 Argon launched 13 October 2026. Vals Index scores, the shared 1M-token limit, the price that doubles on 30 November, and how it compares to Opus 5.5.">
+<meta name="theme-color" content="#05070b">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="article:published_time" content="2026-10-20">
+<meta property="article:modified_time" content="2026-10-20">
+<link rel="canonical" href="https://janmm97.github.io/jan-website/blog/gemini-4-argon-vs-claude-opus-5-5/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Jan — AI Agent Builder">
+<meta property="og:title" content="Gemini 4 Argon: what&#x27;s new, the benchmarks, and how it compares to Claude Opus 5.5">
+<meta property="og:description" content="Gemini 4 Argon launched 13 October 2026. Vals Index scores, the shared 1M-token limit, the price that doubles on 30 November, and how it compares to Opus 5.5.">
+<meta property="og:url" content="https://janmm97.github.io/jan-website/blog/gemini-4-argon-vs-claude-opus-5-5/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gemini 4 Argon: what&#x27;s new, the benchmarks, and how it compares to Claude Opus 5.5">
+<meta name="twitter:description" content="Gemini 4 Argon launched 13 October 2026. Vals Index scores, the shared 1M-token limit, the price that doubles on 30 November, and how it compares to Opus 5.5.">
+<meta property="article:tag" content="Gemini 4 Argon">
+<meta property="article:tag" content="Claude Opus 5.5">
+<meta property="article:tag" content="AI Model News">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Gemini 4 Argon: what's new, the benchmarks, and how it compares to Claude Opus 5.5",
+  "description": "Gemini 4 Argon launched 13 October 2026. Vals Index scores, the shared 1M-token limit, the price that doubles on 30 November, and how it compares to Opus 5.5.",
+  "url": "https://janmm97.github.io/jan-website/blog/gemini-4-argon-vs-claude-opus-5-5/",
+  "mainEntityOfPage": "https://janmm97.github.io/jan-website/blog/gemini-4-argon-vs-claude-opus-5-5/",
+  "author": {
+    "@type": "Person",
+    "name": "Jan Manalo",
+    "url": "https://janmm97.github.io/jan-website/about/",
+    "sameAs": [
+      "https://x.com/janmm_va",
+      "https://www.youtube.com/@janmm2997",
+      "https://github.com/janmm97"
+    ]
+  },
+  "datePublished": "2026-10-20",
+  "dateModified": "2026-10-20",
+  "wordCount": 872,
+  "keywords": [
+    "gemini 4 argon vs claude opus 5.5",
+    "Gemini 4 Argon",
+    "Claude Opus 5.5",
+    "AI Model News"
+  ],
+  "inLanguage": "en",
+  "citation": [
+    "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+    "https://www.vals.ai/benchmarks/vals_index",
+    "https://github.blog/changelog/2026-10-13-gemini-4-argon-in-github-copilot/",
+    "https://developers.googleblog.com/gemini-4-argon-for-robotics/"
+  ]
+}</script>
+<link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg?v=2026-09-30.1">
+<link rel="preload" href="../../assets/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/studio.css?v=2026-10-09.1">
+<link rel="stylesheet" href="../../assets/css/entry.css?v=2026-09-30.loader1">
+<link rel="stylesheet" href="../../assets/css/blog.css?v=2026-10-10.1">
+<script src="../../assets/js/blog.js?v=2026-10-07.2" defer></script>
+<link rel="stylesheet" href="../../assets/css/astral.css?v=2026-10-15.1">
+</head>
+<body>
+<a class="skip-link" href="#post">Skip to content</a>
+
+<header class="nav">
+  <div class="container nav-in">
+    <a class="brand" href="../../" aria-label="Jan — home"><img class="brand-logo" src="../../assets/images/websitelogo-blackbg1.svg" alt="" width="27" height="27"></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../../about/">About</a>
+      <a href="../../projects/">Projects</a>
+      <a href="../../services/">Services</a>
+      <a href="../../blog/" class="active" aria-current="page">Blog</a>
+    </nav>
+    <div class="nav-end">
+      <a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+      <button class="icon-btn burger" id="burger" type="button" aria-label="Open menu" aria-controls="mmenu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" role="navigation" aria-label="Mobile navigation">
+  <button class="icon-btn mmenu-close" id="mmenuClose" type="button" aria-label="Close menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../../about/">About</a>
+  <a href="../../projects/">Projects</a>
+  <a href="../../services/">Services</a>
+  <a href="../../blog/" aria-current="page">Blog</a>
+  <a href="../../contact/">Contact</a>
+  <div class="mfoot">AI agents. Connected workflows.</div>
+</div>
+
+<div class="runhead" aria-hidden="true">
+  <div class="runhead-in">
+    <span class="runhead-n"></span>
+    <span class="runhead-title">Gemini 4 Argon: what&#x27;s new, the benchmarks, and how it compares to Claude Opus 5.5</span>
+    <a class="runhead-toc" href="#contents" tabindex="-1">Contents</a>
+  </div>
+  <span class="runhead-bar"></span>
+</div>
+
+
+<div class="sky-post" aria-hidden="true"><img src="../../assets/images/cosmos/nebula.webp" alt="" width="2400" height="1340" data-parallax=".18" decoding="async"></div><main><article class="post" id="post" tabindex="-1"><header class="post-head"><h1 class="post-title">Gemini 4 Argon: what&#x27;s new, the benchmarks, and how it compares to Claude Opus 5.5</h1><p class="post-meta"><time datetime="2026-10-20">October 20, 2026</time><span>4 min read</span><span>872 words</span></p></header><div class="post-content post-intro"><p><strong>Google released Gemini 4 Argon, its latest frontier model, on 13 October 2026.</strong> You can use it through the Gemini API, Google Antigravity and the Gemini app, and on the Vals Index it now ranks first, just ahead of Claude Sonnet 5.5 and Claude Opus 5.5, at less than half of Opus's cost per test.</p></div><nav class="post-toc" id="contents" aria-labelledby="contents-title"><h2 class="post-toc-title" id="contents-title">Contents</h2><ol data-rows="3"><li><a href="#what-did-google-release"><span class="post-toc-n" aria-hidden="true">01</span><span class="post-toc-label">What did Google release?</span></a></li><li><a href="#where-can-you-use-it-today"><span class="post-toc-n" aria-hidden="true">02</span><span class="post-toc-label">Where can you use it today?</span></a></li><li><a href="#how-does-gemini-4-argon-score-on-the-benchmarks"><span class="post-toc-n" aria-hidden="true">03</span><span class="post-toc-label">How does Gemini 4 Argon score on the benchmarks?</span></a></li><li><a href="#how-does-it-compare-to-claude-opus-5-5"><span class="post-toc-n" aria-hidden="true">04</span><span class="post-toc-label">How does it compare to Claude Opus 5.5?</span></a></li><li><a href="#what-this-changes-for-your-automations"><span class="post-toc-n" aria-hidden="true">05</span><span class="post-toc-label">What this changes for your automations</span></a></li></ol></nav><div class="post-content"><h2 id="what-did-google-release">What did Google release?</h2><p>Gemini 4 Argon is Google's new top model, announced on the Google blog on <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/" rel="noopener">13 October 2026</a>. Google pitches it at developers and enterprises first, which is where most of the detail in the announcement goes.</p><p>Two numbers from that post matter if you build automations. The first is the context: Google gives Argon a 1M-token limit through the Gemini API, and that limit is shared between what you send in and what comes back. A long document plus a long answer both count against the same million.</p><p>The second is the price, and it has a catch. Argon launches at an introductory $2 per million input tokens and $10 per million output tokens, with cached input tokens 95% cheaper. Google's footnote says that once the introductory period ends on 30 November 2026, the price becomes $4 per million input tokens and $20 per million output tokens. If you're pricing a workflow that will still run in December, use the second pair of numbers.</p><h2 id="where-can-you-use-it-today">Where can you use it today?</h2><p>Inside Google, it's in the Gemini API (AI Studio and the Gemini platform), in Antigravity for AI Ultra subscribers, and in the Gemini app and AI Mode in Search for AI Ultra and Pro subscribers. Outside Google, GitHub made Argon <a href="https://github.blog/changelog/2026-10-13-gemini-4-argon-in-github-copilot/" rel="noopener">generally available in GitHub Copilot on 13 October</a> for Copilot Pro+, Max, Business and Enterprise. You pick it from the model picker in VS Code, Visual Studio, JetBrains, Xcode and Eclipse, plus Copilot CLI and the Copilot coding agent. GitHub bills it at the provider's list pricing and says the rollout is gradual, so it may not show up for everyone on day one.</p><h2 id="how-does-gemini-4-argon-score-on-the-benchmarks">How does Gemini 4 Argon score on the benchmarks?</h2><p>The cleanest third-party comparison right now is the <a href="https://www.vals.ai/benchmarks/vals_index" rel="noopener">Vals Index</a>, which tests models on finance, coding, legal and tax work and also reports what each test run costs. Google cited Argon's first place there on 13 October. These are the figures as Vals publishes them:</p><div class="post-table post-table--stack post-wide" role="region" tabindex="0" aria-label="How does Gemini 4 Argon score on the benchmarks?"><table><thead><tr><th scope="col">Model</th><th scope="col">Vals Index accuracy</th><th scope="col">Cost per test</th></tr></thead><tbody><tr><th scope="row">Gemini 4 Argon</th><td data-label="Vals Index accuracy">68.90%</td><td data-label="Cost per test">$15.68</td></tr><tr><th scope="row">Claude Sonnet 5.5</th><td data-label="Vals Index accuracy">67.04%</td><td data-label="Cost per test">$21.34</td></tr><tr><th scope="row">Claude Opus 5.5</th><td data-label="Vals Index accuracy">66.97%</td><td data-label="Cost per test">$32.14</td></tr></tbody></table></div><p>Read the gap honestly: Argon leads Opus 5.5 by under two points on accuracy, which is close. The cost column is where it pulls away, at less than half of Opus's cost per test. Vals also notes that no single model leads every part of the index, so "first overall" doesn't mean "best at your task".</p><p>Google published one more number in a separate post, <a href="https://developers.googleblog.com/gemini-4-argon-for-robotics/" rel="noopener">Gemini 4 Argon for Robotics</a> (13 October): 87% on the Embodied Reasoning benchmark using pure reasoning, which Google says is higher than every other frontier model. That's Google grading its own model, and it's about robots understanding physical space, so it tells you little about an email or invoice workflow.</p><h2 id="how-does-it-compare-to-claude-opus-5-5">How does it compare to Claude Opus 5.5?</h2><p>On the one benchmark both appear in with dated figures, Argon is slightly more accurate and much cheaper per test. That's the honest summary, and it stops there. Vals doesn't tell you which model writes a better client email, follows a long instruction file more faithfully, or makes fewer mistakes calling an app's API in step four of a ten-step job. Those are the things that break real automations.</p><p>For context on where I sit: the JWS agents that run my own marketing are built on Claude Code, and each one uses Claude Opus or Claude Sonnet depending on its job. So this release is a real question for me too, and my answer is to test before switching anything.</p><h2 id="what-this-changes-for-your-automations">What this changes for your automations</h2><p><strong>Price your workflow on the December number.</strong> The $2/$10 rate ends on 30 November 2026. A workflow that looks cheap this month costs twice as much per token from 1 December, so budget on $4/$20 from the start.</p><p><strong>Run one real job through both models before you switch.</strong> Pick a task you already automate, like summarising a long thread or drafting a reply from your notes, and give Argon and your current model the same input. Compare the output and the token bill side by side. A two-point gap on a mixed benchmark can vanish, or flip, on your own work.</p><p><strong>Use the shared 1M limit for long inputs, and plan for it.</strong> Big contracts, long email histories and full meeting transcripts fit in one call. Because input and output share the limit, leave room for the answer.</p><p><strong>Keep the approval step, whatever the model.</strong> A smarter model still drafts; a person still decides what goes to a client. Every JWS agent works that way, and a better benchmark score doesn't change it.</p><p>If you want to see how I test models like this inside real agent builds, <a href="https://www.youtube.com/@janmm2997" rel="noopener">subscribe on YouTube</a> and <a href="https://x.com/janmm_va" rel="noopener">follow me on X</a> for the next breakdown.</p><h2 id="sources">Sources</h2><ul><li>Google, "Introducing Gemini 4 Argon", 13 October 2026: <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/" rel="noopener">https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/</a></li><li>Vals AI, Vals Index leaderboard (figures as cited by Google on 13 October 2026): <a href="https://www.vals.ai/benchmarks/vals_index" rel="noopener">https://www.vals.ai/benchmarks/vals_index</a></li><li>GitHub Changelog, "Gemini 4 Argon in GitHub Copilot", 13 October 2026: <a href="https://github.blog/changelog/2026-10-13-gemini-4-argon-in-github-copilot/" rel="noopener">https://github.blog/changelog/2026-10-13-gemini-4-argon-in-github-copilot/</a></li><li>Google for Developers, "Gemini 4 Argon for Robotics", 13 October 2026: <a href="https://developers.googleblog.com/gemini-4-argon-for-robotics/" rel="noopener">https://developers.googleblog.com/gemini-4-argon-for-robotics/</a></li></ul><p class="post-tagline"><em>Less busy. More built.</em></p></div><nav class="post-continue post-continue--compact" aria-labelledby="keep-reading-title"><h2 id="keep-reading-title">Keep reading</h2><div class="post-entry"><div><h3 class="post-entry-title"><a href="../deepseek-v4-1-flash-vs-claude-sonnet-5-5/">DeepSeek V4.1 Flash tied Claude Sonnet 5.5 on my blog intros, at about an eighth of the cost</a></h3><p class="post-entry-meta"><span>Related</span></p></div><div><p class="post-entry-excerpt">Four AI models wrote the same three blog intros. DeepSeek V4.1 Flash tied Claude Sonnet 5.5 at 3.93 out of 5 for about an eighth of the cost, and hidden reasoning made up most of every bill.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></div>
+<div class="post-entry"><div><h3 class="post-entry-title"><a href="../human-in-the-loop-ai-agents/">How can a small service business use AI agents without losing control of what goes out?</a></h3><p class="post-entry-meta"><span>Related</span></p></div><div><p class="post-entry-excerpt">Let the agent read and draft on its own, and make it stop for a yes or no before money, client messages, calendar changes, deletions and sharing. The five actions to gate, a table, and a 10-person agency example.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></div>
+<div class="post-continue-links"><a href="../../projects/">See the projects<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a href="../../services/">Services<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a href="../../blog/">All posts<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></nav></article></main><footer>
+  <div class="container foot-in">
+    <span>© 2026 Jan</span>
+    <span class="foot-page">The working notes</span>
+    <span><a href="https://flaxen-crayon-74f.notion.site/3e57c1c329e280228fcbd4f5d6f65657?pvs=105" target="_blank" rel="noopener">submit a request</a></span>
+  </div>
+</footer>
+<script src="../../assets/js/vendor/gsap.min.js"></script><script src="../../assets/js/vendor/CustomEase.min.js"></script><script src="../../assets/js/astral.js?v=2026-10-15.1"></script>
+</body>
+</html>
