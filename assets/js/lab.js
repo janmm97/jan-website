@@ -24,6 +24,7 @@
   const notes=[...document.querySelectorAll('.post-entry')],search=document.getElementById('journalSearch');let topic='all';
   // Topic, label and dot pattern per post, keyed by its URL so new posts and reordering don't shift them.
   const NOTE_META={
+    'gpt-6-1-terra-ai-assistant-test':['experiments','Experiment / AI assistants',0],
     'claude-for-small-business':['guides','Guide / AI tools',1],
     'gemini-4-argon-vs-claude-opus-5-5':['experiments','News / model releases',0],
     'ai-marketing-agents-claude-code':['guides','Guide / AI agents',2],
