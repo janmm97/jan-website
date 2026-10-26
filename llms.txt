@@ -11,6 +11,7 @@
 - [Contact](https://janmm97.github.io/jan-website/contact/): Book a 30-minute call or submit a request
 
 ## Blog posts
+- [VA tasks AI can already do (and the ones it can't)](https://janmm97.github.io/jan-website/blog/va-tasks-ai-can-replace/): Which VA tasks AI can run on its own, which it can draft for your approval, and which stay human. Sort your own VA hours in one week.
 - [Is Prompt Engineering Dead?](https://janmm97.github.io/jan-website/blog/is-prompt-engineering-dead/): Is prompt engineering dead? As a standalone skill, mostly yes. What replaced it: context engineering and managing AI agents like staff, with goals and tests.
 - [What Claude for Small Business actually does, and what you still have to set up](https://janmm97.github.io/jan-website/blog/claude-for-small-business/): Anthropic's plugin connects QuickBooks, PayPal, HubSpot and more inside Claude Cowork, with approval before anything goes out. What it does, what it costs (not reported), and the four decisions still yours.
 - [Gemini 4 Argon: what's new, the benchmarks, and how it compares to Claude Opus 5.5](https://janmm97.github.io/jan-website/blog/gemini-4-argon-vs-claude-opus-5-5/): Gemini 4 Argon launched on 13 October 2026. The Vals Index scores next to Claude Opus 5.5, the shared 1M-token limit, and the price that doubles on 30 November, plus what to test before you switch.
