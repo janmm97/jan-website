@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="blog-post">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V7TTFWT0GD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V7TTFWT0GD');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10 advanced AI skills to learn in 2026 (beyond prompting) — Jan</title>
+<meta name="description" content="Ten advanced AI skills for 2026, past prompting: context engineering, compaction, sub-agents, evals and token budgets, with how to practise each.">
+<meta name="theme-color" content="#05070b">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="article:published_time" content="2026-11-03">
+<meta property="article:modified_time" content="2026-10-23">
+<link rel="canonical" href="https://janmm97.github.io/jan-website/blog/advanced-ai-skills-2026/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Jan — AI Agent Builder">
+<meta property="og:title" content="10 advanced AI skills to learn in 2026 (beyond prompting)">
+<meta property="og:description" content="Ten advanced AI skills for 2026, past prompting: context engineering, compaction, sub-agents, evals and token budgets, with how to practise each.">
+<meta property="og:url" content="https://janmm97.github.io/jan-website/blog/advanced-ai-skills-2026/">
+<meta name="twitter:card" content="summary">
+<meta property="article:tag" content="ai skills to learn">
+<meta name="twitter:title" content="10 advanced AI skills to learn in 2026 (beyond prompting)">
+<meta name="twitter:description" content="Ten advanced AI skills for 2026, past prompting: context engineering, compaction, sub-agents, evals and token budgets, with how to practise each.">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "Article",
+        "BlogPosting"
+      ],
+      "@id": "https://janmm97.github.io/jan-website/blog/advanced-ai-skills-2026/#article",
+      "headline": "10 advanced AI skills to learn in 2026 (beyond prompting)",
+      "description": "Ten advanced AI skills for 2026, past prompting: context engineering, compaction, sub-agents, evals and token budgets, with how to practise each.",
+      "url": "https://janmm97.github.io/jan-website/blog/advanced-ai-skills-2026/",
+      "mainEntityOfPage": "https://janmm97.github.io/jan-website/blog/advanced-ai-skills-2026/",
+      "author": {
+        "@type": "Person",
+        "name": "Jan Manalo",
+        "url": "https://janmm97.github.io/jan-website/about/",
+        "sameAs": [
+          "https://x.com/janmm_va",
+          "https://www.youtube.com/@janmm2997",
+          "https://github.com/janmm97"
+        ]
+      },
+      "datePublished": "2026-11-03",
+      "dateModified": "2026-10-23",
+      "wordCount": 2394,
+      "keywords": [
+        "ai skills to learn"
+      ],
+      "inLanguage": "en",
+      "citation": [
+        "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+        "https://platform.claude.com/docs/en/build-with-claude/effort"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://janmm97.github.io/jan-website/blog/advanced-ai-skills-2026/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What AI skills are in demand in 2026?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This is my view, not a survey. The skills that keep an agent reliable after the first prompt are context management, evals and cost control. I don't have a market data source for this, so treat it as my opinion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which AI tool is best to learn in 2026?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pick a tool that runs in your terminal and shows you its instructions, tool calls and permissions. That lets you practise harness fluency (skill 10) on real sessions. Anthropic's examples use Claude Code, which is why this post refers to it. This is my view, not a benchmark."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is context engineering?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is the practice of choosing what goes into a model's context at each step. Anthropic describes the aim as the smallest possible set of high-signal tokens that gets the outcome you want (Anthropic)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should I compact a conversation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Anthropic describes compaction for a conversation nearing the context limit. My rules of thumb: compact at a task boundary, after a big tool dump and before the agent starts to drift. Keep decisions, open bugs, file paths and next steps. Check the summary with the ten-fact test before you trust it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to code to learn these skills?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not for most of them. Writing summaries, notes files, test cases and clear tool descriptions needs no code. Token logging and sub-agents go further if you run an agent tool from a terminal."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+<link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg?v=2026-09-30.1">
+<link rel="preload" href="../../assets/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/studio.css?v=2026-10-09.1">
+<link rel="stylesheet" href="../../assets/css/entry.css?v=2026-09-30.loader1">
+<link rel="stylesheet" href="../../assets/css/blog.css?v=2026-10-10.1">
+<script src="../../assets/js/blog.js?v=2026-10-07.2" defer></script>
+<link rel="stylesheet" href="../../assets/css/astral.css?v=2026-10-15.1">
+</head>
+<body>
+<a class="skip-link" href="#post">Skip to content</a>
+
+<header class="nav">
+  <div class="container nav-in">
+    <a class="brand" href="../../" aria-label="Jan — home"><img class="brand-logo" src="../../assets/images/websitelogo-blackbg1.svg" alt="" width="27" height="27"></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../../about/">About</a>
+      <a href="../../projects/">Projects</a>
+      <a href="../../services/">Services</a>
+      <a href="../../blog/" class="active" aria-current="page">Blog</a>
+    </nav>
+    <div class="nav-end">
+      <a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+      <button class="icon-btn burger" id="burger" type="button" aria-label="Open menu" aria-controls="mmenu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" role="navigation" aria-label="Mobile navigation">
+  <button class="icon-btn mmenu-close" id="mmenuClose" type="button" aria-label="Close menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../../about/">About</a>
+  <a href="../../projects/">Projects</a>
+  <a href="../../services/">Services</a>
+  <a href="../../blog/" aria-current="page">Blog</a>
+  <a href="../../contact/">Contact</a>
+  <div class="mfoot">AI agents. Connected workflows.</div>
+</div>
+
+<div class="runhead" aria-hidden="true">
+  <div class="runhead-in">
+    <span class="runhead-n"></span>
+    <span class="runhead-title">10 advanced AI skills to learn in 2026 (beyond prompting)</span>
+    <a class="runhead-toc" href="#contents" tabindex="-1">Contents</a>
+  </div>
+  <span class="runhead-bar"></span>
+</div>
+
+
+<div class="sky-post" aria-hidden="true"><img src="../../assets/images/cosmos/nebula.webp" alt="" width="2400" height="1340" data-parallax=".18" decoding="async"></div><main><article class="post" id="post" tabindex="-1"><header class="post-head"><h1 class="post-title">10 advanced AI skills to learn in 2026 (beyond prompting)</h1><p class="post-meta"><time datetime="2026-11-03">November 3, 2026</time><span>11 min read</span><span>2394 words</span></p></header><div class="post-content post-intro"><p>The advanced AI skills for 2026 are about what a model sees, what it remembers and what each run costs. They are context engineering, knowing when to compact, clearing tool results, just-in-time retrieval, agent memory, sub-agent design, tool design, evals, cost control and harness fluency. Prompting gets you started. These ten decide whether an agent stays reliable across a long session.</p></div><div class="post-content"><h2 id="key-takeaways">Key takeaways</h2><ul><li>The limit on an agent is its context window, not the wording of one prompt. Anthropic describes the window as a finite attention budget.</li><li>Compaction, tool-result clearing and a notes file keep the window small without losing what the next step needs.</li><li>Sub-agents and just-in-time retrieval stop one session from carrying every file it has opened.</li><li>Evals, cost control and harness fluency tell you whether a change helped and what it cost.</li></ul></div><nav class="post-toc" id="contents" aria-labelledby="contents-title"><h2 class="post-toc-title" id="contents-title">In this post</h2><ol data-rows="8"><li><a href="#why-prompting-isn-t-the-hard-part-anymore"><span class="post-toc-n" aria-hidden="true">01</span><span class="post-toc-label">Why prompting isn't the hard part anymore</span></a></li><li><a href="#the-ten-skills-at-a-glance"><span class="post-toc-n" aria-hidden="true">02</span><span class="post-toc-label">The ten skills at a glance</span></a></li><li><a href="#the-ten-skills-one-at-a-time"><span class="post-toc-n" aria-hidden="true">03</span><span class="post-toc-label">The ten skills, one at a time</span></a></li><li><a href="#my-practice-all-ten-in-one-weekend"><span class="post-toc-n" aria-hidden="true">04</span><span class="post-toc-label">My practice: all ten in one weekend</span></a></li><li><a href="#where-to-go-deeper"><span class="post-toc-n" aria-hidden="true">05</span><span class="post-toc-label">Where to go deeper</span></a></li><li><a href="#frequently-asked-questions"><span class="post-toc-n" aria-hidden="true">06</span><span class="post-toc-label">Frequently asked questions</span></a></li><li><a href="#keep-learning-with-me"><span class="post-toc-n" aria-hidden="true">07</span><span class="post-toc-label">Keep learning with me</span></a></li><li><a href="#sources"><span class="post-toc-n" aria-hidden="true">08</span><span class="post-toc-label">Sources</span></a></li></ol></nav><div class="post-content"><h2 id="why-prompting-isn-t-the-hard-part-anymore">Why prompting isn't the hard part anymore</h2><p>A prompt decides what you ask. Once an agent runs for many steps, what it sees matters more. The window holds the system instructions, the tool definitions, every earlier message, every tool result and any document the agent loaded. The model works from all of it on every step. Anthropic's engineering team describes context as a finite resource with diminishing returns. The model draws on an attention budget, and its ability to recall the right detail falls as the window fills. The aim they set is the smallest possible set of high-signal tokens that gets the outcome you want (<a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" rel="noopener">Anthropic, Effective context engineering for AI agents</a>). That changes the job. A good prompt on a bloated context still fails. A short, clean context with the right tools and the right notes often works with a plain prompt. Most of the skills below keep the window clean, and show you how to check that it is.</p><h2 id="the-ten-skills-at-a-glance">The ten skills at a glance</h2><div class="post-table post-table--stack post-wide" role="region" tabindex="0" aria-label="The ten skills at a glance"><table><thead><tr><th scope="col">#</th><th scope="col">Skill</th><th scope="col">Failure it prevents</th><th scope="col">First exercise</th></tr></thead><tbody><tr><th scope="row">1</th><td data-label="Skill">Context engineering</td><td data-label="Failure it prevents">The fact that matters is buried in noise</td><td data-label="First exercise">List every block in one run's context with a token count. Delete what this step doesn't need.</td></tr><tr><th scope="row">2</th><td data-label="Skill">Knowing when to compact</td><td data-label="Failure it prevents">Long sessions drift and forget early instructions</td><td data-label="First exercise">Compact one long session. Check the summary against ten facts the next step needs.</td></tr><tr><th scope="row">3</th><td data-label="Skill">Tool-result clearing</td><td data-label="Failure it prevents">Old search results and file dumps stay in the window</td><td data-label="First exercise">Clear the tool results you've used. Check the task still finishes.</td></tr><tr><th scope="row">4</th><td data-label="Skill">Just-in-time retrieval</td><td data-label="Failure it prevents">Everything loaded up front hides the useful part</td><td data-label="First exercise">Replace pasted file contents with paths and a search tool.</td></tr><tr><th scope="row">5</th><td data-label="Skill">Structured note-taking and memory</td><td data-label="Failure it prevents">Every new session starts from zero</td><td data-label="First exercise">Write a <code>NOTES.md</code>, end the session, start a new one with only that file.</td></tr><tr><th scope="row">6</th><td data-label="Skill">Sub-agent design</td><td data-label="Failure it prevents">One agent carries every dead end</td><td data-label="First exercise">Hand one research step to a sub-agent. Cap its report at 1,500 tokens.</td></tr><tr><th scope="row">7</th><td data-label="Skill">Tool design for agents</td><td data-label="Failure it prevents">The agent picks the wrong tool or gets a huge result</td><td data-label="First exercise">Log every tool call and its result size. Shrink the largest result.</td></tr><tr><th scope="row">8</th><td data-label="Skill">Evals</td><td data-label="Failure it prevents">A fix for one case breaks three others</td><td data-label="First exercise">Write ten test tasks with expected outcomes. Run them before and after each change.</td></tr><tr><th scope="row">9</th><td data-label="Skill">Cost and latency control</td><td data-label="Failure it prevents">A workflow works in testing and costs too much at volume</td><td data-label="First exercise">Move the changing content to the end of the prompt. Compare cache reads.</td></tr><tr><th scope="row">10</th><td data-label="Skill">Harness fluency</td><td data-label="Failure it prevents">You blame the model for a setup problem</td><td data-label="First exercise">Trace where your tool compacted, what it kept and what it lost.</td></tr></tbody></table></div><h2 id="the-ten-skills-one-at-a-time">The ten skills, one at a time</h2><p>Each skill has four parts: what it is, the failure it prevents, how to practise it this week, and how you know it's working.</p><h3 id="1-context-engineering">1. Context engineering</h3><p><strong>What it is:</strong> choosing which tokens reach the model on each step. That includes the system prompt, the tool definitions, the conversation history and any retrieved data. The job is to find the smallest set of high-signal information for the step, not to add everything you have. <strong>Failure it prevents:</strong> a context where the fact that matters is in the window but gets less attention, because the window is full of noise. Pasting a 40-page brief to answer one question is the usual case. <strong>Practise this week:</strong> pick one agent run and list each block in its context with a rough token count. Delete the blocks this step doesn't need, run it again, and compare the answers. <strong>How you know:</strong> the same answer comes back with fewer tokens in the window, and the agent stops citing the wrong section.</p><h3 id="2-knowing-when-to-compact">2. Knowing when to compact</h3><p><strong>What it is:</strong> compaction means taking a conversation that is nearing the context limit, summarising it and starting a new window with the summary. Anthropic says the summary should keep architectural decisions, unresolved bugs and implementation details. It drops redundant tool outputs and messages. <strong>What to keep and what to drop:</strong> keep decisions, open bugs, file paths and the next step. Drop raw tool output and dead ends, once you have noted why they failed. The file paths and next step are my addition. A fresh session needs them to carry on. <strong>Failure it prevents:</strong> an agent that drifts or forgets its early instructions in a long session. <strong>Practise this week:</strong> at your next long session, write a compaction prompt, run it and check the summary against ten facts the next step needs. Count how many survived. Anthropic's advice on tuning is to maximise recall first, so the summary catches every relevant piece. Then cut superfluous content to improve precision. <strong>How you know:</strong> the summary passes the ten-fact check, and a new session continues without you re-explaining the task.</p><h3 id="3-tool-result-clearing">3. Tool-result clearing</h3><p><strong>What it is:</strong> removing the raw result of a tool call from the history once the agent has used it. Anthropic calls tool-result clearing one of the safest, lightest-touch forms of compaction. A tool called deep in the history rarely needs its raw output again. <strong>Failure it prevents:</strong> a search result or file dump that stays in the window for the rest of the run and crowds out the task. <strong>Practise this week:</strong> measure tokens on one run. Clear the tool results you have already used, then measure again. Keep a one-line note of what each result gave you, so the record survives the clearing. <strong>How you know:</strong> the token count drops, and the task finishes with the same output.</p><h3 id="4-just-in-time-retrieval">4. Just-in-time retrieval</h3><p><strong>What it is:</strong> keeping light references in context, such as file paths, stored queries and links, and loading the content only when a step needs it. Anthropic describes agents that keep these lightweight identifiers and pull in data at run time. <strong>Failure it prevents:</strong> loading everything at the start and burying the part the step needs. <strong>Practise this week:</strong> replace the pasted file contents in one prompt with a list of paths. Let the agent open the file it needs. Run ten tasks both ways. My practice: I keep the path list in the notes file, so a new session knows where to look. <strong>How you know:</strong> tokens at the first step drop, and the pass rate on your ten tasks holds.</p><h3 id="5-structured-note-taking-and-agent-memory">5. Structured note-taking and agent memory</h3><p><strong>What it is:</strong> the agent writes notes to a place outside the context window and reads them back later. Anthropic's examples are Claude Code keeping a to-do list, and an agent maintaining a <code>NOTES.md</code> file. <strong>Failure it prevents:</strong> every new session starting from zero. <strong>Practise this week:</strong> create a <code>NOTES.md</code> with three sections: decisions, open bugs and next steps. End a session, then start a new one with only that file. My practice: I date each entry and delete it once the item closes, so the file stays short enough to read. <strong>How you know:</strong> the new session picks up the next step without a fresh explanation.</p><h3 id="6-sub-agent-design">6. Sub-agent design</h3><p><strong>What it is:</strong> a focused sub-agent explores one part of a problem in its own clean context. It returns a condensed summary, which Anthropic says is often 1,000 to 2,000 tokens. The detailed search stays in the sub-agent's window. <strong>Failure it prevents:</strong> one agent carrying every file it opened and every dead end in a single window. <strong>Practise this week:</strong> hand one research step to a sub-agent. Cap its report at 1,500 tokens. Compare the lead agent's context size with a run where it did the research itself. <strong>How you know:</strong> the lead agent's window is smaller, and the answer is no worse.</p><h3 id="7-tool-design-for-agents">7. Tool design for agents</h3><p><strong>What it is:</strong> tools with clear names, little overlap between them, and results small enough for the budget. A vague tool makes the agent guess, and a guessing agent calls the wrong tool. <strong>Failure it prevents:</strong> an agent that picks the wrong tool, or pulls 20,000 tokens when it needed two lines. <strong>Practise this week:</strong> log every tool call and its result size on one run. Find the largest result. Change the tool to return only the fields the agent uses. <strong>How you know:</strong> the largest result shrinks, and the agent calls the right tool on the first try in your test runs.</p><h3 id="8-evals">8. Evals</h3><p><strong>What it is:</strong> a fixed set of test cases you run after every change to a prompt, a tool or a compaction setting. <strong>Failure it prevents:</strong> shipping a change that fixes one case and breaks three. Without evals you can't tell whether a compaction prompt helped. <strong>Practise this week:</strong> write ten tasks with the outcome you expect. Run them before your change, then after it. My practice: I keep the ten tasks in a file next to the prompt, so every edit gets tested the same way. <strong>How you know:</strong> with the same ten tasks, you can say which version passed more.</p><h3 id="9-cost-and-latency-control-prompt-caching-and-effort">9. Cost and latency control: prompt caching and effort</h3><p><strong>What it is:</strong> two settings the provider docs cover. Prompt caching reuses the part of a prompt that stays the same. Anthropic's docs say the cache prefix is built in the order tools, then system, then messages. Static content goes first, and the cache breakpoint sits at the end of the static part. A timestamp in the last block, for example, forces a new cache write on every request (<a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching" rel="noopener">Anthropic, prompt caching</a>). Effort controls how many tokens the model spends on text, tool calls and thinking. Anthropic's docs suggest lower levels for simpler, high-volume work such as sub-agents, and higher levels for complex reasoning. On most models, changing the top-level effort between requests starts the cache over. Some newer models accept a per-message effort change in beta, which keeps the cache (<a href="https://platform.claude.com/docs/en/build-with-claude/effort" rel="noopener">Anthropic, effort</a>). <strong>Failure it prevents:</strong> a workflow that works in testing and costs too much at volume. <strong>Practise this week:</strong> move the changing content in one prompt, such as dates or user input, to the end. Compare cache read tokens before and after. Then run one routine step at low effort and one hard step at a higher level. Log quality and tokens for each. <strong>How you know:</strong> cache reads go up after the move, and quality holds on the routine step at the lower effort. I give no prices here. They change by provider and plan.</p><h3 id="10-harness-fluency">10. Harness fluency</h3><p><strong>What it is:</strong> knowing how your agent tool builds its context. That means how it loads instructions, when it compacts on its own, and how it handles permissions and commands. <strong>Failure it prevents:</strong> blaming the model for a context problem the tool created. <strong>Practise this week:</strong> trace one long session. Note where the tool compacted, what it kept and what it lost. Then change one default on purpose and re-run your evals. <strong>How you know:</strong> you can point to a setting for each failure, not guess about the model.</p><h2 id="my-practice-all-ten-in-one-weekend">My practice: all ten in one weekend</h2><p>This is my method, not a result. I haven't published a test of it yet. I would spend one weekend on a small project you already run, in this order:</p><ul><li><strong>Saturday morning:</strong> build the ten-task eval set and record a baseline (skill 8).</li><li><strong>Saturday afternoon:</strong> audit one run's context and tool results, then clear what you don't need (skills 1, 3 and 7).</li><li><strong>Sunday morning:</strong> add a <code>NOTES.md</code>, write the compaction prompt and run the ten-fact check (skills 2, 5 and 10).</li><li><strong>Sunday afternoon:</strong> try a sub-agent, move the changing content, test a lower effort level on a routine step, then re-run the evals (skills 4, 6 and 9).</li></ul><p>At the end of Sunday, compare the baseline with the re-run. If the scores didn't move, the change wasn't worth keeping. Revert it and try the next one.</p><h2 id="where-to-go-deeper">Where to go deeper</h2><ul><li><strong>Effective context engineering for AI agents</strong> (Anthropic engineering): the source for the attention budget, compaction and the sub-agent summary size. <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" rel="noopener">Read it</a>.</li><li><strong>Prompt caching</strong> (Claude API docs): the cache order, where to put the breakpoint and the timestamp trap. <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching" rel="noopener">Read it</a>.</li><li><strong>Effort</strong> (Claude API docs): what the setting controls and when changing it restarts the cache. <a href="https://platform.claude.com/docs/en/build-with-claude/effort" rel="noopener">Read it</a>.</li></ul><h2 id="frequently-asked-questions">Frequently asked questions</h2><h3 id="what-ai-skills-are-in-demand-in-2026">What AI skills are in demand in 2026?</h3><p>This is my view, not a survey. The skills that keep an agent reliable after the first prompt are context management, evals and cost control. I don't have a market data source for this, so treat it as my opinion.</p><h3 id="which-ai-tool-is-best-to-learn-in-2026">Which AI tool is best to learn in 2026?</h3><p>Pick a tool that runs in your terminal and shows you its instructions, tool calls and permissions. That lets you practise harness fluency (skill 10) on real sessions. Anthropic's examples use Claude Code, which is why this post refers to it. This is my view, not a benchmark.</p><h3 id="what-is-context-engineering">What is context engineering?</h3><p>It is the practice of choosing what goes into a model's context at each step. Anthropic describes the aim as the smallest possible set of high-signal tokens that gets the outcome you want (<a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" rel="noopener">Anthropic</a>).</p><h3 id="when-should-i-compact-a-conversation">When should I compact a conversation?</h3><p>Anthropic describes compaction for a conversation nearing the context limit. My rules of thumb: compact at a task boundary, after a big tool dump and before the agent starts to drift. Keep decisions, open bugs, file paths and next steps. Check the summary with the ten-fact test before you trust it.</p><h3 id="do-i-need-to-code-to-learn-these-skills">Do I need to code to learn these skills?</h3><p>Not for most of them. Writing summaries, notes files, test cases and clear tool descriptions needs no code. Token logging and sub-agents go further if you run an agent tool from a terminal.</p><h2 id="keep-learning-with-me">Keep learning with me</h2><p>If you want the build-alongs, subscribe on <a href="https://www.youtube.com/@janmm2997" rel="noopener">YouTube</a> and follow me on <a href="https://x.com/janmm_va" rel="noopener">X</a>.</p><h2 id="sources">Sources</h2><ul><li>Anthropic, "Effective context engineering for AI agents", <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" rel="noopener">https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents</a> (re-opened 2026-10-23)</li><li>Anthropic, "Prompt caching", Claude API docs, <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching" rel="noopener">https://platform.claude.com/docs/en/build-with-claude/prompt-caching</a> (re-opened 2026-10-23)</li><li>Anthropic, "Effort", Claude API docs, <a href="https://platform.claude.com/docs/en/build-with-claude/effort" rel="noopener">https://platform.claude.com/docs/en/build-with-claude/effort</a> (re-opened 2026-10-23)</li></ul></div></article></main><footer>
+  <div class="container foot-in">
+    <span>© 2026 Jan</span>
+    <span class="foot-page">The working notes</span>
+    <span><a href="https://flaxen-crayon-74f.notion.site/3e57c1c329e280228fcbd4f5d6f65657?pvs=105" target="_blank" rel="noopener">submit a request</a></span>
+  </div>
+</footer>
+<script src="../../assets/js/vendor/gsap.min.js"></script><script src="../../assets/js/vendor/CustomEase.min.js"></script><script src="../../assets/js/astral.js?v=2026-10-15.1"></script>
+</body>
+</html>
