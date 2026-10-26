@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="blog-post">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V7TTFWT0GD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V7TTFWT0GD');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepSeek V4.1-Flash-1017: what changed, and what it costs — Jan</title>
+<meta name="description" content="DeepSeek V4.1-Flash-1017: the benchmark jumps, the $0.30/$1.20 price, the 1M context and MIT weights, and where Opus 5 still leads.">
+<meta name="theme-color" content="#05070b">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="article:published_time" content="2026-10-27">
+<meta property="article:modified_time" content="2026-10-23">
+<link rel="canonical" href="https://janmm97.github.io/jan-website/blog/deepseek-v4-1-flash-1017/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Jan — AI Agent Builder">
+<meta property="og:title" content="DeepSeek V4.1-Flash-1017: what changed, and what it costs">
+<meta property="og:description" content="DeepSeek V4.1-Flash-1017: the benchmark jumps, the $0.30/$1.20 price, the 1M context and MIT weights, and where Opus 5 still leads.">
+<meta property="og:url" content="https://janmm97.github.io/jan-website/blog/deepseek-v4-1-flash-1017/">
+<meta name="twitter:card" content="summary">
+<meta property="article:tag" content="deepseek v4.1 flash 1017">
+<meta name="twitter:title" content="DeepSeek V4.1-Flash-1017: what changed, and what it costs">
+<meta name="twitter:description" content="DeepSeek V4.1-Flash-1017: the benchmark jumps, the $0.30/$1.20 price, the 1M context and MIT weights, and where Opus 5 still leads.">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "Article",
+        "BlogPosting"
+      ],
+      "@id": "https://janmm97.github.io/jan-website/blog/deepseek-v4-1-flash-1017/#article",
+      "headline": "DeepSeek V4.1-Flash-1017: what changed, and what it costs",
+      "description": "DeepSeek V4.1-Flash-1017: the benchmark jumps, the $0.30/$1.20 price, the 1M context and MIT weights, and where Opus 5 still leads.",
+      "url": "https://janmm97.github.io/jan-website/blog/deepseek-v4-1-flash-1017/",
+      "mainEntityOfPage": "https://janmm97.github.io/jan-website/blog/deepseek-v4-1-flash-1017/",
+      "author": {
+        "@type": "Person",
+        "name": "Jan Manalo",
+        "url": "https://janmm97.github.io/jan-website/about/",
+        "sameAs": [
+          "https://x.com/janmm_va",
+          "https://www.youtube.com/@janmm2997",
+          "https://github.com/janmm97"
+        ]
+      },
+      "datePublished": "2026-10-27",
+      "dateModified": "2026-10-23",
+      "wordCount": 1456,
+      "keywords": [
+        "deepseek v4.1 flash 1017"
+      ],
+      "inLanguage": "en",
+      "citation": [
+        "https://api-docs.deepseek.com/news/news261017/",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+        "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://janmm97.github.io/jan-website/blog/deepseek-v4-1-flash-1017/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is DeepSeek V4.1-Flash-1017 open source?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The model card says the MIT license covers \"this repository and the model weights.\" The weights are on Hugging Face (model card)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does it cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Artificial Analysis lists $0.30 per million input tokens and $1.20 per million output tokens (Artificial Analysis). DeepSeek's news page doesn't list model prices. Check DeepSeek's pricing page before you budget."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The sources don't say whether the web app is free. The API is priced per token, as above. Search and Fetch calls made through server-side tools are free for now. Billing starts on October 31, 2026, at 16:00 UTC (DeepSeek news)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is it used for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The model card reports results on coding, terminal and automation tests. It doesn't list intended uses, so the uses here are the tests DeepSeek chose to report."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it better than Opus 5?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on the test. In DeepSeek's table, Opus 5 leads on HLE, Terminal-Bench 4.0, ProgramBench and NL2Repo-Bench. V4.1-Flash-1017 leads on DeepSWE v1.1, Automation-Bench and Apex Bench. These are vendor-reported numbers, so run your own test before you choose."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+<link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg?v=2026-09-30.1">
+<link rel="preload" href="../../assets/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/studio.css?v=2026-10-09.1">
+<link rel="stylesheet" href="../../assets/css/entry.css?v=2026-09-30.loader1">
+<link rel="stylesheet" href="../../assets/css/blog.css?v=2026-10-10.1">
+<script src="../../assets/js/blog.js?v=2026-10-07.2" defer></script>
+<link rel="stylesheet" href="../../assets/css/astral.css?v=2026-10-15.1">
+</head>
+<body>
+<a class="skip-link" href="#post">Skip to content</a>
+
+<header class="nav">
+  <div class="container nav-in">
+    <a class="brand" href="../../" aria-label="Jan — home"><img class="brand-logo" src="../../assets/images/websitelogo-blackbg1.svg" alt="" width="27" height="27"></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../../about/">About</a>
+      <a href="../../projects/">Projects</a>
+      <a href="../../services/">Services</a>
+      <a href="../../blog/" class="active" aria-current="page">Blog</a>
+    </nav>
+    <div class="nav-end">
+      <a class="btn btn-primary" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+      <button class="icon-btn burger" id="burger" type="button" aria-label="Open menu" aria-controls="mmenu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" role="navigation" aria-label="Mobile navigation">
+  <button class="icon-btn mmenu-close" id="mmenuClose" type="button" aria-label="Close menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../../about/">About</a>
+  <a href="../../projects/">Projects</a>
+  <a href="../../services/">Services</a>
+  <a href="../../blog/" aria-current="page">Blog</a>
+  <a href="../../contact/">Contact</a>
+  <div class="mfoot">AI agents. Connected workflows.</div>
+</div>
+
+<div class="runhead" aria-hidden="true">
+  <div class="runhead-in">
+    <span class="runhead-n"></span>
+    <span class="runhead-title">DeepSeek V4.1-Flash-1017: what changed, and what it costs</span>
+    <a class="runhead-toc" href="#contents" tabindex="-1">Contents</a>
+  </div>
+  <span class="runhead-bar"></span>
+</div>
+
+
+<div class="sky-post" aria-hidden="true"><img src="../../assets/images/cosmos/nebula.webp" alt="" width="2400" height="1340" data-parallax=".18" decoding="async"></div><main><article class="post" id="post" tabindex="-1"><header class="post-head"><h1 class="post-title">DeepSeek V4.1-Flash-1017: what changed, and what it costs</h1><p class="post-meta"><time datetime="2026-10-27">October 27, 2026</time><span>7 min read</span><span>1456 words</span></p></header><div class="post-content post-intro"><p>DeepSeek released V4.1-Flash-1017 on October 17, 2026. It is an update to DeepSeek-V4.1-Flash, with open weights under the MIT license and a 1M-token context. DeepSeek's own table shows gains on several tests, and Claude Opus 5 still leads on others. Artificial Analysis lists it at $0.30 per million input tokens and $1.20 per million output tokens.</p></div><div class="post-content"><h2 id="key-takeaways">Key takeaways</h2><ul><li>The release is dated October 17, 2026. The weights are on Hugging Face under MIT, with a 1M-token context.</li><li>The largest absolute gain in DeepSeek's table is Terminal-Bench 4.0, up from 31.2 to 42.3. Every benchmark number here is vendor-reported.</li><li>On its Intelligence Index run, Artificial Analysis counted 210M output tokens, against a median of 140M. A low price per token can still give a high bill.</li><li>Test it on your own tasks before you switch. The method is below.</li></ul></div><nav class="post-toc" id="contents" aria-labelledby="contents-title"><h2 class="post-toc-title" id="contents-title">In this post</h2><ol data-rows="10"><li><a href="#what-is-deepseek-v4-1-flash-1017"><span class="post-toc-n" aria-hidden="true">01</span><span class="post-toc-label">What is DeepSeek V4.1-Flash-1017?</span></a></li><li><a href="#how-do-the-benchmark-numbers-compare"><span class="post-toc-n" aria-hidden="true">02</span><span class="post-toc-label">How do the benchmark numbers compare?</span></a></li><li><a href="#what-does-an-independent-check-say"><span class="post-toc-n" aria-hidden="true">03</span><span class="post-toc-label">What does an independent check say?</span></a></li><li><a href="#what-does-it-really-cost"><span class="post-toc-n" aria-hidden="true">04</span><span class="post-toc-label">What does it really cost?</span></a></li><li><a href="#what-else-shipped-with-it"><span class="post-toc-n" aria-hidden="true">05</span><span class="post-toc-label">What else shipped with it?</span></a></li><li><a href="#who-should-switch-and-who-should-wait"><span class="post-toc-n" aria-hidden="true">06</span><span class="post-toc-label">Who should switch, and who should wait?</span></a></li><li><a href="#how-i-d-test-it-before-switching"><span class="post-toc-n" aria-hidden="true">07</span><span class="post-toc-label">How I'd test it before switching</span></a></li><li><a href="#frequently-asked-questions"><span class="post-toc-n" aria-hidden="true">08</span><span class="post-toc-label">Frequently asked questions</span></a></li><li><a href="#keep-learning-with-me"><span class="post-toc-n" aria-hidden="true">09</span><span class="post-toc-label">Keep learning with me</span></a></li><li><a href="#sources"><span class="post-toc-n" aria-hidden="true">10</span><span class="post-toc-label">Sources</span></a></li></ol></nav><div class="post-content"><h2 id="what-is-deepseek-v4-1-flash-1017">What is DeepSeek V4.1-Flash-1017?</h2><p>DeepSeek's news page dates the release to October 17, 2026. It calls the model "a Pareto improvement in performance and cost," with "stronger benchmark performance, faster task completion, and shorter outputs than the previous version" (<a href="https://api-docs.deepseek.com/news/news261017/" rel="noopener">DeepSeek news</a>). The model card says it "reduces task execution time and output length" (<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017" rel="noopener">model card</a>). Both are DeepSeek's claims. Three facts you can check today:</p><ul><li><strong>Where it runs:</strong> DeepSeek says the model is "now live on our website, app, and API."</li><li><strong>Weights:</strong> the model card says the MIT license covers "this repository and the model weights." The weights are on Hugging Face.</li><li><strong>Context:</strong> the model card lists a 1M-token context window.</li></ul><p>The news page doesn't state a model price. The price figures later in this post come from Artificial Analysis.</p><h2 id="how-do-the-benchmark-numbers-compare">How do the benchmark numbers compare?</h2><p>The table below comes from DeepSeek's model card. The three columns are the new model, the previous V4.1-Flash and Claude Opus 5, as DeepSeek reports them.</p><div class="post-table post-table--stack post-wide" role="region" tabindex="0" aria-label="How do the benchmark numbers compare?"><table><thead><tr><th scope="col">Benchmark</th><th scope="col">V4.1-Flash-1017</th><th scope="col">V4.1-Flash</th><th scope="col">Opus 5</th></tr></thead><tbody><tr><th scope="row">HLE (w/o tools)</th><td data-label="V4.1-Flash-1017">42.6</td><td data-label="V4.1-Flash">36.8</td><td data-label="Opus 5">56.3</td></tr><tr><th scope="row">Terminal-Bench 4.0</th><td data-label="V4.1-Flash-1017">42.3</td><td data-label="V4.1-Flash">31.2</td><td data-label="Opus 5">51.8</td></tr><tr><th scope="row">DeepSWE v1.1</th><td data-label="V4.1-Flash-1017">77.0</td><td data-label="V4.1-Flash">74.2</td><td data-label="Opus 5">74.0</td></tr><tr><th scope="row">ProgramBench</th><td data-label="V4.1-Flash-1017">29.1</td><td data-label="V4.1-Flash">20.3</td><td data-label="Opus 5">37.0</td></tr><tr><th scope="row">Automation-Bench v1.0.6</th><td data-label="V4.1-Flash-1017">60.5</td><td data-label="V4.1-Flash">54.8</td><td data-label="Opus 5">50.3</td></tr><tr><th scope="row">Apex Bench v1.1</th><td data-label="V4.1-Flash-1017">72.1</td><td data-label="V4.1-Flash">64.6</td><td data-label="Opus 5">65.8</td></tr><tr><th scope="row">NL2Repo-Bench</th><td data-label="V4.1-Flash-1017">68.2</td><td data-label="V4.1-Flash">65.4</td><td data-label="Opus 5">75.3</td></tr></tbody></table></div><p>Two footnotes on the card matter when you read the table. The HLE row is marked with a dagger for the text-only subset. DeepSeek says it used the Claude Code harness for Terminal-Bench 4.0 and the Mini-SWE-V2 harness for DeepSWE v1.1. Harness choice can change scores, so these numbers aren't directly comparable with other people's runs. <strong>Where the new model leads:</strong> DeepSWE v1.1 (77.0 against Opus 5's 74.0), Automation-Bench (60.5 against 50.3) and Apex Bench (72.1 against 65.8). <strong>Where Opus 5 still leads:</strong> HLE, Terminal-Bench 4.0, ProgramBench and NL2Repo-Bench. The gap on Terminal-Bench 4.0 is 9.5 points, and on HLE it is 13.7 points.</p><h3 id="what-changed-from-v4-1-flash-row-by-row">What changed from V4.1-Flash, row by row</h3><p>The title asks what changed, so here is the gap on each row, worked out from the card's own numbers:</p><ul><li>Terminal-Bench 4.0: up 11.1 points (31.2 to 42.3)</li><li>ProgramBench: up 8.8 (20.3 to 29.1)</li><li>Apex Bench v1.1: up 7.5 (64.6 to 72.1)</li><li>HLE (w/o tools): up 5.8 (36.8 to 42.6)</li><li>Automation-Bench v1.0.6: up 5.7 (54.8 to 60.5)</li><li>DeepSWE v1.1: up 2.8 (74.2 to 77.0)</li><li>NL2Repo-Bench: up 2.8 (65.4 to 68.2)</li></ul><p>Every row went up. The biggest gains are on the terminal and programming tests, and the smallest are on DeepSWE and NL2Repo-Bench, at 2.8 points each. This is the vendor's own before-and-after, run on the vendor's chosen harnesses, so treat it as a claim to check, not a measurement. The card names each benchmark but doesn't explain what each one measures, so I don't describe the tests beyond their names here. Read each benchmark's own page before you repeat one of these numbers to a client.</p><h2 id="what-does-an-independent-check-say">What does an independent check say?</h2><p>Artificial Analysis is a third party, and its page reports its own runs. Its page lists the model as "DeepSeek V4.1 Flash 1017 (Max)." It scores 45 on the Intelligence Index and outputs 203.7 tokens per second. The page compares that speed with a median of 73.2 tokens per second for open-weight models of similar size. The Intelligence Index run cost $0.26 per task on average. The same page reports the token count. The Intelligence Index run generated 210M output tokens. Artificial Analysis calls that "very verbose in comparison to the median of 140M." That looks like a contradiction with DeepSeek's claim of shorter outputs. The two sources measure different things. DeepSeek's claim is about its own tests. The Artificial Analysis figure is one index run of the "(Max)" configuration. The page doesn't compare the new model with the previous version, so this post makes no before-and-after claim. What this means for you: if you pay per output token, check the output length on your own tasks. A cheap price per token can still be an expensive run.</p><h2 id="what-does-it-really-cost">What does it really cost?</h2><p>Artificial Analysis lists the price at $0.30 per million input tokens and $1.20 per million output tokens. The sums below use those prices. They are illustrative arithmetic, not a measured run. Take 1,000 agent tasks, each with 20,000 input tokens and 2,000 output tokens:</p><ul><li>Input: 20M tokens at $0.30 per million is $6.00.</li><li>Output: 2M tokens at $1.20 per million is $2.40.</li><li>Total: $8.40.</li></ul><p>Now suppose the same tasks write 3,000 output tokens each, which is 50% more. The output side becomes $3.60, and the total is $9.60. The input cost doesn't change. That is the verbosity effect in one line: the output side grows with the length of the answer. DeepSeek's news page doesn't give model prices, so this post doesn't add any.</p><h2 id="what-else-shipped-with-it">What else shipped with it?</h2><p>DeepSeek also opened its Search and Fetch APIs. The news page lists "$0.75 per 1,000 calls" for each endpoint. Calls made through server-side tools in DeepSeek Harness, Claude Code and Codex are "currently free for DeepSeek API users." Billing starts on October 31, 2026, at 16:00 UTC. If you run research steps through those tools, the free window is short. Check the DeepSeek news page before you plan a budget around it.</p><h2 id="who-should-switch-and-who-should-wait">Who should switch, and who should wait?</h2><p><strong>Automation-heavy agent runs.</strong> Automation-Bench is the row where the new model beats both V4.1-Flash and Opus 5 in DeepSeek's table (60.5, 54.8 and 50.3). If most of your agent steps are structured automations, this is the case to test first. Watch the output length. <strong>Coding agents.</strong> The table splits. The new model leads on DeepSWE v1.1, but Opus 5 leads on Terminal-Bench 4.0 by 9.5 points. Run your own coding tasks before you move a coding agent. <strong>Hard reasoning.</strong> On HLE, Opus 5 scores 56.3 against 42.6 for the new model, per DeepSeek's card. Keep the stronger model for this kind of work until your tests say otherwise.</p><h2 id="how-i-d-test-it-before-switching">How I'd test it before switching</h2><p>This is my method, not a result. I haven't tested this model, and I make no claim about how it performs on your work.</p><ol><li>Pick 10 to 20 real tasks from your own agent runs. Choose tasks where you can tell a pass from a fail.</li><li>Run each task on your current model and on V4.1-Flash-1017, with the same prompt and the same tools.</li><li>Log four numbers per task: pass or fail, input tokens, output tokens and cost.</li><li>Read the outputs for length. If the new model writes much more, the price gap may close.</li><li>Switch only the steps where the new model passes as often as the old one.</li></ol><p>Keep the test small enough to finish in an afternoon. A switch that passes 10 of 10 tasks and costs less per run is worth more than a benchmark you can't reproduce.</p><h2 id="frequently-asked-questions">Frequently asked questions</h2><h3 id="is-deepseek-v4-1-flash-1017-open-source">Is DeepSeek V4.1-Flash-1017 open source?</h3><p>The model card says the MIT license covers "this repository and the model weights." The weights are on Hugging Face (<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017" rel="noopener">model card</a>).</p><h3 id="how-much-does-it-cost">How much does it cost?</h3><p>Artificial Analysis lists $0.30 per million input tokens and $1.20 per million output tokens (<a href="https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017" rel="noopener">Artificial Analysis</a>). DeepSeek's news page doesn't list model prices. Check DeepSeek's pricing page before you budget.</p><h3 id="is-it-free">Is it free?</h3><p>The sources don't say whether the web app is free. The API is priced per token, as above. Search and Fetch calls made through server-side tools are free for now. Billing starts on October 31, 2026, at 16:00 UTC (<a href="https://api-docs.deepseek.com/news/news261017/" rel="noopener">DeepSeek news</a>).</p><h3 id="what-is-it-used-for">What is it used for?</h3><p>The model card reports results on coding, terminal and automation tests. It doesn't list intended uses, so the uses here are the tests DeepSeek chose to report.</p><h3 id="is-it-better-than-opus-5">Is it better than Opus 5?</h3><p>It depends on the test. In DeepSeek's table, Opus 5 leads on HLE, Terminal-Bench 4.0, ProgramBench and NL2Repo-Bench. V4.1-Flash-1017 leads on DeepSWE v1.1, Automation-Bench and Apex Bench. These are vendor-reported numbers, so run your own test before you choose.</p><h2 id="keep-learning-with-me">Keep learning with me</h2><p>If you are learning to switch models safely, subscribe on <a href="https://www.youtube.com/@janmm2997" rel="noopener">YouTube</a> and follow me on <a href="https://x.com/janmm_va" rel="noopener">X</a>.</p><h2 id="sources">Sources</h2><ul><li>DeepSeek, "DeepSeek-V4.1-Flash-1017" news, <a href="https://api-docs.deepseek.com/news/news261017/" rel="noopener">https://api-docs.deepseek.com/news/news261017/</a> (the Evidence Link; re-opened 2026-10-23)</li><li>DeepSeek-V4.1-Flash-1017 model card, Hugging Face, <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017" rel="noopener">https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017</a> (re-opened 2026-10-23)</li><li>Artificial Analysis, DeepSeek V4.1 Flash 1017 (Max), <a href="https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017" rel="noopener">https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017</a> (re-opened 2026-10-23)</li></ul></div></article></main><footer>
+  <div class="container foot-in">
+    <span>© 2026 Jan</span>
+    <span class="foot-page">The working notes</span>
+    <span><a href="https://flaxen-crayon-74f.notion.site/3e57c1c329e280228fcbd4f5d6f65657?pvs=105" target="_blank" rel="noopener">submit a request</a></span>
+  </div>
+</footer>
+<script src="../../assets/js/vendor/gsap.min.js"></script><script src="../../assets/js/vendor/CustomEase.min.js"></script><script src="../../assets/js/astral.js?v=2026-10-15.1"></script>
+</body>
+</html>
