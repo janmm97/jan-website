@@ -11,6 +11,7 @@
 - [Contact](https://janmm97.github.io/jan-website/contact/): Book a 30-minute call or submit a request
 
 ## Blog posts
+- [GPT-6.1 Terra as an AI assistant: 6 models, one inbox, 36 graded runs](https://janmm97.github.io/jan-website/blog/gpt-6-1-terra-ai-assistant-test/): We tested GPT-6.1 Terra and 5 other models as an inbox assistant. Terra passed 6/6, was the fastest perfect scorer and cost $0.0043 per passed task.
 - [DeepSeek V4.1-Flash-1017: what changed, and what it costs](https://janmm97.github.io/jan-website/blog/deepseek-v4-1-flash-1017/): DeepSeek V4.1-Flash-1017: the benchmark jumps, the $0.30/$1.20 price, the 1M context and MIT weights, and where Opus 5 still leads.
 - [Is Prompt Engineering Dead?](https://janmm97.github.io/jan-website/blog/is-prompt-engineering-dead/): Is prompt engineering dead? As a standalone skill, mostly yes. What replaced it: context engineering and managing AI agents like staff, with goals and tests.
 - [What Claude for Small Business actually does, and what you still have to set up](https://janmm97.github.io/jan-website/blog/claude-for-small-business/): Anthropic's plugin connects QuickBooks, PayPal, HubSpot and more inside Claude Cowork, with approval before anything goes out. What it does, what it costs (not reported), and the four decisions still yours.
