@@ -87,7 +87,7 @@
 .post-content>.post-wide{grid-column:wide}
 .post-content p{margin:0 0 1.2em;text-wrap:pretty}
 .post-content strong{font-weight:600;color:var(--ink)}
-.post-content a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:#666;text-underline-offset:.22em;transition:text-decoration-color .25s}
+.post-content a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:#666;text-underline-offset:.22em;transition:text-decoration-color .25s;overflow-wrap:break-word}
 .post-content a:hover{text-decoration-color:var(--ink)}
 
 /* Section openers: a hairline above, the heading in the site's mono. */
