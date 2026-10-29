@@ -24,6 +24,7 @@
   const notes=[...document.querySelectorAll('.post-entry')],search=document.getElementById('journalSearch');let topic='all';
   // Topic, label and dot pattern per post, keyed by its URL so new posts and reordering don't shift them.
   const NOTE_META={
+    'best-ai-agent-orchestration-tools-2026':['guides','Guide / AI agents',2],
     'gpt-6-1-terra-ai-assistant-test':['experiments','Experiment / AI assistants',0],
     'deepseek-v4-1-flash-1017':['experiments','News / model releases',0],
     'claude-for-small-business':['guides','Guide / AI tools',1],
