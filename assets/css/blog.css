@@ -73,6 +73,9 @@
 .post-toc-title{margin:0 0 .75rem;font-family:var(--term);font-weight:400;font-size:11px;line-height:1.6;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3)}
 .post-toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:column;column-gap:2.5rem}
 .post-toc ol[data-rows="1"]{grid-template-rows:repeat(1,auto)}.post-toc ol[data-rows="2"]{grid-template-rows:repeat(2,auto)}.post-toc ol[data-rows="3"]{grid-template-rows:repeat(3,auto)}.post-toc ol[data-rows="4"]{grid-template-rows:repeat(4,auto)}.post-toc ol[data-rows="5"]{grid-template-rows:repeat(5,auto)}.post-toc ol[data-rows="6"]{grid-template-rows:repeat(6,auto)}.post-toc ol[data-rows="7"]{grid-template-rows:repeat(7,auto)}.post-toc ol[data-rows="8"]{grid-template-rows:repeat(8,auto)}
+/* Fallback: an ol without a matching data-rows rule (missing, mistyped or over 8) would flow every item into its own implicit column and overflow the box. Balance it into two columns instead. */
+@media(min-width:641px){.post-toc ol:not([data-rows="1"],[data-rows="2"],[data-rows="3"],[data-rows="4"],[data-rows="5"],[data-rows="6"],[data-rows="7"],[data-rows="8"]){display:block;columns:2;column-gap:2.5rem}}
+.post-toc li{break-inside:avoid}
 .post-toc a{display:grid;grid-template-columns:2.25rem 1fr;padding:.45rem 0;font-family:var(--term);font-size:12.5px;line-height:1.55;color:var(--ink2);text-decoration:none;transition:color .25s}
 .post-toc a:hover{color:var(--ink)}
 .post-toc a:hover .post-toc-label{text-decoration:underline;text-decoration-color:var(--line2);text-underline-offset:.3em}
@@ -84,7 +87,7 @@
 .post-content>.post-wide{grid-column:wide}
 .post-content p{margin:0 0 1.2em;text-wrap:pretty}
 .post-content strong{font-weight:600;color:var(--ink)}
-.post-content a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:#666;text-underline-offset:.22em;transition:text-decoration-color .25s}
+.post-content a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:#666;text-underline-offset:.22em;transition:text-decoration-color .25s;overflow-wrap:break-word}
 .post-content a:hover{text-decoration-color:var(--ink)}
 
 /* Section openers: a hairline above, the heading in the site's mono. */
