@@ -12,9 +12,11 @@
 // address bar never shows a "#".
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const SITE = 'https://janmm97.github.io/jan-website/';
-const ROOT = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
+// fileURLToPath decodes %20, so the tool also runs from a folder whose path has spaces.
+const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const check = process.argv.includes('--check');
 
 const home = {

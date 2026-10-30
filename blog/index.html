@@ -21,6 +21,9 @@
   if(!b){b=document.createElement('base');document.head.prepend(b);}
   b.setAttribute('href',new URL(b.getAttribute('href')||'./',location.href).href);
 })();
+// Set the Observatory layout class before first paint (astral.js sets it again at the end of
+// <body>); otherwise an early paint lays the hero out 60px low and it jumps (CLS).
+document.documentElement.classList.add('astral');
 </script>
 <link rel="preload" href="assets/images/websitelogo-blackbg1.svg" as="image">
 
@@ -53,38 +56,7 @@
    "url": "https://janmm97.github.io/jan-website/",
    "name": "Jan — AI Agent Builder & Automation Specialist",
    "description": "Jan, AI agent builder and automation specialist. Custom AI agents, n8n workflows and multi-agent systems like J/OS HQ that turn repetitive work into systems.",
-   "inLanguage": "en",
-   "publisher": {
-    "@id": "https://janmm97.github.io/jan-website/#person"
-   }
-  },
-  {
-   "@type": "ProfilePage",
-   "@id": "https://janmm97.github.io/jan-website/#profilepage",
-   "url": "https://janmm97.github.io/jan-website/",
-   "name": "Jan — AI Agent Builder & Automation Specialist",
-   "inLanguage": "en",
-   "isPartOf": {
-    "@id": "https://janmm97.github.io/jan-website/#website"
-   },
-   "mainEntity": {
-    "@type": "Person",
-    "@id": "https://janmm97.github.io/jan-website/#person",
-    "name": "Jan",
-    "url": "https://janmm97.github.io/jan-website/",
-    "jobTitle": "AI Agent Builder & Automation Specialist",
-    "description": "Computer Science graduate who builds custom AI agents and connected workflows, combining operations, automation, and AI to simplify repetitive work.",
-    "knowsAbout": [
-     "AI agents",
-     "Workflow automation",
-     "Multi-agent systems",
-     "Operations",
-     "n8n"
-    ],
-    "sameAs": [
-     "https://github.com/janmm97"
-    ]
-   }
+   "inLanguage": "en"
   },
   {
    "@type": "ItemList",
@@ -99,9 +71,7 @@
       "name": "Orchy",
       "description": "One orchestrator for running multiple businesses with AI agents. It uses Jev to route plain-language instructions to the right business and agent, runs them on Claude Code or Codex under that business's own account, keeps each business separate, and pauses for approval before anything is sent, spent, shared or deleted.",
       "image": "https://janmm97.github.io/jan-website/assets/images/Lil%20Orchy.png",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
-      }
+      "author": "Jan"
      },
      "position": 1
     },
@@ -113,71 +83,10 @@
       "description": "A local command center that runs AI agents for two businesses behind a single approval gate. Built on the One CLI, Claude Code, and the Codex CLI, it routes each request to the right workspace.",
       "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Dashboard.png",
       "codeRepository": "https://github.com/janmm97/janhq",
-      "author": {
-       "@id": "https://janmm97.github.io/jan-website/#person"
-      }
+      "author": "Jan"
      },
      "position": 2
     },
-    {
-      "@type": "WebSite",
-      "@id": "https://janmm97.github.io/jan-website/#website",
-      "url": "https://janmm97.github.io/jan-website/",
-      "name": "Jan — AI Agent Builder & Automation Specialist",
-      "description": "Jan, AI agent builder and automation specialist. Custom AI agents, n8n workflows and multi-agent systems like J/OS HQ that turn repetitive work into systems.",
-      "inLanguage": "en",
-      "publisher": {
-        "@id": "https://janmm97.github.io/jan-website/#person"
-      }
-    },
-    {
-      "@type": "ProfilePage",
-      "@id": "https://janmm97.github.io/jan-website/#profilepage",
-      "url": "https://janmm97.github.io/jan-website/",
-      "name": "Jan — AI Agent Builder & Automation Specialist",
-      "inLanguage": "en",
-      "isPartOf": {
-        "@id": "https://janmm97.github.io/jan-website/#website"
-      },
-      "mainEntity": {
-        "@type": "Person",
-        "@id": "https://janmm97.github.io/jan-website/#person",
-        "name": "Jan",
-        "url": "https://janmm97.github.io/jan-website/",
-        "jobTitle": "AI Agent Builder & Automation Specialist",
-        "description": "Computer Science graduate who builds custom AI agents and connected workflows, combining operations, automation, and AI to simplify repetitive work.",
-        "knowsAbout": [
-          "AI agents",
-          "Workflow automation",
-          "Multi-agent systems",
-          "Operations",
-          "n8n"
-        ],
-        "sameAs": [
-          "https://github.com/janmm97"
-        ]
-      }
-    },
-    {
-      "@type": "ItemList",
-      "@id": "https://janmm97.github.io/jan-website/#projects",
-      "name": "Selected work",
-      "numberOfItems": 6,
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "item": {
-            "@type": "SoftwareSourceCode",
-            "name": "J/OS HQ",
-            "description": "A local command center that runs AI agents for two businesses behind a single approval gate. Built on the One CLI, Claude Code, and the Codex CLI, it routes each request to the right workspace.",
-            "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Dashboard.png",
-            "codeRepository": "https://github.com/janmm97/janhq",
-            "author": {
-              "@id": "https://janmm97.github.io/jan-website/#person"
-            }
-          },
-          "position": 1
-        },
         {
           "@type": "ListItem",
           "item": {
@@ -186,11 +95,9 @@
             "description": "A private command center that runs AI agents for two separate businesses from one place while keeping the two strictly apart.",
             "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Agents.png",
             "codeRepository": "https://github.com/janmm97/janhq",
-            "author": {
-              "@id": "https://janmm97.github.io/jan-website/#person"
-            }
+            "author": "Jan"
           },
-          "position": 2
+          "position": 3
         },
         {
           "@type": "ListItem",
@@ -200,11 +107,9 @@
             "description": "An end-to-end AI video ad automation in n8n that turns a simple form submission into a finished vertical video asset.",
             "image": "https://janmm97.github.io/jan-website/assets/images/n8n-pipeline.png",
             "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/sora-2-autosync-v2",
-            "author": {
-              "@id": "https://janmm97.github.io/jan-website/#person"
-            }
+            "author": "Jan"
           },
-          "position": 3
+          "position": 4
         },
         {
           "@type": "ListItem",
@@ -214,11 +119,9 @@
             "description": "A multi-agent AI content automation system that generates, organizes, and prepares social media content across multiple channels.",
             "image": "https://janmm97.github.io/jan-website/assets/images/n8n-content-writer.png",
             "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/content-automation",
-            "author": {
-              "@id": "https://janmm97.github.io/jan-website/#person"
-            }
+            "author": "Jan"
           },
-          "position": 4
+          "position": 5
         },
         {
           "@type": "ListItem",
@@ -228,11 +131,9 @@
             "description": "An n8n automation that monitors incoming deal-flow emails in Gmail and screens every business opportunity against a defined set of acquisition criteria.",
             "image": "https://janmm97.github.io/jan-website/assets/images/Deal%20Flow%20Checker.png",
             "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/deal-flow-checker",
-            "author": {
-              "@id": "https://janmm97.github.io/jan-website/#person"
-            }
+            "author": "Jan"
           },
-          "position": 5
+          "position": 6
         },
         {
           "@type": "ListItem",
@@ -242,11 +143,9 @@
             "description": "An n8n intake workflow that turns messy automation requests into structured, actionable data.",
             "image": "https://janmm97.github.io/jan-website/assets/images/Automation%20Idea%20Summary%20and%20Prompt%20Writer.png",
             "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/automation-idea-summary-and-prompt-writer",
-            "author": {
-              "@id": "https://janmm97.github.io/jan-website/#person"
-            }
+            "author": "Jan"
           },
-          "position": 6
+          "position": 7
         }
       ]
     }
@@ -711,13 +610,9 @@ footer{background:rgba(9,13,20,.35)}
 
 
 
-
-
   <!-- ============ PROJECTS ============ -->
 
-
   <!-- ============ SERVICES ============ -->
-
 
   <section class="page" data-page="blog"><div class="sky-art blog-sky" aria-hidden="true"><video class="sky-video" muted loop playsinline preload="none" poster="assets/video/deepfield-poster.webp" data-src="assets/video/deepfield.mp4" data-src-small="assets/video/deepfield-960.mp4"></video></div>
     <div class="container">
@@ -725,7 +620,7 @@ footer{background:rgba(9,13,20,.35)}
         <h1 class="projects-title" tabindex="-1" data-heading>The working<br><em class="grad-em" id="blogWord">notes.</em></h1>
         <p class="projects-lead">Notes, lessons and experiments — from AI agents and automation to operations, tools and the work itself.</p>
       </div>
-      <div class="journal-tools" hidden><label class="journal-search" for="journalSearch">Search the notes<input id="journalSearch" type="search" placeholder="Agents, tools, operations…" autocomplete="off"></label><div class="lab-filters" role="group" aria-label="Article topic"><button type="button" data-topic="all" aria-pressed="true">All notes</button><button type="button" data-topic="experiments" aria-pressed="false">Experiments</button><button type="button" data-topic="guides" aria-pressed="false">Guides</button></div><p id="journalCount" role="status">12 notes</p></div><ol class="post-list">
+      <div class="journal-tools" hidden><label class="journal-search" for="journalSearch">Search the notes<input id="journalSearch" type="search" placeholder="Agents, tools, operations…" autocomplete="off"></label><div class="lab-filters" role="group" aria-label="Article topic"><button type="button" data-topic="all" aria-pressed="true">All notes</button><button type="button" data-topic="experiments" aria-pressed="false">Experiments</button><button type="button" data-topic="guides" aria-pressed="false">Guides</button></div><p id="journalCount" role="status">11 notes</p></div><ol class="post-list">
 <li class="post-entry"><div><h2 class="post-entry-title"><a href="blog/best-ai-agent-orchestration-tools-2026/">The best AI agent orchestration tools in 2026 (Orchy is #1)</a></h2><p class="post-entry-meta"><time datetime="2026-10-29">October 29, 2026</time><span>11 min read</span></p></div><div><p class="post-entry-excerpt">Seven AI agent orchestration tools compared on five criteria. Code frameworks, workflow platforms and a desktop option, with Orchy ranked first.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></li>
 <li class="post-entry"><div><h2 class="post-entry-title"><a href="blog/gpt-6-1-terra-ai-assistant-test/">GPT-6.1 Terra as an AI assistant: 6 models, one inbox, 36 graded runs</a></h2><p class="post-entry-meta"><time datetime="2026-10-27">October 27, 2026</time><span>8 min read</span></p></div><div><p class="post-entry-excerpt">We tested GPT-6.1 Terra and 5 other models as an inbox assistant. Terra passed 6/6, was the fastest perfect scorer and cost $0.0043 per passed task.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></li>
 <li class="post-entry"><div><h2 class="post-entry-title"><a href="blog/deepseek-v4-1-flash-1017/">DeepSeek V4.1-Flash-1017: what changed, and what it costs</a></h2><p class="post-entry-meta"><time datetime="2026-10-27">October 27, 2026</time><span>7 min read</span></p></div><div><p class="post-entry-excerpt">DeepSeek V4.1-Flash-1017: the benchmark jumps, the $0.30/$1.20 price, the 1M context and MIT weights, and where Opus 5 still leads.</p><span class="post-entry-more" aria-hidden="true">Read the post <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></div></li>
@@ -753,7 +648,6 @@ footer{background:rgba(9,13,20,.35)}
       </ol><div id="journalEmpty" hidden><h2>No matching notes.</h2><p>Try another phrase or clear your filters.</p><button class="btn btn-ghost" id="clearJournal" type="button">Clear search and filters</button></div>
     </div>
   </section>
-
 
 </main>
 
