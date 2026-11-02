@@ -92,6 +92,11 @@ for (const [slug, p] of Object.entries(pages)) {
   head = head.split(home.desc).join(p.desc).split('content="' + home.title + '"').join('content="' + esc(p.title) + '"');
   head = must(head, '<noscript><style>.page.page-home{display:flex}</style></noscript>', '<noscript><style>.page[data-page="' + slug + '"]{display:block}</style></noscript>');
   rest = onlySection(rest, slug);
+  // The home page carries every section but only one <h1> (its hero); the other sections'
+  // headings are <h2 ... data-heading> there. On its own page a section's heading is the <h1>.
+  const heads = rest.match(/<h2(\s[^>]*\bdata-heading\b[^>]*)>([\s\S]*?)<\/h2>/g) || [];
+  if (heads.length !== 1) throw new Error(slug + ': expected one <h2 data-heading>, found ' + heads.length);
+  rest = rest.replace(heads[0], () => '<h1' + heads[0].slice(3, -5) + '</h1>');
   // Same-page anchors (#mainContent ...) keep pointing at this page even without JavaScript.
   const html = (head + rest).replace(/href="#([A-Za-z][^"\/]*)"/g, 'href="' + slug + '/#$1"');
   if (/href="[^"]*#\//.test(html)) throw new Error(slug + ': a link still uses a #/ route');
