@@ -57,6 +57,7 @@ All three are self-hosted, Latin subset, `font-display: swap`. The display and b
 
 - Easing `--ease: cubic-bezier(.16,1,.3,1)`. Only `transform`, `opacity` and `clip-path` animate.
 - The board runs once when it comes into view (FLIP between lanes); the "Run it again" link replays it. Outward strips auto-clear after 5 s only if the visitor has not touched the board.
+- **Pause motion** (WCAG 2.2.2): one shared state, shown as a `.textbtn.motion` toggle in the board note and above the routes. A real `<button aria-pressed>` whose label stays "Pause motion"; the square fills when it is pressed. Pausing stops every route loop and jumps the board to its reduced-motion end state; Play resumes the routes in view. Hidden without JS and under reduced motion, where nothing moves.
 - **`prefers-reduced-motion: reduce`**: no animation anywhere. The board renders its end state (one strip waiting with live Approve/Hold, one cleared), route captions show the full route as text, level boxes are pre-filled.
 - No-JS: the board's static markup is the end state, routes show their captions.
 

@@ -174,7 +174,7 @@
       <div class="lane" data-lane="wait"><div class="lane-h"><span>Waits for your OK</span><span class="n" data-count>1</span></div><div class="strips"><div class="strip" data-id="INB" data-n="0" data-out="1" data-via="INB · Gmail → Claude Code"><div class="blk"><img src="./assets/images/tools/gmail.svg" alt="" width="22" height="22"></div><div class="body"><p class="what">Draft replies to new leads</p><p class="via">INB · Waits for your OK</p></div><div class="stamp"><svg aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg></div></div></div></div>
       <div class="lane" data-lane="done"><div class="lane-h"><span>Cleared</span><span class="n" data-count>1</span></div><div class="strips"><div class="strip done" data-id="CRM" data-n="1" data-out="0" data-via="CRM · Calendly → Airtable"><div class="blk"><img src="./assets/images/tools/airtable.svg" alt="" width="22" height="22"></div><div class="body"><p class="what">Update the CRM after today’s calls</p><p class="via">CRM · Done inside your tools</p></div><div class="stamp"><svg aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg></div></div></div></div>
     </div>
-    <div class="board-note"><span>An illustration, not live data. Try Approve or Hold.</span><button type="button" class="textbtn" id="replay">Run it again</button></div>
+    <div class="board-note"><span>An illustration, not live data. Try Approve or Hold.</span><span class="note-acts"><button type="button" class="textbtn motion" data-motion aria-pressed="false" hidden>Pause motion</button><button type="button" class="textbtn" id="replay">Run it again</button></span></div>
   </div>
 </header>
 
@@ -185,6 +185,7 @@
       <h2 id="tools-h">The tools my agents actually run on.</h2>
       <p class="sub">Every run moves work between real apps. The black square is the stop where the agent waits for you. These are the routes I build most.</p>
     </div>
+    <p class="runs-note"><button type="button" class="textbtn motion" data-motion aria-pressed="false" hidden>Pause motion</button></p>
     <div class="runs" id="runs">
       <div class="run" data-caps="New email in Gmail|One connects the inbox|Claude Code drafts the reply|Waits for your OK|Sent from Gmail">
         <div><h3>Orchy agent run</h3><p>An email comes in, an agent drafts the reply, you approve it, it sends.</p></div>

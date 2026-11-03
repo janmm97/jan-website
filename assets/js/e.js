@@ -5,6 +5,8 @@
   const d = document, RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const EASE = 'cubic-bezier(.16,1,.3,1)';
   d.documentElement.classList.add('js');
+  // Pause motion (WCAG 2.2.2): paused acts like reduced motion; each looping block registers how it stops/resumes.
+  let paused = false; const still = () => RM || paused, onPause = [];
 
   /* Old single-page links (#/about, #/blog ...) go to the page's own URL. */
   const legacy = location.hash.match(/^#\/([a-z-]+)/);
@@ -27,7 +29,7 @@
       first ? to.prepend(el) : to.append(el); count();
       // Small screens: lanes are a swipe bay, so follow the work to its lane until the visitor swipes.
       if (!swiped && board.scrollWidth > board.clientWidth + 4) board.scrollTo({ left: to.parentElement.offsetLeft - board.firstElementChild.offsetLeft, behavior: RM ? 'auto' : 'smooth' });
-      if (RM) return;
+      if (still()) return;
       all.forEach(s => { const a = before.get(s), b = s.getBoundingClientRect(), dx = a.left - b.left, dy = a.top - b.top;
         if (dx || dy) s.animate([{ transform: `translate(${dx}px,${dy}px)` }, { transform: 'none' }], { duration: 620, easing: EASE }); });
     }
@@ -46,7 +48,7 @@
       a.children[0].onclick = () => { touched = true; clear(el, 'Approved by you'); focusNext(); };
       a.children[1].onclick = () => { touched = true; el.classList.remove('waiting'); el.classList.add('held'); a.remove(); el.querySelector('.via').textContent = el.dataset.id + ' · On hold: nothing sent'; focusNext(); };
       el.append(a); move(el, lanes.wait, false);
-      if (!RM) timers.push(setTimeout(() => { if (!touched && el.isConnected && el.classList.contains('waiting')) clear(el, 'Approved by you (demo)'); }, 5000));
+      if (!still()) timers.push(setTimeout(() => { if (!touched && el.isConnected && el.classList.contains('waiting')) clear(el, 'Approved by you (demo)'); }, 5000));
     }
     // Keep keyboard users on the board after their button disappears.
     const focusNext = () => (board.querySelector('.acts button') || d.getElementById('replay')).focus({ preventScroll: true });
@@ -54,7 +56,7 @@
       timers.forEach(clearTimeout); timers = []; touched = false; swiped = false;
       for (const k in lanes) lanes[k].replaceChildren();
       const els = tpl.map(make); els.forEach(e => lanes.work.append(e)); count();
-      if (RM) { clear(els[1], 'Done inside your tools'); wait(els[0]); return; }
+      if (still()) { clear(els[1], 'Done inside your tools'); wait(els[0]); return; }
       let t = 700;
       els.forEach((el, i) => {
         timers.push(setTimeout(() => { const b = d.createElement('i'); b.className = 'run-bar'; b.setAttribute('aria-hidden', 'true'); el.append(b); }, t - 600));
@@ -66,6 +68,8 @@
     // Start once the board is on screen (it is, on load, for almost everyone).
     const bo = new IntersectionObserver(es => { if (es[0].isIntersecting) { bo.disconnect(); run(); } });
     bo.observe(board);
+    // Pausing jumps the board to its static end state (the reduced-motion one); Play leaves it there, "Run it again" replays.
+    onPause.push(p => { if (p) { bo.disconnect(); run(); } });
   }
 
   /* ---------- routes: a square steps from tool to tool, only while in view ---------- */
@@ -78,18 +82,26 @@
       pk.style.setProperty('--x', (s.offsetLeft + s.offsetWidth / 2) + 'px');
       cap.textContent = (i + 1) + '/' + st.length + '  ' + caps[i];
       const gate = s.classList.contains('gate'); row.classList.toggle('wait', gate);
-      row._i = (i + 1) % st.length; row._t = setTimeout(() => step(row), gate ? 2200 : 1100);
+      row._i = (i + 1) % st.length; row._t = setTimeout(() => { row._t = null; if (!paused) step(row); }, gate ? 2200 : 1100);
     };
     if (RM) runs.forEach(r => { r.querySelector('.run-cap').textContent = r.dataset.caps.split('|').join(' → '); });
     else {
       const io = new IntersectionObserver(es => es.forEach(e => {
-        const row = e.target;
-        if (e.isIntersecting && !row._t) step(row);
+        const row = e.target; row._in = e.isIntersecting;
+        if (e.isIntersecting && !row._t && !paused) step(row);
         else if (!e.isIntersecting && row._t) { clearTimeout(row._t); row._t = null; }
       }), { threshold: .5 });
       runs.forEach(r => io.observe(r));
+      onPause.push(p => runs.forEach(r => { if (p) { clearTimeout(r._t); r._t = null; } else if (r._in && !r._t) step(r); }));
     }
   }
+
+  /* ---------- Pause motion toggle: one state, shown on the board and above the routes ---------- */
+  const tg = [...d.querySelectorAll('[data-motion]')];
+  if (tg.length && !RM && onPause.length) tg.forEach(b => {
+    b.hidden = false;
+    b.onclick = () => { paused = !paused; tg.forEach(x => x.setAttribute('aria-pressed', paused)); onPause.forEach(f => f(paused)); };
+  });
 
   /* ---------- level boxes fill when they come into view ---------- */
   const lvs = d.querySelectorAll('.lv');
