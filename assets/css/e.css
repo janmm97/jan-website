@@ -285,3 +285,35 @@ a.shot:hover{transform:translateY(-4px)}
   .stages{grid-template-columns:1fr}
   .stage{padding-right:0}
 }
+/* ---- Work with me: Orchy install + monthly plans (appended 2026-11-03, Sienna) ----
+   New classes only; nothing above is changed. Prices are the largest text in each offer. */
+.wwm-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:center}
+.wwm-hero h1{font-size:clamp(2.5rem,4.3vw,4.15rem);max-width:21ch}
+.wwm-hero .cta-row{margin-top:32px}
+.offer-line{margin:22px 0 0;color:var(--mute-d)}
+.offer-line b{color:var(--strip)}
+.bigprice{font:900 clamp(3rem,5vw,4.5rem)/.9 var(--display);margin:0;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.bigprice small{font:500 1rem/1 var(--body);color:var(--mute-l)}
+.offer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:28px clamp(32px,5vw,88px);border-top:2px solid var(--ink);padding-top:32px}
+.offer-side{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.offer .ticks{border-top:1px solid var(--rule-l)}
+.plans .tier{display:flex;flex-direction:column;gap:14px}
+.plans .tier .btn{margin-top:auto;align-self:flex-start}
+.plans .tier .ticks{margin-bottom:12px}
+.plans-note{margin:32px 0 0;font-weight:700;max-width:62ch}
+.faq{max-width:880px;border-top:2px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--rule-l)}
+.faq summary{display:flex;justify-content:space-between;gap:24px;padding:20px 0;font-weight:700;font-size:1.15rem;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:500 1.3rem/1 var(--code);flex:none}
+.faq details[open] summary::after{content:"\2212"}
+.faq summary:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+.faq details p{margin:0 0 22px;max-width:66ch}
+@media (max-width:980px){
+  .wwm-hero,.offer{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  /* the longer booking label on /services/ keeps the nav to two rows */
+  body[data-cta] .navcta{font-size:.875rem;padding:10px}
+  body[data-cta] .nav{gap:0 12px}
+}
