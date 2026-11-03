@@ -11,7 +11,7 @@
   /* Old single-page links (#/about, #/blog ...) go to the page's own URL. */
   const legacy = location.hash.match(/^#\/([a-z-]+)/);
   if (legacy) {
-    const map = { home: '', about: 'about/', projects: 'projects/', services: 'services/', blog: 'blog/', contact: 'contact/', academy: 'academy/' };
+    const map = { home: '', about: 'about/', projects: 'projects/', services: 'services/', blog: 'blog/', contact: 'contact/' };
     if (legacy[1] in map) location.replace(new URL((d.body.dataset.root || './') + map[legacy[1]], location.href).href);
   }
 
@@ -102,13 +102,6 @@
     b.hidden = false;
     b.onclick = () => { paused = !paused; tg.forEach(x => x.setAttribute('aria-pressed', paused)); d.documentElement.classList.toggle('motion-paused', paused); onPause.forEach(f => f(paused)); };
   });
-
-  /* ---------- level boxes fill when they come into view ---------- */
-  const lvs = d.querySelectorAll('.lv');
-  if (lvs.length) {
-    if (RM) lvs.forEach(l => l.classList.add('in'));
-    else { const lo = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); lo.unobserve(e.target); } }), { threshold: .6 }); lvs.forEach(l => lo.observe(l)); }
-  }
 
   /* ---------- shelves / topic tabs (WAI-ARIA tabs, arrow keys, Home/End) ---------- */
   d.querySelectorAll('[data-tabs]').forEach(root => {
