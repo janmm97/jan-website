@@ -39,101 +39,82 @@
    "@id": "https://janmm97.github.io/jan-website/#website",
    "url": "https://janmm97.github.io/jan-website/",
    "name": "Jan — AI Agent Builder & Automation Specialist",
-   "description": "Jan, AI agent builder and automation specialist. Custom AI agents, n8n workflows and multi-agent systems like J/OS HQ that turn repetitive work into systems.",
    "inLanguage": "en"
   },
   {
-   "@type": "ItemList",
-   "@id": "https://janmm97.github.io/jan-website/#projects",
-   "name": "Selected work",
-   "numberOfItems": 7,
-   "itemListElement": [
-    {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "Orchy",
-      "description": "One orchestrator for running multiple businesses with AI agents. It uses Jev to route plain-language instructions to the right business and agent, runs them on Claude Code or Codex under that business's own account, keeps each business separate, and pauses for approval before anything is sent, spent, shared or deleted.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/Lil%20Orchy.png",
-      "author": "Jan"
+   "@type": "Person",
+   "@id": "https://janmm97.github.io/jan-website/#person",
+   "name": "Jan",
+   "jobTitle": "Founder of Orchy",
+   "url": "https://janmm97.github.io/jan-website/about/"
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://janmm97.github.io/jan-website/services/#webpage",
+   "url": "https://janmm97.github.io/jan-website/services/",
+   "name": "Orchy Install & AI Agent Plans | Jan, Founder of Orchy",
+   "description": "Orchy install by its founder: AI agents on your own computer with 5 app connections and 3 starter agents for $899 one-time. Monthly plans from $999.",
+   "isPartOf": {"@id": "https://janmm97.github.io/jan-website/#website"},
+   "about": {"@id": "https://janmm97.github.io/jan-website/services/#service"},
+   "mainEntity": {"@id": "https://janmm97.github.io/jan-website/services/#service"},
+   "primaryImageOfPage": "https://janmm97.github.io/jan-website/assets/images/orchy-dashboard.png",
+   "inLanguage": "en"
+  },
+  {
+   "@type": "Service",
+   "@id": "https://janmm97.github.io/jan-website/services/#service",
+   "name": "Orchy install and AI agent plans",
+   "serviceType": "AI agent setup and management",
+   "description": "Jan, founder of Orchy, installs Orchy on your own computer, connects it to your apps and sets up your first AI agents, then can keep building and running your agents on a monthly plan.",
+   "provider": {"@id": "https://janmm97.github.io/jan-website/#person"},
+   "url": "https://janmm97.github.io/jan-website/services/",
+   "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Work with me",
+    "itemListElement": [
+     {
+      "@type": "Offer",
+      "name": "Orchy Install",
+      "description": "Setup on 1 device, your One account set up, 5 app connections, 3 starter agents and 60-min onboarding. One-time.",
+      "price": "899",
+      "priceCurrency": "USD",
+      "url": "https://janmm97.github.io/jan-website/services/#install"
      },
-     "position": 1
-    },
-    {
-     "@type": "ListItem",
-     "item": {
-      "@type": "SoftwareSourceCode",
-      "name": "J/OS HQ",
-      "description": "A local command center that runs AI agents for two businesses behind a single approval gate. Built on the One CLI, Claude Code, and the Codex CLI, it routes each request to the right workspace.",
-      "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Dashboard.png",
-      "codeRepository": "https://github.com/janmm97/janhq",
-      "author": "Jan"
+     {
+      "@type": "Offer",
+      "name": "Extra agent (add-on to the Orchy Install)",
+      "price": "99",
+      "priceCurrency": "USD",
+      "url": "https://janmm97.github.io/jan-website/services/#install"
      },
-     "position": 2
-    },
-        {
-          "@type": "ListItem",
-          "item": {
-            "@type": "SoftwareSourceCode",
-            "name": "J/OS Agents",
-            "description": "A private command center that runs AI agents for two separate businesses from one place while keeping the two strictly apart.",
-            "image": "https://janmm97.github.io/jan-website/assets/images/JOS%20Agents.png",
-            "codeRepository": "https://github.com/janmm97/janhq",
-            "author": "Jan"
-          },
-          "position": 3
-        },
-        {
-          "@type": "ListItem",
-          "item": {
-            "@type": "SoftwareSourceCode",
-            "name": "AI Video Ad AutoSync Pipeline",
-            "description": "An end-to-end AI video ad automation in n8n that turns a simple form submission into a finished vertical video asset.",
-            "image": "https://janmm97.github.io/jan-website/assets/images/n8n-pipeline.png",
-            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/sora-2-autosync-v2",
-            "author": "Jan"
-          },
-          "position": 4
-        },
-        {
-          "@type": "ListItem",
-          "item": {
-            "@type": "SoftwareSourceCode",
-            "name": "Multi-Agent Content Automation",
-            "description": "A multi-agent AI content automation system that generates, organizes, and prepares social media content across multiple channels.",
-            "image": "https://janmm97.github.io/jan-website/assets/images/n8n-content-writer.png",
-            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/content-automation",
-            "author": "Jan"
-          },
-          "position": 5
-        },
-        {
-          "@type": "ListItem",
-          "item": {
-            "@type": "SoftwareSourceCode",
-            "name": "Deal Flow Checker",
-            "description": "An n8n automation that monitors incoming deal-flow emails in Gmail and screens every business opportunity against a defined set of acquisition criteria.",
-            "image": "https://janmm97.github.io/jan-website/assets/images/Deal%20Flow%20Checker.png",
-            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/deal-flow-checker",
-            "author": "Jan"
-          },
-          "position": 6
-        },
-        {
-          "@type": "ListItem",
-          "item": {
-            "@type": "SoftwareSourceCode",
-            "name": "Automation Idea Summary and Prompt Writer",
-            "description": "An n8n intake workflow that turns messy automation requests into structured, actionable data.",
-            "image": "https://janmm97.github.io/jan-website/assets/images/Automation%20Idea%20Summary%20and%20Prompt%20Writer.png",
-            "codeRepository": "https://github.com/janmm97/n8n-proj/tree/main/automation-idea-summary-and-prompt-writer",
-            "author": "Jan"
-          },
-          "position": 7
-        }
-      ]
-    }
-  ]
+     {
+      "@type": "Offer",
+      "name": "Build & Train",
+      "description": "Agents built on request, training for you and your team, agent optimisation with LangChain and Langfuse, and a bi-weekly touch base. Starts after the Orchy Install.",
+      "priceSpecification": {"@type": "UnitPriceSpecification", "price": "999", "priceCurrency": "USD", "unitCode": "MON", "unitText": "month"},
+      "url": "https://janmm97.github.io/jan-website/services/#plans"
+     },
+     {
+      "@type": "Offer",
+      "name": "Full-Time AI Agent Manager",
+      "description": "Everything in Build & Train, plus a dedicated AI agent manager, daily monitoring, unlimited agent requests (fair use), VA tasks run through your agents and weekly calls. Starts after the Orchy Install.",
+      "priceSpecification": {"@type": "UnitPriceSpecification", "price": "2499", "priceCurrency": "USD", "unitCode": "MON", "unitText": "month"},
+      "url": "https://janmm97.github.io/jan-website/services/#plans"
+     }
+    ]
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://janmm97.github.io/jan-website/services/#faq",
+   "mainEntity": [
+    {"@type": "Question", "name": "Is Orchy free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the software is open source. You pay for the setup work, the connections and the agents I build."}},
+    {"@type": "Question", "name": "Where does my data live?", "acceptedAnswer": {"@type": "Answer", "text": "On your device and in your own One account."}},
+    {"@type": "Question", "name": "Do I need the install before a monthly plan?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Plans start after your Orchy install."}},
+    {"@type": "Question", "name": "Who pays for the AI models and apps?", "acceptedAnswer": {"@type": "Answer", "text": "You do. You pay your own AI model and app costs."}}
+   ]
+  }
+ ]
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=2026-09-30.1">
