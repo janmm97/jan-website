@@ -10,6 +10,8 @@
 //   <!-- e:foot --> ... <!-- /e:foot -->   filled from tools/partials/foot.html
 // "{R}" in a partial becomes the path back to the site root ("./", "../", "../../"), and the nav
 // link of the page's own section gets aria-current="page".
+// A page can relabel the nav and footer booking buttons with <body data-cta="Label"> (used by
+// /services/ so every CTA on that page reads the same). Pages without it keep the partials' labels.
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -39,10 +41,13 @@ for (const file of files(ROOT)) {
   const depth = rel.split('/').length - 1;
   const R = depth ? '../'.repeat(depth) : './';
   const section = depth ? rel.split('/')[0] : '';
+  const cta = (src.match(/<body\b[^>]*\sdata-cta="([^"<>]+)"/) || [])[1];
   let html = src;
   for (const [name, body] of Object.entries(PARTS)) {
     let b = body.split('{R}').join(R);
     if (name === 'nav' && section) b = b.replace(`<li><a href="${R}${section}/">`, `<li><a href="${R}${section}/" aria-current="page">`);
+    if (cta && name === 'nav') b = b.replace(/(<a class="navcta"[^>]*>)[^<]*(<\/a>)/, `$1${cta}$2`);
+    if (cta && name === 'foot') b = b.replace(/(<div class="foot-top">[\s\S]*?<a class="btn"[\s\S]*?<span>)[^<]*(<\/span>)/, `$1${cta}$2`);
     const re = new RegExp(`<!-- e:${name} -->[\\s\\S]*?<!-- /e:${name} -->`);
     if (!re.test(html)) throw new Error(`${rel}: has <!-- e:nav --> but no <!-- e:${name} --> ... <!-- /e:${name} -->`);
     html = html.replace(re, () => `<!-- e:${name} -->\n${b}\n<!-- /e:${name} -->`);
