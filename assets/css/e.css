@@ -79,7 +79,6 @@ p{margin:0}
 .hero-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:24px 56px;align-items:end;padding-top:clamp(16px,3.4vw,48px)}
 .hero h1{max-width:12ch}
 .hero-act{display:grid;gap:18px;justify-items:start;padding-bottom:6px}
-.hero-act .alt{font-size:.98rem;color:var(--mute-d)}
 
 /* The clearance board. Lanes have a fixed height and strips a fixed size, so the demo never shifts the page. */
 .board{margin-top:clamp(32px,4vw,52px);border-top:2px solid var(--strip);display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -120,6 +119,9 @@ p{margin:0}
 
 /* Sections */
 .sec{padding:clamp(72px,9vw,128px) 0}
+/* Two light bands in a row (Work, then Blog) share one band, split by the board rule instead of a double gap */
+.light.sec+.light.sec{padding-top:0}
+.light.sec+.light.sec>.wrap::before{content:"";display:block;border-top:2px solid var(--ink);margin-bottom:clamp(72px,9vw,128px)}
 .sec-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px 64px;align-items:end;margin-bottom:clamp(36px,5vw,64px)}
 
 /* Routes: real tool chains, with the black "Your OK" stop */
@@ -171,22 +173,6 @@ a.shot:hover{transform:translateY(-4px)}
 .tier h3{font-size:2rem}
 .tier .price{font:900 1.9rem/1 var(--display);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .tiers-foot{display:flex;flex-wrap:wrap;align-items:center;gap:20px 32px;margin-top:40px}
-
-/* Academy: the level box fills by level */
-.path{border-top:2px solid var(--strip)}
-.course{display:grid;grid-template-columns:72px minmax(0,1fr) 170px 120px 150px;gap:16px 20px;align-items:center;padding:20px 0;border-bottom:1px solid var(--rule-d)}
-.lv{width:56px;height:56px;border:2px solid var(--strip);position:relative;overflow:hidden}
-.lv i{position:absolute;left:0;right:0;bottom:0;height:100%;background:var(--strip);transform-origin:bottom;transform:scaleY(var(--lv,.33));transition:transform .9s var(--ease)}
-.js .lv:not(.in) i{transform:scaleY(0)}
-.course h3{font-size:1.5rem;font-weight:700;line-height:1.05}
-.course h3 a{text-decoration:none}
-.course h3 a:hover{text-decoration:underline}
-.course .m{font:500 .8rem/1.35 var(--code);color:var(--mute-d)}
-.acad-foot{display:flex;flex-wrap:wrap;gap:20px 32px;align-items:center;margin-top:36px}
-.course-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start}
-.course-head h1{max-width:18ch;font-size:clamp(2.8rem,6.4vw,5.2rem)}
-.lv-lg{width:clamp(72px,9vw,120px);height:clamp(72px,9vw,120px);border-width:3px}
-.course-meta{margin-top:22px;color:var(--mute-d2)}
 
 /* Blog shelves (tabs) */
 .tabs{display:flex;flex-wrap:wrap;border-bottom:2px solid var(--ink)}
@@ -245,8 +231,6 @@ a.shot:hover{transform:translateY(-4px)}
   .tiers{grid-template-columns:1fr}
   .tier,.tier+.tier{padding:24px 0;border-right:0;border-bottom:1px solid var(--rule-l)}
   .plist li{grid-template-columns:1fr}
-  .course{grid-template-columns:56px minmax(0,1fr);gap:8px 16px}
-  .course>:nth-child(n+3){grid-column:2}
   .posts li a{grid-template-columns:minmax(0,1fr) auto}
   .posts li a .k.t{display:none}
 }
@@ -257,7 +241,6 @@ a.shot:hover{transform:translateY(-4px)}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
-  .js .lv:not(.in) i{transform:scaleY(var(--lv,.33))}
 }
 @media (forced-colors:active){
   .btn::before,.strip .blk,.stn.gate .sq{forced-color-adjust:none}
