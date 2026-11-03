@@ -8,7 +8,7 @@ Approved by Jan (brief: Stella, 2026-11-02). Built by Sienna, 2026-11-03. Source
 
 | Motif | Where it comes from | Where it is used |
 |---|---|---|
-| **The square** | The logo's box | Tool stations on routes, course level boxes (`.lv`, filled by level), the "Your OK" gate |
+| **The square** | The logo's box | Tool stations on routes, the "Your OK" gate |
 | **The slanted bar** | The logo's stroke (`<symbol id="bar">`) | Button tick, cleared strips, gate stations, list markers |
 | **The strip** | A flight-strip / kanban card | Board items, post rows, course rows |
 
@@ -43,15 +43,15 @@ All three are self-hosted, Latin subset, `font-display: swap`. The display and b
 
 ## 4. Components
 
-- **Nav** (`tools/partials/nav.html`): Work with me · Projects · Academy · Blog · About · **[Book a call]**. `aria-current="page"` set by `tools/pages.mjs`. Under 980 px the links drop to a scrollable second row.
+- **Nav** (`tools/partials/nav.html`): Work with me · Projects · Blog · About · **[Book a call]**. `aria-current="page"` set by `tools/pages.mjs`. Under 980 px the links drop to a scrollable second row.
 - **Footer** (`tools/partials/foot.html`): "Hand one task over. Keep the final say." + Book a 30-min call, site links, "Product names and logos belong to their owners."
 - **Button** `.btn`: ink/strip block with the bar tick. **One primary `.btn` per section.** Secondary actions are underlined links.
 - **Board** `#board` (home): three fixed-height lanes (Agent working · Waits for your OK · Cleared). Labelled "Illustration, not live data" in visible text and in `aria-label`. Approve / Hold are real `<button>`s, ≥ 44 px tall. Lanes have a fixed height, so the demo never shifts layout. Under 980 px it becomes a swipe bay that follows the work until the visitor swipes.
 - **Routes** `.run`: a rail of tool squares (`aria-hidden`) with a text caption that is the accessible version. The highlight steps only while the route is in view.
 - **Tool index**: 16 tools Jan actually uses, grouped Models / Build / Apps. White marks have dedicated `-dark` files; no CSS invert.
 - **Shelves / tabs** `[data-tabs]`: WAI-ARIA tabs (arrow keys, Home/End). On /blog/ the tab follows the URL hash (`#business`, `#va`, `#tests`).
-- **Slots** `[data-slot]`: dashed box with a "Jan to confirm" label for anything Jan has not confirmed (prices, course files, testimonials). Never fill a slot with invented data.
-- **Post template** (`assets/css/e-post.css`): dark head with crumbs (Home / Blog / shelf), light reading column, then a shelf-matched `aside.post-cta`: business → Book a call; VAs → Academy; model tests → Academy.
+- **Slots** `[data-slot]`: dashed box with a "Jan to confirm" label for anything Jan has not confirmed (prices, testimonials). Never fill a slot with invented data.
+- **Post template** (`assets/css/e-post.css`): dark head with crumbs (Home / Blog / shelf), light reading column, then a shelf-matched `aside.post-cta`: business and model tests → Book a call (posts that already close on a Book-a-call line skip it); VAs → no aside until there is a VA offer.
 
 ## 5. Motion
 
