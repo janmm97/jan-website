@@ -28,7 +28,7 @@
       const all = [...board.querySelectorAll('.strip')], before = new Map(all.map(s => [s, s.getBoundingClientRect()]));
       first ? to.prepend(el) : to.append(el); count();
       // Small screens: lanes are a swipe bay, so follow the work to its lane until the visitor swipes.
-      if (!swiped && board.scrollWidth > board.clientWidth + 4) board.scrollTo({ left: to.parentElement.offsetLeft - board.firstElementChild.offsetLeft, behavior: RM ? 'auto' : 'smooth' });
+      if (!swiped && board.scrollWidth > board.clientWidth + 4) board.scrollTo({ left: to.parentElement.offsetLeft - board.firstElementChild.offsetLeft, behavior: still() ? 'auto' : 'smooth' });
       if (still()) return;
       all.forEach(s => { const a = before.get(s), b = s.getBoundingClientRect(), dx = a.left - b.left, dy = a.top - b.top;
         if (dx || dy) s.animate([{ transform: `translate(${dx}px,${dy}px)` }, { transform: 'none' }], { duration: 620, easing: EASE }); });
@@ -100,7 +100,7 @@
   const tg = [...d.querySelectorAll('[data-motion]')];
   if (tg.length && !RM && onPause.length) tg.forEach(b => {
     b.hidden = false;
-    b.onclick = () => { paused = !paused; tg.forEach(x => x.setAttribute('aria-pressed', paused)); onPause.forEach(f => f(paused)); };
+    b.onclick = () => { paused = !paused; tg.forEach(x => x.setAttribute('aria-pressed', paused)); d.documentElement.classList.toggle('motion-paused', paused); onPause.forEach(f => f(paused)); };
   });
 
   /* ---------- level boxes fill when they come into view ---------- */

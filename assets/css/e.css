@@ -138,6 +138,7 @@ p{margin:0}
 .stn.hit .sq{transform:translateY(-6px)}
 .pk{position:absolute;z-index:2;top:34px;left:0;width:14px;height:14px;margin:-7px 0 0 -7px;background:var(--ink);transform:translateX(var(--x,28px));transition:transform .7s var(--ease)}
 .run.wait .pk{animation:blink .9s steps(2) infinite}
+.motion-paused .run .pk{animation:none}
 @keyframes blink{50%{opacity:.15}}
 .run-cap{grid-column:2;font:500 .8rem/1.3 var(--code);min-height:1.3em}
 .runs-note{display:flex;justify-content:flex-end;margin-top:6px}
