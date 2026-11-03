@@ -11,9 +11,10 @@
 // no longer exists are reported (not removed) so a person can decide.
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const SITE = 'https://janmm97.github.io/jan-website/';
-const ROOT = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
+const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const SKIP = new Set(['.git', '.github', 'assets', 'docs', 'integrations', 'node_modules', 'tools']);
 const write = process.argv.includes('--write');
 
