@@ -65,7 +65,7 @@
   /* ---------- 2. ambient grain ---------- */
   const grain=document.createElement('div');grain.className='sky-grain';grain.setAttribute('aria-hidden','true');document.body.append(grain);
   /* ---------- 3. reveals ---------- */
-  const REVEAL=['.page h2','.gate-head > *','.gate-steps li','.orbit-head > *','.orbit-credit','.selected-head','.selected-feature > div','.page-closing > *',
+  const REVEAL=['.page h2:not([data-heading])','.gate-head > *','.gate-steps li','.orbit-head > *','.orbit-credit','.selected-head','.selected-feature > div','.page-closing > *',
     '.about-h3','.about-story > p','.about-h3-section','.timeline-item','.about-cta','.svc-packages-head > *','.svc-card','.svc-outro',
     '.post-entry','.journal-tools','.contact-intro','.contact-note','.contact-actions','.contact-detail'];
   const revealed=new Set();
