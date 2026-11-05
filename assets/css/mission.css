@@ -63,3 +63,8 @@ html.astral .page.page-home{padding-top:0}
 }
 @media(max-height:700px) and (min-width:741px){.mission-hero .sky-hero-in{padding-top:calc(var(--nav-h) + 12px);padding-bottom:40px}.mission-viewport{max-height:440px;aspect-ratio:auto;height:49vh}.mission-detail{margin-top:12px}.mission-hero .hero-copy{padding-bottom:0}}
 @media(prefers-reduced-motion:reduce){.mission-step{transition:none}}
+/* Home h1 is a full positioning line (2026-10-31): four lines at every width, so the sub and
+   the Book a call button stay in the first view. Scoped to the home hero only. */
+.mission-hero .hero-title{font-size:clamp(2.6rem,4.2vw,4rem)}
+@media(max-width:1000px) and (min-width:741px){.mission-hero .hero-title{font-size:clamp(2.25rem,4.6vw,2.75rem)}}
+@media(max-width:740px){.mission-hero .hero-title{font-size:clamp(2.1rem,9.8vw,2.6rem)}}
