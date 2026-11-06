@@ -103,6 +103,14 @@
     b.onclick = () => { paused = !paused; tg.forEach(x => x.setAttribute('aria-pressed', paused)); d.documentElement.classList.toggle('motion-paused', paused); onPause.forEach(f => f(paused)); };
   });
 
+  /* ---------- course funnel clicks: <a data-ga="event" data-course data-placement> ----------
+     Sends through the page's existing GA4 tag, so it follows whatever consent that tag has. Clicks only:
+     never a purchase (paid orders are counted in Polar). No personal data in the event. */
+  d.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a[data-ga]');
+    if (a && typeof window.gtag === 'function') window.gtag('event', a.dataset.ga, { course_id: a.dataset.course, placement: a.dataset.placement });
+  });
+
   /* ---------- shelves / topic tabs (WAI-ARIA tabs, arrow keys, Home/End) ---------- */
   d.querySelectorAll('[data-tabs]').forEach(root => {
     const tabs = [...root.querySelectorAll('[role=tab]')], panels = tabs.map(t => d.getElementById(t.getAttribute('aria-controls')));
