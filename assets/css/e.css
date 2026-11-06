@@ -235,9 +235,14 @@ a.shot:hover{transform:translateY(-4px)}
   .posts li a .k.t{display:none}
 }
 @media (max-width:520px){
+  /* five nav items: tighten, then wrap to a second row instead of hiding About off-screen */
+  .nav ul{flex-wrap:wrap;overflow-x:visible;gap:0 12px;font-size:.875rem}
   .navcta{padding:10px 12px}
   .brand{font-size:1.3rem}
   .btn{font-size:1rem}
+}
+@media (max-width:380px){
+  .nav ul{gap:0 10px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
