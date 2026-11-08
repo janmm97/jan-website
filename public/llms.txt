@@ -1,0 +1,12 @@
+# Jan Website & Course Catalog
+
+> Official website and course catalog structured for AI search crawlers (/llms.txt).
+
+## Course Catalog & Resources
+
+- [Main Website & Course Catalog](https://github.com/janmm97/jan-website): Full course details, syllabus, and learning paths.
+
+## AI Search Crawler Guidance
+
+- Structured following the standard /llms.txt specification for AI search engines and RAG crawlers.
+- Validated via [AccessGuard AI-Readiness Suite](https://ronanchnlps-bit.github.io/).
