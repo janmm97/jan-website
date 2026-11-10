@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V7TTFWT0GD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V7TTFWT0GD');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Context Engineering: Course 6 for Virtual Assistants</title>
+<meta name="description" content="Keep your agent sharp and cheap: what to load, when to compact or clear, prompt caching and safe inputs. A $5 course for virtual assistants: 8 short lessons with narration and transcripts. Works offline.">
+<meta name="theme-color" content="#0b0b0b">
+<link rel="canonical" href="https://janmm97.github.io/jan-website/courses/context-engineering-for-vas/">
+<!-- noindex until the Polar checkout link replaces the placeholder Buy URL -->
+<meta name="robots" content="noindex,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jan — AI Agent Builder">
+<meta property="og:title" content="Context Engineering: Course 6 for Virtual Assistants">
+<meta property="og:description" content="Keep your agent sharp and cheap: what to load, when to compact or clear, prompt caching and safe inputs. A $5 course for virtual assistants: 8 short lessons with narration and transcripts. Works offline.">
+<meta property="og:url" content="https://janmm97.github.io/jan-website/courses/context-engineering-for-vas/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Context Engineering: Course 6 for Virtual Assistants">
+<meta name="twitter:description" content="Keep your agent sharp and cheap: what to load, when to compact or clear, prompt caching and safe inputs. A $5 course for virtual assistants: 8 short lessons with narration and transcripts. Works offline.">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Course",
+ "@id": "https://janmm97.github.io/jan-website/courses/context-engineering-for-vas/#course",
+ "url": "https://janmm97.github.io/jan-website/courses/context-engineering-for-vas/",
+ "name": "Context Engineering",
+ "description": "In 8 short lessons you learn to manage what your agent sees. You find what fills its memory, clean it up, keep the cache warm, clean client data before it goes in, and write a one-page context plan for every agent you build. A downloadable course that works offline.",
+ "inLanguage": "en",
+ "timeRequired": "PT2H20M",
+ "isAccessibleForFree": false,
+ "provider": {
+  "@type": "Person",
+  "name": "Jan",
+  "url": "https://janmm97.github.io/jan-website/about/"
+ },
+ "offers": {
+  "@type": "Offer",
+  "category": "Paid",
+  "price": "5",
+  "priceCurrency": "USD",
+  "url": "https://janmm97.github.io/jan-website/courses/context-engineering-for-vas/#buy"
+ }
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg?v=2026-09-30.1">
+<link rel="preload" href="../../assets/fonts/BigShouldersDisplay-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/SchibstedGrotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/e.css?v=2026-11-03.2">
+<style>
+/* page-scoped rhythm only; no new tokens (same as Course 1) */
+.page-hero .eyebrow{display:block;margin-top:20px}
+.page-hero .lede + .sub{margin-top:14px}
+.page-hero .facts{margin-top:16px}
+.page-hero .refund,.offer-side .sub{margin-top:14px}
+.page-hero .cta-row{margin-top:28px}
+.sec .ticks + .cols,.sec ol.ticks + .cols{margin-top:clamp(40px,5vw,64px)}
+.sec .cols h3{margin-bottom:12px}
+.sec .cols + .sub,.sec .ticks + .cols + .sub{margin-top:32px}
+#format .cols p,#who .cols p{margin:0}
+#buy .offer-side h2{margin-bottom:20px}
+.disclosure{margin-top:40px}
+.dark .bigprice small{color:var(--mute-d)}
+</style>
+</head>
+<body data-root="../../">
+<header class="dark" id="top">
+  <div class="wrap">
+<!-- e:nav -->
+<a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="bar" viewBox="54 0 59 95"><path d="M111.887 10.773 71.305 93.64c-.297.575-1.087.747-1.711.372l-13.653-5.38c-.543-.323-.785-.952-.566-1.472L89.934 1.738c.234-.55.914-.793 1.539-.543l19.68 7.938c.699.277 1.043 1.043.734 1.64Z"/></symbol></svg>
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="../../"><img src="../../assets/images/websitelogo-blackbg1.svg" alt="" width="40" height="40">Jan</a>
+  <ul>
+    <li><a href="../../services/">Work with me</a></li>
+    <li><a href="../../projects/">Projects</a></li>
+    <li><a href="../../academy/">Academy</a></li>
+    <li><a href="../../blog/">Blog</a></li>
+    <li><a href="../../about/">About</a></li>
+  </ul>
+  <a class="navcta" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call</a>
+</nav>
+<!-- /e:nav -->
+
+    <div class="page-hero">
+      <div>
+        <p class="crumbs"><a href="../../">Home</a><span aria-hidden="true">/</span><a href="../../academy/">Academy</a><span aria-hidden="true">/</span><span>Context Engineering</span></p>
+        <span class="eyebrow">Course 6 of 8 · From VA to AI Agent Builder</span>
+        <h1>Context Engineering</h1>
+        <p class="lede">Keep your agent sharp and cheap: what to load, when to compact or clear, prompt caching and safe inputs.</p>
+        <p class="sub">In 8 short lessons you learn to manage what your agent sees. You find what fills its memory, clean it up, keep the cache warm, clean client data before it goes in, and write a one-page context plan for every agent you build. First win in Lesson 6.1 (15 minutes): you run /context, find the biggest space-eater in your agent's memory, and remove it.</p>
+        <p class="sub facts">$5, one-time · 8 lessons, about 2 hours 20 minutes · You need Course 4's agent set up (Claude Code is used in the examples; other agents have similar commands) and the agent-test folder with its memory file.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://polar.sh/PLACEHOLDER-course-6" rel="noopener" data-ga="course_checkout_click" data-course="context-engineering-for-vas" data-placement="course_hero"><svg class="tick" aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg><span>Buy Course 6 · $5</span></a>
+          <a class="link" href="#inside">See the 8 lessons <span aria-hidden="true">↓</span></a>
+        </div>
+        <p class="sub refund">No refunds. This is a downloadable digital course: once you buy it, it's yours and all sales are final.<br>Secure checkout by Polar. You get a download link right after you pay.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="light sec" id="who" aria-labelledby="who-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="who-h">Who it's for</h2>
+      <p class="sub">You need Course 4's agent set up (Claude Code is used in the examples; other agents have similar commands) and the agent-test folder with its memory file.</p>
+    </div>
+    <div class="cols">
+      <div>
+        <h3 id="for-h">This course is for you if:</h3>
+        <ul class="ticks" aria-labelledby="for-h">
+          <li>You are a virtual assistant: an executive assistant, admin VA or operations VA.</li>
+          <li>You are building practical AI and automation skills step by step.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 id="notfor-h">This course is not for you if:</h3>
+        <ul class="ticks" aria-labelledby="notfor-h">
+          <li>You want screen-recording video tutorials. This course is an interactive lesson file with narration, not screen demos.</li>
+          <li>You are looking for a way to get rich fast. This course teaches skills. It does not promise income.</li>
+          <li>You need a certificate. No certificate is included.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark sec" id="inside" aria-labelledby="inside-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">8 lessons · about 2 hours 20 minutes</span>
+        <h2 id="inside-h">What's inside</h2>
+      </div>
+      <p class="sub">When you finish, you can read a context map, choose between /clear, /compact and /rewind, load context only when needed, keep the prompt cache warm, clean inputs before they reach your agent, track cost, and write a context plan. AI apps change often. App steps are dated (as of 2026-11).</p>
+    </div>
+    <ol class="ticks" aria-label="The 8 lessons">
+      <li><strong>6.1 What fills your agent's memory.</strong> Run /context, name the layers that fill it, and remove the biggest one you don't need. (15 min)</li>
+      <li><strong>6.2 More is not better, context rot.</strong> Explain why a full context makes answers worse, and cut a memory file to its essentials. (15 min)</li>
+      <li><strong>6.3 Clear, compact or rewind.</strong> Choose /clear, /compact, /rewind or a new session for a situation, and add compact instructions to your memory file. (20 min)</li>
+      <li><strong>6.4 Just-in-time context.</strong> Give your agent paths instead of contents, use subagents for noisy work, and keep a NOTES.md between sessions. (20 min)</li>
+      <li><strong>6.5 Prompt caching, keep the start the same.</strong> Explain how prompt caching works, name 5 things that break the cache, and read the cache line in /usage. (20 min)</li>
+      <li><strong>6.6 Clean inputs before they go in.</strong> Remove private data you don't need, wrap untrusted text in clear tags, and check 5 inputs before an agent reads them. (20 min)</li>
+      <li><strong>6.7 Tokens, models and cost.</strong> Pick a model and effort level for a task, read /usage, and keep a one-week cost log. (15 min)</li>
+      <li><strong>6.8 Your one-page context plan.</strong> Write a one-page context plan for an agent, sorting its information into always, on demand and never. (15 min)</li>
+    </ol>
+    <div class="cols">
+      <div>
+        <h3 id="every-h">Every lesson has:</h3>
+        <ul class="ticks" aria-labelledby="every-h">
+          <li>a step-by-step explainer you click through</li>
+          <li>an example that shows how it works, then a hands-on task</li>
+          <li>a 3-question check with feedback</li>
+          <li>a "use it today" step for your real work</li>
+          <li>narration, with the full written transcript</li>
+        </ul>
+      </div>
+      <div>
+        <h3 id="also-h">Also included:</h3>
+        <ul class="ticks" aria-labelledby="also-h">
+          <li>a study planner</li>
+          <li>a glossary of 26 terms</li>
+          <li>a help page</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light sec" id="format" aria-labelledby="format-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="format-h">How you get it and open it</h2>
+      <p class="sub">You get one zip file. Inside is the course (one HTML file) and the narration audio.</p>
+    </div>
+    <ul class="ticks" aria-label="The format">
+      <li>No app to install. No account. The course file has no tracking.</li>
+      <li>Once unzipped, it works offline. A laptop or computer is the surest way to open it.</li>
+      <li>Your progress is saved only on your own device.</li>
+    </ul>
+    <div class="cols">
+      <div>
+        <h3>On a laptop or computer</h3>
+        <p>Unzip the file, then double-click <code>context-engineering-for-vas.html</code>. It opens in your browser.</p>
+      </div>
+      <div>
+        <h3>On a phone</h3>
+        <p>Unzip the file in your Files app, then open the HTML with your browser. Phones handle zip and HTML files in different ways, and I haven't tested every phone yet. If it won't open on yours, use a laptop or computer, or email me.</p>
+      </div>
+    </div>
+    <p class="sub">Tip: keep the HTML file and the <code>media</code> folder together in the same folder, or the audio will not play.</p>
+  </div>
+</section>
+
+<section class="dark sec" id="buy" aria-labelledby="buy-h">
+  <div class="wrap">
+    <div class="offer">
+      <div class="offer-side">
+        <h2 id="buy-h">Start with Lesson 6.1 today.</h2>
+        <p class="bigprice">$5 <small>one-time</small></p>
+        <p class="sub">$5, one-time. You keep the file.</p>
+        <a class="btn" href="https://polar.sh/PLACEHOLDER-course-6" rel="noopener" data-ga="course_checkout_click" data-course="context-engineering-for-vas" data-placement="course_offer"><svg class="tick" aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg><span>Buy Course 6 · $5</span></a>
+        <p class="sub">No refunds. This is a downloadable digital course: once you buy it, it's yours and all sales are final. Secure checkout by Polar.</p>
+        <p class="sub">Questions before you buy? Email <a class="link" href="mailto:janmm.va@gmail.com">janmm.va@gmail.com</a></p>
+      </div>
+      <ul class="ticks" aria-label="What you get">
+        <li>All 8 lessons, with narration and transcripts</li>
+        <li>A study planner, a glossary of 26 terms and a help page</li>
+        <li>One zip file that works offline</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="light sec" id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="faq-h">Questions</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>What do I need?</summary>
+        <p>You need Course 4's agent set up (Claude Code is used in the examples; other agents have similar commands) and the agent-test folder with its memory file.</p>
+      </details>
+      <details>
+        <summary>How long does it take?</summary>
+        <p>About 2 hours 20 minutes in total, over 8 lessons. Lessons are short, so you can do one a day. The study planner helps you plan.</p>
+      </details>
+      <details>
+        <summary>What do I get after I pay?</summary>
+        <p>Polar sends you a download link for one zip file. Unzip it and open the HTML file in your browser.</p>
+      </details>
+      <details>
+        <summary>Can I use it on my phone without internet?</summary>
+        <p>Once it's unzipped, the course itself needs no internet. (You need internet for the apps you practise with.) Phones open zip and HTML files in different ways and I haven't tested every phone, so if it won't open on yours, use a laptop or computer.</p>
+      </details>
+      <details>
+        <summary>Will the price change at checkout?</summary>
+        <p>The course is $5 USD. Polar handles checkout, and sales tax or VAT for your country may be added. You see the final total at checkout, before you pay.</p>
+      </details>
+      <details>
+        <summary>What is your refund policy?</summary>
+        <p>No refunds. This is a downloadable digital course: once you buy it, it's yours and all sales are final.</p>
+      </details>
+      <details>
+        <summary>Is this course the whole series?</summary>
+        <p>No. It is Course 6 of 8 in <em>From VA to AI Agent Builder</em>. At the end, you can go on to <a class="link" href="../build-your-first-agent/">Course 7: Build Your First Agent</a>.</p>
+      </details>
+      <details>
+        <summary>Who made this course?</summary>
+        <p>Jan, a virtual assistant and AI agent builder. I work as an Executive AI Agent Operation Builder at One.</p>
+      </details>
+      <details>
+        <summary>I have a question that's not here.</summary>
+        <p>Email <a class="link" href="mailto:janmm.va@gmail.com">janmm.va@gmail.com</a>.</p>
+      </details>
+    </div>
+    <p class="sub disclosure">Disclosure: I work as an Executive AI Agent Operation Builder at One. AI apps change often. App steps are dated (as of 2026-11).</p>
+    <p class="sub">This sales page uses Google Analytics to count visits and button clicks. The course you download does not.</p>
+  </div>
+</section>
+</main>
+
+<!-- e:foot -->
+<footer class="dark foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <h2>Hand one task over. Keep the final say.</h2>
+      <a class="btn" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener"><svg class="tick" aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg><span>Book a 30-min call</span></a>
+    </div>
+    <ul class="foot-nav" aria-label="Site">
+      <li><a href="../../services/">Work with me</a></li>
+      <li><a href="../../projects/">Projects</a></li>
+      <li><a href="../../academy/">Academy</a></li>
+      <li><a href="../../blog/">Blog</a></li>
+      <li><a href="../../about/">About</a></li>
+      <li><a href="../../contact/">Contact</a></li>
+    </ul>
+    <div class="foot-bot">
+      <a class="brand" href="../../"><img src="../../assets/images/websitelogo-blackbg1.svg" alt="" width="28" height="28">Jan</a>
+      <span>Product names and logos belong to their owners.</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </div>
+</footer>
+<!-- /e:foot -->
+<script src="../../assets/js/e.js?v=2026-11-07.1" defer></script>
+</body>
+</html>
