@@ -330,3 +330,28 @@ a.shot:hover{transform:translateY(-4px)}
   body[data-cta] .navcta{font-size:.875rem;padding:10px}
   body[data-cta] .nav{gap:0 12px}
 }
+
+/* Home: process, testimonials, booking (PR 2) */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--rule-l)}
+.steps li{padding:24px 20px 8px 0;border-right:1px solid var(--rule-l);margin-right:20px}
+.steps li:last-child{border-right:0;margin-right:0}
+.steps h3{margin:10px 0 8px}
+.steps p{margin:0;color:var(--mute-l)}
+.tq{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.tq figure{margin:0;height:100%;background:var(--color-charcoal-800);border:1px solid var(--rule-d);padding:28px}
+.tq blockquote{margin:0 0 20px;font-size:1.1rem;line-height:1.5}
+.tq blockquote p{margin:0}
+.tq figcaption{color:var(--mute-d2);font:500 .85rem/1.4 var(--code)}
+.tq figcaption b{color:var(--paper);display:block}
+.tq-ctl{display:flex;gap:28px;margin-top:20px}
+.tq-ctl[hidden]{display:none}
+/* JS loop: one card at a time, stacked in one grid cell; opacity/transform only */
+.tq.loop{grid-template-columns:minmax(0,1fr)}
+.tq.loop li{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease),visibility 0s .5s}
+.tq.loop li.on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.cal{margin-top:20px}
+.cal iframe{display:block;width:100%;height:700px;border:1px solid var(--rule-l)}
+.cal-note{color:var(--mute-l);margin:0}
+@media (max-width:980px){.steps{grid-template-columns:1fr}.steps li{border-right:0;margin-right:0;border-bottom:1px solid var(--rule-l);padding:20px 0}.tq{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.tq.loop{grid-template-columns:repeat(2,minmax(0,1fr))}.tq.loop li{grid-area:auto;opacity:1;visibility:visible;transform:none;transition:none}.tq-ctl{display:none}}
+@media (prefers-reduced-motion:reduce) and (max-width:980px){.tq.loop{grid-template-columns:1fr}}
