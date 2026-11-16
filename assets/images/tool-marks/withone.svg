@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 242" fill="none" stroke="#000" stroke-width="3.2">
+  <title>WithOne</title>
+  <!-- Separate ring formation, traced from the supplied oval reference. -->
+  <g transform="rotate(35 120 121)">
+    <ellipse cx="120" cy="121" rx="99" ry="65"/>
+    <ellipse cx="118.7" cy="117.8" rx="94" ry="61"/>
+    <ellipse cx="117.4" cy="114.6" rx="89" ry="57"/>
+    <ellipse cx="116.1" cy="111.4" rx="84" ry="53"/>
+    <ellipse cx="114.8" cy="108.2" rx="79" ry="49"/>
+    <ellipse cx="113.5" cy="105" rx="74" ry="45"/>
+  </g>
+</svg>
