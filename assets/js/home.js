@@ -12,8 +12,9 @@
     pause.onclick = () => { paused = !paused; pause.setAttribute('aria-pressed', paused); tick(); };
     document.getElementById('tq-prev').onclick = () => { show(i - 1); tick(); };
     document.getElementById('tq-next').onclick = () => { show(i + 1); tick(); };
-    tq.addEventListener('focusin', () => clearInterval(t));
-    tq.addEventListener('focusout', tick);
+    const sec = document.getElementById('proof');
+    sec.addEventListener('focusin', () => clearInterval(t));
+    sec.addEventListener('focusout', tick);
     rm.addEventListener('change', setup);
     setup();
   }
