@@ -18,16 +18,20 @@ The logo itself is used unchanged and **never animates**. No other decorative sh
 
 Monochrome only. Product marks keep their own colours inside white squares; nothing else is coloured.
 
-| Token | Hex | Use | Contrast |
+| Token (legacy alias) | Hex | Use | Contrast |
 |---|---|---|---|
-| `--ink` | `#0b0b0b` | Dark ground, text on light | 19.0:1 on paper |
-| `--paper` | `#fbfbf9` | Light ground | |
-| `--strip` | `#f4f4f0` | Strips, text on dark | 17.9:1 on ink |
-| `--cleared` | `#ddddd8` | Cleared strips (struck through) | ink on it 14.4:1 |
-| `--rule-d` / `--rule-l` | `#2a2a2a` / `#d9d9d3` | Hairlines on dark / light (decorative only) | |
-| `--mute-l` | `#55554f` | Secondary text on light | 7.2:1 paper, 6.8:1 strip |
-| `--mute-d` | `#d7d7d1` | Secondary text on dark | 13.6:1 |
-| `--mute-d2` | `#a9a9a4` | Tertiary text on dark (meta) | 8.3:1 |
+| `--color-charcoal-900` (`--ink`) | `#141412` | Dark ground, text on light | 15.8:1 on bone-100 |
+| `--color-charcoal-800` | `#222220` | Raised dark surface | bone-100 on it 13.6:1 |
+| `--color-bone-100` (`--paper`) | `#f1ede3` | Light ground, text on dark | 15.8:1 on charcoal-900 |
+| `--color-bone-200` (`--strip`) | `#e7e2d5` | Strips, cards | 14.3:1 on charcoal-900 |
+| `--color-bone-300` (`--cleared`) | `#d6d0c0` | Cleared strips (struck through) | charcoal on it 12.0:1 |
+| `--color-charcoal-600` (`--mute-l`) | `#55524a` | Secondary text on light | 6.7:1 bone-100, 6.0:1 bone-200 |
+| `--color-bone-400` (`--mute-d`) | `#cbc6b8` | Secondary text on dark | 10.8:1 |
+| `--color-bone-500` (`--mute-d2`) | `#a8a396` | Meta text on dark | 7.3:1 (6.3:1 on charcoal-800) |
+| `--color-stone-500` | `#7d796d` | Dashed UI outlines | 3.7:1 on bone-100 |
+| `--color-rule-dark` / `--color-rule-light` (`--rule-d` / `--rule-l`) | `#2f2f2c` / `#d3cdbd` | Hairlines, decorative only | |
+
+Palette changed 2026-11-17 from cool #0b0b0b / #fbfbf9 to warm charcoal and bone (Jan approved the values; charcoal darkened to #141412). Names follow DTCG (`color.charcoal.900`). New CSS uses the `--color-*` names; legacy names stay as aliases.
 
 Sections alternate `.dark` and `.light`. Focus is a 3 px `currentColor` outline, offset 3 px, so it is visible on both grounds; buttons override it to ink (light) or strip (dark).
 
