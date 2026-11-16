@@ -23,7 +23,7 @@ a{color:inherit}
 .label{color:var(--color-bone-500)}
 .wrap{max-width:var(--measure-wide);margin:0 auto;padding:0 var(--space-4)}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:var(--space-3);padding:var(--space-3) 0}
-.nav .brand{font:500 15px var(--font-mono);letter-spacing:.06em;text-decoration:none}
+.nav .brand{display:inline-flex;align-items:center;min-width:44px;min-height:44px}.nav .brand img{display:block;width:40px;height:40px}
 .nav ul{display:flex;gap:36px;list-style:none;padding:0}
 .nav ul a{text-decoration:none;font-family:var(--font-mono);font-size:var(--size-label);letter-spacing:.14em;text-transform:uppercase;padding:8px 0;display:inline-block}
 .nav ul a:hover,.nav ul a[aria-current]{text-decoration:underline;text-underline-offset:6px}
