@@ -9,7 +9,7 @@
   --font-body:"Schibsted Grotesk",system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,monospace;
   --space-1:8px;--space-2:16px;--space-3:24px;--space-4:40px;--space-5:72px;--space-6:140px;
   --size-body:18px;--size-lead:clamp(18px,1.6vw,21px);--size-label:12px;--size-h2:clamp(34px,4.4vw,60px);--size-h1:clamp(46px,9vw,132px);
-  --measure-wide:1240px;--duration-fast:150ms;
+  --measure-wide:1240px;--duration-fast:150ms;--duration-med:200ms;--duration-slow:600ms;
 }
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
@@ -109,3 +109,30 @@ h3{font-weight:500;font-size:24px;letter-spacing:-.01em;line-height:1.25}
   .plist li{grid-template-columns:1fr;gap:var(--space-1)}
   .posts a{grid-template-columns:1fr}.posts .k{grid-column:1;grid-row:auto}
 }
+
+/* Mobile burger (button is hidden until noir.js runs, so no-JS keeps the plain link row) */
+.burger{display:none;width:44px;height:44px;padding:0;background:none;border:1px solid var(--color-rule-dark);color:inherit;cursor:pointer;justify-self:end;position:relative}
+.burger span{position:absolute;left:12px;right:12px;height:2px;background:currentColor;transition:transform var(--duration-med),opacity var(--duration-med)}
+.burger span:nth-child(1){top:14px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:28px}
+.nav.open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav.open .burger span:nth-child(2){opacity:0}
+.nav.open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media (max-width:700px){
+  .nav{grid-template-columns:1fr auto auto}
+  .nav .btn{grid-column:2}
+  .js .burger{display:block;grid-column:3}
+  .js .nav ul{display:none}
+  .js .nav.open ul{display:flex;flex-direction:column;gap:0;grid-row:2;grid-column:1/-1;border-top:1px solid var(--color-rule-dark);margin-top:var(--space-2)}
+  .js .nav ul a{display:block;padding:14px 0;min-height:48px;border-bottom:1px solid var(--color-rule-dark)}
+}
+/* Testimonials carousel: loops forever, each quote stays once in the DOM */
+.tq-view{overflow:hidden;border:1px solid var(--color-rule-dark)}
+.tq.is-loop{display:flex;gap:var(--space-3);background:none;border:0;transition:transform var(--duration-slow) ease}
+.tq.is-loop li{flex:0 0 calc(50% - var(--space-3)/2)}
+.tq.is-loop figure{border:1px solid var(--color-rule-dark)}
+.tq-view{border:0}
+.tq-ctl{display:flex;gap:var(--space-2);justify-content:flex-end;margin-top:var(--space-3)}
+.tq-ctl button{min-width:48px;min-height:48px;padding:0 var(--space-3);background:none;border:1px solid var(--color-bone-100);color:var(--color-bone-100);font:500 12px var(--font-mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.tq-ctl button:hover{background:var(--color-bone-100);color:var(--color-charcoal-900)}
+@media (max-width:860px){.tq.is-loop li{flex-basis:100%}}
+@media (prefers-reduced-motion:reduce){.tq.is-loop{transition:none}.burger span{transition:none}}
