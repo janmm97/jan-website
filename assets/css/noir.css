@@ -97,17 +97,22 @@ h3{font-weight:500;font-size:24px;letter-spacing:-.01em;line-height:1.25}
 .plist b{font-weight:500}.plist span{color:var(--color-bone-400)}
 .plist .when{font:500 var(--size-label) var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--color-bone-500)}
 .more{margin-top:var(--space-5)}
-.posts{list-style:none;padding:0;border-top:1px solid var(--color-rule-dark)}
-.posts a{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,3fr);gap:var(--space-1) var(--space-4);padding:var(--space-3) 0;border-bottom:1px solid var(--color-rule-dark);text-decoration:none}
+.posts{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-3)}
+.posts li{display:flex}
+.posts a{display:flex;flex-direction:column;gap:var(--space-2);width:100%;padding:var(--space-3);border:1px solid var(--color-rule-dark);background:var(--color-charcoal-800);text-decoration:none;transition:border-color var(--duration-fast),transform var(--duration-fast)}
+.alt .posts a{background:var(--color-charcoal-900)}
+.posts .k{order:-1;font:500 var(--size-label) var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--color-bone-500)}
 .posts .pt{font-size:22px;font-weight:500;letter-spacing:-.01em;line-height:1.3}
-.posts a:hover .pt,.posts a:focus-visible .pt{text-decoration:underline;text-underline-offset:5px}
-.posts .k{font:500 var(--size-label) var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--color-bone-500);grid-column:2;grid-row:1}
-.posts .ex{grid-column:1;color:var(--color-bone-400);max-width:680px}
+.posts .ex{color:var(--color-bone-400);font-size:16px;flex:1}
+.posts a::after{content:"Read post \2192";margin-top:var(--space-1);padding-top:var(--space-2);border-top:1px solid var(--color-rule-dark);font:500 var(--size-label) var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--color-bone-100)}
+.posts a:hover,.posts a:focus-visible{border-color:var(--color-bone-100);transform:translateY(-2px)}
+@media (max-width:1000px){.posts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.posts{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.posts a{transition:none}.posts a:hover,.posts a:focus-visible{transform:none}}
 @media (max-width:860px){
   .page-hero{padding:var(--space-4) 0 0}
   .cols{grid-template-columns:1fr;gap:var(--space-3)}
   .plist li{grid-template-columns:1fr;gap:var(--space-1)}
-  .posts a{grid-template-columns:1fr}.posts .k{grid-column:1;grid-row:auto}
 }
 
 /* Mobile burger (button is hidden until noir.js runs, so no-JS keeps the plain link row) */
