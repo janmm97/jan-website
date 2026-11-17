@@ -1,12 +1,10 @@
 # Jan — AI Agent Builder & Automation Specialist
 
-> Portfolio of Jan, a Computer Science graduate and Executive Assistant focused on operations and AI agents. Jan builds custom AI agents and connected workflows: the multi-agent command centers J/OS HQ and J/OS Agents, built on the One CLI, Claude Code and the Codex CLI, and n8n automations for deal screening, social content, video ads and request intake. Home, About, Projects, Services, Blog, Contact and each blog post have their own URLs.
+> Portfolio of Jan, a Computer Science graduate and Executive Assistant focused on operations and AI agents. Jan builds custom AI agents and connected workflows: the multi-agent command centers J/OS HQ and J/OS Agents, built on the One CLI, Claude Code and the Codex CLI, and n8n automations for deal screening, social content, video ads and request intake. Home, About, Blog, Contact and each blog post have their own URLs.
 
 ## Site
 - [Home](https://janmm97.github.io/jan-website/): Overview, services and booking link
 - [About](https://janmm97.github.io/jan-website/about/): Background and professional timeline
-- [Projects](https://janmm97.github.io/jan-website/projects/): Seven projects with descriptions, tools and screenshots
-- [Services](https://janmm97.github.io/jan-website/services/): Service packages and the idea-to-system process
 - [Blog](https://janmm97.github.io/jan-website/blog/): All blog posts, newest first
 - [Contact](https://janmm97.github.io/jan-website/contact/): Book a 30-minute call or submit a request
 
