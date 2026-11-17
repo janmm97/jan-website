@@ -1,4 +1,4 @@
-// Noir pages: mobile burger menu + looping testimonial carousel. Without JS both fall back to plain HTML.
+// Noir pages: mobile burger menu + continuously looping testimonials. Without JS both fall back to plain HTML.
 (() => {
   const nav = document.querySelector('.nav');
   const burger = nav && nav.querySelector('.burger');
@@ -14,35 +14,32 @@
 
   const tq = document.querySelector('.tq');
   if (!tq || matchMedia('(prefers-reduced-motion:reduce)').matches) return; // reduced motion: static stack
-  const items = [...tq.children];
   const view = document.createElement('div'); view.className = 'tq-view';
   tq.before(view); view.append(tq);
   tq.classList.add('is-loop');
-  const ctl = document.createElement('div'); ctl.className = 'tq-ctl';
-  ctl.innerHTML = '<button type="button" data-a="prev" aria-label="Previous testimonial">←</button><button type="button" data-a="pause" aria-pressed="false">Pause</button><button type="button" data-a="next" aria-label="Next testimonial">→</button>';
-  view.after(ctl);
-  view.setAttribute('role', 'group'); view.setAttribute('aria-roledescription', 'carousel'); view.setAttribute('aria-label', 'Client testimonials');
-  let busy = false, paused = false, hold = false, timer;
-  const step = () => items[0].offsetWidth + parseFloat(getComputedStyle(tq).columnGap || 0);
-  const go = (dir) => {
-    if (busy) return; busy = true;
-    if (dir < 0) { tq.style.transition = 'none'; tq.prepend(tq.lastElementChild); tq.style.transform = `translateX(${-step()}px)`; tq.offsetWidth; }
-    tq.style.transition = ''; tq.style.transform = dir > 0 ? `translateX(${-step()}px)` : 'translateX(0)';
-    let done = false;
-    const end = () => { if (done) return; done = true; tq.removeEventListener('transitionend', end); tq.style.transition = 'none'; if (dir > 0) tq.append(tq.firstElementChild); tq.style.transform = ''; tq.offsetWidth; tq.style.transition = ''; busy = false; };
-    tq.addEventListener('transitionend', end); setTimeout(end, 800);
+  view.setAttribute('role', 'group'); view.setAttribute('aria-label', 'Client testimonials, scrolling. Hover or focus to hold; click, tap or press Enter to pause.');
+  view.tabIndex = 0;
+  // Continuous drift left; once the first card is fully out, it moves to the end. Each quote stays once in the DOM.
+  const cs = getComputedStyle(tq);
+  const speed = parseFloat(cs.getPropertyValue('--motion-marquee-speed')) || 40; // px per second
+  const gap = parseFloat(cs.columnGap) || 0;
+  let x = 0, last = 0, hold = false;
+  const tick = (t) => {
+    const dt = Math.min(t - (last || t), 50) / 1000; last = t;
+    if (!hold) {
+      x += speed * dt;
+      const first = tq.firstElementChild, w = first.getBoundingClientRect().width + gap;
+      if (x >= w) { x -= w; tq.append(first); }
+      tq.style.transform = `translateX(${-x}px)`;
+    }
+    requestAnimationFrame(tick);
   };
-  const play = () => { clearInterval(timer); if (!paused && !hold) timer = setInterval(() => go(1), 6000); };
-  const live = () => tq.setAttribute('aria-live', paused || hold ? 'polite' : 'off');
-  ctl.onclick = (e) => {
-    const a = e.target.dataset && e.target.dataset.a; if (!a) return;
-    if (a === 'pause') { paused = !paused; e.target.setAttribute('aria-pressed', paused); e.target.textContent = paused ? 'Play' : 'Pause'; } else go(a === 'next' ? 1 : -1);
-    live(); play();
-  };
-  const sec = tq.closest('section');
-  sec.addEventListener('mouseenter', () => { hold = true; live(); play(); });
-  sec.addEventListener('mouseleave', () => { hold = false; live(); play(); });
-  sec.addEventListener('focusin', () => { hold = true; live(); play(); });
-  sec.addEventListener('focusout', () => { hold = false; live(); play(); });
-  live(); play();
+  requestAnimationFrame(tick);
+  // Hold while hovered or focused; click, tap, Enter or Space toggles a lasting pause (WCAG 2.2.2) without a visible button.
+  let hov = false, foc = false, stop = false;
+  const sync = () => { hold = hov || foc || stop; };
+  view.addEventListener('mouseenter', () => { hov = true; sync(); }); view.addEventListener('mouseleave', () => { hov = false; sync(); });
+  view.addEventListener('focusin', () => { foc = true; sync(); }); view.addEventListener('focusout', () => { foc = false; sync(); });
+  view.addEventListener('click', () => { stop = !stop; sync(); });
+  view.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); stop = !stop; sync(); } });
 })();
