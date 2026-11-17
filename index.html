@@ -137,244 +137,95 @@
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg?v=2026-09-30.1">
-<link rel="preload" href="./assets/fonts/BigShouldersDisplay-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="./assets/fonts/SchibstedGrotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./assets/css/e.css?v=2026-11-03.1">
+<link rel="stylesheet" href="./assets/css/noir.css?v=2026-11-17.5">
 </head>
-<body data-root="./">
-<header class="dark hero" id="top">
-  <div class="wrap">
-<!-- e:nav -->
+<body id="top">
+<!-- n:nav -->
 <a class="skip" href="#main">Skip to content</a>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="bar" viewBox="54 0 59 95"><path d="M111.887 10.773 71.305 93.64c-.297.575-1.087.747-1.711.372l-13.653-5.38c-.543-.323-.785-.952-.566-1.472L89.934 1.738c.234-.55.914-.793 1.539-.543l19.68 7.938c.699.277 1.043 1.043.734 1.64Z"/></symbol></svg>
-<nav class="nav" aria-label="Main">
-  <a class="brand" href="./"><img src="./assets/images/websitelogo-blackbg1.svg" alt="" width="40" height="40">Jan</a>
-  <ul>
-    <li><a href="./services/">Work with me</a></li>
-    <li><a href="./projects/">Projects</a></li>
-    <li><a href="./academy/">Academy</a></li>
-    <li><a href="./blog/">Blog</a></li>
-    <li><a href="./about/">About</a></li>
-  </ul>
-  <a class="navcta" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a call</a>
-</nav>
-<!-- /e:nav -->
-
-    <div class="hero-head">
-      <h1>AI Automation &amp; Agents that Work</h1>
-      <div class="hero-act">
-        <p class="lede">A system that runs your business 24/7. I take the inbox, scheduling, CRM updates, research and follow-ups off your plate, then build AI agents that keep them running.</p>
-        <a class="btn" href="#book"><svg class="tick" aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg><span>Book a discovery call</span></a>
-      </div>
-    </div>
-
-    <div class="board" id="board" role="group" aria-label="Illustration, not live data: how my agents work. Tasks run, outward ones wait for your OK, then they are cleared.">
-      <div class="lane" data-lane="work"><div class="lane-h"><span>Agent working</span><span class="n" data-count>3</span></div><div class="strips"><div class="strip" data-id="RES" data-n="2" data-out="0" data-via="RES · Gemini → Notion"><div class="blk"><img src="./assets/images/tools/notion.svg" alt="" width="22" height="22"></div><div class="body"><p class="what">Research a prospect before the call</p><p class="via">RES · Gemini → Notion</p></div><div class="stamp"><svg aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg></div></div><div class="strip" data-id="FUP" data-n="3" data-out="1" data-via="FUP · Gmail → One"><div class="blk"><img src="./assets/images/tools/gmail.svg" alt="" width="22" height="22"></div><div class="body"><p class="what">Send follow-ups to last week’s leads</p><p class="via">FUP · Gmail → One</p></div><div class="stamp"><svg aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg></div></div><div class="strip" data-id="TEAM" data-n="4" data-out="1" data-via="TEAM · Google Sheets → Slack"><div class="blk"><img src="./assets/images/tools/slack.svg" alt="" width="22" height="22"></div><div class="body"><p class="what">Post the weekly update to the team</p><p class="via">TEAM · Google Sheets → Slack</p></div><div class="stamp"><svg aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg></div></div></div></div>
-      <div class="lane" data-lane="wait"><div class="lane-h"><span>Waits for your OK</span><span class="n" data-count>1</span></div><div class="strips"><div class="strip" data-id="INB" data-n="0" data-out="1" data-via="INB · Gmail → Claude Code"><div class="blk"><img src="./assets/images/tools/gmail.svg" alt="" width="22" height="22"></div><div class="body"><p class="what">Draft replies to new leads</p><p class="via">INB · Waits for your OK</p></div><div class="stamp"><svg aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg></div></div></div></div>
-      <div class="lane" data-lane="done"><div class="lane-h"><span>Cleared</span><span class="n" data-count>1</span></div><div class="strips"><div class="strip done" data-id="CRM" data-n="1" data-out="0" data-via="CRM · Calendly → Airtable"><div class="blk"><img src="./assets/images/tools/airtable.svg" alt="" width="22" height="22"></div><div class="body"><p class="what">Update the CRM after today’s calls</p><p class="via">CRM · Done inside your tools</p></div><div class="stamp"><svg aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg></div></div></div></div>
-    </div>
-    <div class="board-note"><span>An illustration, not live data. Try Approve or Hold.</span><span class="note-acts"><button type="button" class="textbtn motion" data-motion aria-pressed="false" hidden>Pause motion</button><button type="button" class="textbtn" id="replay">Run it again</button></span></div>
-  </div>
-</header>
-
+<div class="wrap"><nav class="nav" aria-label="Main">
+  <a class="brand" href="./" aria-label="Home"><img src="./assets/images/websitelogo-blackbg1.svg" alt="" width="40" height="40"></a>
+  <ul id="nav-links"><li><a href="./" aria-current="page">Home</a></li><li><a href="./about/">About</a></li><li><a href="./blog/">Blog</a></li></ul>
+  <a class="btn btn--sm" href="./#book">Book a call</a>
+  <button type="button" class="burger" aria-controls="nav-links" aria-expanded="false" aria-label="Open menu" hidden><span></span><span></span><span></span></button>
+</nav></div>
+<!-- /n:nav -->
 <main id="main">
-<section class="light sec" id="process" aria-labelledby="process-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="process-h">How it works</h2>
-      <p class="sub">Five steps from the first call to a system that keeps running.</p>
-    </div>
-    <ol class="steps">
-      <li><span class="code">01</span><h3>Discovery Call</h3><p>A 30-minute call to learn how your business runs and where the time goes.</p></li>
-      <li><span class="code">02</span><h3>Blueprint Design</h3><p>I map the workflows to automate and the agents to build, before anything is built.</p></li>
-      <li><span class="code">03</span><h3>BTOR</h3><p>Build, Test, Observe, Refine: I build it, test it on real work, watch how it behaves and tighten it.</p></li>
-      <li><span class="code">04</span><h3>Deploy</h3><p>The system goes live inside the tools you already use.</p></li>
-      <li><span class="code">05</span><h3>Ongoing Support</h3><p>I keep it running and adjust it as your business changes.</p></li>
-    </ol>
+<section class="hero" aria-labelledby="hero-h">
+  <div class="wrap hero-top">
+    <p class="label">AI automation for founders &amp; operators</p>
+    <h1 id="hero-h">AI Automation &amp; Agents that <em>Work</em></h1>
+    <p class="sub">I design and run AI agents and automations that take repetitive work off your team, inside the tools you already use.</p>
+    <a class="btn" href="#book">Book a discovery call <span aria-hidden="true">→</span></a>
   </div>
-</section>
-
-<section class="dark sec" id="proof" aria-labelledby="proof-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="proof-h">What clients say</h2>
-      <p class="sub tq-sub">Words from people I have built systems for.</p>
-    </div>
-    <ul class="tq" id="tq">
-      <li><figure><blockquote><p>Jan has been such a huge help! He really knows how to use AI and automation to make everyday tasks easier. Things that used to take so much time are now way more manageable. Super easy to work with, too!</p></blockquote><figcaption><b>Felix W.</b> COO, Shopify Store Owner</figcaption></figure></li>
-      <li><figure><blockquote><p>Honestly, working with Jan has been great. He helped us figure out smarter ways to handle repetitive tasks using AI. It’s nice not having to worry about all the little things anymore. Definitely made our workflow a lot smoother!</p></blockquote><figcaption><b>Mike M.</b> Co-Founder, Shopify Store Owner</figcaption></figure></li>
-      <li><figure><blockquote><p>I’m not really a tech person, so having Jan help with AI and automation was a game changer. He made everything feel simple and easy to understand. No complicated explanations, just solutions that made our daily work a whole lot easier!</p></blockquote><figcaption><b>Andy G.</b> Search Fund Operator</figcaption></figure></li>
-      <li><figure><blockquote><p>One thing I really like about Jan is that he’s always finding ways to make things simpler. He knows his way around AI tools and comes up with ideas that actually make sense for our business. Plus, he’s really chill and easy to communicate with!</p></blockquote><figcaption><b>Thora</b> Social Media Manager</figcaption></figure></li>
+  <div class="tools-band"><div class="wrap">
+    <p class="label">Tools</p>
+    <h2 id="tools-h">Tools I Work With</h2>
+    <ul class="tools" aria-labelledby="tools-h">
+      <li class="tool"><b style="--mark:url(../images/tool-marks/claudecode.svg)" aria-hidden="true"></b><span>Claude Code</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/openai.svg)" aria-hidden="true"></b><span>Codex</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/cursor.svg)" aria-hidden="true"></b><span>Cursor</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/antigravity.svg)" aria-hidden="true"></b><span>Antigravity</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/withone.svg)" aria-hidden="true"></b><span>One</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/xai.png)" aria-hidden="true"></b><span>Grok</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/replit.svg)" aria-hidden="true"></b><span>Replit</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/langchain.svg)" aria-hidden="true"></b><span>LangChain</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/openrouter.svg)" aria-hidden="true"></b><span>OpenRouter</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/opencode.svg)" aria-hidden="true"></b><span>OpenCode</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/deepseek.svg)" aria-hidden="true"></b><span>DeepSeek</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/kimi.svg)" aria-hidden="true"></b><span>Kimi AI</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/vscode.svg)" aria-hidden="true"></b><span>VS Code</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/supabase.svg)" aria-hidden="true"></b><span>Supabase</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/html5.svg)" aria-hidden="true"></b><span>HTML</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/css.svg)" aria-hidden="true"></b><span>CSS</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/javascript.svg)" aria-hidden="true"></b><span>JavaScript</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/v0.svg)" aria-hidden="true"></b><span>v0</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/n8n.svg)" aria-hidden="true"></b><span>n8n</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/zapier.svg)" aria-hidden="true"></b><span>Zapier</span></li>
+      <li class="tool"><b style="--mark:url(../images/tool-marks/typesafe.png)" aria-hidden="true"></b><span>TypeSafe</span></li>
     </ul>
-    <div class="tq-ctl" hidden>
-      <button type="button" class="textbtn" id="tq-prev">Previous</button>
-      <button type="button" class="textbtn" id="tq-pause" aria-pressed="false">Pause testimonials</button>
-      <button type="button" class="textbtn" id="tq-next">Next</button>
-    </div>
-  </div>
+  </div></div>
 </section>
-
-<section class="light sec" id="tools" aria-labelledby="tools-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="tools-h">The tools my agents actually run on.</h2>
-      <p class="sub">Every run moves work between real apps. The black square is the stop where the agent waits for you. These are the routes I build most.</p>
-    </div>
-    <p class="runs-note"><button type="button" class="textbtn motion" data-motion aria-pressed="false" hidden>Pause motion</button></p>
-    <div class="runs" id="runs">
-      <div class="run" data-caps="New email in Gmail|One connects the inbox|Claude Code drafts the reply|Waits for your OK|Sent from Gmail">
-        <div><h3>Orchy agent run</h3><p>An email comes in, an agent drafts the reply, you approve it, it sends.</p></div>
-        <div class="rail" aria-hidden="true"><div class="stn"><div class="sq"><img src="./assets/images/tools/gmail.svg" alt="" width="28" height="28" loading="lazy"></div><span>Gmail</span></div><div class="stn"><div class="sq"><img src="./assets/images/tools/withone-dark.png" alt="" width="28" height="28" loading="lazy"></div><span>One</span></div><div class="stn"><div class="sq"><img src="./assets/images/tools/claude-dark.png" alt="" width="28" height="28" loading="lazy"></div><span>Claude Code</span></div><div class="stn gate"><div class="sq"><svg><use href="#bar" width="100%" height="100%"/></svg></div><span>Your OK</span></div><div class="stn"><div class="sq"><img src="./assets/images/tools/gmail.svg" alt="" width="28" height="28" loading="lazy"></div><span>Gmail</span></div><i class="pk"></i></div>
-        <p class="run-cap" aria-hidden="true">New email in Gmail → One connects the inbox → Claude Code drafts the reply → Waits for your OK → Sent from Gmail</p>
-        <p class="sr">Orchy agent run: New email in Gmail, then One connects the inbox, then Claude Code drafts the reply, then Waits for your OK, then Sent from Gmail.</p>
-      </div>
-      <div class="run" data-caps="Deal email arrives|n8n reads and scores it|Summary posted in Slack">
-        <div><h3>Deal Flow Checker</h3><p>Deal emails are read and summed up for the team.</p></div>
-        <div class="rail" aria-hidden="true"><div class="stn"><div class="sq"><img src="./assets/images/tools/gmail.svg" alt="" width="28" height="28" loading="lazy"></div><span>Gmail</span></div><div class="stn"><div class="sq"><img src="./assets/images/tools/n8n.svg" alt="" width="28" height="28" loading="lazy"></div><span>n8n</span></div><div class="stn"><div class="sq"><img src="./assets/images/tools/slack.svg" alt="" width="28" height="28" loading="lazy"></div><span>Slack</span></div><i class="pk"></i></div>
-        <p class="run-cap" aria-hidden="true">Deal email arrives → n8n reads and scores it → Summary posted in Slack</p>
-        <p class="sr">Deal Flow Checker: Deal email arrives, then n8n reads and scores it, then Summary posted in Slack.</p>
-      </div>
-      <div class="run" data-caps="n8n agents research and draft|Drafts queue in Google Sheets|Waits for your OK|Shared in Slack">
-        <div><h3>Multi-agent content</h3><p>Research, draft and queue, then you sign off.</p></div>
-        <div class="rail" aria-hidden="true"><div class="stn"><div class="sq"><img src="./assets/images/tools/n8n.svg" alt="" width="28" height="28" loading="lazy"></div><span>n8n</span></div><div class="stn"><div class="sq"><img src="./assets/images/tools/googlesheets.svg" alt="" width="28" height="28" loading="lazy"></div><span>Google Sheets</span></div><div class="stn gate"><div class="sq"><svg><use href="#bar" width="100%" height="100%"/></svg></div><span>Your OK</span></div><div class="stn"><div class="sq"><img src="./assets/images/tools/slack.svg" alt="" width="28" height="28" loading="lazy"></div><span>Slack</span></div><i class="pk"></i></div>
-        <p class="run-cap" aria-hidden="true">n8n agents research and draft → Drafts queue in Google Sheets → Waits for your OK → Shared in Slack</p>
-        <p class="sr">Multi-agent content: n8n agents research and draft, then Drafts queue in Google Sheets, then Waits for your OK, then Shared in Slack.</p>
-      </div>
-      <div class="run" data-caps="OpenRouter sends one prompt|DeepSeek answers|Claude answers|Gemini answers|Scores logged in Notion">
-        <div><h3>Model tests</h3><p>The same job through several models, scored in one place.</p></div>
-        <div class="rail" aria-hidden="true"><div class="stn"><div class="sq"><img src="./assets/images/tools/openrouter-dark.png" alt="" width="28" height="28" loading="lazy"></div><span>OpenRouter</span></div><div class="stn"><div class="sq"><img src="./assets/images/tools/deepseek-dark.png" alt="" width="28" height="28" loading="lazy"></div><span>DeepSeek</span></div><div class="stn"><div class="sq"><img src="./assets/images/tools/claude-dark.png" alt="" width="28" height="28" loading="lazy"></div><span>Claude Code</span></div><div class="stn"><div class="sq"><img src="./assets/images/tools/googlegemini.svg" alt="" width="28" height="28" loading="lazy"></div><span>Gemini</span></div><div class="stn"><div class="sq"><img src="./assets/images/tools/notion-dark.svg" alt="" width="28" height="28" loading="lazy"></div><span>Notion</span></div><i class="pk"></i></div>
-        <p class="run-cap" aria-hidden="true">OpenRouter sends one prompt → DeepSeek answers → Claude answers → Gemini answers → Scores logged in Notion</p>
-        <p class="sr">Model tests: OpenRouter sends one prompt, then DeepSeek answers, then Claude answers, then Gemini answers, then Scores logged in Notion.</p>
-      </div>
-    </div>
-    <div class="index" aria-label="All the tools I use">
-      <div><h3>Models</h3><ul><li><img src="./assets/images/tools/claude-dark.png" alt="" width="22" height="22" loading="lazy">Claude Code</li><li><img src="./assets/images/tools/openai-dark.png" alt="" width="22" height="22" loading="lazy">OpenAI / Codex</li><li><img src="./assets/images/tools/googlegemini.svg" alt="" width="22" height="22" loading="lazy">Gemini</li><li><img src="./assets/images/tools/deepseek-dark.png" alt="" width="22" height="22" loading="lazy">DeepSeek</li><li><img src="./assets/images/tools/qwen-dark.png" alt="" width="22" height="22" loading="lazy">Qwen</li></ul></div>
-      <div><h3>Build</h3><ul><li><img src="./assets/images/tools/withone-dark.png" alt="" width="22" height="22" loading="lazy">One</li><li><img src="./assets/images/tools/openrouter-dark.png" alt="" width="22" height="22" loading="lazy">OpenRouter</li><li><img src="./assets/images/tools/n8n.svg" alt="" width="22" height="22" loading="lazy">n8n</li><li><img src="./assets/images/tools/github-dark.svg" alt="" width="22" height="22" loading="lazy">GitHub</li></ul></div>
-      <div><h3>Apps</h3><ul><li><img src="./assets/images/tools/gmail.svg" alt="" width="22" height="22" loading="lazy">Gmail</li><li><img src="./assets/images/tools/slack.svg" alt="" width="22" height="22" loading="lazy">Slack</li><li><img src="./assets/images/tools/googlesheets.svg" alt="" width="22" height="22" loading="lazy">Google Sheets</li><li><img src="./assets/images/tools/airtable.svg" alt="" width="22" height="22" loading="lazy">Airtable</li><li><img src="./assets/images/tools/notion-dark.svg" alt="" width="22" height="22" loading="lazy">Notion</li><li><img src="./assets/images/tools/canva.svg" alt="" width="22" height="22" loading="lazy">Canva</li><li><img src="./assets/images/tools/calendly.svg" alt="" width="22" height="22" loading="lazy">Calendly</li></ul></div>
-    </div>
+<section class="sec" id="process" aria-labelledby="process-h"><div class="wrap">
+  <p class="label">Process</p>
+  <h2 id="process-h">How it works</h2>
+  <ol class="proc">
+    <li><span class="n">01</span><h3>Discovery Call</h3><p>A 30-minute call to learn how your business runs and where the time goes.</p></li>
+    <li><span class="n">02</span><h3>Blueprint Design</h3><p>I map the workflows to automate and the agents to build, before anything is built.</p></li>
+    <li><span class="n">03</span><h3>BTOR (Build, Test, Observe, and Refine)</h3><p>I build it, test it on real work, watch how it behaves and tighten it.</p></li>
+    <li><span class="n">04</span><h3>Deploy</h3><p>The system goes live inside the tools you already use.</p></li>
+    <li><span class="n">05</span><h3>Ongoing Support</h3><p>I keep it running and adjust it as your business changes.</p></li>
+  </ol>
+</div></section>
+<section class="sec alt" id="proof" aria-labelledby="proof-h"><div class="wrap">
+  <p class="label">Testimonials</p>
+  <h2 id="proof-h">What clients say</h2>
+  <ul class="tq">
+    <li><figure><blockquote><p>Jan has been such a huge help! He really knows how to use AI and automation to make everyday tasks easier. Things that used to take so much time are now way more manageable. Super easy to work with, too!</p></blockquote><figcaption><b>Felix W.</b> COO, Shopify Store Owner</figcaption></figure></li>
+    <li><figure><blockquote><p>Honestly, working with Jan has been great. He helped us figure out smarter ways to handle repetitive tasks using AI. It’s nice not having to worry about all the little things anymore. Definitely made our workflow a lot smoother!</p></blockquote><figcaption><b>Mike M.</b> Co-Founder, Shopify Store Owner</figcaption></figure></li>
+    <li><figure><blockquote><p>I’m not really a tech person, so having Jan help with AI and automation was a game changer. He made everything feel simple and easy to understand. No complicated explanations, just solutions that made our daily work a whole lot easier!</p></blockquote><figcaption><b>Andy G.</b> Search Fund Operator</figcaption></figure></li>
+    <li><figure><blockquote><p>One thing I really like about Jan is that he’s always finding ways to make things simpler. He knows his way around AI tools and comes up with ideas that actually make sense for our business. Plus, he’s really chill and easy to communicate with!</p></blockquote><figcaption><b>Thora</b> Social Media Manager</figcaption></figure></li>
+  </ul>
+</div></section>
+<section class="sec book" id="book" aria-labelledby="book-h"><div class="wrap">
+  <p class="label">Discovery call</p>
+  <h2 id="book-h">Book a discovery call</h2>
+  <p class="lede">A 30-minute call to see where automation fits your business. Pick a time that suits you.</p>
+  <a class="btn btn--ink" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">Book a discovery call <span aria-hidden="true">→</span></a>
+  <div class="cal" id="cal" data-src="https://calendly.com/janmm-va/30min" hidden>
+    <button type="button" class="textbtn" id="cal-load">Or choose a time here</button>
+    <p class="note">Loads Calendly, a third-party service, when you click.</p>
   </div>
-</section>
-
-<section class="dark sec" id="projects" aria-labelledby="proj-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="proj-h">I build the agents I use every day.</h2>
-      <p class="lede">Orchy is the open-source app I run my own AI team on. It's free, and it's powered by One.</p>
-    </div>
-    <div class="orchy">
-      <a class="shot" href="https://imorchy.dev/" target="_blank" rel="noopener" aria-label="Orchy · dashboard, imorchy.dev (opens in a new tab)">
-        <figure style="margin:0">
-          <picture><source srcset="assets/images/orchy-dashboard.webp" type="image/webp"><img src="assets/images/orchy-dashboard.png" alt="The Orchy dashboard: workspaces, agents and tasks waiting for approval" width="1600" height="899" loading="lazy" decoding="async"></picture>
-          <figcaption><span>Orchy · dashboard</span><span>imorchy.dev ↗</span></figcaption>
-        </figure>
-      </a>
-      <div class="orchy-txt">
-        <h3>Orchy AI</h3>
-        <p class="lede">Runs AI agents for several businesses on one computer. Each agent does its job, and anything that goes out waits for a person's OK.</p>
-        <a class="btn" href="https://imorchy.dev/" target="_blank" rel="noopener"><svg class="tick" aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg><span>Visit imorchy.dev</span></a>
-      </div>
-    </div>
-    <ul class="plist">
-      <li><b>J/OS HQ</b><span>The control room I use to run my own agents day to day.</span><a class="link" href="projects/">See the build</a></li>
-      <li><b>J/OS Agents</b><span>The agent team behind my own business: marketing, SEO, site QA and security.</span><a class="link" href="projects/">See the build</a></li>
-      <li><b>Deal Flow Checker</b><span>An n8n flow that reads deal emails and posts a summary to Slack.</span><a class="link" href="projects/">See the build</a></li>
-      <li><b>Multi-agent content writer</b><span>An n8n pipeline that researches, drafts and queues content for review.</span><a class="link" href="projects/">See the build</a></li>
-    </ul>
-  </div>
-</section>
-
-<section class="light sec" id="work" aria-labelledby="work-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="work-h">Three ways to hand work over.</h2>
-      <p class="sub">Start with one workflow, or let me run the agents for you each month. We pick the right one on the call.</p>
-    </div>
-    <div class="tiers">
-      <div class="tier"><h3>Starter</h3><p>One workflow mapped, built and handed over.</p><p class="price" data-slot="price-starter">Price <span class="slot-tag">Jan to confirm</span></p></div>
-      <div class="tier"><h3>Pro</h3><p>Up to three connected workflows plus one AI agent.</p><p class="price" data-slot="price-pro">Price <span class="slot-tag">Jan to confirm</span></p></div>
-      <div class="tier"><h3>Monthly support</h3><p>I keep your agents running and add new ones as you grow.</p><p class="price" data-slot="price-retainer">Price <span class="slot-tag">Jan to confirm</span></p></div>
-    </div>
-    <div class="tiers-foot">
-      <a class="btn" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener"><svg class="tick" aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg><span>Book a 30-min call</span></a>
-      <p class="sub">30 minutes. We map one task you want off your plate. <a class="link" href="services/">How the work runs</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="light sec" id="blog" aria-labelledby="blog-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="blog-h">Notes from the board.</h2>
-      <p class="sub">What I test, build and learn, sorted by who it's for.</p>
-    </div>
-    <div class="shelves" data-tabs="">
-      <div class="tabs" role="tablist" aria-label="Blog shelves">
-      <button type="button" role="tab" id="tab-business" data-key="business" aria-controls="shelf-business" aria-selected="true">For business owners <span class="n">4</span></button>
-      <button type="button" role="tab" id="tab-va" data-key="va" aria-controls="shelf-va" aria-selected="false" tabindex="-1">For VAs learning AI <span class="n">3</span></button>
-      <button type="button" role="tab" id="tab-tests" data-key="tests" aria-controls="shelf-tests" aria-selected="false" tabindex="-1">Model tests <span class="n">5</span></button>
-      </div>
-      <div id="shelf-business" role="tabpanel" aria-labelledby="tab-business" tabindex="0"><ul class="posts">
-        <li><a href="./blog/human-in-the-loop-ai-agents/"><span class="pt">How can a small service business use AI agents without losing control of what goes out?</span><span class="k t">Post</span><span class="k"><time datetime="2026-10-15">Oct 15, 2026</time> · 6 min</span></a></li>
-        <li><a href="./blog/claude-for-small-business/"><span class="pt">What Claude for Small Business actually does, and what you still have to set up</span><span class="k t">Post</span><span class="k"><time datetime="2026-10-26">Oct 26, 2026</time> · 5 min</span></a></li>
-        <li><a href="./blog/ai-marketing-agents-claude-code/"><span class="pt">I built an AI marketing team with Claude Code: who&#x27;s on it and what each agent does</span><span class="k t">Post</span><span class="k"><time datetime="2026-10-19">Oct 19, 2026</time> · 5 min</span></a></li>
-        <li><a href="./blog/best-ai-agent-orchestration-tools-2026/"><span class="pt">The best AI agent orchestration tools in 2026 (Orchy is #1)</span><span class="k t">Post</span><span class="k"><time datetime="2026-10-29">Oct 29, 2026</time> · 11 min</span></a></li>
-      </ul></div>
-      <div id="shelf-va" role="tabpanel" aria-labelledby="tab-va" tabindex="0"><ul class="posts">
-        <li><a href="./blog/virtual-assistant-job-sites/"><span class="pt">Virtual Assistant Job Sites: Where to Find VA Work</span><span class="k t">Post</span><span class="k"><time datetime="2026-10-07">Oct 7, 2026</time> · 10 min</span></a></li>
-        <li><a href="./blog/what-to-learn-instead-of-ai-automation/"><span class="pt">What to Learn Before AI Automation: A VA Learning Roadmap</span><span class="k t">Post</span><span class="k"><time datetime="2026-10-07">Oct 7, 2026</time> · 6 min</span></a></li>
-        <li><a href="./blog/is-prompt-engineering-dead/"><span class="pt">Is Prompt Engineering Dead?</span><span class="k t">Post</span><span class="k"><time datetime="2026-10-24">Oct 24, 2026</time> · 9 min</span></a></li>
-      </ul></div>
-      <div id="shelf-tests" role="tabpanel" aria-labelledby="tab-tests" tabindex="0"><ul class="posts">
-        <li><a href="./blog/gpt-6-1-terra-ai-assistant-test/"><span class="pt">GPT-6.1 Terra as an AI assistant: 6 models, one inbox, 36 graded runs</span><span class="k t">Post</span><span class="k"><time datetime="2026-10-27">Oct 27, 2026</time> · 8 min</span></a></li>
-        <li><a href="./blog/deepseek-v4-1-flash-vs-claude-sonnet-5-5/"><span class="pt">DeepSeek V4.1 Flash tied Claude Sonnet 5.5 on my blog intros, at about an eighth of the cost</span><span class="k t">Post</span><span class="k"><time datetime="2026-10-10">Oct 10, 2026</time> · 5 min</span></a></li>
-        <li><a href="./blog/claude-haiku-5-5-vs-deepseek-v4-1-flash-vs-gpt-6-luna/"><span class="pt">Claude Haiku 5.5 vs GPT-6 Luna vs DeepSeek V4.1 Flash: A Research-Agent Test</span><span class="k t">Post</span><span class="k"><time datetime="2026-10-08">Oct 8, 2026</time> · 3 min</span></a></li>
-        <li><a href="./blog/gemini-4-argon-vs-claude-opus-5-5/"><span class="pt">Gemini 4 Argon: what&#x27;s new, the benchmarks, and how it compares to Claude Opus 5.5</span><span class="k t">Post</span><span class="k"><time datetime="2026-10-20">Oct 20, 2026</time> · 4 min</span></a></li>
-        <li><a href="./blog/deepseek-v4-1-flash-1017/"><span class="pt">DeepSeek V4.1-Flash-1017: what changed, and what it costs</span><span class="k t">Post</span><span class="k"><time datetime="2026-10-27">Oct 27, 2026</time> · 7 min</span></a></li>
-      </ul></div>
-    </div>
-    <p style="margin-top:28px"><a class="link" href="blog/">All 12 posts</a></p>
-  </div>
-</section>
-
-<section class="light sec" id="book" aria-labelledby="book-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="book-h">Book a discovery call</h2>
-      <p class="sub">A 30-minute call to see where automation fits your business. Pick a time that suits you.</p>
-    </div>
-    <p><a class="btn" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener"><svg class="tick" aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg><span>Book a discovery call</span></a></p>
-    <div class="cal" id="cal" data-src="https://calendly.com/janmm-va/30min" hidden>
-      <button type="button" class="textbtn" id="cal-load">Or choose a time here</button>
-      <p class="code cal-note">Loads Calendly, a third-party service, when you click.</p>
-    </div>
-  </div>
-</section>
+</div></section>
 </main>
-
-<!-- e:foot -->
-<footer class="dark foot">
-  <div class="wrap">
-    <div class="foot-top">
-      <h2>Hand one task over. Keep the final say.</h2>
-      <a class="btn" href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener"><svg class="tick" aria-hidden="true"><use href="#bar" width="100%" height="100%"/></svg><span>Book a 30-min call</span></a>
-    </div>
-    <ul class="foot-nav" aria-label="Site">
-      <li><a href="./services/">Work with me</a></li>
-      <li><a href="./projects/">Projects</a></li>
-      <li><a href="./academy/">Academy</a></li>
-      <li><a href="./blog/">Blog</a></li>
-      <li><a href="./about/">About</a></li>
-      <li><a href="./contact/">Contact</a></li>
-    </ul>
-    <div class="foot-bot">
-      <a class="brand" href="./"><img src="./assets/images/websitelogo-blackbg1.svg" alt="" width="28" height="28">Jan</a>
-      <span>Product names and logos belong to their owners.</span>
-      <a href="#top">Back to top</a>
-    </div>
-  </div>
-</footer>
-<!-- /e:foot -->
-<script src="./assets/js/e.js?v=2026-11-03.1" defer></script>
-<script src="./assets/js/home.js?v=2026-11-17.1" defer></script>
+<!-- n:foot -->
+<footer class="foot"><div class="wrap">
+  <span>© Jan</span>
+  <ul><li><a href="./">Home</a></li><li><a href="./about/">About</a></li><li><a href="./blog/">Blog</a></li></ul>
+  <a href="#top">Back to top</a>
+</div></footer>
+<!-- /n:foot -->
+<script src="./assets/js/home.js?v=2026-11-17.2" defer></script>
+<script src="./assets/js/noir.js?v=2026-11-17.4" defer></script>
 </body>
 </html>
