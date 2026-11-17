@@ -1,0 +1,23 @@
+/* Noir blog posts: loads after noir.css and e-post.css. Points the post tokens e-post.css uses at Noir tokens
+   (aliases, no new values) so articles read bone-on-charcoal like the rest of the site. */
+:root{
+  --ink:var(--color-bone-100);--paper:var(--color-charcoal-900);--strip:var(--color-charcoal-800);--cleared:var(--color-charcoal-800);
+  --mute-l:var(--color-bone-500);--mute-d:var(--color-bone-400);--mute-d2:var(--color-bone-500);--rule-l:var(--color-rule-dark);
+  --body:var(--font-body);--code:var(--font-mono);--pad:var(--space-4)
+}
+.post h1,.post h2,.post h3{text-wrap:balance}
+.post h2{max-width:none}
+.post-head{background:none;color:var(--color-bone-100);padding-top:var(--space-4)}
+.post-head .crumbs{font:500 var(--size-label)/1.5 var(--font-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--color-bone-500)}
+.post-head .crumbs span[aria-hidden]{margin:0 10px}
+.post-title{font-weight:400;letter-spacing:-.03em;line-height:1;margin-top:var(--space-2)}
+.post-content>h2,.post-continue>h2{font-weight:400;letter-spacing:-.02em;line-height:1.05}
+.post-content pre{background:var(--color-charcoal-800);color:var(--color-bone-100);border:1px solid var(--color-rule-dark)}
+.post-figure img{border-color:var(--color-rule-dark)}
+.post-cta{background:var(--color-charcoal-800);color:var(--color-bone-100);border:1px solid var(--color-rule-dark)}
+.post-cta p{color:var(--color-bone-400)}
+.post .btn{background:var(--color-bone-100);color:var(--color-charcoal-900);border-color:var(--color-bone-100)}
+.post .btn:hover{background:transparent;color:var(--color-bone-100)}
+.post .btn::before,.post .btn .tick{display:none}
+.post .btn:focus-visible{outline-color:var(--color-bone-100)}
+.post-continue{margin-bottom:var(--space-5)}
