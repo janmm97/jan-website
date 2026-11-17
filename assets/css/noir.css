@@ -130,17 +130,14 @@ h3{font-weight:500;font-size:24px;letter-spacing:-.01em;line-height:1.25}
   .js .nav.open ul{display:flex;flex-direction:column;gap:0;grid-row:2;grid-column:1/-1;border-top:1px solid var(--color-rule-dark);margin-top:var(--space-2)}
   .js .nav ul a{display:block;padding:14px 0;min-height:48px;border-bottom:1px solid var(--color-rule-dark)}
 }
-/* Testimonials carousel: loops forever, each quote stays once in the DOM */
-.tq-view{overflow:hidden;border:1px solid var(--color-rule-dark)}
-.tq.is-loop{display:flex;gap:var(--space-3);background:none;border:0;transition:transform var(--duration-slow) ease}
+/* Testimonials: continuous loop, each quote stays once in the DOM; holds on hover, tap and keyboard focus */
+.tq-view{overflow:hidden}
+.tq-view:focus-visible{outline:2px solid var(--color-bone-100);outline-offset:4px}
+.tq.is-loop{--motion-marquee-speed:40;display:flex;gap:var(--space-3);background:none;border:0;will-change:transform}
 .tq.is-loop li{flex:0 0 calc(50% - var(--space-3)/2)}
 .tq.is-loop figure{border:1px solid var(--color-rule-dark)}
-.tq-view{border:0}
-.tq-ctl{display:flex;gap:var(--space-2);justify-content:flex-end;margin-top:var(--space-3)}
-.tq-ctl button{min-width:48px;min-height:48px;padding:0 var(--space-3);background:none;border:1px solid var(--color-bone-100);color:var(--color-bone-100);font:500 12px var(--font-mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
-.tq-ctl button:hover{background:var(--color-bone-100);color:var(--color-charcoal-900)}
 @media (max-width:860px){.tq.is-loop li{flex-basis:100%}}
-@media (prefers-reduced-motion:reduce){.tq.is-loop{transition:none}.burger span{transition:none}}
+@media (prefers-reduced-motion:reduce){.burger span{transition:none}}
 .portrait{display:block;width:100%;max-width:320px;height:auto;margin-top:var(--space-4);border:1px solid var(--color-rule-dark)}
 /* socials under the portrait: one-tone masked logos, 44px targets */
 .socials{display:flex;gap:var(--space-1);list-style:none;padding:0;margin-top:var(--space-2)}
