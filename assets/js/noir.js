@@ -17,23 +17,29 @@
   const view = document.createElement('div'); view.className = 'tq-view';
   tq.before(view); view.append(tq);
   tq.classList.add('is-loop');
-  view.setAttribute('role', 'group'); view.setAttribute('aria-label', 'Client testimonials, scrolling. Hover, tap or focus to hold.');
-  view.tabIndex = 0; // keyboard users hold the loop by focusing it (WCAG 2.2.2)
+  view.setAttribute('role', 'group'); view.setAttribute('aria-label', 'Client testimonials, scrolling. Hover or focus to hold; click, tap or press Enter to pause.');
+  view.tabIndex = 0;
   // Continuous drift left; once the first card is fully out, it moves to the end. Each quote stays once in the DOM.
-  const speed = parseFloat(getComputedStyle(tq).getPropertyValue('--motion-marquee-speed')) || 40; // px per second
+  const cs = getComputedStyle(tq);
+  const speed = parseFloat(cs.getPropertyValue('--motion-marquee-speed')) || 40; // px per second
+  const gap = parseFloat(cs.columnGap) || 0;
   let x = 0, last = 0, hold = false;
   const tick = (t) => {
     const dt = Math.min(t - (last || t), 50) / 1000; last = t;
     if (!hold) {
       x += speed * dt;
-      const first = tq.firstElementChild, w = first.offsetWidth + parseFloat(getComputedStyle(tq).columnGap || 0);
+      const first = tq.firstElementChild, w = first.getBoundingClientRect().width + gap;
       if (x >= w) { x -= w; tq.append(first); }
       tq.style.transform = `translateX(${-x}px)`;
     }
     requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);
-  const on = () => { hold = true; }, off = () => { hold = false; };
-  view.addEventListener('mouseenter', on); view.addEventListener('mouseleave', off);
-  view.addEventListener('focusin', on); view.addEventListener('focusout', off);
+  // Hold while hovered or focused; click, tap, Enter or Space toggles a lasting pause (WCAG 2.2.2) without a visible button.
+  let hov = false, foc = false, stop = false;
+  const sync = () => { hold = hov || foc || stop; };
+  view.addEventListener('mouseenter', () => { hov = true; sync(); }); view.addEventListener('mouseleave', () => { hov = false; sync(); });
+  view.addEventListener('focusin', () => { foc = true; sync(); }); view.addEventListener('focusout', () => { foc = false; sync(); });
+  view.addEventListener('click', () => { stop = !stop; sync(); });
+  view.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); stop = !stop; sync(); } });
 })();
