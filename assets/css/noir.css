@@ -142,3 +142,9 @@ h3{font-weight:500;font-size:24px;letter-spacing:-.01em;line-height:1.25}
 @media (max-width:860px){.tq.is-loop li{flex-basis:100%}}
 @media (prefers-reduced-motion:reduce){.tq.is-loop{transition:none}.burger span{transition:none}}
 .portrait{display:block;width:100%;max-width:250px;height:auto;margin-top:var(--space-4);border:1px solid var(--color-rule-dark)}
+/* socials under the portrait: one-tone masked logos, 44px targets */
+.socials{display:flex;gap:var(--space-1);list-style:none;padding:0;margin-top:var(--space-2)}
+.socials a{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--color-rule-dark);color:var(--color-bone-400);transition:color var(--duration-fast),border-color var(--duration-fast)}
+.socials a:hover,.socials a:focus-visible{color:var(--color-bone-100);border-color:var(--color-bone-100)}
+.socials b{width:20px;height:20px;background:currentColor;-webkit-mask:var(--mark) center/contain no-repeat;mask:var(--mark) center/contain no-repeat}
+@media (prefers-reduced-motion:reduce){.socials a{transition:none}}
