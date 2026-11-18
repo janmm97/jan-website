@@ -1,10 +1,11 @@
 # Jan — AI Agent Builder & Automation Specialist
 
-> Portfolio of Jan, a Computer Science graduate and Executive Assistant focused on operations and AI agents. Jan builds custom AI agents and connected workflows: the multi-agent command centers J/OS HQ and J/OS Agents, built on the One CLI, Claude Code and the Codex CLI, and n8n automations for deal screening, social content, video ads and request intake. Home, About, Blog, Contact and each blog post have their own URLs.
+> Portfolio of Jan, a Computer Science graduate and Executive Assistant focused on operations and AI agents. Jan builds custom AI agents and connected workflows: Orchy, an AI agent orchestrator; Local Browser, an open-source MCP browser for agents; and n8n automations for deal screening and content. Home, Projects, About, Blog, Contact and each blog post have their own URLs.
 
 ## Site
 - [Home](https://janmm97.github.io/jan-website/): Overview, services and booking link
 - [About](https://janmm97.github.io/jan-website/about/): Background and professional timeline
+- [Projects](https://janmm97.github.io/jan-website/projects/): Four systems Jan has built: Orchy, Local Browser, Deal Flow Checker and Multi-Agent Content Automation, with what each does and what it is built with
 - [Blog](https://janmm97.github.io/jan-website/blog/): All blog posts, newest first
 - [Contact](https://janmm97.github.io/jan-website/contact/): Book a 30-minute call or submit a request
 
@@ -25,11 +26,15 @@
 - [What to Learn Before AI Automation: A VA Learning Roadmap](https://janmm97.github.io/jan-website/blog/what-to-learn-instead-of-ai-automation/): A roadmap for virtual assistants
 
 ## Projects
-- Orchy: One orchestrator for running multiple businesses with AI agents. Uses Jev to route plain-language instructions to the right business and agent, keeps each business separate, and gates anything outward-facing behind approval (Claude Code, Codex CLI, One CLI)
+Full case files: https://janmm97.github.io/jan-website/projects/
+- [Orchy](https://imorchy.dev): AI agent orchestrator. Routes a plain-language instruction to the right business, agent and model, runs it under that business's own account, and pauses before anything is sent, spent, shared or deleted (Claude Code, Codex, One CLI, Jev)
+- [Local Browser](https://github.com/janmm97/local-browser): Open-source (MIT, v0.1) browser for AI agents that drives your own Chrome or Edge in a separate profile; CLI and MCP server (Node.js, TypeScript)
+- [Deal Flow Checker](https://github.com/janmm97/n8n-proj/tree/main/deal-flow-checker): n8n automation that screens deal-flow emails in Gmail against acquisition criteria and posts qualified deals to Slack
+- [Multi-Agent Content Automation](https://github.com/janmm97/n8n-proj/tree/main/content-automation): n8n multi-agent system that plans and writes social content across channels for team approval
+
+## Earlier work
 - [J/OS HQ](https://github.com/janmm97/janhq): Local command center that runs AI agents for two businesses behind one approval gate (Next.js, Claude Code, Codex CLI, One CLI)
 - [AI Video Ad AutoSync Pipeline](https://github.com/janmm97/n8n-proj/tree/main/sora-2-autosync-v2): n8n workflow that turns a form submission into a finished vertical video ad
-- [Multi-Agent Content Automation](https://github.com/janmm97/n8n-proj/tree/main/content-automation): n8n multi-agent system that plans and writes social content across channels
-- [Deal Flow Checker](https://github.com/janmm97/n8n-proj/tree/main/deal-flow-checker): n8n automation that screens deal-flow emails in Gmail against acquisition criteria
 - [Automation Idea Summary and Prompt Writer](https://github.com/janmm97/n8n-proj/tree/main/automation-idea-summary-and-prompt-writer): n8n intake workflow that turns automation requests into execution-ready prompts
 
 ## Optional
