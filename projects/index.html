@@ -182,7 +182,7 @@
     {
      "@type": "Question",
      "name": "What is QuickVerdict?",
-     "acceptedAnswer": { "@type": "Answer", "text": "QuickVerdict is an open-source (MIT, v0.1) decision server that runs on your own GPU. You ask a small language model Choice, Score or Yes/No questions and get calibrated probabilities back, through an API compatible with TypeSafe's System One (Jev). It needs no API key and loads the biggest model your GPU fits." }
+     "acceptedAnswer": { "@type": "Answer", "text": "QuickVerdict is an open-source (MIT, v0.1) decision server that runs on your own GPU. You ask a small language model Choice, Score or Yes/No questions and get calibrated probabilities back, through an API compatible with TypeSafe's System One (Jev). It needs no API key and loads the biggest model your GPU fits. It is an independent project, not affiliated with TypeSafe." }
     },
     {
      "@type": "Question",
@@ -225,8 +225,8 @@
   <h2 id="idx-h" class="label sec-label">The five projects at a glance</h2>
   <ul class="pidx">
     <li><a href="#orchy"><span class="n">01</span><span class="t">Orchy</span><span class="k">Product · AI agent orchestrator</span><span class="s">Claude Code · Codex · One CLI · Jev</span><span class="sr-only">Jump to Orchy</span></a></li>
-    <li><a href="#local-browser"><span class="n">02</span><span class="t">Local Browser</span><span class="k">Open source · MIT · MCP server</span><span class="s">TypeScript · Node 22 · Playwright · MCP</span><span class="sr-only">Jump to Local Browser</span></a></li>
-    <li><a href="#quickverdict"><span class="n">03</span><span class="t">QuickVerdict</span><span class="k">Open source · MIT · Decision server</span><span class="s">Python · PyTorch · Hugging Face · Qwen2.5</span><span class="sr-only">Jump to QuickVerdict</span></a></li>
+    <li><a href="#local-browser"><span class="n">02</span><span class="t">Local Browser</span><span class="k">MIT · open source · MCP server</span><span class="s">TypeScript · Node 22 · Playwright · MCP</span><span class="sr-only">Jump to Local Browser</span></a></li>
+    <li><a href="#quickverdict"><span class="n">03</span><span class="t">QuickVerdict</span><span class="k">MIT · open source · Decision server</span><span class="s">Python · PyTorch · Hugging Face · Qwen2.5</span><span class="sr-only">Jump to QuickVerdict</span></a></li>
     <li><a href="#deal-flow"><span class="n">04</span><span class="t">Deal Flow Checker</span><span class="k">Automation · n8n · Deal screening</span><span class="s">n8n · Gmail · OpenAI · Slack</span><span class="sr-only">Jump to Deal Flow Checker</span></a></li>
     <li><a href="#content-automation"><span class="n">05</span><span class="t">Multi-Agent Content Automation</span><span class="k">Automation · n8n · Content ops</span><span class="s">n8n · AI agents · Google Sheets</span><span class="sr-only">Jump to Multi-Agent Content Automation</span></a></li>
   </ul>
@@ -299,7 +299,7 @@ open(url)  snapshot()  click(ref)  type(ref, text)  ask_human(reason)</pre><figc
       <p class="lede">A local, open-source decision server: ask a small language model on your own GPU Choice, Score or Yes/No questions and get calibrated probabilities back, through an API compatible with TypeSafe's System One (Jev).</p>
       <ul class="facts">
         <li><b>Private</b><span>Runs on your own GPU by default, with no API key and no per-call cost.</span></li>
-        <li><b>Consistent</b><span>Deterministic and order-debiased: the same question gets the same answer, whatever order the options come in.</span></li>
+        <li><b>Consistent</b><span>Deterministic and order-debiased: the same request always returns the same probabilities, and Choice answers are averaged over several option orderings to cancel position bias.</span></li>
         <li><b>Fits your GPU</b><span>Checks your GPU at start-up and loads the biggest model it can hold.</span></li>
       </ul>
       <p class="links"><a href="https://github.com/janmm97/quickverdict" target="_blank" rel="noopener">View on GitHub<span class="sr-only">: QuickVerdict</span> <span aria-hidden="true">↗</span></a></p>
@@ -363,7 +363,7 @@ POST /v1/systemone  →  Choice · Score · Yes/No</pre><figcaption>From the REA
   <div class="faq-list">
     <div><h3>What is Orchy?</h3><p><a href="#orchy">Orchy</a> is an <a href="../blog/best-ai-agent-orchestration-tools-2026/">AI agent orchestrator</a> I built. It routes a plain-language instruction to the right business, agent and model, runs it under that business's own account, and pauses before anything is sent, spent, shared or deleted. It's built with Claude Code, Codex, the One CLI and Jev.</p></div>
     <div><h3>What is Local Browser?</h3><p><a href="https://github.com/janmm97/local-browser" target="_blank" rel="noopener">Local Browser</a> is an open-source (MIT, v0.1) browser for AI agents. It drives the Chrome or Edge already on your machine in a separate profile, gives the agent compact text snapshots, and waits for a human yes before forms or passwords. Use it as a CLI or an MCP server for Claude Code.</p></div>
-    <div><h3>What is QuickVerdict?</h3><p><a href="https://github.com/janmm97/quickverdict" target="_blank" rel="noopener">QuickVerdict</a> is an open-source (MIT, v0.1) decision server that runs on your own GPU. You ask a small language model Choice, Score or Yes/No questions and get calibrated probabilities back, through an API compatible with TypeSafe's System One (Jev). It needs no API key and loads the biggest model your GPU fits.</p></div>
+    <div><h3>What is QuickVerdict?</h3><p><a href="https://github.com/janmm97/quickverdict" target="_blank" rel="noopener">QuickVerdict</a> is an open-source (MIT, v0.1) decision server that runs on your own GPU. You ask a small language model Choice, Score or Yes/No questions and get calibrated probabilities back, through an API compatible with TypeSafe's System One (Jev). It needs no API key and loads the biggest model your GPU fits. It is an independent project, not affiliated with TypeSafe.</p></div>
     <div><h3>What AI automations has Jan built with n8n?</h3><p>Two are on this page. <a href="#deal-flow">Deal Flow Checker</a> screens deal emails in Gmail against acquisition criteria and posts qualified deals to Slack. <a href="#content-automation">Multi-Agent Content Automation</a> prepares social posts for several channels and stores them in a sheet for the team to approve.</p></div>
     <div><h3>How do I start a project with Jan?</h3><p>Book a 30-minute <a href="https://calendly.com/janmm-va/30min" target="_blank" rel="noopener">discovery call</a> to see where automation fits your business.</p></div>
   </div>
